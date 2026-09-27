@@ -1,0 +1,474 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: aichangerequests.aiops.imperium.io
+spec:
+  group: aiops.imperium.io
+  names:
+    kind: AIChangeRequest
+    listKind: AIChangeRequestList
+    plural: aichangerequests
+    shortNames:
+    - aicrq
+    singular: aichangerequest
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.action
+      name: Action
+      type: string
+    - jsonPath: .spec.sourceModel
+      name: Source
+      type: string
+    - jsonPath: .spec.targetModel
+      name: Target
+      type: string
+    - jsonPath: .spec.approval
+      name: Approval
+      type: string
+    - jsonPath: .status.phase
+      name: Phase
+      type: string
+    - jsonPath: .spec.riskLevel
+      name: Risk
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: "AIChangeRequest represents either a proposed model reroute or
+          a bounded\npolicy-level GOV-AR route authorization that requires human approval.
+          The\nworkflow is:\n\n\tPending → Approved (human sets spec.approval=Approved)
+          → Actuated\n\tPending → Rejected (human sets spec.approval=Rejected)\n\tPending
+          → Expired  (expiresAfter elapsed without decision)\n\nauthorize-gov-ar-route
+          ends in Approved without actuation and may be reused\nonly inside its exact
+          immutable scope. Every decision is auditable via status\nconditions and
+          Kubernetes Events."
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: AIChangeRequestSpec describes a proposed change for human
+              review.
+            properties:
+              action:
+                description: Action is the type of change proposed.
+                enum:
+                - reroute
+                - authorize-gov-ar-route
+                type: string
+              approval:
+                default: Pending
+                description: |-
+                  Approval is set by a human reviewer to approve or reject the request.
+                  Initially left empty (Pending). The operator acts only when Approved.
+                enum:
+                - Pending
+                - Approved
+                - Rejected
+                type: string
+              expectedSavingEUR:
+                description: ExpectedSavingEUR is the projected saving over the observation
+                  window.
+                type: string
+              expiresAfter:
+                description: |-
+                  ExpiresAfter is how long this request waits for approval before it expires
+                  (e.g. "24h"). Defaults to "48h" when not set.
+                type: string
+              govarDecision:
+                description: |-
+                  GOVARDecision is an immutable, API-server-identity-bound reviewer record.
+                  It is absent while Pending and is stamped by the admission webhook for the
+                  sole Pending -> Approved/Rejected transition.
+                properties:
+                  admissionUID:
+                    description: |-
+                      AdmissionUID is the unique AdmissionReview request UID for this
+                      transition. A replay is evaluated under a different UID and fails closed.
+                    minLength: 1
+                    type: string
+                  decidedAt:
+                    format: date-time
+                    type: string
+                  decisionDigest:
+                    description: |-
+                      DecisionDigest is a domain-separated SHA-256 digest over every field
+                      above plus object namespace/name and the authenticated requester.
+                    pattern: ^[a-f0-9]{64}$
+                    type: string
+                  outcome:
+                    allOf:
+                    - enum:
+                      - Pending
+                      - Approved
+                      - Rejected
+                    - enum:
+                      - Approved
+                      - Rejected
+                    description: Outcome must agree with spec.approval.
+                    type: string
+                  proposalDigest:
+                    description: |-
+                      ProposalDigest and ScopeDigest bind the reviewer decision to the exact
+                      immutable proposal and route authorization scope.
+                    pattern: ^[a-f0-9]{64}$
+                    type: string
+                  requestUID:
+                    description: RequestUID is the immutable UID assigned by the Kubernetes
+                      API server.
+                    minLength: 1
+                    type: string
+                  reviewerGroup:
+                    description: |-
+                      ReviewerGroup is the independently administered reviewer group verified
+                      by the API server and admission webhook.
+                    enum:
+                    - aiops.imperium.io:gov-ar-approval-reviewers
+                    type: string
+                  reviewerIdentity:
+                    description: ReviewerIdentity is the authenticated Kubernetes
+                      username.
+                    minLength: 1
+                    type: string
+                  scopeDigest:
+                    pattern: ^[a-f0-9]{64}$
+                    type: string
+                  validUntil:
+                    format: date-time
+                    type: string
+                required:
+                - admissionUID
+                - decidedAt
+                - decisionDigest
+                - outcome
+                - proposalDigest
+                - requestUID
+                - reviewerGroup
+                - reviewerIdentity
+                - scopeDigest
+                - validUntil
+                type: object
+              govarRouteApproval:
+                description: |-
+                  GOVARRouteApproval is present only for authorize-gov-ar-route. One
+                  approved object may govern many requests under the exact frozen scope;
+                  requests never create or consume Kubernetes objects.
+                properties:
+                  model:
+                    description: |-
+                      AIWorkloadBindingResolvedReference binds a policy name to the exact object
+                      identity and generation resolved by the controller.
+                    properties:
+                      generation:
+                        description: Generation is the referenced object's observed
+                          metadata.generation.
+                        format: int64
+                        minimum: 1
+                        type: integer
+                      name:
+                        type: string
+                      uid:
+                        description: |-
+                          UID is a type that holds unique ID values, including UUIDs.  Because we
+                          don't ONLY use UUIDs, this is an alias to string.  Being a type captures
+                          intent and helps make sure that UIDs and names do not get conflated.
+                        type: string
+                    required:
+                    - generation
+                    - name
+                    - uid
+                    type: object
+                  provider:
+                    description: |-
+                      AIWorkloadBindingResolvedReference binds a policy name to the exact object
+                      identity and generation resolved by the controller.
+                    properties:
+                      generation:
+                        description: Generation is the referenced object's observed
+                          metadata.generation.
+                        format: int64
+                        minimum: 1
+                        type: integer
+                      name:
+                        type: string
+                      uid:
+                        description: |-
+                          UID is a type that holds unique ID values, including UUIDs.  Because we
+                          don't ONLY use UUIDs, this is an alias to string.  Being a type captures
+                          intent and helps make sure that UIDs and names do not get conflated.
+                        type: string
+                    required:
+                    - generation
+                    - name
+                    - uid
+                    type: object
+                  routeSnapshotDigest:
+                    description: |-
+                      RouteSnapshotDigest is the lower-case SHA-256 digest of the exact
+                      controller-validated GOVARRouteSnapshot admitted under this scope.
+                    pattern: ^[a-f0-9]{64}$
+                    type: string
+                  routingPolicy:
+                    description: |-
+                      AIWorkloadBindingResolvedReference binds a policy name to the exact object
+                      identity and generation resolved by the controller.
+                    properties:
+                      generation:
+                        description: Generation is the referenced object's observed
+                          metadata.generation.
+                        format: int64
+                        minimum: 1
+                        type: integer
+                      name:
+                        type: string
+                      uid:
+                        description: |-
+                          UID is a type that holds unique ID values, including UUIDs.  Because we
+                          don't ONLY use UUIDs, this is an alias to string.  Being a type captures
+                          intent and helps make sure that UIDs and names do not get conflated.
+                        type: string
+                    required:
+                    - generation
+                    - name
+                    - uid
+                    type: object
+                  scopeDigest:
+                    description: |-
+                      ScopeDigest is SHA-256 over every other field in this scope. Authors use
+                      ComputeDigest to populate it; the controller independently recomputes it.
+                    pattern: ^[a-f0-9]{64}$
+                    type: string
+                  validUntil:
+                    description: |-
+                      ValidUntil is an absolute, reviewer-selected upper bound. An approval is
+                      not valid at or after this instant.
+                    format: date-time
+                    type: string
+                required:
+                - model
+                - provider
+                - routeSnapshotDigest
+                - routingPolicy
+                - scopeDigest
+                - validUntil
+                type: object
+              latencyImpact:
+                description: LatencyImpact is a human-readable estimated latency delta
+                  (e.g. "+120ms").
+                type: string
+              proposalDigest:
+                description: |-
+                  ProposalDigest binds every proposal field, namespace/name, exact route
+                  scope, and RequestedBy. The admission webhook computes it on create.
+                pattern: ^[a-f0-9]{64}$
+                type: string
+              qualityScore:
+                description: QualityScore is the routing score of the target model
+                  at proposal time.
+                type: string
+              reason:
+                description: Reason is a human-readable justification for the change.
+                type: string
+              requestedBy:
+                description: |-
+                  RequestedBy is stamped from AdmissionRequest.UserInfo.username when an
+                  authorize-gov-ar-route proposal is created. Clients cannot select it.
+                minLength: 1
+                type: string
+              riskLevel:
+                description: RiskLevel is the operator's assessment of the change
+                  risk.
+                enum:
+                - low
+                - medium
+                - high
+                type: string
+              sourceModel:
+                description: SourceModel is the current provider-side model id.
+                minLength: 1
+                type: string
+              targetModel:
+                description: TargetModel is the proposed replacement model id.
+                minLength: 1
+                type: string
+            required:
+            - action
+            type: object
+            x-kubernetes-validations:
+            - message: sourceModel and targetModel are required for reroute
+              rule: self.action != 'reroute' || (has(self.sourceModel) && has(self.targetModel))
+            - message: govarRouteApproval is required for authorize-gov-ar-route
+              rule: self.action != 'authorize-gov-ar-route' || has(self.govarRouteApproval)
+            - message: action is immutable
+              rule: self.action == oldSelf.action
+            - message: govarRouteApproval is immutable; create a new change request
+                for a new scope
+              rule: '!has(oldSelf.govarRouteApproval) || self.govarRouteApproval ==
+                oldSelf.govarRouteApproval'
+            - message: requestedBy is immutable
+              rule: '!has(oldSelf.requestedBy) || self.requestedBy == oldSelf.requestedBy'
+            - message: proposalDigest is immutable
+              rule: '!has(oldSelf.proposalDigest) || self.proposalDigest == oldSelf.proposalDigest'
+            - message: govarDecision is immutable
+              rule: '!has(oldSelf.govarDecision) || self.govarDecision == oldSelf.govarDecision'
+            - message: an approval decision is immutable
+              rule: oldSelf.approval == 'Pending' || self.approval == oldSelf.approval
+            - message: a Pending GOV-AR authorization cannot contain a decision
+              rule: self.action != 'authorize-gov-ar-route' || self.approval != 'Pending'
+                || !has(self.govarDecision)
+            - message: a non-legacy GOV-AR decision must bind the outcome, proposal,
+                scope, expiry, and a distinct reviewer
+              rule: self.action != 'authorize-gov-ar-route' || self.approval == 'Pending'
+                || (!has(self.requestedBy) && !has(self.proposalDigest) && !has(self.govarDecision))
+                || (has(self.requestedBy) && has(self.proposalDigest) && has(self.govarDecision)
+                && self.govarDecision.outcome == self.approval && self.govarDecision.proposalDigest
+                == self.proposalDigest && self.govarDecision.scopeDigest == self.govarRouteApproval.scopeDigest
+                && self.govarDecision.validUntil == self.govarRouteApproval.validUntil
+                && self.govarDecision.reviewerIdentity != self.requestedBy)
+          status:
+            description: AIChangeRequestStatus reflects the observed state of the
+              change request.
+            properties:
+              actuatedAt:
+                description: ActuatedAt is when the operator applied the change.
+                format: date-time
+                type: string
+              actuatedRoutes:
+                description: ActuatedRoutes lists the AIGatewayRoute names modified
+                  by this request.
+                items:
+                  type: string
+                type: array
+              approvedAt:
+                description: ApprovedAt is when the controller verified a human-approved
+                  GOV-AR route scope.
+                format: date-time
+                type: string
+              approvedBy:
+                description: |-
+                  ApprovedBy is the API-server-authenticated reviewer recorded in the
+                  verified decision. It must differ from spec.requestedBy.
+                type: string
+              approvedDecisionDigest:
+                description: |-
+                  ApprovedDecisionDigest is the controller-recomputed digest of the
+                  independently authenticated, immutable reviewer decision.
+                pattern: ^[a-f0-9]{64}$
+                type: string
+              approvedScopeDigest:
+                description: |-
+                  ApprovedScopeDigest is the controller-recomputed digest of the exact
+                  reusable GOV-AR route scope. Admission rejects an absent or stale value.
+                pattern: ^[a-f0-9]{64}$
+                type: string
+              conditions:
+                description: Conditions represent the latest available observations
+                  of the request state.
+                items:
+                  description: Condition contains details for one aspect of the current
+                    state of this API Resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        lastTransitionTime is the last time the condition transitioned from one status to another.
+                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        message is a human readable message indicating details about the transition.
+                        This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        observedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: |-
+                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                        Producers of specific condition types may define expected values and meanings for this field,
+                        and whether the values are considered a guaranteed API.
+                        The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              expiresAt:
+                description: ExpiresAt is when the request will automatically expire
+                  if not acted upon.
+                format: date-time
+                type: string
+              message:
+                description: Message is a human-readable description of the current
+                  phase.
+                type: string
+              observedGeneration:
+                description: ObservedGeneration is the .metadata.generation last reconciled.
+                format: int64
+                type: integer
+              phase:
+                description: Phase is the current lifecycle state of the request.
+                enum:
+                - Pending
+                - Approved
+                - Actuated
+                - Rejected
+                - Expired
+                - Failed
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

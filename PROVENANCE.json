@@ -1,0 +1,356 @@
+{
+  "prepared_on": "2026-09-27",
+  "artifact_version": "1.0.0",
+  "upstream_repository": "https://github.com/ihsenalaya/ai-sovereign-finops-operator",
+  "upstream_checkout_base_commit": "5aa53a9c467eea8313419f7e94001f8dd919c8f4",
+  "source_state": "Local working tree, including uncommitted manuscript changes; the base commit alone does not reproduce this artifact. Original experimental measurements retained except documented identifier redaction.",
+  "input_archive": {
+    "name": "a3-zenodo-article1.zip",
+    "sha256": "b06ae0122f2e56874f793e7a9b6e8b333c54ce17accb93358864705ea8162b72"
+  },
+  "manuscript_status": "Current working anonymous review manuscript, not asserted final or accepted",
+  "manuscript_changes": "Updated from current article1/overleaf snapshot; two reviewer-directed sentences rephrased neutrally without changing technical meaning; paper README replaced; PDF rebuilt; legacy article1/ prefixes in evidence-table paths made artifact-relative.",
+  "paper_files": [
+    {
+      "artifact_path": "paper/README_OVERLEAF.md",
+      "sha256": "5d6f3b429c8482baba321f6781c237e09af4a2c5792fa05a0fe6e68b1d07cc54",
+      "source_path": "article1/overleaf/README_OVERLEAF.md",
+      "source_sha256": "fd896b9dda9f572f36a7978a15e6d55a5912a8e3b3b013173f1843598c1a0b81",
+      "unchanged_from_source": false
+    },
+    {
+      "artifact_path": "paper/abstract.tex",
+      "sha256": "adc497ba2e0eec12d341bcc86741565474e0a5e246674d4b2507aa9951422e15",
+      "source_path": "article1/overleaf/abstract.tex",
+      "source_sha256": "adc497ba2e0eec12d341bcc86741565474e0a5e246674d4b2507aa9951422e15",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/background.tex",
+      "sha256": "5c871f6383ca19523a5de7fa79c4fbc65eb038ad9fb9bec30d8b415495daff3d",
+      "source_path": "article1/overleaf/background.tex",
+      "source_sha256": "5c871f6383ca19523a5de7fa79c4fbc65eb038ad9fb9bec30d8b415495daff3d",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/conclusion.tex",
+      "sha256": "a6be9af2cb98bf743d2c10547c902c96b86d2b8fa9d9f48e974c973483a3e073",
+      "source_path": "article1/overleaf/conclusion.tex",
+      "source_sha256": "a6be9af2cb98bf743d2c10547c902c96b86d2b8fa9d9f48e974c973483a3e073",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/design.tex",
+      "sha256": "1507b0f367aca76d522b45e60a8b62b900b193388c411d241afbc06f3a6f80e1",
+      "source_path": "article1/overleaf/design.tex",
+      "source_sha256": "1507b0f367aca76d522b45e60a8b62b900b193388c411d241afbc06f3a6f80e1",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/discussion.tex",
+      "sha256": "c738f5c321c1dfb09070e04190396fe7cf2029933b49b73d2ff029062684add1",
+      "source_path": "article1/overleaf/discussion.tex",
+      "source_sha256": "c738f5c321c1dfb09070e04190396fe7cf2029933b49b73d2ff029062684add1",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/evaluation.tex",
+      "sha256": "5686744676af04eb3c54a635490e87cfeedccaf30c752fee8ff2fc99b3866344",
+      "source_path": "article1/overleaf/evaluation.tex",
+      "source_sha256": "5686744676af04eb3c54a635490e87cfeedccaf30c752fee8ff2fc99b3866344",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/figures/ablation_security_latency.pdf",
+      "sha256": "dec40290ee0e0a90210b5807b24a3e966a96e2f6e169c7c368a4ce1ba972b0e3",
+      "source_path": "article1/overleaf/figures/ablation_security_latency.pdf",
+      "source_sha256": "dec40290ee0e0a90210b5807b24a3e966a96e2f6e169c7c368a4ce1ba972b0e3",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/figures/identity_binding_matrix.pdf",
+      "sha256": "c1276201890a9619fcddeccc71eaa576997a754ba4eda416ffb8064d94974a78",
+      "source_path": "article1/overleaf/figures/identity_binding_matrix.pdf",
+      "source_sha256": "c1276201890a9619fcddeccc71eaa576997a754ba4eda416ffb8064d94974a78",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/figures/performance_high_resolution_cdf.pdf",
+      "sha256": "3a472b188562aba7f8a71d34750f0dc3993d5d500735007b7c58e368e5e312a2",
+      "source_path": "article1/overleaf/figures/performance_high_resolution_cdf.pdf",
+      "source_sha256": "3a472b188562aba7f8a71d34750f0dc3993d5d500735007b7c58e368e5e312a2",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/figures/scalability_line.pdf",
+      "sha256": "784c29c9c71d2f1ff52f70768dfb293bb204365347f723f25275f22bf0226600",
+      "source_path": "article1/overleaf/figures/scalability_line.pdf",
+      "source_sha256": "784c29c9c71d2f1ff52f70768dfb293bb204365347f723f25275f22bf0226600",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/figures/scheduler_security_matrix.pdf",
+      "sha256": "b91f78f54f48ffa3e144c2769f741c0185459e4c3567c3bfbecb19d1343400d2",
+      "source_path": "article1/overleaf/figures/scheduler_security_matrix.pdf",
+      "source_sha256": "b91f78f54f48ffa3e144c2769f741c0185459e4c3567c3bfbecb19d1343400d2",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/figures/scheduling_latency_cdf.pdf",
+      "sha256": "b38a1b2e70ce6f819bf78c9df24222fbfcafab74e777b719c36f094a938febdc",
+      "source_path": "article1/overleaf/figures/scheduling_latency_cdf.pdf",
+      "source_sha256": "b38a1b2e70ce6f819bf78c9df24222fbfcafab74e777b719c36f094a938febdc",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/figures/security_attack_heatmap.pdf",
+      "sha256": "b2638ece5c5b737365ec1d5259edfff3c78793bcb89f25ae565014c387d14111",
+      "source_path": "article1/overleaf/figures/security_attack_heatmap.pdf",
+      "source_sha256": "b2638ece5c5b737365ec1d5259edfff3c78793bcb89f25ae565014c387d14111",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/figures/security_bar.pdf",
+      "sha256": "622411da444b9cbd787c5fd0e08d21bd2505d0adc5b0fc25d95730a25702c7e5",
+      "source_path": "article1/overleaf/figures/security_bar.pdf",
+      "source_sha256": "622411da444b9cbd787c5fd0e08d21bd2505d0adc5b0fc25d95730a25702c7e5",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/figures/toctou_window_b4_b5.pdf",
+      "sha256": "ee723f6eda2a69d556132c360f0b22a9c1ecb4c336f6ae75fdd01b367aee4aa4",
+      "source_path": "article1/overleaf/figures/toctou_window_b4_b5.pdf",
+      "source_sha256": "ee723f6eda2a69d556132c360f0b22a9c1ecb4c336f6ae75fdd01b367aee4aa4",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/implementation.tex",
+      "sha256": "f711b0c87eec6516651a2f5197d83a549bd598692a22c56878cb4efe3107f8f0",
+      "source_path": "article1/overleaf/implementation.tex",
+      "source_sha256": "f711b0c87eec6516651a2f5197d83a549bd598692a22c56878cb4efe3107f8f0",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/introduction.tex",
+      "sha256": "f07f5516b00dc81fb8cdd49bfd1f706962631f134310731a56076e925ba46fd3",
+      "source_path": "article1/overleaf/introduction.tex",
+      "source_sha256": "f07f5516b00dc81fb8cdd49bfd1f706962631f134310731a56076e925ba46fd3",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/limitations.tex",
+      "sha256": "cae9306a0dbd323113ab85bc3af6f3155499f2ded44ff6c20649709e72ff66bb",
+      "source_path": "article1/overleaf/limitations.tex",
+      "source_sha256": "cae9306a0dbd323113ab85bc3af6f3155499f2ded44ff6c20649709e72ff66bb",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/main.bbl",
+      "sha256": "0dee26b70ddc2b0dede155a5e1ab60f10f09070e8f62bdee6d5d973c872cc597",
+      "source_path": "article1/overleaf/main.bbl",
+      "source_sha256": "0dee26b70ddc2b0dede155a5e1ab60f10f09070e8f62bdee6d5d973c872cc597",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/main.pdf",
+      "sha256": "a6f6f6dbf7e8c30e1dd97e772299e8b2550c9b5cbc1ca1688f6bec74af7b8360",
+      "source_path": "article1/overleaf/main.pdf",
+      "source_sha256": "c068fd56d234e570ebaa8fe01124f77c9e3d239ea1ae984406947f55eabbab91",
+      "unchanged_from_source": false
+    },
+    {
+      "artifact_path": "paper/main.tex",
+      "sha256": "a17f5a4719c1d4b68166344ccef5ed4f8b0c19188e1892b48f42b5bb9e678009",
+      "source_path": "article1/overleaf/main.tex",
+      "source_sha256": "a17f5a4719c1d4b68166344ccef5ed4f8b0c19188e1892b48f42b5bb9e678009",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/properties.tex",
+      "sha256": "72dc6733ba05eafd8831a80e85b8a3618ad8c57c73b48420d16cf74ee23a7cf2",
+      "source_path": "article1/overleaf/properties.tex",
+      "source_sha256": "72dc6733ba05eafd8831a80e85b8a3618ad8c57c73b48420d16cf74ee23a7cf2",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/references.bib",
+      "sha256": "0cf9a30f65ff521807a921d0d78499f7ea3e33aedc970e55c6019c95fce95530",
+      "source_path": "article1/overleaf/references.bib",
+      "source_sha256": "0cf9a30f65ff521807a921d0d78499f7ea3e33aedc970e55c6019c95fce95530",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/related-work.tex",
+      "sha256": "7fd14e9d1cb74ae3acf85be6d7b6b3144ba16b1c4e9cef2fb360761ddf4cad6b",
+      "source_path": "article1/overleaf/related-work.tex",
+      "source_sha256": "7a5675b27e931835533f0e30780129aec5a6c572a8fd7b7d8f8b8e69550fecd7",
+      "unchanged_from_source": false
+    },
+    {
+      "artifact_path": "paper/scheduler-security.tex",
+      "sha256": "231eb199b2b7bb147e2c8d7f46cd298903b9210ae02d2977c133dd9a5ee9fa46",
+      "source_path": "article1/overleaf/scheduler-security.tex",
+      "source_sha256": "231eb199b2b7bb147e2c8d7f46cd298903b9210ae02d2977c133dd9a5ee9fa46",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/security-analysis.tex",
+      "sha256": "8f9dfe5f52fae31b89aa8dab9a26cdd08c70ef779edb6379b0d3e7ccfd1ef0fb",
+      "source_path": "article1/overleaf/security-analysis.tex",
+      "source_sha256": "8f9dfe5f52fae31b89aa8dab9a26cdd08c70ef779edb6379b0d3e7ccfd1ef0fb",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/tables/adversary_attack_mapping.csv",
+      "sha256": "0fedabee5f2a099dddd68ce8609321d9d156cae9729c2c5241fd2db9c67d060a",
+      "source_path": "article1/paper/tables/adversary_attack_mapping.csv",
+      "source_sha256": "0aa44f0b37a953d6461ab64d4e7d6876b33a5b6468f5ab0d7bd5dcc409d014ce",
+      "unchanged_from_source": false,
+      "packaging_transformation": "Removed legacy article1/ prefix from provenance path columns only; evidence and numeric cells unchanged."
+    },
+    {
+      "artifact_path": "paper/tables/b4_b5_comparison.csv",
+      "sha256": "03f410f93f2f68a0d8d2068cce1b87b4e613ed9eca63cb8b133ec4fca2a0e069",
+      "source_path": "article1/paper/tables/b4_b5_comparison.csv",
+      "source_sha256": "5bea4c67c29aba4be78cee44297ce27b1a3c90b8482d94a5cb631a4dbb9e1159",
+      "unchanged_from_source": false,
+      "packaging_transformation": "Removed legacy article1/ prefix from provenance path columns only; evidence and numeric cells unchanged."
+    },
+    {
+      "artifact_path": "paper/tables/b4_vs_b5_stats.csv",
+      "sha256": "dbb677b69a852aa906b5f4048c03e6471a0a647c0d155d4d833cec039ed8e49e",
+      "source_path": "article1/paper/tables/b4_vs_b5_stats.csv",
+      "source_sha256": "dbb677b69a852aa906b5f4048c03e6471a0a647c0d155d4d833cec039ed8e49e",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/tables/claim_evidence_mapping.csv",
+      "sha256": "5b57728c6c30ea8dbe1f0002c8e6fe03207438e208aeb8bf3213404d9ce9560f",
+      "source_path": "article1/paper/tables/claim_evidence_mapping.csv",
+      "source_sha256": "2cfedec6cfaaf00bc1ca41eb98a3a97e1ce0ee6bd571b12474f6742ab7a9293e",
+      "unchanged_from_source": false,
+      "packaging_transformation": "Removed legacy article1/ prefix from provenance path columns only; evidence and numeric cells unchanged."
+    },
+    {
+      "artifact_path": "paper/tables/scheduler_security_tests.csv",
+      "sha256": "d9223750fc3ef8ce9378c865cdf9e4254b336c379ed6f4addb420b056e82aa37",
+      "source_path": "article1/paper/tables/scheduler_security_tests.csv",
+      "source_sha256": "8fdcbb8f1028ed41edbaf5e756102e00bd63bc66439855b274c0fbf83314bf56",
+      "unchanged_from_source": false,
+      "packaging_transformation": "Removed legacy article1/ prefix from provenance path columns only; evidence and numeric cells unchanged."
+    },
+    {
+      "artifact_path": "paper/tables/security_attack_matrix.csv",
+      "sha256": "2d4702d88b862921fc7b411020d87e69a3472559fe93c31e54bc46bcc8d17a3d",
+      "source_path": "article1/paper/tables/security_attack_matrix.csv",
+      "source_sha256": "24ce2ce396a4b1b5a0fe4be72fd594486a5c40c0256ce3b85ff1e8ca76632a38",
+      "unchanged_from_source": false,
+      "packaging_transformation": "Removed legacy article1/ prefix from provenance path columns only; evidence and numeric cells unchanged."
+    },
+    {
+      "artifact_path": "paper/threat-model.tex",
+      "sha256": "fc408291d8ff954d8c3c4637f88b3fa791e0babdcfdc7a0688a228a86eb8be3b",
+      "source_path": "article1/overleaf/threat-model.tex",
+      "source_sha256": "fc408291d8ff954d8c3c4637f88b3fa791e0babdcfdc7a0688a228a86eb8be3b",
+      "unchanged_from_source": true
+    },
+    {
+      "artifact_path": "paper/threats-to-validity.tex",
+      "sha256": "4650c5ecec0b0194e2cab246a1fbc792a5b92c81d6a0b9f3b7cd5e68446ca30a",
+      "source_path": "article1/overleaf/threats-to-validity.tex",
+      "source_sha256": "4650c5ecec0b0194e2cab246a1fbc792a5b92c81d6a0b9f3b7cd5e68446ca30a",
+      "unchanged_from_source": true
+    }
+  ],
+  "files_changed_from_initial_folder": [
+    ".zenodo.json",
+    "CITATION.cff",
+    "README.md",
+    "deploy/aks-private/values.yaml",
+    "deploy/kind-deploy.sh",
+    "docs/aks/gpu-future-validation.md",
+    "docs/aks/private-deployment.md",
+    "docs/architecture/operators-split.md",
+    "docs/kind/local-testing.md",
+    "docs/kind/runtimeclass-simulation.md",
+    "docs/security/key-release-protocol.md",
+    "experiments/ablation/run_ablation_fine.sh",
+    "experiments/ai-workload/run_ai_workloads_aks.sh",
+    "experiments/aks/README_AKS_CAMPAIGN.md",
+    "experiments/aks/aks_destroy.sh",
+    "experiments/aks/aks_stop.sh",
+    "experiments/aks/aks_up.sh",
+    "experiments/aks/check_real_attestation.sh",
+    "experiments/aks/estimate_cost.sh",
+    "experiments/aks/preflight.sh",
+    "experiments/aks/run_full_campaign.sh",
+    "experiments/aks/run_multinode_node_selection.sh",
+    "experiments/attacks/a10_compromised_node_forge_evidence.sh",
+    "experiments/attacks/a11_confidential_gpu_required_no_evidence.sh",
+    "experiments/attacks/run_a10_compromised_node_full.sh",
+    "experiments/attacks/run_aks_missing_attacks_A2_A3_A6_A7_A9.sh",
+    "experiments/baselines/run_b4_vs_b5.sh",
+    "experiments/harness/measure_ablation.sh",
+    "experiments/harness/measure_baselines.sh",
+    "experiments/harness/measure_identity_binding.sh",
+    "experiments/harness/measure_scalability.sh",
+    "experiments/harness/measure_scheduling.sh",
+    "experiments/harness/run_security_campaign.sh",
+    "experiments/performance/run_aks_b1_b5_latency.sh",
+    "experiments/scalability/run_kind_scalability.sh",
+    "experiments/scalability/run_kwok_scheduler_scalability.sh",
+    "experiments/scheduler-security/run_scheduler_security_tests.sh",
+    "operator/internal/controller/suite_test.go",
+    "paper/README_OVERLEAF.md",
+    "paper/abstract.tex",
+    "paper/conclusion.tex",
+    "paper/evaluation.tex",
+    "paper/implementation.tex",
+    "paper/introduction.tex",
+    "paper/limitations.tex",
+    "paper/main.pdf",
+    "paper/main.tex",
+    "paper/properties.tex",
+    "paper/related-work.tex",
+    "paper/scheduler-security.tex",
+    "paper/threat-model.tex",
+    "paper/threats-to-validity.tex",
+    "results/raw/aks/aks-current-confidential-nodes.json",
+    "results/raw/aks/aks-final-nodes.txt",
+    "results/raw/aks/multinode-node-selection/nodes.json",
+    "scripts/analyze_ablation.py",
+    "scripts/analyze_all.py",
+    "scripts/analyze_scalability.py",
+    "scripts/analyze_scheduler_security.py",
+    "scripts/make_figures.py",
+    "scripts/merge_aks_security_a1_a11.py",
+    "scripts/update_q1_final_artifacts.py"
+  ],
+  "files_added_since_initial_folder": [
+    ".gitignore",
+    "PUBLISHING.md",
+    "RELEASE_NOTES.md",
+    "automation/terraform/aks-confidential/.gitignore",
+    "automation/terraform/aks-confidential/main.tf",
+    "docs/public-artifact-redaction.md",
+    "experiments/artifact/attacks-kind.sh",
+    "experiments/artifact/e2e-kind-positive.sh",
+    "operator/charts/ai-sovereign-finops-operator/templates/rbac.yaml",
+    "paper/tables/adversary_attack_mapping.csv",
+    "paper/tables/b4_b5_comparison.csv",
+    "paper/tables/b4_vs_b5_stats.csv",
+    "paper/tables/claim_evidence_mapping.csv",
+    "paper/tables/scheduler_security_tests.csv",
+    "paper/tables/security_attack_matrix.csv",
+    "requirements-analysis.txt",
+    "scripts/reproduce-analysis.sh",
+    "tools/package_artifact.py"
+  ],
+  "packaging_generated_files": [
+    "PROVENANCE.json",
+    "ARTIFACT_VALIDATION.md",
+    "SHA256SUMS"
+  ],
+  "privacy_changes": "See docs/public-artifact-redaction.md; eleven kubelet client-ID occurrences additionally zeroed in three AKS metadata files.",
+  "validation_scope": "Local build/tests, Helm rendering, offline reanalysis and paper compilation; no cloud rerun or Docker image rebuild."
+}

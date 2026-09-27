@@ -1,0 +1,201 @@
+pod/b5-031-081303 created
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    ai.sovereign.io/applied-runtime-class: runc
+    ai.sovereign.io/attestation-evidence: evidence-aks-conf-12838440-vmss000004
+    ai.sovereign.io/expected-evidence-age-seconds: "300"
+    ai.sovereign.io/expected-runtime-class: runc
+    ai.sovereign.io/model-digest: sha256:b5-031-081303
+    ai.sovereign.io/policy-hash: 9e48e2837f7a1da4a142bf47783e417851da511e75281d7283018006c95fe267
+    ai.sovereign.io/simulated-execution: "false"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{"ai.sovereign.io/attestation-evidence":"evidence-aks-conf-12838440-vmss000004","ai.sovereign.io/model-digest":"sha256:b5-031-081303"},"labels":{"app":"bench","baseline":"B5"},"name":"b5-031-081303","namespace":"article1-performance"},"spec":{"containers":[{"image":"registry.k8s.io/pause:3.9","name":"app"}],"nodeSelector":{"ai.sovereign.io/tee":"SEV-SNP"},"restartPolicy":"Always","runtimeClassName":"runc","schedulerName":"ai-attestation-scheduler","tolerations":[{"effect":"NoSchedule","key":"ai.sovereign.io/confidential","operator":"Equal","value":"true"}]}}
+  creationTimestamp: "2026-07-06T07:13:06Z"
+  generation: 1
+  labels:
+    app: bench
+    baseline: B5
+  name: b5-031-081303
+  namespace: article1-performance
+  resourceVersion: "27172"
+  uid: 7f9190d7-a3bf-414a-9e12-4e38ea42eb19
+spec:
+  containers:
+  - image: registry.k8s.io/pause:3.9
+    imagePullPolicy: IfNotPresent
+    name: app
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-xsv7j
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-conf-12838440-vmss000005
+  nodeSelector:
+    ai.sovereign.io/tee: SEV-SNP
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  runtimeClassName: runc
+  schedulerName: ai-attestation-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoSchedule
+    key: ai.sovereign.io/confidential
+    operator: Equal
+    value: "true"
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-xsv7j
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T07:13:08Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T07:13:06Z"
+    observedGeneration: 1
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T07:13:08Z"
+    observedGeneration: 1
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T07:13:08Z"
+    observedGeneration: 1
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T07:13:06Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://e2019e6d3bd69c341e98fd825077059e02a67a52bb4314079f0f3e66da989afa
+    image: registry.k8s.io/pause:3.9
+    imageID: registry.k8s.io/pause@sha256:7031c1b283388d2c2e09b57badb803c05ebed362dc88d84b480cc47f72a21097
+    lastState: {}
+    name: app
+    ready: true
+    resources: {}
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-06T07:13:07Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        uid: 65535
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-xsv7j
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.224.0.42
+  hostIPs:
+  - ip: 10.224.0.42
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.224.0.44
+  podIPs:
+  - ip: 10.224.0.44
+  qosClass: BestEffort
+  startTime: "2026-07-06T07:13:06Z"
+Name:                b5-031-081303
+Namespace:           article1-performance
+Priority:            0
+Runtime Class Name:  runc
+Service Account:     default
+Node:                aks-conf-12838440-vmss000005/10.224.0.42
+Start Time:          Mon, 06 Jul 2026 08:13:06 +0100
+Labels:              app=bench
+                     baseline=B5
+Annotations:         ai.sovereign.io/applied-runtime-class: runc
+                     ai.sovereign.io/attestation-evidence: evidence-aks-conf-12838440-vmss000004
+                     ai.sovereign.io/expected-evidence-age-seconds: 300
+                     ai.sovereign.io/expected-runtime-class: runc
+                     ai.sovereign.io/model-digest: sha256:b5-031-081303
+                     ai.sovereign.io/policy-hash: 9e48e2837f7a1da4a142bf47783e417851da511e75281d7283018006c95fe267
+                     ai.sovereign.io/simulated-execution: false
+Status:              Running
+IP:                  10.224.0.44
+IPs:
+  IP:  10.224.0.44
+Containers:
+  app:
+    Container ID:   containerd://e2019e6d3bd69c341e98fd825077059e02a67a52bb4314079f0f3e66da989afa
+    Image:          registry.k8s.io/pause:3.9
+    Image ID:       registry.k8s.io/pause@sha256:7031c1b283388d2c2e09b57badb803c05ebed362dc88d84b480cc47f72a21097
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Mon, 06 Jul 2026 08:13:07 +0100
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-xsv7j (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-xsv7j:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              ai.sovereign.io/tee=SEV-SNP
+Tolerations:                 ai.sovereign.io/confidential=true:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason   Age   From     Message
+  ----    ------   ----  ----     -------
+  Normal  Pulled   4s    kubelet  Container image "registry.k8s.io/pause:3.9" already present on machine and can be accessed by the pod
+  Normal  Created  4s    kubelet  Container created
+  Normal  Started  4s    kubelet  Container started

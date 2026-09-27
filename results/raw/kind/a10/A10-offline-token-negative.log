@@ -1,0 +1,6 @@
+absent-token rc=1
+FAIL: token or token-file is required
+invalid-token rc=1
+FAIL: token expired
+poduid-mismatch rc=1
+FAIL: token expired

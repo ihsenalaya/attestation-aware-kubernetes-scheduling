@@ -1,0 +1,10 @@
+NAME                                    DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR                 AGE   CONTAINERS               IMAGES                                                                          SELECTOR
+daemonset.apps/node-attestation-agent   4         4         4       4            4           ai.sovereign.io/tee=SEV-SNP   23s   node-attestation-agent   ghcr.io/ihsenalaya/ai-sovereign-finops-operator/node-attestation-agent:0.5.11   app=node-attestation-agent
+
+NAME                                    READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS              IMAGES                                                                         SELECTOR
+deployment.apps/attestation-scheduler   0/1     1            0           23s   attestation-scheduler   ghcr.io/ihsenalaya/ai-sovereign-finops-operator/attestation-scheduler:0.5.11   app=attestation-scheduler
+deployment.apps/central-verifier        1/1     1            1           23s   central-verifier        ghcr.io/ihsenalaya/ai-sovereign-finops-operator/central-verifier:0.5.11        app=central-verifier
+deployment.apps/governance-operator     1/1     1            1           23s   manager                 ghcr.io/ihsenalaya/ai-sovereign-finops-operator/controller:0.5.11              app=governance-operator
+deployment.apps/key-release-gateway     1/1     1            1           23s   key-release-gateway     ghcr.io/ihsenalaya/ai-sovereign-finops-operator/key-release-gateway:0.5.11     app=key-release-gateway
+deployment.apps/platform-api            1/1     1            1           23s   platform-api            ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-api:0.5.11            app=platform-api
+deployment.apps/platform-ui             1/1     1            1           23s   platform-ui             ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-ui:0.5.11             app=platform-ui

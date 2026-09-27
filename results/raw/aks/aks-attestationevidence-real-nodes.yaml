@@ -1,0 +1,153 @@
+apiVersion: v1
+items:
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: AttestationEvidence
+  metadata:
+    creationTimestamp: "2026-07-04T23:26:25Z"
+    generation: 1
+    labels:
+      ai.sovereign.io/verified-by: central-verifier
+    name: evidence-aks-conf-25767226-vmss000004
+    namespace: ai-platform
+    resourceVersion: "11673"
+    uid: 83480978-2b3f-42de-9f8d-b52fb5d99164
+  spec:
+    evidenceType: cpu
+    freshness:
+      maxAgeSeconds: 300
+    runtime: {}
+    subjectRef:
+      name: aks-conf-25767226-vmss000004
+    tee: SEV-SNP
+  status:
+    attestationType: guest-attestation
+    conditions:
+    - lastTransitionTime: "2026-07-04T23:26:25Z"
+      message: 'parse token: token contains an invalid number of segments'
+      observedGeneration: 1
+      reason: ValidationFailed
+      status: "False"
+      type: Ready
+    evidenceMode: unverified
+    failureReason: 'parse token: token contains an invalid number of segments'
+    maaTokenHash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    nonce: 887ea8e9a2ffc8b96f38baa46bd74210
+    observedGeneration: 1
+    provider: maa
+    verificationStatus: Failed
+    verifiedBy: central-verifier
+    verifierPodUID: 65153043-6fc4-4102-88ac-7adaf20c339c
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: AttestationEvidence
+  metadata:
+    creationTimestamp: "2026-07-04T23:26:48Z"
+    generation: 1
+    labels:
+      ai.sovereign.io/verified-by: central-verifier
+    name: evidence-aks-conf-25767226-vmss000005
+    namespace: ai-platform
+    resourceVersion: "11823"
+    uid: 11ad5580-1764-49b9-bef2-3d26ebf0744f
+  spec:
+    evidenceType: cpu
+    freshness:
+      maxAgeSeconds: 300
+    runtime: {}
+    subjectRef:
+      name: aks-conf-25767226-vmss000005
+    tee: SEV-SNP
+  status:
+    attestationType: guest-attestation
+    conditions:
+    - lastTransitionTime: "2026-07-04T23:26:48Z"
+      message: 'parse token: token contains an invalid number of segments'
+      observedGeneration: 1
+      reason: ValidationFailed
+      status: "False"
+      type: Ready
+    evidenceMode: unverified
+    failureReason: 'parse token: token contains an invalid number of segments'
+    maaTokenHash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    nonce: e04b81ce87b5e1c35c86651ce4ad3b12
+    observedGeneration: 1
+    provider: maa
+    verificationStatus: Failed
+    verifiedBy: central-verifier
+    verifierPodUID: 65153043-6fc4-4102-88ac-7adaf20c339c
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: AttestationEvidence
+  metadata:
+    creationTimestamp: "2026-07-04T23:26:43Z"
+    generation: 1
+    labels:
+      ai.sovereign.io/verified-by: central-verifier
+    name: evidence-aks-conf-25767226-vmss000006
+    namespace: ai-platform
+    resourceVersion: "11786"
+    uid: d9142090-1a8f-4277-915d-e4a952f3ec94
+  spec:
+    evidenceType: cpu
+    freshness:
+      maxAgeSeconds: 300
+    runtime: {}
+    subjectRef:
+      name: aks-conf-25767226-vmss000006
+    tee: SEV-SNP
+  status:
+    attestationType: guest-attestation
+    conditions:
+    - lastTransitionTime: "2026-07-04T23:26:43Z"
+      message: 'parse token: token contains an invalid number of segments'
+      observedGeneration: 1
+      reason: ValidationFailed
+      status: "False"
+      type: Ready
+    evidenceMode: unverified
+    failureReason: 'parse token: token contains an invalid number of segments'
+    maaTokenHash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    nonce: 3d06d1f84b01e3a6a9fc18c0a5ad0ae2
+    observedGeneration: 1
+    provider: maa
+    verificationStatus: Failed
+    verifiedBy: central-verifier
+    verifierPodUID: 65153043-6fc4-4102-88ac-7adaf20c339c
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: AttestationEvidence
+  metadata:
+    creationTimestamp: "2026-07-04T23:26:30Z"
+    generation: 1
+    labels:
+      ai.sovereign.io/verified-by: central-verifier
+    name: evidence-aks-conf-25767226-vmss000007
+    namespace: ai-platform
+    resourceVersion: "11700"
+    uid: 41fcffee-cc91-4fde-8ee4-fcbf5acc7e32
+  spec:
+    evidenceType: cpu
+    freshness:
+      maxAgeSeconds: 300
+    runtime: {}
+    subjectRef:
+      name: aks-conf-25767226-vmss000007
+    tee: SEV-SNP
+  status:
+    attestationType: guest-attestation
+    conditions:
+    - lastTransitionTime: "2026-07-04T23:26:30Z"
+      message: 'parse token: token contains an invalid number of segments'
+      observedGeneration: 1
+      reason: ValidationFailed
+      status: "False"
+      type: Ready
+    evidenceMode: unverified
+    failureReason: 'parse token: token contains an invalid number of segments'
+    maaTokenHash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    nonce: 1ce24475740b9a24418f1510a263b4b2
+    observedGeneration: 1
+    provider: maa
+    verificationStatus: Failed
+    verifiedBy: central-verifier
+    verifierPodUID: 65153043-6fc4-4102-88ac-7adaf20c339c
+kind: List
+metadata:
+  resourceVersion: ""

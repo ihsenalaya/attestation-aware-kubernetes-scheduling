@@ -1,0 +1,5 @@
+timestamp,env,run_id,node_name,node_type,evidence_status,tee_type,eligible,score,selected,pod_bound,reason,raw_log_path
+2026-07-06T06:28:39Z,aks-real-sevsnp,valid,aks-conf-12838440-vmss000000,confidential,fresh_verified_real,SEV-SNP,true,166,true,true,fresh_verified_real_evidence;decision=allow;TOKEN_PASS,article1/results/raw/aks/multinode-node-selection/mn-valid.log
+2026-07-06T06:29:45Z,aks-real-sevsnp,revoked,aks-conf-12838440-vmss000004,confidential,revoked_real,SEV-SNP,false,0,false,false,revoked_evidence_rejected;decision=missing,article1/results/raw/aks/multinode-node-selection/mn-revoked.log
+2026-07-06T06:30:51Z,aks-real-sevsnp,expired,aks-conf-12838440-vmss000005,confidential,expired_real,SEV-SNP,false,0,false,false,expired_evidence_rejected;decision=missing,article1/results/raw/aks/multinode-node-selection/mn-expired.log
+2026-07-06T06:31:57Z,aks-real-sevsnp,noevidence,aks-system-37319869-vmss000000,non_confidential_system,no_evidence,none,false,0,false,false,labels_or_nodeSelector_without_evidence_rejected;decision=missing,article1/results/raw/aks/multinode-node-selection/mn-noevidence.log

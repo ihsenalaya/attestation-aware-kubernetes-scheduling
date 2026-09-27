@@ -1,0 +1,34 @@
+timestamp=2026-07-05T16:06:37Z
+environment=aks-real-sevsnp
+
+Commands checked:
+
+az aks nodepool show -g rg-article1-confidential --cluster-name aks-article1 -n conf --query '{vmSize:vmSize,osSku:osSku,workloadRuntime:workloadRuntime,count:count,enableAutoScaling:enableAutoScaling,nodeLabels:nodeLabels}' -o json
+
+{
+  "count": 0,
+  "enableAutoScaling": false,
+  "nodeLabels": {
+    "ai.sovereign.io/attested": "pending",
+    "ai.sovereign.io/tee": "SEV-SNP"
+  },
+  "osSku": "Ubuntu",
+  "vmSize": "Standard_DC8as_v6",
+  "workloadRuntime": null
+}
+
+kubectl get runtimeclass -o wide
+
+NAME                HANDLER   AGE
+kata-vm-isolation   kata      7h10m
+runc                runc      7h10m
+
+Conclusion:
+
+AKS exposes a RuntimeClass named kata-vm-isolation, but the Article 1 confidential
+node pool is Standard_DC8as_v6 with workloadRuntime=null. Attempts to create or
+modify the DCasv6 pool with workloadRuntime=KataMshvVmIsolation were rejected by
+AKS because this pod-sandboxing mode requires nested virtualization. Therefore
+Kata/CoCo pod-level isolation is NOT available for the Article 1 DCasv6 campaign.
+The valid Article 1 claim is node-level AMD SEV-SNP confidential-VM placement
+with runtimeClassName=runc, not pod-level kata-vm-isolation.

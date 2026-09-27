@@ -1,0 +1,45 @@
+AKS DCasv6 westus2 quota/SKU verification (sanitized)
+date_utc=2026-07-04T22:52:07Z
+region=westus2
+
+Quota result
+------------
+Total Regional vCPUs: current=0, limit=42
+Standard DSv3 Family vCPUs: current=0, limit=10
+Standard DCASv5 Family vCPUs: current=0, limit=0
+Standard DCasv6 Family vCPUs: current=0, limit=32
+
+ARM Resource SKUs result
+------------------------
+Standard_DC4as_v6:
+  family=standardDCasv6Family
+  vCPUs=4
+  memoryGB=16
+  ConfidentialComputingType=SNP
+  restrictions=[]
+
+Standard_DC8as_v6:
+  family=standardDCasv6Family
+  vCPUs=8
+  memoryGB=32
+  ConfidentialComputingType=SNP
+  restrictions=[]
+
+AKS regional availability
+-------------------------
+az aks get-versions --location westus2 returned supported Kubernetes versions.
+
+Interpretation
+--------------
+westus2 is now technically viable for the pragmatic DCasv6 path:
+- 8 x Standard_DC4as_v6 = 32 confidential vCPU.
+- 1 x Standard_D2s_v3 system node = 2 vCPU.
+- Total estimated quota consumption = 34 regional vCPU, below westus2 regional
+  limit 42.
+
+This does not make eastus2 viable. eastus2 still had Standard DCasv6 Family
+vCPUs limit=0 when checked earlier on 2026-07-04.
+
+If using this path, Terraform must override region=westus2 and
+confidential_vm_size=Standard_DC4as_v6. The paper must document that real cloud
+experiments use DCasv6/westus2, not the original eastus2/DCASv5 setup.

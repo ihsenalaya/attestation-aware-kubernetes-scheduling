@@ -1,0 +1,91 @@
+LAST SEEN   TYPE      REASON              OBJECT                                        MESSAGE
+6m54s       Normal    ScalingReplicaSet   deployment/governance-operator                Scaled up replica set governance-operator-5df645947c from 0 to 1
+6m54s       Normal    SuccessfulCreate    replicaset/platform-ui-84f78bd8c8             Created pod: platform-ui-84f78bd8c8-9xst4
+6m54s       Normal    Scheduled           pod/key-release-gateway-774c86bc55-rfvmg      Successfully assigned ai-platform/key-release-gateway-774c86bc55-rfvmg to aks-system-27413298-vmss000000
+6m54s       Normal    Scheduled           pod/platform-ui-84f78bd8c8-9xst4              Successfully assigned ai-platform/platform-ui-84f78bd8c8-9xst4 to aks-system-27413298-vmss000000
+6m54s       Normal    SuccessfulCreate    replicaset/governance-operator-5df645947c     Created pod: governance-operator-5df645947c-2fns7
+6m54s       Normal    ScalingReplicaSet   deployment/central-verifier                   Scaled up replica set central-verifier-754dbb5b78 from 0 to 1
+6m54s       Normal    Scheduled           pod/attestation-scheduler-777668d88f-88cmt    Successfully assigned ai-platform/attestation-scheduler-777668d88f-88cmt to aks-system-27413298-vmss000000
+6m54s       Normal    SuccessfulCreate    replicaset/central-verifier-754dbb5b78        Created pod: central-verifier-754dbb5b78-bpxsj
+6m54s       Normal    SuccessfulCreate    replicaset/key-release-gateway-774c86bc55     Created pod: key-release-gateway-774c86bc55-rfvmg
+6m54s       Normal    ScalingReplicaSet   deployment/platform-ui                        Scaled up replica set platform-ui-84f78bd8c8 from 0 to 1
+6m54s       Normal    Scheduled           pod/governance-operator-5df645947c-2fns7      Successfully assigned ai-platform/governance-operator-5df645947c-2fns7 to aks-system-27413298-vmss000000
+6m54s       Normal    ScalingReplicaSet   deployment/platform-api                       Scaled up replica set platform-api-7dc76b9565 from 0 to 1
+6m54s       Normal    SuccessfulCreate    replicaset/attestation-scheduler-777668d88f   Created pod: attestation-scheduler-777668d88f-88cmt
+6m54s       Normal    ScalingReplicaSet   deployment/attestation-scheduler              Scaled up replica set attestation-scheduler-777668d88f from 0 to 1
+6m54s       Normal    SuccessfulCreate    replicaset/platform-api-7dc76b9565            Created pod: platform-api-7dc76b9565-lr2qt
+6m54s       Normal    Scheduled           pod/platform-api-7dc76b9565-lr2qt             Successfully assigned ai-platform/platform-api-7dc76b9565-lr2qt to aks-system-27413298-vmss000000
+6m54s       Normal    ScalingReplicaSet   deployment/key-release-gateway                Scaled up replica set key-release-gateway-774c86bc55 from 0 to 1
+6m54s       Normal    Scheduled           pod/central-verifier-754dbb5b78-bpxsj         Successfully assigned ai-platform/central-verifier-754dbb5b78-bpxsj to aks-system-27413298-vmss000000
+4m6s        Warning   Failed              pod/central-verifier-754dbb5b78-bpxsj         Error: ErrImagePull
+4m6s        Normal    Pulling             pod/central-verifier-754dbb5b78-bpxsj         Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/central-verifier:0.5.4"
+4m6s        Warning   Failed              pod/central-verifier-754dbb5b78-bpxsj         Failed to pull image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/central-verifier:0.5.4": failed to pull and unpack image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/central-verifier:0.5.4": failed to resolve image: failed to authorize: failed to fetch anonymous token: unexpected status from GET request to https://ghcr.io/token?scope=repository%3Aihsenalaya%2Fai-sovereign-finops-operator%2Fcentral-verifier%3Apull&service=ghcr.io: 401 Unauthorized
+4m3s        Normal    Pulling             pod/governance-operator-5df645947c-2fns7      Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/controller:0.5.4"
+4m3s        Warning   Failed              pod/governance-operator-5df645947c-2fns7      Error: ErrImagePull
+4m3s        Warning   Failed              pod/governance-operator-5df645947c-2fns7      Failed to pull image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/controller:0.5.4": failed to pull and unpack image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/controller:0.5.4": failed to resolve image: failed to authorize: failed to fetch anonymous token: unexpected status from GET request to https://ghcr.io/token?scope=repository%3Aihsenalaya%2Fai-sovereign-finops-operator%2Fcontroller%3Apull&service=ghcr.io: 401 Unauthorized
+3m59s       Normal    Pulling             pod/key-release-gateway-774c86bc55-rfvmg      Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/key-release-gateway:0.5.4"
+3m59s       Warning   Failed              pod/key-release-gateway-774c86bc55-rfvmg      Error: ErrImagePull
+3m59s       Warning   Failed              pod/key-release-gateway-774c86bc55-rfvmg      Failed to pull image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/key-release-gateway:0.5.4": failed to pull and unpack image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/key-release-gateway:0.5.4": failed to resolve image: failed to authorize: failed to fetch anonymous token: unexpected status from GET request to https://ghcr.io/token?scope=repository%3Aihsenalaya%2Fai-sovereign-finops-operator%2Fkey-release-gateway%3Apull&service=ghcr.io: 401 Unauthorized
+3m56s       Warning   Failed              pod/attestation-scheduler-777668d88f-88cmt    Error: ErrImagePull
+3m56s       Normal    Pulling             pod/platform-ui-84f78bd8c8-9xst4              Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-ui:0.5.4"
+3m56s       Warning   Failed              pod/platform-ui-84f78bd8c8-9xst4              Failed to pull image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-ui:0.5.4": failed to pull and unpack image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-ui:0.5.4": failed to resolve image: failed to authorize: failed to fetch anonymous token: unexpected status from GET request to https://ghcr.io/token?scope=repository%3Aihsenalaya%2Fai-sovereign-finops-operator%2Fplatform-ui%3Apull&service=ghcr.io: 401 Unauthorized
+3m56s       Warning   Failed              pod/platform-ui-84f78bd8c8-9xst4              Error: ErrImagePull
+3m56s       Normal    Pulling             pod/attestation-scheduler-777668d88f-88cmt    Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/attestation-scheduler:0.5.4"
+3m56s       Warning   Failed              pod/attestation-scheduler-777668d88f-88cmt    Failed to pull image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/attestation-scheduler:0.5.4": failed to pull and unpack image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/attestation-scheduler:0.5.4": failed to resolve image: failed to authorize: failed to fetch anonymous token: unexpected status from GET request to https://ghcr.io/token?scope=repository%3Aihsenalaya%2Fai-sovereign-finops-operator%2Fattestation-scheduler%3Apull&service=ghcr.io: 401 Unauthorized
+3m55s       Normal    Pulling             pod/platform-api-7dc76b9565-lr2qt             Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-api:0.5.4"
+3m55s       Warning   Failed              pod/platform-api-7dc76b9565-lr2qt             Failed to pull image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-api:0.5.4": failed to pull and unpack image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-api:0.5.4": failed to resolve image: failed to authorize: failed to fetch anonymous token: unexpected status from GET request to https://ghcr.io/token?scope=repository%3Aihsenalaya%2Fai-sovereign-finops-operator%2Fplatform-api%3Apull&service=ghcr.io: 401 Unauthorized
+3m55s       Warning   Failed              pod/platform-api-7dc76b9565-lr2qt             Error: ErrImagePull
+2m59s       Warning   Failed              pod/governance-operator-5df645947c-2fns7      Error: ImagePullBackOff
+2m57s       Warning   Failed              pod/central-verifier-754dbb5b78-bpxsj         Error: ImagePullBackOff
+2m52s       Warning   Failed              pod/platform-api-7dc76b9565-lr2qt             Error: ImagePullBackOff
+2m50s       Warning   Failed              pod/key-release-gateway-774c86bc55-rfvmg      Error: ImagePullBackOff
+2m48s       Warning   Failed              pod/platform-ui-84f78bd8c8-9xst4              Error: ImagePullBackOff
+2m44s       Warning   Failed              pod/attestation-scheduler-777668d88f-88cmt    Error: ImagePullBackOff
+2m41s       Normal    BackOff             pod/platform-api-7dc76b9565-lr2qt             Back-off pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-api:0.5.4"
+2m36s       Normal    BackOff             pod/key-release-gateway-774c86bc55-rfvmg      Back-off pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/key-release-gateway:0.5.4"
+2m33s       Normal    BackOff             pod/platform-ui-84f78bd8c8-9xst4              Back-off pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-ui:0.5.4"
+2m32s       Normal    BackOff             pod/central-verifier-754dbb5b78-bpxsj         Back-off pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/central-verifier:0.5.4"
+2m31s       Normal    BackOff             pod/governance-operator-5df645947c-2fns7      Back-off pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/controller:0.5.4"
+2m31s       Normal    BackOff             pod/attestation-scheduler-777668d88f-88cmt    Back-off pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/attestation-scheduler:0.5.4"
+96s         Normal    SuccessfulCreate    replicaset/central-verifier-5fb7f77cd8        Created pod: central-verifier-5fb7f77cd8-589zw
+96s         Normal    Scheduled           pod/attestation-scheduler-5c9dcccf7c-2grb7    Successfully assigned ai-platform/attestation-scheduler-5c9dcccf7c-2grb7 to aks-system-27413298-vmss000000
+96s         Normal    SuccessfulCreate    replicaset/key-release-gateway-74f89dd979     Created pod: key-release-gateway-74f89dd979-t26q4
+96s         Normal    ScalingReplicaSet   deployment/attestation-scheduler              Scaled up replica set attestation-scheduler-5c9dcccf7c from 0 to 1
+96s         Normal    Scheduled           pod/key-release-gateway-74f89dd979-t26q4      Successfully assigned ai-platform/key-release-gateway-74f89dd979-t26q4 to aks-system-27413298-vmss000000
+96s         Normal    SuccessfulCreate    replicaset/attestation-scheduler-5c9dcccf7c   Created pod: attestation-scheduler-5c9dcccf7c-2grb7
+96s         Normal    ScalingReplicaSet   deployment/governance-operator                Scaled up replica set governance-operator-675d9d795c from 0 to 1
+96s         Normal    SuccessfulCreate    replicaset/governance-operator-675d9d795c     Created pod: governance-operator-675d9d795c-7jrlb
+96s         Normal    ScalingReplicaSet   deployment/central-verifier                   Scaled up replica set central-verifier-5fb7f77cd8 from 0 to 1
+96s         Normal    SuccessfulCreate    replicaset/platform-ui-74868bffd8             Created pod: platform-ui-74868bffd8-2rddx
+96s         Normal    Scheduled           pod/governance-operator-675d9d795c-7jrlb      Successfully assigned ai-platform/governance-operator-675d9d795c-7jrlb to aks-system-27413298-vmss000000
+96s         Normal    ScalingReplicaSet   deployment/key-release-gateway                Scaled up replica set key-release-gateway-74f89dd979 from 0 to 1
+96s         Normal    Scheduled           pod/platform-api-765d5ccf49-gfxsb             Successfully assigned ai-platform/platform-api-765d5ccf49-gfxsb to aks-system-27413298-vmss000000
+96s         Normal    ScalingReplicaSet   deployment/platform-ui                        Scaled up replica set platform-ui-74868bffd8 from 0 to 1
+96s         Normal    Scheduled           pod/central-verifier-5fb7f77cd8-589zw         Successfully assigned ai-platform/central-verifier-5fb7f77cd8-589zw to aks-system-27413298-vmss000000
+96s         Normal    Scheduled           pod/platform-ui-74868bffd8-2rddx              Successfully assigned ai-platform/platform-ui-74868bffd8-2rddx to aks-system-27413298-vmss000000
+96s         Normal    ScalingReplicaSet   deployment/platform-api                       Scaled up replica set platform-api-765d5ccf49 from 0 to 1
+96s         Normal    SuccessfulCreate    replicaset/platform-api-765d5ccf49            Created pod: platform-api-765d5ccf49-gfxsb
+95s         Normal    Pulling             pod/central-verifier-5fb7f77cd8-589zw         Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/central-verifier:0.5.4"
+94s         Normal    Pulling             pod/platform-ui-74868bffd8-2rddx              Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-ui:0.5.4"
+94s         Normal    Pulling             pod/platform-api-765d5ccf49-gfxsb             Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-api:0.5.4"
+94s         Normal    Pulling             pod/governance-operator-675d9d795c-7jrlb      Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/controller:0.5.4"
+94s         Normal    Pulling             pod/attestation-scheduler-5c9dcccf7c-2grb7    Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/attestation-scheduler:0.5.4"
+94s         Normal    Pulling             pod/key-release-gateway-74f89dd979-t26q4      Pulling image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/key-release-gateway:0.5.4"
+91s         Normal    Pulled              pod/key-release-gateway-74f89dd979-t26q4      Successfully pulled image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/key-release-gateway:0.5.4" in 3.614s (3.614s including waiting). Image size: 7520294 bytes.
+90s         Normal    Created             pod/key-release-gateway-74f89dd979-t26q4      Container created
+90s         Normal    Pulled              pod/central-verifier-5fb7f77cd8-589zw         Successfully pulled image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/central-verifier:0.5.4" in 4.798s (4.798s including waiting). Image size: 24645955 bytes.
+90s         Normal    Started             pod/key-release-gateway-74f89dd979-t26q4      Container started
+90s         Normal    Started             pod/central-verifier-5fb7f77cd8-589zw         Container started
+90s         Normal    Created             pod/central-verifier-5fb7f77cd8-589zw         Container created
+89s         Normal    Created             pod/platform-ui-74868bffd8-2rddx              Container created
+89s         Normal    Pulled              pod/platform-ui-74868bffd8-2rddx              Successfully pulled image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-ui:0.5.4" in 5.428s (5.428s including waiting). Image size: 21039868 bytes.
+88s         Normal    Started             pod/platform-ui-74868bffd8-2rddx              Container started
+88s         Normal    Started             pod/platform-api-765d5ccf49-gfxsb             Container started
+88s         Normal    Pulled              pod/platform-api-765d5ccf49-gfxsb             Successfully pulled image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/platform-api:0.5.4" in 5.683s (5.683s including waiting). Image size: 22855053 bytes.
+88s         Normal    Started             pod/attestation-scheduler-5c9dcccf7c-2grb7    Container started
+88s         Normal    Created             pod/attestation-scheduler-5c9dcccf7c-2grb7    Container created
+88s         Normal    Created             pod/platform-api-765d5ccf49-gfxsb             Container created
+88s         Normal    Started             pod/governance-operator-675d9d795c-7jrlb      Container started
+88s         Normal    Pulled              pod/attestation-scheduler-5c9dcccf7c-2grb7    Successfully pulled image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/attestation-scheduler:0.5.4" in 5.808s (5.808s including waiting). Image size: 24576043 bytes.
+88s         Normal    Created             pod/governance-operator-675d9d795c-7jrlb      Container created
+88s         Normal    Pulled              pod/governance-operator-675d9d795c-7jrlb      Successfully pulled image "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/controller:0.5.4" in 5.949s (5.949s including waiting). Image size: 29473877 bytes.

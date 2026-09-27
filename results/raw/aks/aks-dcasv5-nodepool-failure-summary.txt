@@ -1,0 +1,12 @@
+AKS DCASv5 node pool creation failure summary (sanitized)
+date_utc=2026-07-04T16:13Z
+cluster=aks-article1
+region=eastus2
+system_pool=Standard_D2s_v3 succeeded
+confidential_pool_attempt_1=Standard_DC8as_v5 failed VMSizeNotSupported
+confidential_pool_attempt_2=Standard_DC8as_v5 os_sku=Ubuntu failed VMSizeNotSupported
+confidential_pool_attempt_3=Standard_DC4as_v5 os_sku=Ubuntu failed VMSizeNotSupported
+quota_DCASv5=32
+quota_DCasv6=0
+quota_DCSv3=0
+notes=subscription_id deliberately omitted from this artifact

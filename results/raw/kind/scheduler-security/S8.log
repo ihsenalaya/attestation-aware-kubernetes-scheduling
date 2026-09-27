@@ -1,0 +1,1 @@
+kubectl auth can-i create aiplacementdecisions.aiops.imperium.io --as=system:serviceaccount:ai-platform:attestation-scheduler -n ai-platform => yes

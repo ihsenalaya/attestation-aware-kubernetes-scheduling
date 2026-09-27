@@ -1,0 +1,72 @@
+% Scheduler Self-Security — Article 1 (gate G8)
+% Data: article1/paper/tables/scheduler_security_tests.csv (produced by
+% article1/experiments/scheduler-security/run_scheduler_security_tests.sh via
+% kubectl auth can-i against the scheduler ServiceAccount).
+
+\section{Scheduler Self-Security}
+\label{sec:scheduler-security}
+
+Because the attestation-aware scheduler becomes a security-critical component ---
+it decides placement and mints the placement token --- it must itself be
+minimally privileged and fail-closed. We therefore treat the scheduler as part
+of the attack surface and verify, on the live cluster, that its RBAC cannot be
+abused beyond its role.
+
+\subsection{Minimal RBAC}
+The scheduler runs under a dedicated \texttt{ServiceAccount} whose ClusterRole
+grants only: \emph{read} on \texttt{Pods}, \texttt{Nodes}, \texttt{Namespaces},
+\texttt{ConfidentialInferencePolicy} and \texttt{AttestationEvidence};
+\emph{create/update} on \texttt{AIPlacementDecision} (and its status);
+\texttt{create} on \texttt{pods/binding} and \texttt{bindings} (needed by a
+second scheduler); \texttt{create} on \texttt{Events}; and coordination
+\texttt{Lease} access. It has \emph{no} wildcard verbs or resources.
+
+\subsection{Fail-closed capability tests}
+Table~\ref{tab:scheduler-security} reports the outcome of capability probes
+(\texttt{kubectl auth can-i --as} the scheduler SA). The scheduler is confirmed
+\emph{unable} to: create or update \texttt{AttestationEvidence} (S1--S2), create
+\texttt{RawAttestationReport} (S3), modify \texttt{ConfidentialInferencePolicy}
+(S4), patch \texttt{Node} labels (S5), read arbitrary \texttt{Secrets} (S6),
+delete evidence (S10), create webhook configurations (S11), or use wildcard
+permissions (S12). It \emph{is} able to read \texttt{AttestationEvidence} (S7),
+create \texttt{AIPlacementDecision} (S8), and create \texttt{pods/binding} (S9)
+--- exactly its role and nothing more.
+
+\begin{table}[t]
+  \centering
+  \caption{Scheduler self-security probes (data:
+  \texttt{tables/scheduler\_security\_tests.csv}). ``exp'' is the required
+  outcome of \texttt{auth can-i}.}
+  \label{tab:scheduler-security}
+  \footnotesize
+  \begin{tabular}{@{}llll@{}}
+    \toprule
+    \textbf{ID} & \textbf{Capability} & \textbf{exp} & \textbf{Property} \\
+    \midrule
+    S1  & create AttestationEvidence      & no  & no evidence forgery \\
+    S2  & update AttestationEvidence      & no  & no evidence tamper \\
+    S3  & create RawAttestationReport     & no  & not an attester \\
+    S4  & update ConfidentialInferencePolicy & no & no policy tamper \\
+    S5  & patch Nodes                     & no  & no node-label forgery \\
+    S6  & get Secrets                     & no  & least secret access \\
+    S7  & get AttestationEvidence         & yes & read-only appraisal \\
+    S8  & create AIPlacementDecision      & yes & its output \\
+    S9  & create pods/binding             & yes & second-scheduler bind \\
+    S10 & delete AttestationEvidence      & no  & no evidence deletion \\
+    S11 & create MutatingWebhookConfig    & no  & no admission hijack \\
+    S12 & \texttt{*} \texttt{*}           & no  & no wildcard \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Signing-key protection and fake-scheduler resistance}
+The placement-token Ed25519 private key is held in a Kubernetes \texttt{Secret}
+mounted only by the scheduler (or supplied via a sealed env var); the scheduler
+RBAC does not grant blanket \texttt{Secrets} read (S6). Consequently a rogue or
+``fake'' scheduler cannot mint tokens that \texttt{verify-placement} accepts:
+without the signing key it can bind a pod (if it forged RBAC), but the resulting
+\texttt{AIPlacementDecision} would carry no valid token and would fail
+independent verification. This composes with the trust chain
+(\S\ref{sec:threat}): a compromised node cannot forge evidence, and a rogue
+scheduler cannot forge a verifiable placement.
+

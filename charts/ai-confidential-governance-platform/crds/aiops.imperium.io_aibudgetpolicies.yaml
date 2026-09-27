@@ -1,0 +1,296 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: aibudgetpolicies.aiops.imperium.io
+spec:
+  group: aiops.imperium.io
+  names:
+    kind: AIBudgetPolicy
+    listKind: AIBudgetPolicyList
+    plural: aibudgetpolicies
+    shortNames:
+    - aibudget
+    singular: aibudgetpolicy
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.budgetEUR
+      name: Budget(EUR)
+      type: string
+    - jsonPath: .status.usagePercent
+      name: Usage%
+      type: integer
+    - jsonPath: .status.phase
+      name: Phase
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: AIBudgetPolicy defines an AI spend budget for a namespace/team/application.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: AIBudgetPolicySpec defines the desired state of AIBudgetPolicy.
+            properties:
+              actions:
+                description: |-
+                  Actions are recommended per threshold. In the MVP these are surfaced as
+                  recommendations only and never enforced.
+                properties:
+                  onCritical:
+                    items:
+                      type: string
+                    type: array
+                  onHardLimit:
+                    items:
+                      type: string
+                    type: array
+                  onWarning:
+                    items:
+                      type: string
+                    type: array
+                type: object
+              budgetEUR:
+                anyOf:
+                - type: integer
+                - type: string
+                description: BudgetEUR is the spend limit for the period, in EUR.
+                pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                x-kubernetes-int-or-string: true
+              criticalThresholdPercent:
+                default: 90
+                description: CriticalThresholdPercent triggers the critical actions.
+                format: int32
+                maximum: 100
+                minimum: 0
+                type: integer
+              enforcementMode:
+                default: reportOnly
+                description: |-
+                  EnforcementMode controls whether the fallback stays advisory or may be
+                  actuated at the gateway when the budget is under pressure.
+                enum:
+                - reportOnly
+                - warn
+                - enforce
+                type: string
+              fallbackModelRef:
+                description: FallbackModelRef names a cheaper AIModel to recommend
+                  on overspend.
+                type: string
+              fallbackOnPhase:
+                default: Exceeded
+                description: |-
+                  FallbackOnPhase is the earliest budget phase that may activate the
+                  fallback when EnforcementMode=enforce.
+                enum:
+                - Critical
+                - Exceeded
+                type: string
+              hardLimitPercent:
+                default: 100
+                description: HardLimitPercent triggers the hard-limit actions.
+                format: int32
+                maximum: 200
+                minimum: 0
+                type: integer
+              maxFallbackErrorPercent:
+                description: |-
+                  MaxFallbackErrorPercent is a guardrail on the fallback model's observed
+                  error rate, in percent. 0 disables the error-rate guardrail.
+                format: int32
+                maximum: 100
+                minimum: 0
+                type: integer
+              maxFallbackLatencyMillis:
+                description: |-
+                  MaxFallbackLatencyMillis is a guardrail on the fallback model's observed
+                  mean latency. 0 disables the latency guardrail.
+                format: int32
+                minimum: 0
+                type: integer
+              minFallbackQualityTier:
+                description: |-
+                  MinFallbackQualityTier is the minimum catalog quality tier a fallback
+                  model must satisfy to be actuated. Empty disables the quality guardrail.
+                enum:
+                - low
+                - medium
+                - high
+                type: string
+              period:
+                default: monthly
+                description: Period is the budget window.
+                enum:
+                - daily
+                - weekly
+                - monthly
+                type: string
+              target:
+                description: Target scopes the budget.
+                properties:
+                  application:
+                    description: Application label value the budget applies to.
+                    type: string
+                  namespace:
+                    description: Namespace the budget applies to.
+                    type: string
+                  team:
+                    description: Team label value the budget applies to.
+                    type: string
+                type: object
+              warningThresholdPercent:
+                default: 70
+                description: WarningThresholdPercent triggers the warning actions.
+                format: int32
+                maximum: 100
+                minimum: 0
+                type: integer
+            required:
+            - budgetEUR
+            - criticalThresholdPercent
+            - hardLimitPercent
+            - period
+            - target
+            - warningThresholdPercent
+            type: object
+          status:
+            description: AIBudgetPolicyStatus defines the observed state of AIBudgetPolicy.
+            properties:
+              activeFallbackModel:
+                description: |-
+                  ActiveFallbackModel is the provider-side model currently selected as the
+                  budget fallback target when live actuation is active.
+                type: string
+              conditions:
+                description: Conditions represent the latest available observations
+                  of the budget state.
+                items:
+                  description: Condition contains details for one aspect of the current
+                    state of this API Resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        lastTransitionTime is the last time the condition transitioned from one status to another.
+                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        message is a human readable message indicating details about the transition.
+                        This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        observedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: |-
+                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                        Producers of specific condition types may define expected values and meanings for this field,
+                        and whether the values are considered a guaranteed API.
+                        The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              currentSpendEUR:
+                anyOf:
+                - type: integer
+                - type: string
+                description: CurrentSpendEUR is the spend observed for the current
+                  period.
+                pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                x-kubernetes-int-or-string: true
+              fallbackActuated:
+                description: |-
+                  FallbackActuated reports whether the fallback reroute was applied to the
+                  gateway on the last reconcile.
+                type: boolean
+              fallbackReason:
+                description: FallbackReason summarizes why the fallback was or was
+                  not actuated.
+                type: string
+              observedGeneration:
+                description: ObservedGeneration is the .metadata.generation last reconciled.
+                format: int64
+                type: integer
+              phase:
+                description: Phase summarizes the budget state.
+                enum:
+                - Unknown
+                - WithinBudget
+                - Warning
+                - Critical
+                - Exceeded
+                type: string
+              projectedMonthlySpendEUR:
+                anyOf:
+                - type: integer
+                - type: string
+                description: |-
+                  ProjectedMonthlySpendEUR forecasts a full month from the observed spend
+                  (run-rate); usage/phase are evaluated against this forecast vs the budget.
+                pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                x-kubernetes-int-or-string: true
+              usagePercent:
+                description: UsagePercent is ProjectedMonthlySpend/Budget*100, rounded.
+                format: int32
+                type: integer
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

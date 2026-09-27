@@ -1,0 +1,3 @@
+Warning: resource 'mutatingwebhookconfigurations' is not namespace scoped in group 'admissionregistration.k8s.io'
+
+kubectl auth can-i create mutatingwebhookconfigurations.admissionregistration.k8s.io --as=system:serviceaccount:ai-platform:attestation-scheduler -n ai-platform => no

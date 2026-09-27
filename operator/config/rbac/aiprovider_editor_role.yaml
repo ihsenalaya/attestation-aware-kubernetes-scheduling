@@ -1,0 +1,31 @@
+# permissions for end users to edit aiproviders.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: aiprovider-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: ai-sovereign-finops-operator
+    app.kubernetes.io/part-of: ai-sovereign-finops-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: aiprovider-editor-role
+rules:
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - aiproviders
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - aiproviders/status
+  verbs:
+  - get

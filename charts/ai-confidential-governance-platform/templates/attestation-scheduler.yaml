@@ -1,0 +1,140 @@
+{{- if .Values.modules.attestationScheduler.enabled }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: attestation-scheduler
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: attestation-scheduler
+    {{- include "platform.labels" . | nindent 4 }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Release.Name }}-attestation-scheduler
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods/binding", "bindings"]
+  verbs: ["create"]
+- apiGroups: [""]
+  resources: ["nodes", "namespaces"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["node.k8s.io"]
+  resources: ["runtimeclasses"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["create", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["attestationevidences", "confidentialinferencepolicies", "airevocationpolicies"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["aiplacementdecisions"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["aiplacementdecisions/status"]
+  verbs: ["get", "update", "patch"]
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Release.Name }}-attestation-scheduler
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Release.Name }}-attestation-scheduler
+subjects:
+- kind: ServiceAccount
+  name: attestation-scheduler
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: attestation-scheduler
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: attestation-scheduler
+    component: attestation-scheduler
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.attestationScheduler.replicaCount }}
+  selector:
+    matchLabels:
+      app: attestation-scheduler
+  template:
+    metadata:
+      labels:
+        app: attestation-scheduler
+        component: attestation-scheduler
+    spec:
+      serviceAccountName: attestation-scheduler
+      {{- include "platform.imagePullSecrets" . | nindent 6 }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+      containers:
+      - name: attestation-scheduler
+        image: {{ include "platform.image" (list . .Values.images.attestationScheduler) }}
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+        ports:
+        - name: health
+          containerPort: 8087
+        - name: metrics
+          containerPort: 8088
+        env:
+        - name: SCHEDULER_TOKEN_TTL_SECONDS
+          value: {{ .Values.attestationScheduler.tokenTTLSeconds | quote }}
+        {{- if .Values.attestationScheduler.signingKeyHex }}
+        - name: SCHEDULER_SIGNING_KEY_HEX
+          valueFrom:
+            secretKeyRef:
+              name: attestation-scheduler-signing-key
+              key: privateKeyHex
+        {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8087
+          initialDelaySeconds: 30
+          periodSeconds: 20
+          failureThreshold: 5
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8087
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          failureThreshold: 5
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: [ALL]
+        resources:
+          {{- toYaml .Values.attestationScheduler.resources | nindent 10 }}
+{{- if .Values.attestationScheduler.signingKeyHex }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: attestation-scheduler-signing-key
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+type: Opaque
+stringData:
+  privateKeyHex: {{ .Values.attestationScheduler.signingKeyHex | quote }}
+{{- end }}
+{{- end }}

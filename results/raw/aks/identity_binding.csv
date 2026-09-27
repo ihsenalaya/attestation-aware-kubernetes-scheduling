@@ -1,0 +1,7 @@
+timestamp,env,case,mutated_field,expected,actual,pass,raw_log_path
+2026-07-06T00:40:31Z,aks-real-sevsnp,correct-binding,none,PASS,PASS,PASS,article1/results/raw/aks/.idb.log
+2026-07-06T00:40:31Z,aks-real-sevsnp,mutate-poduid,podUID,FAIL,FAIL,PASS,article1/results/raw/aks/.idb.log
+2026-07-06T00:40:31Z,aks-real-sevsnp,mutate-podspechash,podSpecHash,FAIL,FAIL,PASS,article1/results/raw/aks/.idb.log
+2026-07-06T00:40:31Z,aks-real-sevsnp,mutate-node,nodeIdentity,FAIL,FAIL,PASS,article1/results/raw/aks/.idb.log
+2026-07-06T00:40:31Z,aks-real-sevsnp,mutate-evidencehash,evidenceHash,FAIL,FAIL,PASS,article1/results/raw/aks/.idb.log
+2026-07-06T00:40:31Z,aks-real-sevsnp,mutate-policyhash,policyHash,FAIL,FAIL,PASS,article1/results/raw/aks/.idb.log

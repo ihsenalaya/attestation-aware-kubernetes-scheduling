@@ -1,0 +1,13 @@
+AKS teardown summary
+date_utc=2026-07-04T16:52:00Z
+resource_group=rg-article1-confidential
+cluster=aks-article1
+terraform_destroy=PASS
+resources_destroyed=2
+az_group_exists_after_destroy=false
+terraform_state_after_destroy=empty_then_local_state_removed
+quota_after_destroy_standard_dsv3_current=0
+quota_after_destroy_standard_dcasv5_current=0
+quota_after_destroy_standard_dcasv5_limit=32
+local_sensitive_files_removed=kubeconfig-aks,terraform.tfstate,terraform.tfstate.backup
+reason=AKS refused DCASv5 node pools with VMSizeNotSupported despite DCASv5 quota; no real MAA evidence was possible.

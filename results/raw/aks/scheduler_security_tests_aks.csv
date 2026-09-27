@@ -1,0 +1,13 @@
+timestamp,env,test_id,service_account,verb,resource,namespace,expected,actual,pass,raw_log_path
+2026-07-04T23:29:25Z,aks-real-sevsnp,S1,system:serviceaccount:ai-platform:attestation-scheduler,create,attestationevidences.aiops.imperium.io,ai-platform,no,no,PASS,article1/results/raw/aks/scheduler-security/S1.log
+2026-07-04T23:29:26Z,aks-real-sevsnp,S2,system:serviceaccount:ai-platform:attestation-scheduler,update,attestationevidences.aiops.imperium.io,ai-platform,no,no,PASS,article1/results/raw/aks/scheduler-security/S2.log
+2026-07-04T23:29:28Z,aks-real-sevsnp,S3,system:serviceaccount:ai-platform:attestation-scheduler,create,rawattestationreports.aiops.imperium.io,ai-platform,no,no,PASS,article1/results/raw/aks/scheduler-security/S3.log
+2026-07-04T23:29:30Z,aks-real-sevsnp,S4,system:serviceaccount:ai-platform:attestation-scheduler,update,confidentialinferencepolicies.aiops.imperium.io,ai-platform,no,no,PASS,article1/results/raw/aks/scheduler-security/S4.log
+2026-07-04T23:29:31Z,aks-real-sevsnp,S5,system:serviceaccount:ai-platform:attestation-scheduler,patch,nodes,ai-platform,no,no,PASS,article1/results/raw/aks/scheduler-security/S5.log
+2026-07-04T23:29:32Z,aks-real-sevsnp,S6,system:serviceaccount:ai-platform:attestation-scheduler,get,secrets,ai-platform,no,no,PASS,article1/results/raw/aks/scheduler-security/S6.log
+2026-07-04T23:29:34Z,aks-real-sevsnp,S10,system:serviceaccount:ai-platform:attestation-scheduler,delete,attestationevidences.aiops.imperium.io,ai-platform,no,no,PASS,article1/results/raw/aks/scheduler-security/S10.log
+2026-07-04T23:29:36Z,aks-real-sevsnp,S11,system:serviceaccount:ai-platform:attestation-scheduler,create,mutatingwebhookconfigurations.admissionregistration.k8s.io,ai-platform,no,no,PASS,article1/results/raw/aks/scheduler-security/S11.log
+2026-07-04T23:29:37Z,aks-real-sevsnp,S12,system:serviceaccount:ai-platform:attestation-scheduler,*,*,ai-platform,no,no,PASS,article1/results/raw/aks/scheduler-security/S12.log
+2026-07-04T23:29:39Z,aks-real-sevsnp,S7,system:serviceaccount:ai-platform:attestation-scheduler,get,attestationevidences.aiops.imperium.io,ai-platform,yes,yes,PASS,article1/results/raw/aks/scheduler-security/S7.log
+2026-07-04T23:29:41Z,aks-real-sevsnp,S8,system:serviceaccount:ai-platform:attestation-scheduler,create,aiplacementdecisions.aiops.imperium.io,ai-platform,yes,yes,PASS,article1/results/raw/aks/scheduler-security/S8.log
+2026-07-04T23:29:43Z,aks-real-sevsnp,S9,system:serviceaccount:ai-platform:attestation-scheduler,create,pods/binding,ai-platform,yes,no,FAIL,article1/results/raw/aks/scheduler-security/S9.log

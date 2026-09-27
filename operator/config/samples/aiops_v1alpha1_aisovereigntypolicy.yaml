@@ -1,0 +1,21 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AISovereigntyPolicy
+metadata:
+  name: regulated-france-policy
+  labels:
+    app.kubernetes.io/name: ai-sovereign-finops-operator
+spec:
+  dataResidency:
+    allowedZones:
+      - FR
+      - EU
+    forbiddenZones:
+      - US
+      - CN
+  sensitiveData:
+    externalProvidersAllowed: false
+    requireAnonymization: true
+  audit:
+    retainLogsDays: 180
+    immutableLogs: true
+  enforcementMode: reportOnly

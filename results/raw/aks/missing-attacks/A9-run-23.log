@@ -1,0 +1,4 @@
+policy_runtime=runc
+attack_runtime=simulated-kata-qemu-snp
+Error from server (Forbidden): error when creating "/tmp/tmp.sNUEKeqUK1": admission webhook "confidential-pod-validation.aiops.imperium.io" denied the request: runtimeClass "simulated-kata-qemu-snp" is not allowed by policy "missing-attack-policy"; simulated runtimeClass "simulated-kata-qemu-snp" is forbidden in production; runtimeClass "simulated-kata-qemu-snp" is labelled simulated and forbidden in production
+rc=1

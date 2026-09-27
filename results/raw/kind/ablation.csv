@@ -1,0 +1,6 @@
+timestamp,env,config,layer,attack_id,expected,actual,blocked,note,raw_log_path
+2026-07-05T08:18:53Z,kind-live-simulated,policy-only,L0,A1,BLOCKED,ALLOWED,no,no-enforcement-baseline-bypass-expected,article1/results/raw/kind/ablation
+2026-07-05T08:18:53Z,kind-live-simulated,+admission,L1,A5,BLOCKED,BLOCKED,yes,webhook-denied,article1/results/raw/kind/ablation
+2026-07-05T08:19:09Z,kind-live-simulated,+scheduler,L2,A4,BLOCKED,BLOCKED,yes,scheduler-filter-no-TDX-evidence,article1/results/raw/kind/ablation
+2026-07-05T08:19:09Z,kind-live-simulated,+token,L3,A8,BLOCKED,BLOCKED,yes,verify-placement-rejects-tampered (see identity_binding.csv),article1/results/raw/kind/ablation
+2026-07-05T08:19:09Z,kind-live-simulated,filter-only,Lx,A7,BLOCKED,REQUIRES_BUILD_FLAG,no,PreBind-disable flag not built,article1/results/raw/kind/ablation

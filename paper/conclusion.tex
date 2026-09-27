@@ -1,0 +1,27 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented an attestation-aware Kubernetes scheduler that makes verified
+SEV-SNP attestation a first-class scheduling signal and binds each placement to
+independently verifiable cryptographic evidence. A trust chain separates the
+untrusted node attester from a central verifier; a fail-closed \texttt{PreBind}
+re-check removes the externally schedulable gate-removal-to-bind TOCTOU window
+left by check-then-ungate designs; and an Ed25519 placement token lets a third
+party verify offline where a workload ran. We formalise six placement properties
+and argue the architecture enforces them independently of the underlying TEE. On
+real AMD SEV-SNP confidential AKS hardware with Azure MAA attestation, the final
+multi-node snapshot contains four active confidential nodes with verified real
+evidence, while invalid tokens were never marked real. Our central quantitative
+result is a head-to-head comparison with a strong scheduling-gate baseline, which
+leaves a $\sim$1.1\,s externally controllable gate-removal-to-bind window
+($p<10^{-5}$, Cliff's $\delta{=}1.0$) that our design removes from the schedulable
+path while adding an auditable placement artifact. Layer ablations support the
+admission/scheduler/token design, the real AKS adversarial campaign blocks
+A1--A10 and A5b in 330/330 instances, the B1--B5 campaign measures 30 runs per baseline
+with B5 client-observed median 1167.0\,ms and a separate scheduler-internal
+phase median of 216.232\,ms, and three governed AI workloads pass
+placement-token verification. We claim node-level SEV-SNP attested
+placement only, not pod-level attestation, confidential GPU execution, OpenAI
+service confidentiality, or model confidentiality. Every reported figure is
+regenerated from raw results by script, and the artifact will be made
+publicly available upon publication.

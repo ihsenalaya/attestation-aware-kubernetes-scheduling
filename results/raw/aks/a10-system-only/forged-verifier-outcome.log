@@ -1,0 +1,8 @@
+AKS forged RawAttestationReport negative verifier test
+date_utc=2026-07-04T16:37:12Z
+report=aks-a10-forged-20260704163657
+evidence=evidence-aks-a10-forged-node-aks-a10-forged-20260704163657
+evidenceMode=unverified
+verified=
+verificationStatus=Failed
+failureReason=parse token: token contains an invalid number of segments

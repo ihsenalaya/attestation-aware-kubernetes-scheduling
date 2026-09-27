@@ -1,0 +1,9 @@
+AKS campaign preflight — 2026-07-06T05:56:15Z
+region=westus2
+subscription_name=FHIR
+confidential_sku=Standard_DC8as_v6
+confidential_family=Standard DCasv6 Family vCPUs
+confidential_quota_current=0 confidential_quota_limit=32 required=32
+total_regional_current=0 total_regional_limit=42 required=40
+arm_sku_exposure=EXPOSED confidential_type=SNP
+result=GO-CONFIDENTIAL

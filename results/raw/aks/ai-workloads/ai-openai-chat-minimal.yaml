@@ -1,0 +1,193 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    ai.sovereign.io/applied-runtime-class: runc
+    ai.sovereign.io/attestation-evidence: evidence-aks-conf-12838440-vmss000000
+    ai.sovereign.io/expected-evidence-age-seconds: "300"
+    ai.sovereign.io/expected-runtime-class: runc
+    ai.sovereign.io/model-digest: sha256:741dcd26154bcf5c5235bf833bd327dc66a31c818f4b83e2fcc6724760267c7e
+    ai.sovereign.io/policy-hash: 9e48e2837f7a1da4a142bf47783e417851da511e75281d7283018006c95fe267
+    ai.sovereign.io/simulated-execution: "false"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{"ai.sovereign.io/attestation-evidence":"evidence-aks-conf-12838440-vmss000000","ai.sovereign.io/model-digest":"sha256:741dcd26154bcf5c5235bf833bd327dc66a31c818f4b83e2fcc6724760267c7e"},"labels":{"ai.sovereign.io/workload-id":"openai-chat-minimal","app":"bench"},"name":"ai-openai-chat-minimal","namespace":"article1-ai-workloads"},"spec":{"containers":[{"command":["python","/workload/runner.py"],"env":[{"name":"WORKLOAD_ID","value":"openai-chat-minimal"},{"name":"WORKLOAD_TYPE","value":"openai-chat"},{"name":"MODEL_NAME","value":"gpt-5.5,gpt-5.4,gpt-4.1-mini,gpt-4o-mini"},{"name":"REQUEST_COUNT","value":"3"},{"name":"OPENAI_KEY_FILE","value":"/var/run/secrets/openai/OPENAI_API_KEY"}],"image":"python:3.11-slim","imagePullPolicy":"IfNotPresent","name":"app","volumeMounts":[{"mountPath":"/workload","name":"runner","readOnly":true},{"mountPath":"/var/run/secrets/openai","name":"openai","readOnly":true},{"mountPath":"/models","name":"local-model","readOnly":true}]}],"restartPolicy":"Never","runtimeClassName":"runc","schedulerName":"ai-attestation-scheduler","tolerations":[{"effect":"NoSchedule","key":"ai.sovereign.io/confidential","operator":"Equal","value":"true"}],"volumes":[{"configMap":{"name":"ai-workload-runner"},"name":"runner"},{"name":"openai","secret":{"secretName":"openai-api"}},{"configMap":{"name":"ai-local-model"},"name":"local-model"}]}}
+  creationTimestamp: "2026-07-06T06:12:37Z"
+  generation: 1
+  labels:
+    ai.sovereign.io/workload-id: openai-chat-minimal
+    app: bench
+  name: ai-openai-chat-minimal
+  namespace: article1-ai-workloads
+  resourceVersion: "5503"
+  uid: d1b7bcc4-4bde-4aea-9f7f-61704312e1f8
+spec:
+  containers:
+  - command:
+    - python
+    - /workload/runner.py
+    env:
+    - name: WORKLOAD_ID
+      value: openai-chat-minimal
+    - name: WORKLOAD_TYPE
+      value: openai-chat
+    - name: MODEL_NAME
+      value: gpt-5.5,gpt-5.4,gpt-4.1-mini,gpt-4o-mini
+    - name: REQUEST_COUNT
+      value: "3"
+    - name: OPENAI_KEY_FILE
+      value: /var/run/secrets/openai/OPENAI_API_KEY
+    image: python:3.11-slim
+    imagePullPolicy: IfNotPresent
+    name: app
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /workload
+      name: runner
+      readOnly: true
+    - mountPath: /var/run/secrets/openai
+      name: openai
+      readOnly: true
+    - mountPath: /models
+      name: local-model
+      readOnly: true
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-cbhts
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-conf-12838440-vmss000000
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Never
+  runtimeClassName: runc
+  schedulerName: ai-attestation-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoSchedule
+    key: ai.sovereign.io/confidential
+    operator: Equal
+    value: "true"
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - configMap:
+      defaultMode: 420
+      name: ai-workload-runner
+    name: runner
+  - name: openai
+    secret:
+      defaultMode: 420
+      secretName: openai-api
+  - configMap:
+      defaultMode: 420
+      name: ai-local-model
+    name: local-model
+  - name: kube-api-access-cbhts
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:12:50Z"
+    observedGeneration: 1
+    status: "False"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:12:37Z"
+    observedGeneration: 1
+    reason: PodCompleted
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:12:49Z"
+    observedGeneration: 1
+    reason: PodCompleted
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:12:49Z"
+    observedGeneration: 1
+    reason: PodCompleted
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:12:37Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://affff67fe84110dc7d979720c28c924194e1480139bfc439a76ab396b7f87f06
+    image: docker.io/library/python:3.11-slim
+    imageID: docker.io/library/python@sha256:b27df5841f3355e9473f9a516d38a6783b6c8dfeacaf2d14a240f443b368ddb6
+    lastState: {}
+    name: app
+    ready: false
+    resources: {}
+    restartCount: 0
+    started: false
+    state:
+      terminated:
+        containerID: containerd://affff67fe84110dc7d979720c28c924194e1480139bfc439a76ab396b7f87f06
+        exitCode: 0
+        finishedAt: "2026-07-06T06:12:48Z"
+        reason: Completed
+        startedAt: "2026-07-06T06:12:41Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        uid: 0
+    volumeMounts:
+    - mountPath: /workload
+      name: runner
+      readOnly: true
+      recursiveReadOnly: Disabled
+    - mountPath: /var/run/secrets/openai
+      name: openai
+      readOnly: true
+      recursiveReadOnly: Disabled
+    - mountPath: /models
+      name: local-model
+      readOnly: true
+      recursiveReadOnly: Disabled
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-cbhts
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.224.0.62
+  hostIPs:
+  - ip: 10.224.0.62
+  observedGeneration: 1
+  phase: Succeeded
+  podIP: 10.224.0.81
+  podIPs:
+  - ip: 10.224.0.81
+  qosClass: BestEffort
+  startTime: "2026-07-06T06:12:37Z"

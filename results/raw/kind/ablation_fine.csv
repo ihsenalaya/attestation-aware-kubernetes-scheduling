@@ -1,0 +1,7 @@
+timestamp,env,layer,configuration,control_removed,attack_id,expected,actual,blocked,status,reason,raw_log_path
+2026-07-05T08:19:09Z,kind-live-simulated,L0,no-enforcement,all,A1,BLOCKED,ALLOWED,no,EXECUTED,no-enforcement-baseline-bypass-expected,article1/results/raw/kind/ablation
+2026-07-05T08:19:09Z,kind-live-simulated,L1,admission-only,scheduler-prebind-token,A5,BLOCKED,BLOCKED,yes,EXECUTED,webhook-denied,article1/results/raw/kind/ablation
+2026-07-05T08:19:09Z,kind-live-simulated,L2,scheduler-filter-prebind,token-offline-verify,A4,BLOCKED,BLOCKED,yes,EXECUTED,scheduler-filter-no-TDX-evidence,article1/results/raw/kind/ablation
+2026-07-05T08:19:09Z,kind-live-simulated,L4,token-verify,none,A8,BLOCKED,BLOCKED,yes,EXECUTED,verify-placement-rejects-tampered (see identity_binding.csv),article1/results/raw/kind/ablation
+2026-07-05T08:19:09Z,kind-live-simulated,L3,prebind-only,filter-token,A7,BLOCKED,NOT_EXECUTED,no,NOT_EXECUTED,requires_scheduler_build_flag_disable_filter,
+2026-07-05T08:19:09Z,kind-live-simulated,L5,full-system,none,A1,BLOCKED,NOT_EXECUTED,no,NOT_EXECUTED,use_security_campaign_A1_A11_for_full_layer,

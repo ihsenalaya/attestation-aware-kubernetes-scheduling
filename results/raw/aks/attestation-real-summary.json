@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-07-06T06:32:42Z",
+  "current_confidential_nodes": [
+    "aks-conf-12838440-vmss000000",
+    "aks-conf-12838440-vmss000004",
+    "aks-conf-12838440-vmss000005",
+    "aks-conf-12838440-vmss000006"
+  ],
+  "total_evidence_all_namespaces_current_cluster": 7,
+  "total_evidence": 4,
+  "real_count": 2,
+  "simulated_count": 0,
+  "unverified_count": 2,
+  "other_count": 0,
+  "real": [
+    {
+      "name": "evidence-aks-conf-12838440-vmss000000",
+      "subjectNode": "aks-conf-12838440-vmss000000",
+      "evidenceMode": "real",
+      "verificationStatus": "Verified",
+      "verifiedBy": "central-verifier",
+      "maaTokenHash": "8aab52bc5ddc65e7888000119cf0f8f9a5804e57f697b54670140250f22deada",
+      "claimsDigest": "32f36f9a3de438022dadbe721e715a6025915e0f6ae8e939e56efd653f11c5c2",
+      "nodeUID": "",
+      "attestationType": "guest-attestation"
+    },
+    {
+      "name": "evidence-aks-conf-12838440-vmss000004",
+      "subjectNode": "aks-conf-12838440-vmss000004",
+      "evidenceMode": "real",
+      "verificationStatus": "Verified",
+      "verifiedBy": "central-verifier",
+      "maaTokenHash": "9094753945c2a5cf0f21068cf8d67f5dfea474cc88c4ee9d33511d9c3aaa1483",
+      "claimsDigest": "f7df379b7caf0bf5738fb6f1a4da218c2279b7a77689ee4ab78809ce6387e370",
+      "nodeUID": "",
+      "attestationType": "guest-attestation"
+    }
+  ],
+  "note": "evidenceMode=real is written ONLY by the central-verifier after a genuine MAA signature+claims check."
+}

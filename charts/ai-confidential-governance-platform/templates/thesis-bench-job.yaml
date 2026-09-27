@@ -1,0 +1,46 @@
+{{- if and .Values.modules.thesisBench.enabled (eq .Values.global.environment "kind") }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: thesis-bench
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: thesis-bench
+    {{- include "platform.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "10"
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: thesis-bench
+    spec:
+      restartPolicy: Never
+      {{- include "platform.imagePullSecrets" . | nindent 6 }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+      containers:
+      - name: thesis-bench
+        image: {{ include "platform.image" (list . .Values.images.thesisBench) }}
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+        args: ["--mode", "simulated-kind", "--out", "/results"]
+        env:
+        - name: AIOPS_PLATFORM_MODE
+          value: {{ .Values.global.environment }}
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop: [ALL]
+        volumeMounts:
+        - name: results
+          mountPath: /results
+      volumes:
+      - name: results
+        emptyDir: {}
+{{- end }}

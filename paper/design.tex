@@ -1,0 +1,50 @@
+\section{Design}
+\label{sec:design}
+
+Our design has three parts: an evidence trust chain, an attestation-aware
+scheduling cycle, and a verifiable placement token.
+
+\subsection{Evidence trust chain}
+Following the RATS separation of roles~\cite{birkholz2023rats}, no single
+compromised component can both produce and bless evidence. A
+\texttt{node-attestation-agent} runs on each confidential node and obtains a raw
+attestation token (on Azure, an MAA / Guest Attestation JWT bound to a
+node-chosen nonce). The agent may \emph{only} create a
+\texttt{RawAttestationReport}; RBAC forbids it from writing
+\texttt{AttestationEvidence}. A single \texttt{central-verifier} consumes raw
+reports and is the \emph{only} writer of \texttt{AttestationEvidence}. It parses
+the MAA JWT, fetches the issuer's JWKS, verifies the RS256 signature, checks the
+SEV-SNP attestation-type claim, freshness (nonce, expiry) and, on success, writes
+\texttt{evidenceMode=real} with the token hash and a canonical claims digest.
+If the signature cannot be checked (keys unreachable) it writes
+\texttt{unverified}/\texttt{Unavailable}; if a check fails, \texttt{Failed}. It
+\emph{never} fabricates a real result.
+
+\subsection{Attestation-aware scheduling cycle}
+Sensitive pods carry \texttt{schedulerName: ai-attestation-scheduler}. The
+scheduler implements: \emph{PreFilter} (load the matching
+\texttt{ConfidentialInferencePolicy}); \emph{Filter} (keep only nodes whose
+\texttt{AttestationEvidence} is verified, fresh, non-revoked and of the required
+TEE); \emph{Score} (prefer fresher, real evidence); \emph{Reserve} (create the
+\texttt{AIPlacementDecision}); and a fail-closed \emph{PreBind} re-check that
+re-reads the policy and evidence \emph{immediately before} binding and refuses if
+the policy hash or evidence changed, if evidence became revoked or stale, or on
+any API read error. This removes the externally schedulable
+time-of-check-to-time-of-use (TOCTOU) window that a check-then-ungate design
+exposes to the API server between gate removal and bind (\S\ref{sec:evaluation},
+E5). A residual in-process PreBind-to-Bind
+interval remains bounded to the scheduler's local path; a bounded
+\texttt{Permit} wait admits evidence that is about to become valid, otherwise
+rejects.
+
+\subsection{Verifiable placement token}
+At Reserve the scheduler mints an Ed25519 \emph{placement token} over a canonical
+binding of \{pod UID, pod-spec hash, node identity, runtime class, evidence hash,
+policy hash, image/model digest, validity window\}, and stores it on the signed
+\texttt{AIPlacementDecision}. An independent \texttt{verify-placement} CLI checks
+the signature and field bindings offline with only the scheduler's public key ---
+answering ``where did my confidential workload run?'' to a third party without
+cluster access. The signing key is held in a Kubernetes Secret the scheduler
+mounts; the scheduler RBAC does not grant blanket secret access
+(\S\ref{sec:scheduler-security}), so a rogue scheduler cannot mint acceptable
+tokens.

@@ -1,0 +1,213 @@
+2026-07-04T14:49:24Z
+G0 static RBAC check from Helm render
+PASS node-agent can target RawAttestationReport
+PASS node-agent create-only
+PASS node-agent cannot target AttestationEvidence
+PASS scheduler reads evidence/policies
+PASS scheduler read-only evidence rule present
+PASS scheduler cannot write evidence status
+PASS central verifier owns AttestationEvidence
+PASS central verifier writes AttestationEvidence spec
+PASS central verifier owns AttestationEvidence status
+PASS governance read-only evidence/raw reports
+PASS governance has no aiops wildcard
+PASS platform-api has no aiops wildcard
+
+--- node-attestation-agent ClusterRole ---
+# Source: ai-confidential-governance-platform/templates/node-attestation-agent.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ai-platform-node-attestation-agent
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: ai-platform
+    helm.sh/chart: ai-confidential-governance-platform-0.5.4
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["rawattestationreports"]
+  verbs: ["create"]
+---
+--- attestation-scheduler ClusterRole ---
+# Source: ai-confidential-governance-platform/templates/attestation-scheduler.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ai-platform-attestation-scheduler
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: ai-platform
+    helm.sh/chart: ai-confidential-governance-platform-0.5.4
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods/binding", "bindings"]
+  verbs: ["create"]
+- apiGroups: [""]
+  resources: ["nodes", "namespaces"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["create", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["attestationevidences", "confidentialinferencepolicies", "airevocationpolicies"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["aiplacementdecisions"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["aiplacementdecisions/status"]
+  verbs: ["get", "update", "patch"]
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+--- central-verifier ClusterRole ---
+# Source: ai-confidential-governance-platform/templates/central-verifier.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ai-platform-central-verifier
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: ai-platform
+    helm.sh/chart: ai-confidential-governance-platform-0.5.4
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["rawattestationreports"]
+  verbs: ["get", "list", "watch", "update", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["rawattestationreports/status"]
+  verbs: ["get", "update", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["attestationevidences"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["attestationevidences/status"]
+  verbs: ["get", "update", "patch"]
+---
+--- governance-operator ClusterRole ---
+# Source: ai-confidential-governance-platform/templates/governance-operator.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ai-platform-governance-operator
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: ai-platform
+    helm.sh/chart: ai-confidential-governance-platform-0.5.4
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses
+  - aibudgetpolicies
+  - aichangerequests
+  - aievidencerecords
+  - aifinopsreports
+  - aigateways
+  - aikeyreleasepolicies
+  - aimodels
+  - aiplacementdecisions
+  - aiproviders
+  - aiqualitygates
+  - airevocationpolicies
+  - airouteoverrides
+  - airoutingpolicies
+  - aisovereigntypolicies
+  - confidentialinferencepolicies
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses/status
+  - aibudgetpolicies/status
+  - aichangerequests/status
+  - aievidencerecords/status
+  - aifinopsreports/status
+  - aigateways/status
+  - aikeyreleasepolicies/status
+  - aimodels/status
+  - aiplacementdecisions/status
+  - aiproviders/status
+  - aiqualitygates/status
+  - airevocationpolicies/status
+  - airouteoverrides/status
+  - airoutingpolicies/status
+  - aisovereigntypolicies/status
+  - confidentialinferencepolicies/status
+  verbs: ["get", "update", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses/finalizers
+  - aibudgetpolicies/finalizers
+  - aichangerequests/finalizers
+  - aievidencerecords/finalizers
+  - aifinopsreports/finalizers
+  - aigateways/finalizers
+  - aikeyreleasepolicies/finalizers
+  - aimodels/finalizers
+  - aiplacementdecisions/finalizers
+  - aiproviders/finalizers
+  - aiqualitygates/finalizers
+  - airevocationpolicies/finalizers
+  - airouteoverrides/finalizers
+  - airoutingpolicies/finalizers
+  - aisovereigntypolicies/finalizers
+  - confidentialinferencepolicies/finalizers
+  verbs: ["update"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["attestationevidences", "rawattestationreports"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods", "nodes", "events", "namespaces", "configmaps", "services", "secrets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["node.k8s.io"]
+  resources: ["runtimeclasses"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["admissionregistration.k8s.io"]
+  resources: ["mutatingwebhookconfigurations", "validatingwebhookconfigurations"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+--- platform-api ClusterRole ---
+# Source: ai-confidential-governance-platform/templates/platform-api.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ai-platform-platform-api
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/instance: ai-platform
+    helm.sh/chart: ai-confidential-governance-platform-0.5.4
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses
+  - aibudgetpolicies
+  - aichangerequests
+  - aievidencerecords
+  - aifinopsreports
+  - aigateways
+  - aikeyreleasepolicies
+  - aimodels
+  - aiplacementdecisions
+  - aiproviders
+  - aiqualitygates
+  - airevocationpolicies
+  - airouteoverrides
+  - airoutingpolicies
+  - aisovereigntypolicies
+  - attestationevidences
+  - confidentialinferencepolicies
+  - rawattestationreports
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods", "nodes", "namespaces"]
+  verbs: ["get", "list", "watch"]
+---

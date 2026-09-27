@@ -1,0 +1,5 @@
+timestamp,env,attack_id,variant,adversary,expected,actual,blocked,status,reason,raw_log_path
+2026-07-05T08:17:45Z,kind-live-simulated,A10,rbac-and-forged-raw-report,compromised-node-agent,BLOCKED,BLOCKED,yes,EXECUTED,base_a10_script_passed,article1/results/raw/kind/a10/a10-rbac-results.csv
+2026-07-05T08:17:45Z,kind-live-simulated,A10,absent-token,offline-verifier,BLOCKED,FAIL,yes,EXECUTED,token_required,article1/results/raw/kind/a10/A10-offline-token-negative.log
+2026-07-05T08:17:45Z,kind-live-simulated,A10,invalid-token,offline-verifier,BLOCKED,FAIL,yes,EXECUTED,invalid_signature_or_payload_rejected,article1/results/raw/kind/a10/A10-offline-token-negative.log
+2026-07-05T08:17:45Z,kind-live-simulated,A10,poduid-mismatch,offline-verifier,BLOCKED,FAIL,yes,EXECUTED,verify_for_pod_rejected_mismatch,article1/results/raw/kind/a10/A10-offline-token-negative.log

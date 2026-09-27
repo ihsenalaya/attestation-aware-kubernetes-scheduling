@@ -1,0 +1,31 @@
+{
+  "title": "Attestation-Aware Scheduling for Verifiable AI Placement on SEV-SNP Confidential Kubernetes Nodes — Reproducibility Artifact",
+  "upload_type": "software",
+  "description": "Research artifact accompanying the working manuscript \"Attestation-Aware Scheduling for Verifiable AI Placement on SEV-SNP Confidential Kubernetes Nodes\". Contains the reference implementation (scheduler, central verifier, node attestation agent and offline placement-token verifier), deployment chart, experimental harnesses, archived AKS data, analysis scripts, and manuscript source/PDF. AKS data concerns node-level AMD SEV-SNP placement; kind/KWOK data is regression evidence only. The manuscript remains an anonymous review draft. The shared Go module includes auxiliary platform components outside the paper scope. See README.md and ARTIFACT_VALIDATION.md for reproduction commands, provenance and validation limitations.",
+  "keywords": [
+    "confidential computing",
+    "AMD SEV-SNP",
+    "Kubernetes scheduling",
+    "remote attestation",
+    "TOCTOU",
+    "AI workload placement",
+    "Azure Attestation",
+    "reproducibility"
+  ],
+  "license": "Apache-2.0",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Alaya, Ihsen"
+    }
+  ],
+  "version": "1.0.0",
+  "language": "eng",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/ihsenalaya/attestation-aware-kubernetes-scheduling",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+apiVersion: v1
+items:
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T16:37:08Z"
+    generation: 1
+    name: aks-a10-forged-20260704163657
+    namespace: ai-platform
+    resourceVersion: "15972"
+    uid: bb5dd7c7-aff2-4c0a-bff9-0cb73476522f
+  spec:
+    agentPodUID: forged-agent-pod
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T16:36:57Z"
+    nodeName: aks-a10-forged-node-aks-a10-forged-20260704163657
+    nodeUID: forged-node-uid
+    nonce: forged-nonce
+    provider: maa
+    rawToken: forged-not-a-valid-maa-token
+    rawTokenHash: forged-token-hash
+    simulated: false
+  status:
+    evidenceRef: evidence-aks-a10-forged-node-aks-a10-forged-20260704163657
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: AttestationEvidence
+  metadata:
+    creationTimestamp: "2026-07-04T16:37:09Z"
+    generation: 1
+    labels:
+      ai.sovereign.io/verified-by: central-verifier
+    name: evidence-aks-a10-forged-node-aks-a10-forged-20260704163657
+    namespace: ai-platform
+    resourceVersion: "15971"
+    uid: 0e3af7fc-050c-456e-a965-aa57bca4907f
+  spec:
+    evidenceType: cpu
+    freshness:
+      maxAgeSeconds: 300
+    runtime: {}
+    subjectRef:
+      name: aks-a10-forged-node-aks-a10-forged-20260704163657
+    tee: SEV-SNP
+  status:
+    attestationType: guest-attestation
+    conditions:
+    - lastTransitionTime: "2026-07-04T16:37:09Z"
+      message: 'parse token: token contains an invalid number of segments'
+      observedGeneration: 1
+      reason: ValidationFailed
+      status: "False"
+      type: Ready
+    evidenceMode: unverified
+    failureReason: 'parse token: token contains an invalid number of segments'
+    maaTokenHash: c1e70d939132a0b01f9dd6b56427c5274278856562c8efc107189c96ff7517ae
+    nodeUID: forged-node-uid
+    nonce: forged-nonce
+    observedGeneration: 1
+    provider: maa
+    verificationStatus: Failed
+    verifiedBy: central-verifier
+    verifierPodUID: 029fa974-953d-425e-8855-d78063d812b6
+kind: List
+metadata:
+  resourceVersion: ""

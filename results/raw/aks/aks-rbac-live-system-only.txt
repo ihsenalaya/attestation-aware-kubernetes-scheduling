@@ -1,0 +1,9 @@
+AKS RBAC live check (system-only, no confidential node pool)
+date_utc=2026-07-04T16:29:20Z
+node-agent create rawattestationreports: yes
+node-agent create attestationevidences: no
+node-agent update attestationevidences/status: no
+scheduler create attestationevidences: no
+scheduler list attestationevidences: yes
+central-verifier create attestationevidences: yes
+central-verifier update attestationevidences/status: yes

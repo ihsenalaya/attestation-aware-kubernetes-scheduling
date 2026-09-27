@@ -1,0 +1,1 @@
+kubectl auth can-i create pods/exec --as=system:serviceaccount:ai-platform:attestation-scheduler -n ai-platform => no

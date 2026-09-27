@@ -1,0 +1,12 @@
+env,attack_id,blocked,total,block_rate
+aks-real-sevsnp,A1,30,30,1.0
+aks-real-sevsnp,A2,30,30,1.0
+aks-real-sevsnp,A3,30,30,1.0
+aks-real-sevsnp,A4,30,30,1.0
+aks-real-sevsnp,A5,30,30,1.0
+aks-real-sevsnp,A5b,30,30,1.0
+aks-real-sevsnp,A6,30,30,1.0
+aks-real-sevsnp,A7,30,30,1.0
+aks-real-sevsnp,A8,30,30,1.0
+aks-real-sevsnp,A9,30,30,1.0
+aks-real-sevsnp,A10,30,30,1.0

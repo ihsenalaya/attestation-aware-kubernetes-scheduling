@@ -1,0 +1,37 @@
+\section{Implementation}
+\label{sec:implementation}
+
+The prototype is built with Kubebuilder / controller-runtime (Go 1.21,
+controller-runtime v0.17). It defines the CRDs
+\texttt{ConfidentialInferencePolicy}, \texttt{AttestationEvidence},
+\texttt{AIPlacementDecision} and \texttt{RawAttestationReport}. Components:
+
+\begin{itemize}
+  \item \textbf{node-attestation-agent} (DaemonSet on confidential nodes): invokes
+  an Azure Guest Attestation helper against the MAA endpoint
+  (\texttt{sharedwus2.wus2.attest.azure.net} in westus2) with a per-node nonce,
+  obtains an MAA JWT, and writes a \texttt{RawAttestationReport}. It has
+  create-only RBAC on raw reports and cannot touch \texttt{AttestationEvidence}.
+  \item \textbf{central-verifier}: reconciles raw reports; the MAA verification
+  package performs real RS256/JWKS signature checking, claim, freshness and
+  TEE-type validation, returning \texttt{Verified}/\texttt{Failed}/\texttt{Unavailable}.
+  It is the sole writer of \texttt{AttestationEvidence.status.evidenceMode}.
+  \item \textbf{ai-attestation-scheduler}: an out-of-tree second scheduler that
+  handles only pods naming it, implementing the cycle of \S\ref{sec:design} and
+  binding via the Kubernetes Binding API. Placement tokens use Ed25519 with a
+  deterministic canonical hashing of the bound fields.
+  \item \textbf{admission webhook}: mutates sensitive pods (scheduler name,
+  runtime class, policy-hash / model-digest annotations, scheduling gate) and
+  validates them (digest pinning, allowed runtime classes, and refusal of
+  simulated runtime classes in production mode).
+  \item \textbf{verify-placement}: a standalone CLI that verifies a placement
+  token offline from the token and the scheduler public key.
+\end{itemize}
+
+RBAC is least-privilege per component (\S\ref{sec:scheduler-security}). The
+platform is packaged as a Helm chart; the confidential node pool is provisioned
+by Terraform (AKS confidential-VM node pool on \texttt{Standard\_DC8as\_v6}). In
+a local test cluster, evidence is explicitly \texttt{simulated} and
+runtime classes are simulated mappings backed by \texttt{runc}; production mode
+refuses these. All code, manifests, experiment harnesses and analysis scripts are
+in the artifact.

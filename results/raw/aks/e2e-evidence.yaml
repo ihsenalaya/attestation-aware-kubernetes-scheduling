@@ -1,0 +1,42 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AttestationEvidence
+metadata:
+  creationTimestamp: "2026-07-05T20:03:41Z"
+  generation: 1
+  labels:
+    ai.sovereign.io/verified-by: central-verifier
+  name: evidence-aks-conf-23144742-vmss000000
+  namespace: ai-platform
+  resourceVersion: "82767"
+  uid: 9ac5035b-6f36-40c8-92b5-92c4dd631575
+spec:
+  evidenceType: cpu
+  freshness:
+    maxAgeSeconds: 300
+  runtime: {}
+  subjectRef:
+    name: aks-conf-23144742-vmss000000
+  tee: SEV-SNP
+status:
+  attestationType: guest-attestation
+  claimsDigest: c53962ac690f1977e0ee035e7c7bbbf0d77804d76b3843bf73a463d670c4a6c3
+  conditions:
+  - lastTransitionTime: "2026-07-05T20:03:41Z"
+    message: attestation verified
+    observedGeneration: 1
+    reason: Reconciled
+    status: "True"
+    type: Ready
+  evidenceMode: real
+  expiresAt: "2026-07-06T08:39:36Z"
+  freshnessSeconds: 300
+  issuedAt: "2026-07-06T00:39:36Z"
+  lastVerifiedTime: "2026-07-06T00:39:36Z"
+  maaTokenHash: 15838a73d991271a2d7bb9c06fe315739ef4f999450fb98cffa68791c0393e00
+  nonce: 74a74a5da6ad6dfc411e02f2c6e932c9
+  observedGeneration: 1
+  provider: maa
+  verificationStatus: Verified
+  verified: true
+  verifiedBy: central-verifier
+  verifierPodUID: 5a93147e-5c57-455a-80dc-dc0c38145d83

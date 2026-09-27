@@ -1,0 +1,219 @@
+{{- if .Values.modules.governanceOperator.enabled }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: governance-operator
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: governance-operator
+    {{- include "platform.labels" . | nindent 4 }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Release.Name }}-governance-operator
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses
+  - aibudgetpolicies
+  - aichangerequests
+  - aievidencerecords
+  - aifinopsreports
+  - aigateways
+  - aikeyreleasepolicies
+  - aimodels
+  - aiplacementdecisions
+  - aiproviders
+  - aiqualitygates
+  - airevocationpolicies
+  - airouteoverrides
+  - airoutingpolicies
+  - aisovereigntypolicies
+  - confidentialinferencepolicies
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses/status
+  - aibudgetpolicies/status
+  - aichangerequests/status
+  - aievidencerecords/status
+  - aifinopsreports/status
+  - aigateways/status
+  - aikeyreleasepolicies/status
+  - aimodels/status
+  - aiplacementdecisions/status
+  - aiproviders/status
+  - aiqualitygates/status
+  - airevocationpolicies/status
+  - airouteoverrides/status
+  - airoutingpolicies/status
+  - aisovereigntypolicies/status
+  - confidentialinferencepolicies/status
+  verbs: ["get", "update", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses/finalizers
+  - aibudgetpolicies/finalizers
+  - aichangerequests/finalizers
+  - aievidencerecords/finalizers
+  - aifinopsreports/finalizers
+  - aigateways/finalizers
+  - aikeyreleasepolicies/finalizers
+  - aimodels/finalizers
+  - aiplacementdecisions/finalizers
+  - aiproviders/finalizers
+  - aiqualitygates/finalizers
+  - airevocationpolicies/finalizers
+  - airouteoverrides/finalizers
+  - airoutingpolicies/finalizers
+  - aisovereigntypolicies/finalizers
+  - confidentialinferencepolicies/finalizers
+  verbs: ["update"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["attestationevidences", "rawattestationreports"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods", "nodes", "events", "namespaces", "configmaps", "services", "secrets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["node.k8s.io"]
+  resources: ["runtimeclasses"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["admissionregistration.k8s.io"]
+  resources: ["mutatingwebhookconfigurations", "validatingwebhookconfigurations"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Release.Name }}-governance-operator
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Release.Name }}-governance-operator
+subjects:
+- kind: ServiceAccount
+  name: governance-operator
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: governance-operator-webhook
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: governance-operator
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  selector:
+    app: governance-operator
+  ports:
+  - name: webhook
+    port: 443
+    targetPort: 9443
+  - name: metrics
+    port: 8080
+    targetPort: 8080
+  - name: health
+    port: 8081
+    targetPort: 8081
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: governance-operator
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: governance-operator
+    component: governance-operator
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: governance-operator
+  template:
+    metadata:
+      labels:
+        app: governance-operator
+        component: governance-operator
+    spec:
+      serviceAccountName: governance-operator
+      {{- include "platform.imagePullSecrets" . | nindent 6 }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+      containers:
+      - name: manager
+        image: {{ include "platform.image" (list . .Values.images.governanceOperator) }}
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+        ports:
+        - name: webhook
+          containerPort: 9443
+          protocol: TCP
+        - name: metrics
+          containerPort: 8080
+          protocol: TCP
+        - name: health
+          containerPort: 8081
+          protocol: TCP
+        env:
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: WEBHOOK_SERVICE_NAME
+          value: governance-operator-webhook
+        - name: AIOPS_PLATFORM_MODE
+          value: {{ .Values.global.environment }}
+        - name: AIOPS_SIMULATED_EVIDENCE
+          value: {{ .Values.global.simulatedEvidence.enabled | quote }}
+        - name: AIOPS_AUDIT_ANCHOR_MODE
+          value: {{ .Values.global.audit.anchoring.mode }}
+        - name: AIOPS_AUDIT_ANCHOR_FILE
+          value: {{ .Values.global.audit.anchoring.filePath }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop: [ALL]
+        volumeMounts:
+        - name: cert-dir
+          mountPath: /tmp/k8s-webhook-server/serving-certs
+        {{- if eq .Values.global.audit.anchoring.mode "file" }}
+        - name: audit-data
+          mountPath: /data/audit
+        {{- end }}
+        resources:
+          {{- toYaml .Values.attestationScheduler.resources | nindent 10 }}
+      volumes:
+      - name: cert-dir
+        emptyDir: {}
+      {{- if eq .Values.global.audit.anchoring.mode "file" }}
+      - name: audit-data
+        emptyDir: {}
+      {{- end }}
+{{- end }}

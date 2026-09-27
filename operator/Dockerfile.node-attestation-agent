@@ -1,0 +1,51 @@
+FROM docker.io/library/golang:1.26.5@sha256:079e59808d2d252516e27e3f3a9c003740dee7f75e55aa71528766d52bcfc16a AS builder
+ARG TARGETOS=linux
+ARG TARGETARCH=amd64
+WORKDIR /workspace
+COPY go.mod go.sum ./
+RUN go mod download
+COPY cmd/ cmd/
+COPY api/ api/
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} \
+    go build -trimpath -buildvcs=false -ldflags='-s -w -buildid=' -o node-attestation-agent ./cmd/node-attestation-agent
+
+FROM docker.io/library/ubuntu:24.04@sha256:4fbb8e6a8395de5a7550b33509421a2bafbc0aab6c06ba2cef9ebffbc7092d90 AS attestation-helper-builder
+ARG AZGUESTATTESTATION_VERSION=1.1.2
+ARG AZGUESTATTESTATION_SHA256=53d061f9c29459deca65a7cb4916f32bacc2fa53dc6d6f705518cfca6c0ffd0b
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl g++ libc6-dev \
+    && rm -rf /var/lib/apt/lists/*
+RUN curl -fL -o /tmp/azguestattestation.deb \
+    "https://packages.microsoft.com/repos/azurecore/pool/main/a/azguestattestation1/azguestattestation1_${AZGUESTATTESTATION_VERSION}_amd64.deb" \
+    && echo "${AZGUESTATTESTATION_SHA256}  /tmp/azguestattestation.deb" | sha256sum -c - \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends /tmp/azguestattestation.deb \
+    && rm -rf /var/lib/apt/lists/* /tmp/azguestattestation.deb
+WORKDIR /workspace
+COPY cmd/guest-attestation-helper/guest_attestation_helper.cpp ./guest_attestation_helper.cpp
+RUN g++ -std=c++17 -O2 -Wall -Wextra \
+    -I/usr/include/azguestattestation1 \
+    guest_attestation_helper.cpp \
+    -lazguestattestation \
+    -o /guest-attestation-helper
+
+FROM docker.io/library/ubuntu:24.04@sha256:4fbb8e6a8395de5a7550b33509421a2bafbc0aab6c06ba2cef9ebffbc7092d90
+ARG AZGUESTATTESTATION_VERSION=1.1.2
+ARG AZGUESTATTESTATION_SHA256=53d061f9c29459deca65a7cb4916f32bacc2fa53dc6d6f705518cfca6c0ffd0b
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl libstdc++6 \
+    && rm -rf /var/lib/apt/lists/*
+RUN curl -fL -o /tmp/azguestattestation.deb \
+    "https://packages.microsoft.com/repos/azurecore/pool/main/a/azguestattestation1/azguestattestation1_${AZGUESTATTESTATION_VERSION}_amd64.deb" \
+    && echo "${AZGUESTATTESTATION_SHA256}  /tmp/azguestattestation.deb" | sha256sum -c - \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends /tmp/azguestattestation.deb \
+    && rm -rf /var/lib/apt/lists/* /tmp/azguestattestation.deb
+RUN groupadd -g 65532 nonroot && useradd -u 65532 -g 65532 -M -s /usr/sbin/nologin nonroot
+WORKDIR /
+COPY --from=builder /workspace/node-attestation-agent .
+COPY --from=attestation-helper-builder /guest-attestation-helper .
+USER 65532:65532
+ENTRYPOINT ["/node-attestation-agent"]

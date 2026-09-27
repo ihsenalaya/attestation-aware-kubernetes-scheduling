@@ -1,0 +1,3 @@
+Warning: resource 'clusterroles' is not namespace scoped in group 'rbac.authorization.k8s.io'
+
+kubectl auth can-i create clusterroles.rbac.authorization.k8s.io --as=system:serviceaccount:ai-platform:attestation-scheduler -n ai-platform => no

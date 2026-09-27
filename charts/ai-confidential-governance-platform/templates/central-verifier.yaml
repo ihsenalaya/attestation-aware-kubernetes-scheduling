@@ -1,0 +1,113 @@
+{{- if .Values.modules.centralVerifier.enabled }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: central-verifier
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: central-verifier
+    {{- include "platform.labels" . | nindent 4 }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Release.Name }}-central-verifier
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["rawattestationreports"]
+  verbs: ["get", "list", "watch", "update", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["rawattestationreports/status"]
+  verbs: ["get", "update", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["attestationevidences"]
+  verbs: ["get", "list", "watch", "create", "update", "patch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["attestationevidences/status"]
+  verbs: ["get", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Release.Name }}-central-verifier
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Release.Name }}-central-verifier
+subjects:
+- kind: ServiceAccount
+  name: central-verifier
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: central-verifier
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: central-verifier
+    component: central-verifier
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.centralVerifier.replicaCount }}
+  selector:
+    matchLabels:
+      app: central-verifier
+  template:
+    metadata:
+      labels:
+        app: central-verifier
+        component: central-verifier
+    spec:
+      serviceAccountName: central-verifier
+      {{- include "platform.imagePullSecrets" . | nindent 6 }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+      containers:
+      - name: central-verifier
+        image: {{ include "platform.image" (list . .Values.images.centralVerifier) }}
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+        ports:
+        - name: metrics
+          containerPort: 8090
+        - name: health
+          containerPort: 8091
+        env:
+        - name: POD_UID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.uid
+        - name: VERIFIER_IDENTITY
+          value: central-verifier
+        - name: EXPECTED_TEE
+          value: {{ .Values.centralVerifier.expectedTEE | quote }}
+        - name: MAA_ISSUER_PREFIX
+          value: {{ .Values.centralVerifier.maaIssuerPrefix | quote }}
+        - name: MAX_TOKEN_AGE_SECONDS
+          value: {{ .Values.centralVerifier.maxTokenAgeSeconds | quote }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8091
+          initialDelaySeconds: 15
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8091
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: [ALL]
+        resources:
+          {{- toYaml .Values.centralVerifier.resources | nindent 10 }}
+{{- end }}

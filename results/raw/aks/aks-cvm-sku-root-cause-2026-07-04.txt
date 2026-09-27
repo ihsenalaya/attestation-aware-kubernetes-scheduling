@@ -1,0 +1,83 @@
+AKS CVM SKU root-cause diagnostic (sanitized)
+date_utc=2026-07-04T17:08:51Z
+region=eastus2
+
+Observed failure
+----------------
+- AKS control plane creation succeeded with system pool Standard_D2s_v3.
+- Confidential node pool creation failed for:
+  * Standard_DC8as_v5
+  * Standard_DC8as_v5 with os_sku=Ubuntu
+  * Standard_DC4as_v5 with os_sku=Ubuntu
+- Failure class: VMSizeNotSupported.
+- Evidence summary: article1/results/raw/aks/aks-dcasv5-nodepool-failure-summary.txt
+
+Quota evidence
+--------------
+- Standard DCASv5 Family vCPUs: current=0, limit=32.
+- Standard DCasv6 Family vCPUs: current=0, limit=0.
+- Standard DCSv3 Family vCPUs: current=0, limit=0.
+- Evidence summary: article1/results/raw/aks/aks-confidential-quota-after-dcasv5-failure.json
+- Re-check after AKS destroy also showed DCASv5 current=0, limit=32.
+
+ARM Resource SKUs evidence
+--------------------------
+Command shape used, with subscription id and access token held only in process memory:
+
+  curl ARM /subscriptions/<redacted>/providers/Microsoft.Compute/skus?api-version=2021-07-01&$filter=location eq 'eastus2'
+
+Filtered result for the article-relevant SKUs:
+
+- Standard_DC4as_v5: NOT returned for eastus2 in this subscription.
+- Standard_DC8as_v5: NOT returned for eastus2 in this subscription.
+- Standard_DC4as_v6: returned, family=standardDCasv6Family, zones=1/2/3,
+  vCPUs=4, MemoryGB=16, CpuArchitectureType=x64, ConfidentialComputingType=SNP,
+  restrictions=[].
+- Standard_DC8as_v6: returned, family=standardDCasv6Family, zones=1/2/3,
+  vCPUs=8, MemoryGB=32, CpuArchitectureType=x64, ConfidentialComputingType=SNP,
+  restrictions=[].
+- Standard_DC4ds_v3 and Standard_DC8ds_v3: returned, but no
+  ConfidentialComputingType=SNP capability was present in the filtered output.
+
+Cause
+-----
+The blocker is not Terraform, not os_sku, not GHCR/ACR, and not the DCASv5
+vCPU quota number alone. The blocker is SKU exposure/availability for this
+subscription in eastus2:
+
+  DCASv5 quota exists (32 vCPU), but Standard_DC4as_v5 and Standard_DC8as_v5
+  are not exposed by ARM Resource SKUs for eastus2 in this subscription, and
+  AKS therefore rejects the node pool with VMSizeNotSupported.
+
+This matches the Microsoft AKS CVM prerequisite: CVM sizes must be available
+for the subscription in the cluster region, and sufficient quota is required.
+Quota alone is necessary but not sufficient.
+
+Solution options
+----------------
+1. Strict prompt-preserving path:
+   Open Azure support / Confidential AKS enablement request for DCASv5 in
+   eastus2. Ask Microsoft to expose/enable Standard_DC4as_v5 and/or
+   Standard_DC8as_v5 for AKS in this subscription. Re-run only after ARM
+   Resource SKUs returns the requested v5 size for eastus2.
+
+2. Fastest technically viable path, if the article scope allows a documented
+   migration from DCASv5 to DCasv6:
+   Request quota for "Standard DCasv6 Family vCPUs" in eastus2, preferably 32
+   vCPU. Then use Standard_DC4as_v6 with 8 nodes, or Standard_DC8as_v6 with 4
+   nodes. ARM shows these v6 SKUs as ConfidentialComputingType=SNP and
+   unrestricted in eastus2 for this subscription.
+
+3. Do not use DCs_v3/DDCSv3 as a substitute for this paper unless the claims
+   are rewritten. The current article claim is AMD SEV-SNP node-level AKS CVM.
+
+Do not recreate AKS before one of the following is true:
+- ARM Resource SKUs returns Standard_DC4as_v5 or Standard_DC8as_v5 for eastus2;
+- or quota Standard DCasv6 Family vCPUs is increased and the paper explicitly
+  accepts DCasv6 as the real SEV-SNP CVM family.
+
+Official Microsoft references checked
+-------------------------------------
+- AKS CVM docs: https://learn.microsoft.com/en-us/azure/aks/use-cvm
+- Azure Confidential VM options: https://learn.microsoft.com/en-us/azure/confidential-computing/virtual-machine-options
+- Azure Confidential Computing products: https://learn.microsoft.com/en-us/azure/confidential-computing/overview-azure-products

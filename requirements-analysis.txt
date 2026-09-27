@@ -1,0 +1,4 @@
+# Versions used to verify analysis during artifact packaging.
+numpy==2.2.6
+scipy==1.15.3
+matplotlib==3.10.9

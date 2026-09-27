@@ -1,0 +1,655 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: airoutingpolicies.aiops.imperium.io
+spec:
+  group: aiops.imperium.io
+  names:
+    kind: AIRoutingPolicy
+    listKind: AIRoutingPolicyList
+    plural: airoutingpolicies
+    shortNames:
+    - airpolicy
+    singular: airoutingpolicy
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.objective
+      name: Objective
+      type: string
+    - jsonPath: .spec.canary.enabled
+      name: Canary
+      type: boolean
+    - jsonPath: .status.recommendations
+      name: Recommendations
+      type: integer
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: |-
+          AIRoutingPolicy continuously evaluates all observed app/model pairs and surfaces
+          the best routing candidate according to the multi-criteria routing score.
+          Unlike AIRouteOverride (manual), it computes recommendations automatically and
+          can create AIChangeRequest objects for human approval before actuation.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: AIRoutingPolicySpec defines the desired automatic routing
+              behaviour.
+            properties:
+              canary:
+                description: |-
+                  Canary configures the canary phase (declared intent; actuation is wired
+                  through AIChangeRequest approval when human-in-the-loop is active).
+                properties:
+                  enabled:
+                    description: Enabled requires canary validation before full reroute
+                      (default false).
+                    type: boolean
+                  percent:
+                    description: Percent of traffic to send to the candidate during
+                      canary (1–50).
+                    format: int32
+                    maximum: 50
+                    minimum: 1
+                    type: integer
+                type: object
+              govar:
+                description: |-
+                  GOVAR is the typed reserve/calibrate/drift/risk policy. Historical
+                  annotations remain readable for compatibility but are not authoritative.
+                properties:
+                  calibration:
+                    description: Calibration is required for adaptive methods.
+                    properties:
+                      artifactRef:
+                        description: ArtifactRef is a stable logical identifier for
+                          the frozen artifact.
+                        minLength: 1
+                        type: string
+                      artifactSHA256:
+                        description: ArtifactSHA256 is the expected digest of the
+                          deterministically reconstructed artifact.
+                        pattern: ^[a-f0-9]{64}$
+                        type: string
+                      calibrationDataRef:
+                        description: |-
+                          CalibrationDataRef is diagnostic-only legacy input. Production evidence
+                          never consumes ConfigMap rows and uses RegistryID instead.
+                        type: string
+                      calibrationInputSHA256:
+                        description: CalibrationInputSHA256 binds the canonical eligible
+                          calibration observations.
+                        pattern: ^[a-f0-9]{64}$
+                        type: string
+                      capRegimeSHA256:
+                        description: CapRegimeSHA256 binds the verified output-cap
+                          evidence used by calibration.
+                        pattern: ^[a-f0-9]{64}$
+                        type: string
+                      coverageTargetPPB:
+                        description: |-
+                          CoverageTargetPPB is the requested one-sided split-conformal marginal
+                          coverage under the explicitly documented exchangeability assumptions.
+                        format: int64
+                        maximum: 1000000000
+                        minimum: 1
+                        type: integer
+                      featureSchemaVersion:
+                        description: FeatureSchemaVersion prevents reuse across incompatible
+                          request features.
+                        minLength: 1
+                        type: string
+                      maxAgeSeconds:
+                        description: MaxAgeSeconds is the maximum acceptable calibration
+                          age.
+                        format: int64
+                        minimum: 1
+                        type: integer
+                      minimumSupport:
+                        description: MinimumSupport is the required number of eligible
+                          observations.
+                        format: int64
+                        minimum: 1
+                        type: integer
+                      monitoringDataRef:
+                        description: MonitoringDataRef is diagnostic-only legacy input.
+                        type: string
+                      priceRegimeSHA256:
+                        description: PriceRegimeSHA256 binds the provider price snapshot
+                          used by calibration.
+                        pattern: ^[a-f0-9]{64}$
+                        type: string
+                      producerSoftwareSHA256:
+                        description: ProducerSoftwareSHA256 binds the deterministic
+                          producer implementation.
+                        pattern: ^[a-f0-9]{64}$
+                        type: string
+                      registryID:
+                        description: RegistryID identifies the immutable PostgreSQL
+                          v8 split registry.
+                        minLength: 1
+                        type: string
+                      version:
+                        description: Version is the calibration protocol/model version.
+                        minLength: 1
+                        type: string
+                    required:
+                    - artifactRef
+                    - artifactSHA256
+                    - calibrationInputSHA256
+                    - capRegimeSHA256
+                    - coverageTargetPPB
+                    - featureSchemaVersion
+                    - maxAgeSeconds
+                    - minimumSupport
+                    - priceRegimeSHA256
+                    - producerSoftwareSHA256
+                    - version
+                    type: object
+                  cohort:
+                    description: Cohort is required for govar_fixed_cohort.
+                    properties:
+                      frozenAt:
+                        description: FrozenAt is when membership, features, and weights
+                          became immutable.
+                        format: date-time
+                        type: string
+                      opportunitySetHash:
+                        description: OpportunitySetHash is a lower-case SHA-256 digest
+                          of fixed opportunity identities/features.
+                        pattern: ^[a-f0-9]{64}$
+                        type: string
+                      registryRef:
+                        description: RegistryRef identifies the operator-owned cohort
+                          registry snapshot.
+                        minLength: 1
+                        type: string
+                      size:
+                        description: Size is the fixed number of arrival opportunities.
+                        format: int64
+                        minimum: 1
+                        type: integer
+                      weightsHash:
+                        description: WeightsHash is a lower-case SHA-256 digest of
+                          the non-negative fixed weights.
+                        pattern: ^[a-f0-9]{64}$
+                        type: string
+                    required:
+                    - frozenAt
+                    - opportunitySetHash
+                    - registryRef
+                    - size
+                    - weightsHash
+                    type: object
+                  drift:
+                    description: GOVARDriftPolicy freezes drift detection and revalidation
+                      thresholds.
+                    properties:
+                      detector:
+                        description: GOVARDriftDetector identifies a predeclared detector.
+                        enum:
+                        - coverage-gap
+                        - psi
+                        - ks
+                        - adwin
+                        type: string
+                      fallback:
+                        description: GOVARConservativeFallback is the visible behavior
+                          after invalid calibration.
+                        enum:
+                        - strict_provider_cap
+                        - queue
+                        - reject
+                        - abstain
+                        - require_approval
+                        type: string
+                      revalidationMinimumSupport:
+                        description: RevalidationMinimumSupport is required before
+                          calibrated claims resume.
+                        format: int64
+                        minimum: 1
+                        type: integer
+                      thresholdPPB:
+                        description: ThresholdPPB is a detector-specific threshold
+                          represented without floats.
+                        format: int64
+                        maximum: 1000000000
+                        minimum: 0
+                        type: integer
+                    required:
+                    - detector
+                    - fallback
+                    - revalidationMinimumSupport
+                    - thresholdPPB
+                    type: object
+                  reservation:
+                    description: |-
+                      GOVARReservationPolicy contains typed token reservations. Pointer token values
+                      distinguish a configured zero from a missing method parameter.
+                    properties:
+                      adaptiveQuantileOutputTokens:
+                        description: |-
+                          AdaptiveQuantileOutputTokens is retained only as a migration hint. Adaptive
+                          admission uses status.govar.calibration.adaptiveOutputTokens from the
+                          digest-bound controller artifact and never executes this mutable spec value.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      fixedQuantileOutputTokens:
+                        description: FixedQuantileOutputTokens is the frozen offline
+                          quantile estimate.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      marginOutputTokens:
+                        description: MarginOutputTokens is added to the mean for fixed_margin.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      meanOutputTokens:
+                        description: MeanOutputTokens is the development-only mean
+                          estimate.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      method:
+                        description: GOVARReservationMethod identifies an executable
+                          reservation policy.
+                        enum:
+                        - strict_provider_cap
+                        - mean
+                        - fixed_margin
+                        - fixed_quantile
+                        - adaptive_quantile
+                        - govar_fixed_cohort
+                        type: string
+                    required:
+                    - method
+                    type: object
+                    x-kubernetes-validations:
+                    - message: meanOutputTokens is required for mean reservation
+                      rule: self.method != 'mean' || has(self.meanOutputTokens)
+                    - message: meanOutputTokens and marginOutputTokens are required
+                        for fixed_margin reservation
+                      rule: self.method != 'fixed_margin' || (has(self.meanOutputTokens)
+                        && has(self.marginOutputTokens))
+                    - message: fixedQuantileOutputTokens is required for fixed_quantile
+                        reservation
+                      rule: self.method != 'fixed_quantile' || has(self.fixedQuantileOutputTokens)
+                  risk:
+                    description: Risk is required for govar_fixed_cohort.
+                    properties:
+                      allocation:
+                        description: Allocation selects uniform or registry-fixed
+                          weights.
+                        enum:
+                        - uniform
+                        - fixed-weights
+                        type: string
+                      tenantRiskPPB:
+                        description: TenantRiskPPB is alpha_K in parts per billion.
+                        format: int64
+                        maximum: 1000000000
+                        minimum: 0
+                        type: integer
+                    required:
+                    - allocation
+                    - tenantRiskPPB
+                    type: object
+                required:
+                - drift
+                - reservation
+                type: object
+                x-kubernetes-validations:
+                - message: calibration is required for adaptive reservation
+                  rule: '!(self.reservation.method in [''adaptive_quantile'', ''govar_fixed_cohort''])
+                    || has(self.calibration)'
+                - message: cohort and risk are required for govar_fixed_cohort
+                  rule: self.reservation.method != 'govar_fixed_cohort' || (has(self.cohort)
+                    && has(self.risk))
+              guardrails:
+                description: Guardrails defines the minimum bar that any candidate
+                  must clear.
+                properties:
+                  maxLatencyMillis:
+                    description: |-
+                      MaxLatencyMillis is the maximum measured mean latency (ms) allowed for a
+                      candidate model. Models above this threshold are rejected.
+                    format: int32
+                    minimum: 0
+                    type: integer
+                  minQualityScore:
+                    description: |-
+                      MinQualityScore is the minimum routing score (0–1) a candidate model must
+                      reach before it can be automatically selected (default 0.70).
+                    maximum: 1
+                    minimum: 0
+                    type: number
+                  requireSovereigntyCompliance:
+                    default: true
+                    description: |-
+                      RequireSovereigntyCompliance, when true, restricts candidate selection to
+                      sovereignty-compliant models only (default true).
+                    type: boolean
+                type: object
+              objective:
+                default: cost
+                description: Objective is the primary optimisation dimension.
+                enum:
+                - cost
+                - quality
+                - latency
+                type: string
+            type: object
+          status:
+            description: AIRoutingPolicyStatus reflects the observed state of the
+              routing policy.
+            properties:
+              conditions:
+                description: Conditions represent the latest available observations
+                  of the policy state.
+                items:
+                  description: Condition contains details for one aspect of the current
+                    state of this API Resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        lastTransitionTime is the last time the condition transitioned from one status to another.
+                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        message is a human readable message indicating details about the transition.
+                        This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        observedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: |-
+                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                        Producers of specific condition types may define expected values and meanings for this field,
+                        and whether the values are considered a guaranteed API.
+                        The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              govar:
+                description: GOVAR is controller-produced safety evidence for typed
+                  policy inputs.
+                properties:
+                  calibration:
+                    description: Calibration is absent until the configured artifact
+                      has been evaluated.
+                    properties:
+                      adaptiveOutputTokens:
+                        description: AdaptiveOutputTokens is the validated upper reservation
+                          estimate.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      artifactRef:
+                        type: string
+                      artifactSHA256:
+                        type: string
+                      calibrationInputSHA256:
+                        type: string
+                      calibrationMethod:
+                        type: string
+                      calibrationWindowEnd:
+                        format: date-time
+                        type: string
+                      calibrationWindowStart:
+                        format: date-time
+                        type: string
+                      capRegimeSHA256:
+                        type: string
+                      cohortRegimeSHA256:
+                        type: string
+                      conformalRank:
+                        format: int64
+                        type: integer
+                      coverageBoundDenominator:
+                        format: int64
+                        type: integer
+                      coverageBoundKind:
+                        type: string
+                      coverageBoundNumerator:
+                        format: int64
+                        type: integer
+                      coverageConfidencePPB:
+                        format: int64
+                        type: integer
+                      coverageIntervalLowerPPB:
+                        format: int64
+                        type: integer
+                      coverageIntervalUpperPPB:
+                        format: int64
+                        type: integer
+                      coverageTargetPPB:
+                        format: int64
+                        type: integer
+                      empiricalCoveragePPB:
+                        format: int64
+                        type: integer
+                      evidenceSource:
+                        type: string
+                      exchangeableMarginalCoverageLowerPPB:
+                        description: |-
+                          ExchangeableMarginalCoverageLowerPPB is the finite-sample rank bound.
+                          It is invalidated by the visible drift/conservative-mode state.
+                        format: int64
+                        type: integer
+                      featureRegimeSHA256:
+                        type: string
+                      featureSchemaVersion:
+                        type: string
+                      observedAt:
+                        format: date-time
+                        type: string
+                      priceRegimeSHA256:
+                        type: string
+                      producerSoftwareSHA256:
+                        type: string
+                      publicationSHA256:
+                        type: string
+                      reason:
+                        type: string
+                      sourceResourceVersion:
+                        type: string
+                      splitOpportunityRegimeSHA256:
+                        type: string
+                      support:
+                        description: Support is the number of eligible observations.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      valid:
+                        type: boolean
+                      version:
+                        type: string
+                    required:
+                    - adaptiveOutputTokens
+                    - artifactRef
+                    - artifactSHA256
+                    - calibrationInputSHA256
+                    - calibrationMethod
+                    - calibrationWindowEnd
+                    - calibrationWindowStart
+                    - capRegimeSHA256
+                    - conformalRank
+                    - coverageTargetPPB
+                    - empiricalCoveragePPB
+                    - evidenceSource
+                    - exchangeableMarginalCoverageLowerPPB
+                    - featureSchemaVersion
+                    - observedAt
+                    - priceRegimeSHA256
+                    - producerSoftwareSHA256
+                    - support
+                    - valid
+                    - version
+                    type: object
+                  drift:
+                    description: Drift is absent until the configured detector has
+                      evaluated a window.
+                    properties:
+                      confidencePPB:
+                        format: int64
+                        type: integer
+                      conservativeMode:
+                        type: boolean
+                      detected:
+                        type: boolean
+                      detector:
+                        description: GOVARDriftDetector identifies a predeclared detector.
+                        enum:
+                        - coverage-gap
+                        - psi
+                        - ks
+                        - adwin
+                        type: string
+                      driftSHA256:
+                        type: string
+                      empiricalCoveragePPB:
+                        format: int64
+                        type: integer
+                      intervalLowerPPB:
+                        format: int64
+                        type: integer
+                      intervalUpperPPB:
+                        format: int64
+                        type: integer
+                      monitoringInputSHA256:
+                        type: string
+                      monitoringWindowEnd:
+                        format: date-time
+                        type: string
+                      monitoringWindowStart:
+                        format: date-time
+                        type: string
+                      observedAt:
+                        format: date-time
+                        type: string
+                      reason:
+                        type: string
+                      support:
+                        format: int64
+                        type: integer
+                      thresholdPPB:
+                        format: int64
+                        type: integer
+                    required:
+                    - conservativeMode
+                    - detected
+                    - detector
+                    - empiricalCoveragePPB
+                    - observedAt
+                    - support
+                    - thresholdPPB
+                    type: object
+                type: object
+              lastEvaluatedAt:
+                description: LastEvaluatedAt is when the routing engine last ran.
+                format: date-time
+                type: string
+              observedGeneration:
+                description: ObservedGeneration is the .metadata.generation last reconciled.
+                format: int64
+                type: integer
+              recommendations:
+                description: Recommendations lists candidates evaluated by the routing
+                  engine.
+                items:
+                  description: AIRoutingPolicyRecommendation is one candidate model
+                    the policy considers safe.
+                  properties:
+                    application:
+                      description: Application is the workload/model pair evaluated.
+                      type: string
+                    blockReason:
+                      description: BlockReason explains why the candidate was blocked
+                        (empty when not blocked).
+                      type: string
+                    blocked:
+                      description: Blocked is true when the candidate did not pass
+                        the guardrails.
+                      type: boolean
+                    candidateModel:
+                      description: CandidateModel is the model recommended by the
+                        scoring engine.
+                      type: string
+                    candidateScore:
+                      description: CandidateScore is the routing score of the candidate
+                        (higher is better).
+                      type: string
+                    currentModel:
+                      description: CurrentModel is the model currently used.
+                      type: string
+                    estimatedSavingsEUR:
+                      description: EstimatedSavingsEUR is the projected saving of
+                        switching over the observation window.
+                      type: string
+                  type: object
+                type: array
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

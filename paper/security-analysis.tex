@@ -1,0 +1,55 @@
+\section{Security Analysis}
+\label{sec:security-analysis}
+
+We analyse the six properties of \S\ref{sec:threat} against the adversaries
+ADV-1--ADV-4, and tie each to the attack that would falsify it
+(Table~\ref{tab:adversary}) and to a raw result.
+
+\paragraph{Placement Safety.}
+A sensitive pod binds only to a node carrying verified, fresh, non-revoked
+evidence of the required TEE. ADV-1 presenting revoked (A3) or wrong-TEE (A4)
+evidence is rejected at Filter; ADV-2/3 forging evidence (A10) is stopped by the
+trust chain --- the node agent cannot write \texttt{AttestationEvidence}, and a
+forged raw report is appraised to \texttt{unverified}. Empirically, A4 and A10
+were each blocked in 30/30 runs on real AKS.
+
+\paragraph{Evidence Freshness.}
+Stale evidence is rejected at Filter (A2), and evidence that is revoked or
+expires \emph{during} scheduling is caught by the fail-closed \texttt{PreBind}
+re-check (A7). Because SEV-SNP evidence is necessary but time-bounded --- side
+channels and transient compromise mean a node cannot be trusted forever
+\cite{li2021cipherleaks} --- freshness and revocation are enforced rather than
+assumed.
+
+\paragraph{Identity Binding.}
+The placement token binds pod UID, pod-spec hash, node identity, evidence and
+policy hashes; mutating any bound field makes \texttt{verify-placement} fail
+(A8, and the identity-binding experiment). A token minted for one pod cannot be
+replayed for another.
+
+\paragraph{Label Resistance.}
+Attacker-forgeable metadata cannot grant placement: ADV-4 setting
+\texttt{attested=true} without evidence (A1) leaves the pod \texttt{Pending} in
+all runs, because the scheduler consults cryptographic evidence, not labels.
+
+\paragraph{Runtime Consistency.}
+A production-forbidden simulated runtime on a sensitive pod (A5), a missing
+model digest (A5b), a policy modified between Filter and PreBind (A6), or a
+simulated runtime class in production (A9) is refused at admission or at the
+fail-closed PreBind re-check. The real AKS rerun blocks each Runtime Consistency
+attack in 30/30 runs: A5 and A5b at admission, A6 via policy-hash mismatch at
+PreBind, and A9 via production rejection of a labelled simulated
+\texttt{RuntimeClass}.
+
+\paragraph{Verifiable Placement.}
+Every allowed placement carries an Ed25519 token that a third party validates
+offline. This turns ``where did my workload run?'' from an assertion into a
+checkable proof, and composes with scheduler self-security
+(\S\ref{sec:scheduler-security}): a compromised node cannot forge evidence and a
+rogue scheduler cannot forge a verifiable placement.
+
+\paragraph{Out of scope.}
+A malicious API server or etcd, a cloud provider that breaks the SEV-SNP
+guarantee, micro-architectural side channels, physical attacks and signing-key
+compromise are outside our model (\S\ref{sec:threat}); they are addressed by the
+hardware TCB and orthogonal defences, not by orchestration-layer enforcement.

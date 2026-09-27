@@ -1,0 +1,6 @@
+attack_id,description,baseline,expected,observed,result,environment,notes
+A1,"Forged attested=true label, no evidence",B5-proposed,BLOCKED,PENDING,BLOCKED,aks-real-sevsnp,"scheduler filter: no valid evidence"
+A4,"Evidence TEE=SEV-SNP but policy requires TDX",B5-proposed,BLOCKED,PENDING,BLOCKED,aks-real-sevsnp,"scheduler filter: TEE not in required list"
+A5,"Forbidden runtimeClass simulated-kata-qemu-snp on sensitive pod",B5-proposed,BLOCKED,DENIED,BLOCKED,aks-real-sevsnp,"validating webhook denied admission"
+A5b,"Missing required model-digest annotation",B5-proposed,BLOCKED,DENIED,BLOCKED,aks-real-sevsnp,"validating webhook denied admission"
+A8,"Tampered placement token signature",B5-proposed,BLOCKED,FAIL,BLOCKED,aks-real-sevsnp,"verify-placement rejected tampered signature"

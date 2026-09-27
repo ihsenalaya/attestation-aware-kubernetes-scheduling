@@ -1,0 +1,1906 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Node",
+            "metadata": {
+                "annotations": {
+                    "alpha.kubernetes.io/provided-node-ip": "10.224.0.62",
+                    "csi.volume.kubernetes.io/nodeid": "{\"disk.csi.azure.com\":\"aks-conf-12838440-vmss000000\",\"file.csi.azure.com\":\"aks-conf-12838440-vmss000000\"}",
+                    "node.alpha.kubernetes.io/ttl": "0",
+                    "volumes.kubernetes.io/controller-managed-attach-detach": "true"
+                },
+                "creationTimestamp": "2026-07-06T06:04:08Z",
+                "labels": {
+                    "agentpool": "conf",
+                    "ai.sovereign.io/attested": "pending",
+                    "ai.sovereign.io/tee": "SEV-SNP",
+                    "beta.kubernetes.io/arch": "amd64",
+                    "beta.kubernetes.io/instance-type": "Standard_DC8as_v6",
+                    "beta.kubernetes.io/os": "linux",
+                    "failure-domain.beta.kubernetes.io/region": "westus2",
+                    "failure-domain.beta.kubernetes.io/zone": "0",
+                    "kubernetes.azure.com/agentpool": "conf",
+                    "kubernetes.azure.com/cluster": "MC_rg-article1-confidential_aks-article1_westus2",
+                    "kubernetes.azure.com/consolidated-additional-properties": "3ea1aaad-7900-11f1-b2d6-2e4df73ba966",
+                    "kubernetes.azure.com/kubelet-identity-client-id": "00000000-0000-0000-0000-000000000000",
+                    "kubernetes.azure.com/kubelet-serving-ca": "cluster",
+                    "kubernetes.azure.com/localdns-state": "disabled",
+                    "kubernetes.azure.com/mode": "user",
+                    "kubernetes.azure.com/network-policy": "azure",
+                    "kubernetes.azure.com/node-image-version": "AKSUbuntu-2404gen2CVMcontainerd-202606.19.0",
+                    "kubernetes.azure.com/nodepool-type": "VirtualMachineScaleSets",
+                    "kubernetes.azure.com/os-sku": "Ubuntu",
+                    "kubernetes.azure.com/os-sku-effective": "Ubuntu2404",
+                    "kubernetes.azure.com/os-sku-requested": "Ubuntu",
+                    "kubernetes.azure.com/priority": "regular",
+                    "kubernetes.azure.com/role": "agent",
+                    "kubernetes.azure.com/security-type": "ConfidentialVM",
+                    "kubernetes.azure.com/sku-cpu": "8",
+                    "kubernetes.azure.com/sku-memory": "32768",
+                    "kubernetes.azure.com/storageprofile": "managed",
+                    "kubernetes.azure.com/storagetier": "Premium_LRS",
+                    "kubernetes.io/arch": "amd64",
+                    "kubernetes.io/hostname": "aks-conf-12838440-vmss000000",
+                    "kubernetes.io/os": "linux",
+                    "node.kubernetes.io/instance-type": "Standard_DC8as_v6",
+                    "storageprofile": "managed",
+                    "storagetier": "Premium_LRS",
+                    "topology.disk.csi.azure.com/zone": "",
+                    "topology.kubernetes.io/region": "westus2",
+                    "topology.kubernetes.io/zone": "0"
+                },
+                "name": "aks-conf-12838440-vmss000000",
+                "resourceVersion": "11538",
+                "uid": "bc898d16-e0a4-4ad1-b883-868f62301738"
+            },
+            "spec": {
+                "providerID": "azure:///subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mc_rg-article1-confidential_aks-article1_westus2/providers/Microsoft.Compute/virtualMachineScaleSets/aks-conf-12838440-vmss/virtualMachines/0",
+                "taints": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "ai.sovereign.io/confidential",
+                        "value": "true"
+                    }
+                ]
+            },
+            "status": {
+                "addresses": [
+                    {
+                        "address": "10.224.0.62",
+                        "type": "InternalIP"
+                    },
+                    {
+                        "address": "aks-conf-12838440-vmss000000",
+                        "type": "Hostname"
+                    }
+                ],
+                "allocatable": {
+                    "cpu": "7820m",
+                    "ephemeral-storage": "238636139740",
+                    "hugepages-1Gi": "0",
+                    "hugepages-2Mi": "0",
+                    "memory": "31097376Ki",
+                    "pods": "30"
+                },
+                "capacity": {
+                    "cpu": "8",
+                    "ephemeral-storage": "258936784Ki",
+                    "hugepages-1Gi": "0",
+                    "hugepages-2Mi": "0",
+                    "memory": "31865376Ki",
+                    "pods": "30"
+                },
+                "conditions": [
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:28:59Z",
+                        "lastTransitionTime": "2026-07-06T06:04:08Z",
+                        "message": "kubelet has sufficient memory available",
+                        "reason": "KubeletHasSufficientMemory",
+                        "status": "False",
+                        "type": "MemoryPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:28:59Z",
+                        "lastTransitionTime": "2026-07-06T06:04:08Z",
+                        "message": "kubelet has no disk pressure",
+                        "reason": "KubeletHasNoDiskPressure",
+                        "status": "False",
+                        "type": "DiskPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:28:59Z",
+                        "lastTransitionTime": "2026-07-06T06:04:08Z",
+                        "message": "kubelet has sufficient PID available",
+                        "reason": "KubeletHasSufficientPID",
+                        "status": "False",
+                        "type": "PIDPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:28:59Z",
+                        "lastTransitionTime": "2026-07-06T06:04:12Z",
+                        "message": "kubelet is posting ready status",
+                        "reason": "KubeletReady",
+                        "status": "True",
+                        "type": "Ready"
+                    }
+                ],
+                "daemonEndpoints": {
+                    "kubeletEndpoint": {
+                        "Port": 10250
+                    }
+                },
+                "features": {
+                    "supplementalGroupsPolicy": true
+                },
+                "images": [
+                    {
+                        "names": [
+                            "mcr.microsoft.com/aks/aks-gpu-cuda:580.126.09-20260126030251"
+                        ],
+                        "sizeBytes": 711593799
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51"
+                        ],
+                        "sizeBytes": 334863712
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.18.9-260508"
+                        ],
+                        "sizeBytes": 295867168
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.18.6-260312"
+                        ],
+                        "sizeBytes": 284541820
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.19.3-260520"
+                        ],
+                        "sizeBytes": 276000107
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod:3.4.0"
+                        ],
+                        "sizeBytes": 243764817
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.5.50"
+                        ],
+                        "sizeBytes": 228901394
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.26.14"
+                        ],
+                        "sizeBytes": 155660322
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.27.7"
+                        ],
+                        "sizeBytes": 155643813
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.27.5"
+                        ],
+                        "sizeBytes": 155642166
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.26.12"
+                        ],
+                        "sizeBytes": 154503552
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51-cfg"
+                        ],
+                        "sizeBytes": 153561678
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.34.5"
+                        ],
+                        "sizeBytes": 136259561
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.34.6"
+                        ],
+                        "sizeBytes": 136258167
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.35.4"
+                        ],
+                        "sizeBytes": 135003494
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.35.3"
+                        ],
+                        "sizeBytes": 134999392
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.19.3-260520"
+                        ],
+                        "sizeBytes": 132727003
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.6.43-0"
+                        ],
+                        "sizeBytes": 132293389
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.33.9"
+                        ],
+                        "sizeBytes": 130395449
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.33.10"
+                        ],
+                        "sizeBytes": 130394011
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.18.9-260508"
+                        ],
+                        "sizeBytes": 127094977
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.18.6-260312"
+                        ],
+                        "sizeBytes": 117249050
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-npm:v1.6.42"
+                        ],
+                        "sizeBytes": 116747622
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.5.50"
+                        ],
+                        "sizeBytes": 85128185
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.33.10"
+                        ],
+                        "sizeBytes": 78714383
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.33.9"
+                        ],
+                        "sizeBytes": 78658687
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.34.4"
+                        ],
+                        "sizeBytes": 78271428
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.34.3"
+                        ],
+                        "sizeBytes": 78260831
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.34.7-2"
+                        ],
+                        "sizeBytes": 72501907
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.33.11-2"
+                        ],
+                        "sizeBytes": 72401415
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.35.4-3"
+                        ],
+                        "sizeBytes": 72219077
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.6.43-0"
+                        ],
+                        "sizeBytes": 72194221
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy@sha256:31bbe6fb57fa4e75326bcbe1cef9001ef855fb834c3df6c8498b09bc30d71691",
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.35.5-1"
+                        ],
+                        "sizeBytes": 72176855
+                    },
+                    {
+                        "names": [
+                            "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/node-attestation-agent@sha256:18ef99259d32c8b1baa9731f694d1fd3e9b293c5df20ff7232d1889601fba130",
+                            "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/node-attestation-agent:0.5.11"
+                        ],
+                        "sizeBytes": 58633005
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.8.6-0"
+                        ],
+                        "sizeBytes": 56556195
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51-targetallocator"
+                        ],
+                        "sizeBytes": 54248667
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.7.16-0"
+                        ],
+                        "sizeBytes": 51815965
+                    },
+                    {
+                        "names": [
+                            "docker.io/library/python@sha256:b27df5841f3355e9473f9a516d38a6783b6c8dfeacaf2d14a240f443b368ddb6",
+                            "docker.io/library/python:3.11-slim"
+                        ],
+                        "sizeBytes": 45461038
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/secrets-store/driver:v1.5.4"
+                        ],
+                        "sizeBytes": 43947506
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.8.6-0"
+                        ],
+                        "sizeBytes": 39754699
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.7.16-0"
+                        ],
+                        "sizeBytes": 39721985
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium-log-collector:v0.0.2-0"
+                        ],
+                        "sizeBytes": 38568303
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium-log-collector:v0.0.1-0"
+                        ],
+                        "sizeBytes": 38490948
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/open-policy-agent/gatekeeper:v3.20.1-6"
+                        ],
+                        "sizeBytes": 35242872
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/open-policy-agent/gatekeeper:v3.20.1-4"
+                        ],
+                        "sizeBytes": 35236463
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.2-9"
+                        ],
+                        "sizeBytes": 33904177
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-9"
+                        ],
+                        "sizeBytes": 33705724
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.34.8-2"
+                        ],
+                        "sizeBytes": 33430291
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.36.1-1"
+                        ],
+                        "sizeBytes": 33202021
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.35.5-1"
+                        ],
+                        "sizeBytes": 33069344
+                    }
+                ],
+                "nodeInfo": {
+                    "architecture": "amd64",
+                    "bootID": "66445afe-44ef-43f1-8a2c-669225965bae",
+                    "containerRuntimeVersion": "containerd://2.3.2-1",
+                    "kernelVersion": "6.8.0-1058-azure-fde",
+                    "kubeProxyVersion": "",
+                    "kubeletVersion": "v1.35.5",
+                    "machineID": "12a37a27b9ee47b0949d58b705590132",
+                    "operatingSystem": "linux",
+                    "osImage": "Ubuntu 24.04.4 LTS",
+                    "systemUUID": "4b1f6490-8954-446a-b18e-d7ad77f93b6b"
+                },
+                "runtimeHandlers": [
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": ""
+                    },
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": "runc"
+                    },
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": "untrusted"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Node",
+            "metadata": {
+                "annotations": {
+                    "alpha.kubernetes.io/provided-node-ip": "10.224.0.129",
+                    "csi.volume.kubernetes.io/nodeid": "{\"disk.csi.azure.com\":\"aks-conf-12838440-vmss000004\",\"file.csi.azure.com\":\"aks-conf-12838440-vmss000004\"}",
+                    "node.alpha.kubernetes.io/ttl": "0",
+                    "volumes.kubernetes.io/controller-managed-attach-detach": "true"
+                },
+                "creationTimestamp": "2026-07-06T06:20:48Z",
+                "labels": {
+                    "agentpool": "conf",
+                    "ai.sovereign.io/attested": "pending",
+                    "ai.sovereign.io/tee": "SEV-SNP",
+                    "beta.kubernetes.io/arch": "amd64",
+                    "beta.kubernetes.io/instance-type": "Standard_DC8as_v6",
+                    "beta.kubernetes.io/os": "linux",
+                    "failure-domain.beta.kubernetes.io/region": "westus2",
+                    "failure-domain.beta.kubernetes.io/zone": "0",
+                    "kubernetes.azure.com/agentpool": "conf",
+                    "kubernetes.azure.com/cluster": "MC_rg-article1-confidential_aks-article1_westus2",
+                    "kubernetes.azure.com/consolidated-additional-properties": "3ea1aaad-7900-11f1-b2d6-2e4df73ba966",
+                    "kubernetes.azure.com/kubelet-identity-client-id": "00000000-0000-0000-0000-000000000000",
+                    "kubernetes.azure.com/kubelet-serving-ca": "cluster",
+                    "kubernetes.azure.com/localdns-state": "disabled",
+                    "kubernetes.azure.com/mode": "user",
+                    "kubernetes.azure.com/network-policy": "azure",
+                    "kubernetes.azure.com/node-image-version": "AKSUbuntu-2404gen2CVMcontainerd-202606.19.0",
+                    "kubernetes.azure.com/nodepool-type": "VirtualMachineScaleSets",
+                    "kubernetes.azure.com/os-sku": "Ubuntu",
+                    "kubernetes.azure.com/os-sku-effective": "Ubuntu2404",
+                    "kubernetes.azure.com/os-sku-requested": "Ubuntu",
+                    "kubernetes.azure.com/priority": "regular",
+                    "kubernetes.azure.com/role": "agent",
+                    "kubernetes.azure.com/security-type": "ConfidentialVM",
+                    "kubernetes.azure.com/sku-cpu": "8",
+                    "kubernetes.azure.com/sku-memory": "32768",
+                    "kubernetes.azure.com/storageprofile": "managed",
+                    "kubernetes.azure.com/storagetier": "Premium_LRS",
+                    "kubernetes.io/arch": "amd64",
+                    "kubernetes.io/hostname": "aks-conf-12838440-vmss000004",
+                    "kubernetes.io/os": "linux",
+                    "node.kubernetes.io/instance-type": "Standard_DC8as_v6",
+                    "storageprofile": "managed",
+                    "storagetier": "Premium_LRS",
+                    "topology.disk.csi.azure.com/zone": "",
+                    "topology.kubernetes.io/region": "westus2",
+                    "topology.kubernetes.io/zone": "0"
+                },
+                "name": "aks-conf-12838440-vmss000004",
+                "resourceVersion": "11679",
+                "uid": "aeba2c92-f958-46e3-87d0-2b8673cea9f7"
+            },
+            "spec": {
+                "providerID": "azure:///subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mc_rg-article1-confidential_aks-article1_westus2/providers/Microsoft.Compute/virtualMachineScaleSets/aks-conf-12838440-vmss/virtualMachines/4",
+                "taints": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "ai.sovereign.io/confidential",
+                        "value": "true"
+                    }
+                ]
+            },
+            "status": {
+                "addresses": [
+                    {
+                        "address": "10.224.0.129",
+                        "type": "InternalIP"
+                    },
+                    {
+                        "address": "aks-conf-12838440-vmss000004",
+                        "type": "Hostname"
+                    }
+                ],
+                "allocatable": {
+                    "cpu": "7820m",
+                    "ephemeral-storage": "238636139740",
+                    "hugepages-1Gi": "0",
+                    "hugepages-2Mi": "0",
+                    "memory": "31097372Ki",
+                    "pods": "30"
+                },
+                "capacity": {
+                    "cpu": "8",
+                    "ephemeral-storage": "258936784Ki",
+                    "hugepages-1Gi": "0",
+                    "hugepages-2Mi": "0",
+                    "memory": "31865372Ki",
+                    "pods": "30"
+                },
+                "conditions": [
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:29:28Z",
+                        "lastTransitionTime": "2026-07-06T06:20:48Z",
+                        "message": "kubelet has sufficient memory available",
+                        "reason": "KubeletHasSufficientMemory",
+                        "status": "False",
+                        "type": "MemoryPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:29:28Z",
+                        "lastTransitionTime": "2026-07-06T06:20:48Z",
+                        "message": "kubelet has no disk pressure",
+                        "reason": "KubeletHasNoDiskPressure",
+                        "status": "False",
+                        "type": "DiskPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:29:28Z",
+                        "lastTransitionTime": "2026-07-06T06:20:48Z",
+                        "message": "kubelet has sufficient PID available",
+                        "reason": "KubeletHasSufficientPID",
+                        "status": "False",
+                        "type": "PIDPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:29:28Z",
+                        "lastTransitionTime": "2026-07-06T06:20:55Z",
+                        "message": "kubelet is posting ready status",
+                        "reason": "KubeletReady",
+                        "status": "True",
+                        "type": "Ready"
+                    }
+                ],
+                "daemonEndpoints": {
+                    "kubeletEndpoint": {
+                        "Port": 10250
+                    }
+                },
+                "features": {
+                    "supplementalGroupsPolicy": true
+                },
+                "images": [
+                    {
+                        "names": [
+                            "mcr.microsoft.com/aks/aks-gpu-cuda:580.126.09-20260126030251"
+                        ],
+                        "sizeBytes": 711593799
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51"
+                        ],
+                        "sizeBytes": 334863712
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.18.9-260508"
+                        ],
+                        "sizeBytes": 295867168
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.18.6-260312"
+                        ],
+                        "sizeBytes": 284541820
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.19.3-260520"
+                        ],
+                        "sizeBytes": 276000107
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod:3.4.0"
+                        ],
+                        "sizeBytes": 243764817
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.5.50"
+                        ],
+                        "sizeBytes": 228901394
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.26.14"
+                        ],
+                        "sizeBytes": 155660322
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.27.7"
+                        ],
+                        "sizeBytes": 155643813
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.27.5"
+                        ],
+                        "sizeBytes": 155642166
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.26.12"
+                        ],
+                        "sizeBytes": 154503552
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51-cfg"
+                        ],
+                        "sizeBytes": 153561678
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.34.5"
+                        ],
+                        "sizeBytes": 136259561
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.34.6"
+                        ],
+                        "sizeBytes": 136258167
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.35.4"
+                        ],
+                        "sizeBytes": 135003494
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.35.3"
+                        ],
+                        "sizeBytes": 134999392
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.19.3-260520"
+                        ],
+                        "sizeBytes": 132727003
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.6.43-0"
+                        ],
+                        "sizeBytes": 132293389
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.33.9"
+                        ],
+                        "sizeBytes": 130395449
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.33.10"
+                        ],
+                        "sizeBytes": 130394011
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.18.9-260508"
+                        ],
+                        "sizeBytes": 127094977
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.18.6-260312"
+                        ],
+                        "sizeBytes": 117249050
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-npm:v1.6.42"
+                        ],
+                        "sizeBytes": 116747622
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.5.50"
+                        ],
+                        "sizeBytes": 85128185
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.33.10"
+                        ],
+                        "sizeBytes": 78714383
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.33.9"
+                        ],
+                        "sizeBytes": 78658687
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.34.4"
+                        ],
+                        "sizeBytes": 78271428
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.34.3"
+                        ],
+                        "sizeBytes": 78260831
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.34.7-2"
+                        ],
+                        "sizeBytes": 72501907
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.33.11-2"
+                        ],
+                        "sizeBytes": 72401415
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.35.4-3"
+                        ],
+                        "sizeBytes": 72219077
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.6.43-0"
+                        ],
+                        "sizeBytes": 72194221
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy@sha256:31bbe6fb57fa4e75326bcbe1cef9001ef855fb834c3df6c8498b09bc30d71691",
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.35.5-1"
+                        ],
+                        "sizeBytes": 72176855
+                    },
+                    {
+                        "names": [
+                            "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/node-attestation-agent@sha256:18ef99259d32c8b1baa9731f694d1fd3e9b293c5df20ff7232d1889601fba130",
+                            "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/node-attestation-agent:0.5.11"
+                        ],
+                        "sizeBytes": 58633005
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.8.6-0"
+                        ],
+                        "sizeBytes": 56556195
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51-targetallocator"
+                        ],
+                        "sizeBytes": 54248667
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.7.16-0"
+                        ],
+                        "sizeBytes": 51815965
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/secrets-store/driver:v1.5.4"
+                        ],
+                        "sizeBytes": 43947506
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.8.6-0"
+                        ],
+                        "sizeBytes": 39754699
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.7.16-0"
+                        ],
+                        "sizeBytes": 39721985
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium-log-collector:v0.0.2-0"
+                        ],
+                        "sizeBytes": 38568303
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium-log-collector:v0.0.1-0"
+                        ],
+                        "sizeBytes": 38490948
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/open-policy-agent/gatekeeper:v3.20.1-6"
+                        ],
+                        "sizeBytes": 35242872
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/open-policy-agent/gatekeeper:v3.20.1-4"
+                        ],
+                        "sizeBytes": 35236463
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.2-9"
+                        ],
+                        "sizeBytes": 33904177
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-9"
+                        ],
+                        "sizeBytes": 33705724
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.34.8-2"
+                        ],
+                        "sizeBytes": 33430291
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.36.1-1"
+                        ],
+                        "sizeBytes": 33202021
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.35.5-1"
+                        ],
+                        "sizeBytes": 33069344
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.33.13-1"
+                        ],
+                        "sizeBytes": 33051572
+                    }
+                ],
+                "nodeInfo": {
+                    "architecture": "amd64",
+                    "bootID": "aad9d2c3-3748-4771-90fe-d0ad1ef29ba7",
+                    "containerRuntimeVersion": "containerd://2.3.2-1",
+                    "kernelVersion": "6.8.0-1058-azure-fde",
+                    "kubeProxyVersion": "",
+                    "kubeletVersion": "v1.35.5",
+                    "machineID": "2424fd6559ac4a028298278bdf50cc5d",
+                    "operatingSystem": "linux",
+                    "osImage": "Ubuntu 24.04.4 LTS",
+                    "systemUUID": "ba304a96-708c-43b9-abed-24cebd8bde0d"
+                },
+                "runtimeHandlers": [
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": ""
+                    },
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": "runc"
+                    },
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": "untrusted"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Node",
+            "metadata": {
+                "annotations": {
+                    "alpha.kubernetes.io/provided-node-ip": "10.224.0.42",
+                    "csi.volume.kubernetes.io/nodeid": "{\"disk.csi.azure.com\":\"aks-conf-12838440-vmss000005\",\"file.csi.azure.com\":\"aks-conf-12838440-vmss000005\"}",
+                    "node.alpha.kubernetes.io/ttl": "0",
+                    "volumes.kubernetes.io/controller-managed-attach-detach": "true"
+                },
+                "creationTimestamp": "2026-07-06T06:20:37Z",
+                "labels": {
+                    "agentpool": "conf",
+                    "ai.sovereign.io/attested": "pending",
+                    "ai.sovereign.io/tee": "SEV-SNP",
+                    "beta.kubernetes.io/arch": "amd64",
+                    "beta.kubernetes.io/instance-type": "Standard_DC8as_v6",
+                    "beta.kubernetes.io/os": "linux",
+                    "failure-domain.beta.kubernetes.io/region": "westus2",
+                    "failure-domain.beta.kubernetes.io/zone": "0",
+                    "kubernetes.azure.com/agentpool": "conf",
+                    "kubernetes.azure.com/cluster": "MC_rg-article1-confidential_aks-article1_westus2",
+                    "kubernetes.azure.com/consolidated-additional-properties": "3ea1aaad-7900-11f1-b2d6-2e4df73ba966",
+                    "kubernetes.azure.com/kubelet-identity-client-id": "00000000-0000-0000-0000-000000000000",
+                    "kubernetes.azure.com/kubelet-serving-ca": "cluster",
+                    "kubernetes.azure.com/localdns-state": "disabled",
+                    "kubernetes.azure.com/mode": "user",
+                    "kubernetes.azure.com/network-policy": "azure",
+                    "kubernetes.azure.com/node-image-version": "AKSUbuntu-2404gen2CVMcontainerd-202606.19.0",
+                    "kubernetes.azure.com/nodepool-type": "VirtualMachineScaleSets",
+                    "kubernetes.azure.com/os-sku": "Ubuntu",
+                    "kubernetes.azure.com/os-sku-effective": "Ubuntu2404",
+                    "kubernetes.azure.com/os-sku-requested": "Ubuntu",
+                    "kubernetes.azure.com/priority": "regular",
+                    "kubernetes.azure.com/role": "agent",
+                    "kubernetes.azure.com/security-type": "ConfidentialVM",
+                    "kubernetes.azure.com/sku-cpu": "8",
+                    "kubernetes.azure.com/sku-memory": "32768",
+                    "kubernetes.azure.com/storageprofile": "managed",
+                    "kubernetes.azure.com/storagetier": "Premium_LRS",
+                    "kubernetes.io/arch": "amd64",
+                    "kubernetes.io/hostname": "aks-conf-12838440-vmss000005",
+                    "kubernetes.io/os": "linux",
+                    "node.kubernetes.io/instance-type": "Standard_DC8as_v6",
+                    "storageprofile": "managed",
+                    "storagetier": "Premium_LRS",
+                    "topology.disk.csi.azure.com/zone": "",
+                    "topology.kubernetes.io/region": "westus2",
+                    "topology.kubernetes.io/zone": "0"
+                },
+                "name": "aks-conf-12838440-vmss000005",
+                "resourceVersion": "11684",
+                "uid": "76f153b3-f10b-4aff-8d6a-90a65cca066c"
+            },
+            "spec": {
+                "providerID": "azure:///subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mc_rg-article1-confidential_aks-article1_westus2/providers/Microsoft.Compute/virtualMachineScaleSets/aks-conf-12838440-vmss/virtualMachines/5",
+                "taints": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "ai.sovereign.io/confidential",
+                        "value": "true"
+                    }
+                ]
+            },
+            "status": {
+                "addresses": [
+                    {
+                        "address": "10.224.0.42",
+                        "type": "InternalIP"
+                    },
+                    {
+                        "address": "aks-conf-12838440-vmss000005",
+                        "type": "Hostname"
+                    }
+                ],
+                "allocatable": {
+                    "cpu": "7820m",
+                    "ephemeral-storage": "238636139740",
+                    "hugepages-1Gi": "0",
+                    "hugepages-2Mi": "0",
+                    "memory": "31097376Ki",
+                    "pods": "30"
+                },
+                "capacity": {
+                    "cpu": "8",
+                    "ephemeral-storage": "258936784Ki",
+                    "hugepages-1Gi": "0",
+                    "hugepages-2Mi": "0",
+                    "memory": "31865376Ki",
+                    "pods": "30"
+                },
+                "conditions": [
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:29:29Z",
+                        "lastTransitionTime": "2026-07-06T06:20:37Z",
+                        "message": "kubelet has sufficient memory available",
+                        "reason": "KubeletHasSufficientMemory",
+                        "status": "False",
+                        "type": "MemoryPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:29:29Z",
+                        "lastTransitionTime": "2026-07-06T06:20:37Z",
+                        "message": "kubelet has no disk pressure",
+                        "reason": "KubeletHasNoDiskPressure",
+                        "status": "False",
+                        "type": "DiskPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:29:29Z",
+                        "lastTransitionTime": "2026-07-06T06:20:37Z",
+                        "message": "kubelet has sufficient PID available",
+                        "reason": "KubeletHasSufficientPID",
+                        "status": "False",
+                        "type": "PIDPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:29:29Z",
+                        "lastTransitionTime": "2026-07-06T06:20:42Z",
+                        "message": "kubelet is posting ready status",
+                        "reason": "KubeletReady",
+                        "status": "True",
+                        "type": "Ready"
+                    }
+                ],
+                "daemonEndpoints": {
+                    "kubeletEndpoint": {
+                        "Port": 10250
+                    }
+                },
+                "features": {
+                    "supplementalGroupsPolicy": true
+                },
+                "images": [
+                    {
+                        "names": [
+                            "mcr.microsoft.com/aks/aks-gpu-cuda:580.126.09-20260126030251"
+                        ],
+                        "sizeBytes": 711593799
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51"
+                        ],
+                        "sizeBytes": 334863712
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.18.9-260508"
+                        ],
+                        "sizeBytes": 295867168
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.18.6-260312"
+                        ],
+                        "sizeBytes": 284541820
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.19.3-260520"
+                        ],
+                        "sizeBytes": 276000107
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod:3.4.0"
+                        ],
+                        "sizeBytes": 243764817
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.5.50"
+                        ],
+                        "sizeBytes": 228901394
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.26.14"
+                        ],
+                        "sizeBytes": 155660322
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.27.7"
+                        ],
+                        "sizeBytes": 155643813
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.27.5"
+                        ],
+                        "sizeBytes": 155642166
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.26.12"
+                        ],
+                        "sizeBytes": 154503552
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51-cfg"
+                        ],
+                        "sizeBytes": 153561678
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.34.5"
+                        ],
+                        "sizeBytes": 136259561
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.34.6"
+                        ],
+                        "sizeBytes": 136258167
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.35.4"
+                        ],
+                        "sizeBytes": 135003494
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.35.3"
+                        ],
+                        "sizeBytes": 134999392
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.19.3-260520"
+                        ],
+                        "sizeBytes": 132727003
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.6.43-0"
+                        ],
+                        "sizeBytes": 132293389
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.33.9"
+                        ],
+                        "sizeBytes": 130395449
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.33.10"
+                        ],
+                        "sizeBytes": 130394011
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.18.9-260508"
+                        ],
+                        "sizeBytes": 127094977
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.18.6-260312"
+                        ],
+                        "sizeBytes": 117249050
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-npm:v1.6.42"
+                        ],
+                        "sizeBytes": 116747622
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.5.50"
+                        ],
+                        "sizeBytes": 85128185
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.33.10"
+                        ],
+                        "sizeBytes": 78714383
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.33.9"
+                        ],
+                        "sizeBytes": 78658687
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.34.4"
+                        ],
+                        "sizeBytes": 78271428
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.34.3"
+                        ],
+                        "sizeBytes": 78260831
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.34.7-2"
+                        ],
+                        "sizeBytes": 72501907
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.33.11-2"
+                        ],
+                        "sizeBytes": 72401415
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.35.4-3"
+                        ],
+                        "sizeBytes": 72219077
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.6.43-0"
+                        ],
+                        "sizeBytes": 72194221
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy@sha256:31bbe6fb57fa4e75326bcbe1cef9001ef855fb834c3df6c8498b09bc30d71691",
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.35.5-1"
+                        ],
+                        "sizeBytes": 72176855
+                    },
+                    {
+                        "names": [
+                            "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/node-attestation-agent@sha256:18ef99259d32c8b1baa9731f694d1fd3e9b293c5df20ff7232d1889601fba130",
+                            "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/node-attestation-agent:0.5.11"
+                        ],
+                        "sizeBytes": 58633005
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.8.6-0"
+                        ],
+                        "sizeBytes": 56556195
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51-targetallocator"
+                        ],
+                        "sizeBytes": 54248667
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.7.16-0"
+                        ],
+                        "sizeBytes": 51815965
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/secrets-store/driver:v1.5.4"
+                        ],
+                        "sizeBytes": 43947506
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.8.6-0"
+                        ],
+                        "sizeBytes": 39754699
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.7.16-0"
+                        ],
+                        "sizeBytes": 39721985
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium-log-collector:v0.0.2-0"
+                        ],
+                        "sizeBytes": 38568303
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium-log-collector:v0.0.1-0"
+                        ],
+                        "sizeBytes": 38490948
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/open-policy-agent/gatekeeper:v3.20.1-6"
+                        ],
+                        "sizeBytes": 35242872
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/open-policy-agent/gatekeeper:v3.20.1-4"
+                        ],
+                        "sizeBytes": 35236463
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.2-9"
+                        ],
+                        "sizeBytes": 33904177
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-9"
+                        ],
+                        "sizeBytes": 33705724
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.34.8-2"
+                        ],
+                        "sizeBytes": 33430291
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.36.1-1"
+                        ],
+                        "sizeBytes": 33202021
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.35.5-1"
+                        ],
+                        "sizeBytes": 33069344
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.33.13-1"
+                        ],
+                        "sizeBytes": 33051572
+                    }
+                ],
+                "nodeInfo": {
+                    "architecture": "amd64",
+                    "bootID": "fd753c00-8e5a-468f-8661-fcb7612997ca",
+                    "containerRuntimeVersion": "containerd://2.3.2-1",
+                    "kernelVersion": "6.8.0-1058-azure-fde",
+                    "kubeProxyVersion": "",
+                    "kubeletVersion": "v1.35.5",
+                    "machineID": "c6942bc6d1be4364bed48f14c50639c1",
+                    "operatingSystem": "linux",
+                    "osImage": "Ubuntu 24.04.4 LTS",
+                    "systemUUID": "89611669-5858-4755-b0e7-0f6761937204"
+                },
+                "runtimeHandlers": [
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": ""
+                    },
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": "runc"
+                    },
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": "untrusted"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Node",
+            "metadata": {
+                "annotations": {
+                    "alpha.kubernetes.io/provided-node-ip": "10.224.0.100",
+                    "csi.volume.kubernetes.io/nodeid": "{\"disk.csi.azure.com\":\"aks-conf-12838440-vmss000006\",\"file.csi.azure.com\":\"aks-conf-12838440-vmss000006\"}",
+                    "node.alpha.kubernetes.io/ttl": "0",
+                    "volumes.kubernetes.io/controller-managed-attach-detach": "true"
+                },
+                "creationTimestamp": "2026-07-06T06:20:42Z",
+                "labels": {
+                    "agentpool": "conf",
+                    "ai.sovereign.io/attested": "pending",
+                    "ai.sovereign.io/tee": "SEV-SNP",
+                    "beta.kubernetes.io/arch": "amd64",
+                    "beta.kubernetes.io/instance-type": "Standard_DC8as_v6",
+                    "beta.kubernetes.io/os": "linux",
+                    "failure-domain.beta.kubernetes.io/region": "westus2",
+                    "failure-domain.beta.kubernetes.io/zone": "0",
+                    "kubernetes.azure.com/agentpool": "conf",
+                    "kubernetes.azure.com/cluster": "MC_rg-article1-confidential_aks-article1_westus2",
+                    "kubernetes.azure.com/consolidated-additional-properties": "3ea1aaad-7900-11f1-b2d6-2e4df73ba966",
+                    "kubernetes.azure.com/kubelet-identity-client-id": "00000000-0000-0000-0000-000000000000",
+                    "kubernetes.azure.com/kubelet-serving-ca": "cluster",
+                    "kubernetes.azure.com/localdns-state": "disabled",
+                    "kubernetes.azure.com/mode": "user",
+                    "kubernetes.azure.com/network-policy": "azure",
+                    "kubernetes.azure.com/node-image-version": "AKSUbuntu-2404gen2CVMcontainerd-202606.19.0",
+                    "kubernetes.azure.com/nodepool-type": "VirtualMachineScaleSets",
+                    "kubernetes.azure.com/os-sku": "Ubuntu",
+                    "kubernetes.azure.com/os-sku-effective": "Ubuntu2404",
+                    "kubernetes.azure.com/os-sku-requested": "Ubuntu",
+                    "kubernetes.azure.com/priority": "regular",
+                    "kubernetes.azure.com/role": "agent",
+                    "kubernetes.azure.com/security-type": "ConfidentialVM",
+                    "kubernetes.azure.com/sku-cpu": "8",
+                    "kubernetes.azure.com/sku-memory": "32768",
+                    "kubernetes.azure.com/storageprofile": "managed",
+                    "kubernetes.azure.com/storagetier": "Premium_LRS",
+                    "kubernetes.io/arch": "amd64",
+                    "kubernetes.io/hostname": "aks-conf-12838440-vmss000006",
+                    "kubernetes.io/os": "linux",
+                    "node.kubernetes.io/instance-type": "Standard_DC8as_v6",
+                    "storageprofile": "managed",
+                    "storagetier": "Premium_LRS",
+                    "topology.disk.csi.azure.com/zone": "",
+                    "topology.kubernetes.io/region": "westus2",
+                    "topology.kubernetes.io/zone": "0"
+                },
+                "name": "aks-conf-12838440-vmss000006",
+                "resourceVersion": "12406",
+                "uid": "e6dbc7c4-33d8-455c-9fa1-d35a8286e201"
+            },
+            "spec": {
+                "providerID": "azure:///subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/mc_rg-article1-confidential_aks-article1_westus2/providers/Microsoft.Compute/virtualMachineScaleSets/aks-conf-12838440-vmss/virtualMachines/6",
+                "taints": [
+                    {
+                        "effect": "NoSchedule",
+                        "key": "ai.sovereign.io/confidential",
+                        "value": "true"
+                    }
+                ]
+            },
+            "status": {
+                "addresses": [
+                    {
+                        "address": "10.224.0.100",
+                        "type": "InternalIP"
+                    },
+                    {
+                        "address": "aks-conf-12838440-vmss000006",
+                        "type": "Hostname"
+                    }
+                ],
+                "allocatable": {
+                    "cpu": "7820m",
+                    "ephemeral-storage": "238636139740",
+                    "hugepages-1Gi": "0",
+                    "hugepages-2Mi": "0",
+                    "memory": "31097376Ki",
+                    "pods": "30"
+                },
+                "capacity": {
+                    "cpu": "8",
+                    "ephemeral-storage": "258936784Ki",
+                    "hugepages-1Gi": "0",
+                    "hugepages-2Mi": "0",
+                    "memory": "31865376Ki",
+                    "pods": "30"
+                },
+                "conditions": [
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:31:55Z",
+                        "lastTransitionTime": "2026-07-06T06:20:42Z",
+                        "message": "kubelet has sufficient memory available",
+                        "reason": "KubeletHasSufficientMemory",
+                        "status": "False",
+                        "type": "MemoryPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:31:55Z",
+                        "lastTransitionTime": "2026-07-06T06:20:42Z",
+                        "message": "kubelet has no disk pressure",
+                        "reason": "KubeletHasNoDiskPressure",
+                        "status": "False",
+                        "type": "DiskPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:31:55Z",
+                        "lastTransitionTime": "2026-07-06T06:20:42Z",
+                        "message": "kubelet has sufficient PID available",
+                        "reason": "KubeletHasSufficientPID",
+                        "status": "False",
+                        "type": "PIDPressure"
+                    },
+                    {
+                        "lastHeartbeatTime": "2026-07-06T06:31:55Z",
+                        "lastTransitionTime": "2026-07-06T06:20:46Z",
+                        "message": "kubelet is posting ready status",
+                        "reason": "KubeletReady",
+                        "status": "True",
+                        "type": "Ready"
+                    }
+                ],
+                "daemonEndpoints": {
+                    "kubeletEndpoint": {
+                        "Port": 10250
+                    }
+                },
+                "features": {
+                    "supplementalGroupsPolicy": true
+                },
+                "images": [
+                    {
+                        "names": [
+                            "mcr.microsoft.com/aks/aks-gpu-cuda:580.126.09-20260126030251"
+                        ],
+                        "sizeBytes": 711593799
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51"
+                        ],
+                        "sizeBytes": 334863712
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.18.9-260508"
+                        ],
+                        "sizeBytes": 295867168
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.18.6-260312"
+                        ],
+                        "sizeBytes": 284541820
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless:v1.19.3-260520"
+                        ],
+                        "sizeBytes": 276000107
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod:3.4.0"
+                        ],
+                        "sizeBytes": 243764817
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.5.50"
+                        ],
+                        "sizeBytes": 228901394
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.26.14"
+                        ],
+                        "sizeBytes": 155660322
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.27.7"
+                        ],
+                        "sizeBytes": 155643813
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.27.5"
+                        ],
+                        "sizeBytes": 155642166
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/blob-csi:v1.26.12"
+                        ],
+                        "sizeBytes": 154503552
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51-cfg"
+                        ],
+                        "sizeBytes": 153561678
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.34.5"
+                        ],
+                        "sizeBytes": 136259561
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.34.6"
+                        ],
+                        "sizeBytes": 136258167
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.35.4"
+                        ],
+                        "sizeBytes": 135003494
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.35.3"
+                        ],
+                        "sizeBytes": 134999392
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.19.3-260520"
+                        ],
+                        "sizeBytes": 132727003
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.6.43-0"
+                        ],
+                        "sizeBytes": 132293389
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.33.9"
+                        ],
+                        "sizeBytes": 130395449
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azurefile-csi:v1.33.10"
+                        ],
+                        "sizeBytes": 130394011
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.18.9-260508"
+                        ],
+                        "sizeBytes": 127094977
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium/cilium-distroless-init:v1.18.6-260312"
+                        ],
+                        "sizeBytes": 117249050
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-npm:v1.6.42"
+                        ],
+                        "sizeBytes": 116747622
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.5.50"
+                        ],
+                        "sizeBytes": 85128185
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.33.10"
+                        ],
+                        "sizeBytes": 78714383
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.33.9"
+                        ],
+                        "sizeBytes": 78658687
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.34.4"
+                        ],
+                        "sizeBytes": 78271428
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/azuredisk-csi:v1.34.3"
+                        ],
+                        "sizeBytes": 78260831
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.34.7-2"
+                        ],
+                        "sizeBytes": 72501907
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.33.11-2"
+                        ],
+                        "sizeBytes": 72401415
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.35.4-3"
+                        ],
+                        "sizeBytes": 72219077
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.6.43-0"
+                        ],
+                        "sizeBytes": 72194221
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy@sha256:31bbe6fb57fa4e75326bcbe1cef9001ef855fb834c3df6c8498b09bc30d71691",
+                            "mcr.microsoft.com/oss/v2/kubernetes/kube-proxy:v1.35.5-1"
+                        ],
+                        "sizeBytes": 72176855
+                    },
+                    {
+                        "names": [
+                            "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/node-attestation-agent@sha256:18ef99259d32c8b1baa9731f694d1fd3e9b293c5df20ff7232d1889601fba130",
+                            "ghcr.io/ihsenalaya/ai-sovereign-finops-operator/node-attestation-agent:0.5.11"
+                        ],
+                        "sizeBytes": 58633005
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.8.6-0"
+                        ],
+                        "sizeBytes": 56556195
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-collector/images:7.0.0-main-05-07-2026-dbf4ae51-targetallocator"
+                        ],
+                        "sizeBytes": 54248667
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cni:v1.7.16-0"
+                        ],
+                        "sizeBytes": 51815965
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes-csi/secrets-store/driver:v1.5.4"
+                        ],
+                        "sizeBytes": 43947506
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.8.6-0"
+                        ],
+                        "sizeBytes": 39754699
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/azure-cns:v1.7.16-0"
+                        ],
+                        "sizeBytes": 39721985
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium-log-collector:v0.0.2-0"
+                        ],
+                        "sizeBytes": 38568303
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/containernetworking/cilium-log-collector:v0.0.1-0"
+                        ],
+                        "sizeBytes": 38490948
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/open-policy-agent/gatekeeper:v3.20.1-6"
+                        ],
+                        "sizeBytes": 35242872
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/open-policy-agent/gatekeeper:v3.20.1-4"
+                        ],
+                        "sizeBytes": 35236463
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.2-9"
+                        ],
+                        "sizeBytes": 33904177
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/coredns:v1.13.1-9"
+                        ],
+                        "sizeBytes": 33705724
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.34.8-2"
+                        ],
+                        "sizeBytes": 33430291
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.36.1-1"
+                        ],
+                        "sizeBytes": 33202021
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.35.5-1"
+                        ],
+                        "sizeBytes": 33069344
+                    },
+                    {
+                        "names": [
+                            "mcr.microsoft.com/oss/v2/kubernetes/azure-cloud-node-manager:v1.33.13-1"
+                        ],
+                        "sizeBytes": 33051572
+                    }
+                ],
+                "nodeInfo": {
+                    "architecture": "amd64",
+                    "bootID": "8ca01b2e-b8b8-49db-9dea-ee12d9d1b225",
+                    "containerRuntimeVersion": "containerd://2.3.2-1",
+                    "kernelVersion": "6.8.0-1058-azure-fde",
+                    "kubeProxyVersion": "",
+                    "kubeletVersion": "v1.35.5",
+                    "machineID": "f3be244e335b4f0f9611b816ddca48e4",
+                    "operatingSystem": "linux",
+                    "osImage": "Ubuntu 24.04.4 LTS",
+                    "systemUUID": "62e9e583-ecc9-4827-a5a8-3f884f1181ae"
+                },
+                "runtimeHandlers": [
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": ""
+                    },
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": "runc"
+                    },
+                    {
+                        "features": {
+                            "recursiveReadOnlyMounts": true,
+                            "userNamespaces": true
+                        },
+                        "name": "untrusted"
+                    }
+                ]
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

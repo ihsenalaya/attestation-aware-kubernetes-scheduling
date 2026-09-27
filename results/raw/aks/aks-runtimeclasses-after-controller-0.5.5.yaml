@@ -1,0 +1,39 @@
+apiVersion: v1
+items:
+- apiVersion: node.k8s.io/v1
+  handler: kata
+  kind: RuntimeClass
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"node.k8s.io/v1","handler":"kata","kind":"RuntimeClass","metadata":{"annotations":{},"labels":{"addonmanager.kubernetes.io/mode":"Reconcile","kubernetes.io/cluster-service":"true"},"name":"kata-vm-isolation"},"overhead":{"podFixed":{"memory":"600Mi"}},"scheduling":{"nodeSelector":{"kubernetes.azure.com/kata-vm-isolation":"true"}}}
+    creationTimestamp: "2026-07-04T15:40:57Z"
+    labels:
+      addonmanager.kubernetes.io/mode: Reconcile
+      kubernetes.io/cluster-service: "true"
+    name: kata-vm-isolation
+    resourceVersion: "617"
+    uid: 643513f6-77ce-4eff-afaa-c0f3cc7ee3d7
+  overhead:
+    podFixed:
+      memory: 600Mi
+  scheduling:
+    nodeSelector:
+      kubernetes.azure.com/kata-vm-isolation: "true"
+- apiVersion: node.k8s.io/v1
+  handler: runc
+  kind: RuntimeClass
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"node.k8s.io/v1","handler":"runc","kind":"RuntimeClass","metadata":{"annotations":{},"labels":{"addonmanager.kubernetes.io/mode":"Reconcile","kubernetes.io/cluster-service":"true"},"name":"runc"}}
+    creationTimestamp: "2026-07-04T15:40:57Z"
+    labels:
+      addonmanager.kubernetes.io/mode: Reconcile
+      kubernetes.io/cluster-service: "true"
+    name: runc
+    resourceVersion: "616"
+    uid: 05f6ce1c-79f0-4d13-acf0-4e7bc5c24c46
+kind: List
+metadata:
+  resourceVersion: ""

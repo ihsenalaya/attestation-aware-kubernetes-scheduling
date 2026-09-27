@@ -1,0 +1,30 @@
+# Kind cluster values — local testing only
+# Access UI via: kubectl port-forward svc/platform-ui 8090:80 -n ai-platform
+# Note: platform-ui uses nginx-unprivileged:1.27-alpine (port 8080 internal)
+
+global:
+  registry: ""
+  imagePullSecrets: []
+  environment: kind
+  mode: thesis
+  simulatedEvidence:
+    enabled: true    # Kind has no real TEE hardware
+  runtimeClassSimulation:
+    enabled: true    # simulated-kata-qemu-tdx/snp backed by runc
+  audit:
+    anchoring:
+      mode: file
+      filePath: /data/audit/checkpoints.jsonl
+  gpu:
+    enabled: false
+    mode: disabled   # NEVER claim GPU confidential in kind
+
+platformApi:
+  insecureAuth: true  # dev only — no OIDC required in local kind
+
+platformUi:
+  service:
+    type: ClusterIP  # access via port-forward, never LoadBalancer
+
+networkPolicies:
+  enabled: false

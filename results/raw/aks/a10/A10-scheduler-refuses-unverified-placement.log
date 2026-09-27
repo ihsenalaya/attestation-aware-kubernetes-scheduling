@@ -1,0 +1,8 @@
+Creating isolated attack namespace article1-a10-r30
+namespace/article1-a10-r30 created
+namespace/article1-a10-r30 labeled
+confidentialinferencepolicy.aiops.imperium.io/a10-reject-unverified created
+pod/a10-victim created
+expected_bound_node=<empty>
+actual_bound_node=
+node_under_test=aks-conf-23144742-vmss000002

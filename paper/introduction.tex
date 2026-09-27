@@ -1,0 +1,70 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Organisations increasingly run sensitive AI inference on shared Kubernetes
+clusters while wanting hardware-backed guarantees that a workload executes only
+on a genuinely confidential node. Confidential VMs (AMD SEV-SNP, Intel TDX) and
+their attestation services now make it possible to \emph{prove} that a node is a
+real trusted execution environment~\cite{misono2024cvms,cheng2023tdx}. Yet
+Kubernetes places pods using non-cryptographic, mutable cluster metadata:
+labels, \texttt{nodeSelector}, and \texttt{RuntimeClass} carry no cryptographic
+backing and no freshness or revocation semantics. An attacker who can set a
+label or win a race on mutable cluster state can therefore cause a sensitive
+workload to be scheduled onto a node that is not (or is no longer) attested.
+
+We ask: \emph{how can verified attestation evidence become a first-class signal
+in the Kubernetes scheduling cycle, and how can the resulting placement decision
+be made independently verifiable?} We answer with an attestation-aware scheduler
+for confidential AI inference, evaluated on \textbf{real AMD SEV-SNP confidential
+AKS nodes}. We deliberately scope claims to \emph{node-level} attestation: on
+confidential-VM node pools, the evidence attests the confidential worker
+node/VM, not a per-pod TEE. We make this explicit throughout and do not claim
+pod-level attestation, confidential GPUs, or Intel TDX.
+
+\paragraph{Contributions.}
+\begin{itemize}
+  \item A trust chain that separates the untrusted node \emph{attester} (a
+  node-resident agent that may only emit a \texttt{RawAttestationReport}) from a
+  central \emph{verifier} (the sole writer of \texttt{AttestationEvidence}),
+  mirroring the IETF RATS roles~\cite{birkholz2023rats}. A compromised node
+  cannot forge evidence (attack A10).
+  \item An attestation-aware scheduler that filters, scores and binds pods only
+  to nodes with fresh, non-revoked, verified evidence, with a \emph{fail-closed}
+  \texttt{PreBind} re-check that removes the externally schedulable
+  gate-removal-to-bind Time-Of-Check-to-Time-Of-Use window, and an Ed25519
+  \emph{placement token} that an independent
+  \texttt{verify-placement} tool validates offline.
+  \item Real Azure MAA / SEV-SNP guest attestation: on
+  \texttt{Standard\_DC8as\_v6} AKS confidential hardware, the verifier produced
+  \texttt{evidenceMode=real} for active confidential nodes with distinct,
+  RS256-verified MAA tokens --- and, by construction, refuses to mark
+  empty/invalid tokens real. A multi-node snapshot used in the evaluation
+  contains four active confidential nodes with real verified evidence.
+  \item A formalisation of six placement properties (P1--P6,
+  \S\ref{sec:properties}) and an argument that the architecture enforces them
+  independently of the specific TEE, plus a residual-window analysis of the
+  scheduling cycle that identifies PreBind as the sole remaining check-to-bind
+  gap.
+  \item An evaluation on real hardware whose \emph{central} result is a
+  head-to-head comparison with a strong scheduling-gate baseline (B4): B4 leaves
+  a measured $\sim$1.1\,s gate-removal-to-bind TOCTOU window (Mann--Whitney
+  $p<10^{-5}$, Cliff's $\delta{=}1.0$) that our fail-closed design removes from
+  the externally schedulable path while adding an offline-verifiable placement
+  artifact. The deployed AKS adversarial campaign blocks all A1--A10 and A5b
+  instances (330/330), and A11 separately confirms fail-closed behaviour for GPU-required
+  workloads without GPU attestation. Layer ablations show why admission,
+  scheduler, and token checks are needed. The AKS B1--B5 latency campaign uses
+  30 measured runs per baseline; B5's comparable client-observed median is
+  1167.0\,ms, and its scheduler-internal phase median is separately
+  216.232\,ms.
+  Three governed AI workloads (OpenAI chat, OpenAI embedding, and a local CPU
+  model) run from attestation-scheduled pods and all pass placement-token
+  verification.
+\end{itemize}
+
+This work does not replace pod-level confidential-container attestation systems;
+it makes verified node attestation a scheduling-time signal and binds the final
+placement to independently verifiable cryptographic evidence. Confidential AI
+inference is the motivating use case and is represented by minimal real AI
+workloads in our AKS evaluation; confidential GPU validation is left to a future
+NVIDIA H100 phase.

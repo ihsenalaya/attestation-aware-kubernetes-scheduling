@@ -1,0 +1,6 @@
+env,metric,n,median_ms,p95_ms,p99_ms,mean_ms,ci95_lo,ci95_hi
+kind-live-simulated,filter,30,3.974,17.076,25.868,5.704,4.056,7.913
+kind-live-simulated,score,30,0.002,0.003,0.021,0.003,0.002,0.005
+kind-live-simulated,reserve_prebind,30,35.428,47.859,49.202,36.246,33.754,38.795
+kind-live-simulated,bind,30,12.17,17.518,34.362,12.805,10.991,15.275
+kind-live-simulated,sched_total,30,124.859,146.28,160.156,113.766,103.13,123.749

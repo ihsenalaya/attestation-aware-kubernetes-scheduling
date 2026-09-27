@@ -1,0 +1,61 @@
+env,run_id,baseline,attack_id,gate_check_time_ms,bind_time_ms,toctou_window_ms,placement_verified,blocked,latency_p50,latency_p95,latency_p99,notes
+aks-real-sevsnp,run-1,B5,A7,0,4227,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-2,B5,A7,0,3476,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-3,B5,A7,0,4135,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-4,B5,A7,0,3664,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-5,B5,A7,0,3470,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-6,B5,A7,0,3523,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-7,B5,A7,0,4098,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-8,B5,A7,0,3663,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-9,B5,A7,0,3748,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-10,B5,A7,0,3356,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-11,B5,A7,0,3828,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-12,B5,A7,0,3838,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-13,B5,A7,0,4142,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-14,B5,A7,0,4373,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-15,B5,A7,0,3997,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-16,B5,A7,0,3521,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-17,B5,A7,0,3900,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-18,B5,A7,0,4021,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-19,B5,A7,0,3969,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-20,B5,A7,0,3280,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-21,B5,A7,0,3392,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-22,B5,A7,0,4340,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-23,B5,A7,0,3516,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-24,B5,A7,0,4076,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-25,B5,A7,0,3823,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-26,B5,A7,0,3741,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-27,B5,A7,0,3953,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-28,B5,A7,0,3875,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-29,B5,A7,0,3888,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-30,B5,A7,0,3362,0,yes,no,,,,prebind-tokenized-placement node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-1,B4,A7,3679,6185,1102,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-2,B4,A7,4678,7221,992,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-3,B4,A7,4214,6794,1123,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-4,B4,A7,4704,6959,946,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-5,B4,A7,3890,6621,1268,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-6,B4,A7,4681,7136,975,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-7,B4,A7,4184,6545,1073,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-8,B4,A7,4497,6952,1112,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-9,B4,A7,4193,6453,1024,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-10,B4,A7,3938,6781,1483,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-11,B4,A7,4214,6659,1212,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-12,B4,A7,5024,7880,1415,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-13,B4,A7,4463,6814,1057,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-14,B4,A7,3669,6392,1014,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-15,B4,A7,5224,7917,1010,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-16,B4,A7,4731,7417,1054,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-17,B4,A7,4263,6822,1156,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-18,B4,A7,4834,7367,1055,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-19,B4,A7,4784,7292,1235,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-20,B4,A7,4658,7143,1034,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-21,B4,A7,4462,6817,999,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-22,B4,A7,3880,6657,1268,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-23,B4,A7,4934,7315,1107,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-24,B4,A7,5132,7850,1163,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-25,B4,A7,4310,6817,949,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-26,B4,A7,4584,7004,980,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-27,B4,A7,4823,7607,1268,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-28,B4,A7,4248,7075,1330,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-29,B4,A7,4377,7181,1270,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000
+aks-real-sevsnp,run-30,B4,A7,3513,6314,1402,no,no,,,,schedulingGate-external-verifier checked_node=aks-conf-23144742-vmss000000 bound_node=aks-conf-23144742-vmss000000

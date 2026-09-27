@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+type: software
+message: "If you use this artifact, please cite this software record."
+title: "Attestation-Aware Scheduling for Verifiable AI Placement on SEV-SNP Confidential Kubernetes Nodes — Reproducibility Artifact"
+authors:
+  - family-names: Alaya
+    given-names: Ihsen
+license: Apache-2.0
+version: "1.0.0"
+keywords:
+  - confidential computing
+  - AMD SEV-SNP
+  - Kubernetes scheduling
+  - remote attestation
+  - reproducibility
+repository-code: "https://github.com/ihsenalaya/attestation-aware-kubernetes-scheduling"

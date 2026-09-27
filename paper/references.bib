@@ -1,0 +1,382 @@
+% ============================================================================
+% references_verified.bib — Article 1
+% "Attestation-Aware Scheduling for Verifiable AI Placement on SEV-SNP
+%  Confidential Kubernetes Nodes"
+%
+% ALL entries below are REAL and were verified during literature collection
+% (2026-07-04): titles, authors and venues checked against arXiv (author lists
+% pulled from the arXiv API), ACM DL / USENIX / IEEE / RFC Editor / dblp.
+% NO fabricated DOIs. arXiv preprints carry their arXiv id as the stable handle;
+% where a peer-reviewed venue was confirmed it is given as the venue.
+% Traceability of every entry is recorded in literature_audit.md.
+% ============================================================================
+
+% ---------------------------------------------------------------------------
+% A. TEE hardware foundations & confidential VMs
+% ---------------------------------------------------------------------------
+@article{cheng2023tdx,
+  title   = {Intel {TDX} Demystified: A Top-Down Approach},
+  author  = {Cheng, Pau-Chen and Ozga, Wojciech and Valdez, Enriquillo and Ahmed, Salman and Gu, Zhongshu and Jamjoom, Hani and Franke, Hubertus and Bottomley, James},
+  journal = {ACM Computing Surveys (also arXiv:2303.15540)},
+  year    = {2024},
+  doi     = {10.1145/3652597}
+}
+
+@article{paradzik2024sevsnp,
+  title   = {Formal Security Analysis of the {AMD} {SEV-SNP} Software Interface},
+  author  = {Parad{\v{z}}ik, Petar and Derek, Ante and Horvat, Marko},
+  journal = {arXiv preprint arXiv:2403.10296},
+  year    = {2024}
+}
+
+@article{misono2024cvms,
+  title   = {Confidential {VMs} Explained: An Empirical Analysis of {AMD} {SEV-SNP} and Intel {TDX}},
+  author  = {Misono, Masanori and Stavrakakis, Dimitrios and Santos, Nuno and Bhatotia, Pramod},
+  journal = {Proceedings of the ACM on Measurement and Analysis of Computing Systems (POMACS)},
+  volume  = {8},
+  number  = {3},
+  year    = {2024},
+  doi     = {10.1145/3700418}
+}
+
+@article{costan2016sgx,
+  title        = {Intel {SGX} Explained},
+  author       = {Costan, Victor and Devadas, Srinivas},
+  journal      = {IACR Cryptology ePrint Archive, Report 2016/086},
+  year         = {2016},
+  howpublished = {\url{https://eprint.iacr.org/2016/086}}
+}
+
+@inproceedings{lee2020keystone,
+  title     = {Keystone: An Open Framework for Architecting Trusted Execution Environments},
+  author    = {Lee, Dayeol and Kohlbrenner, David and Shinde, Shweta and Asanovi{\'c}, Krste and Song, Dawn},
+  booktitle = {Proceedings of the Fifteenth European Conference on Computer Systems (EuroSys)},
+  year      = {2020},
+  doi       = {10.1145/3342195.3387532}
+}
+
+@article{xu2023virtcca,
+  title   = {virt{CCA}: Virtualized {Arm} Confidential Compute Architecture with {TrustZone}},
+  author  = {Xu, Xiangyi and Wang, Wenhao and Wu, Yongzheng and Wang, Chenyu and Zhu, Huifeng and Ma, Haocheng and Min, Zhennan and Pang, Zixuan and Hou, Rui and Jin, Yier},
+  journal = {arXiv preprint arXiv:2306.11011},
+  year    = {2023}
+}
+
+@article{cerdeira2022rezone,
+  title   = {ReZone: Disarming {TrustZone} with {TEE} Privilege Reduction},
+  author  = {Cerdeira, David and Martins, Jos{\'e} and Santos, Nuno and Pinto, Sandro},
+  journal = {arXiv preprint arXiv:2203.01025 (USENIX Security 2022)},
+  year    = {2022}
+}
+
+@article{michaud2025teesok,
+  title   = {Abstraction of Trusted Execution Environments as the Missing Layer for Broad Confidential Computing Adoption: A Systematization of Knowledge},
+  author  = {Michaud, Quentin and Ramezanian, Sara and Ayed, Dhouha and Levillain, Olivier and Garcia-Alfaro, Joaquin},
+  journal = {arXiv preprint arXiv:2512.22090},
+  year    = {2025}
+}
+
+% ---------------------------------------------------------------------------
+% B. Remote attestation: architecture, protocols, trusted channels
+% ---------------------------------------------------------------------------
+@techreport{birkholz2023rats,
+  title       = {Remote {ATtestation} {procedureS} ({RATS}) Architecture},
+  author      = {Birkholz, Henk and Thaler, Dave and Richardson, Michael and Smith, Ned and Pan, Wei},
+  institution = {IETF},
+  number      = {RFC 9334},
+  year        = {2023},
+  doi         = {10.17487/RFC9334}
+}
+
+@inproceedings{chen2019opera,
+  title     = {{OPERA}: Open Remote Attestation for Intel's Secure Enclaves},
+  author    = {Chen, Guoxing and Zhang, Yinqian and Lai, Ten-Hwang},
+  booktitle = {Proceedings of the 2019 ACM SIGSAC Conference on Computer and Communications Security (CCS)},
+  year      = {2019},
+  doi       = {10.1145/3319535.3354220}
+}
+
+@article{knauth2018ratls,
+  title   = {Integrating Remote Attestation with Transport Layer Security},
+  author  = {Knauth, Thomas and Steiner, Michael and Chakrabarti, Somnath and Lei, Li and Xing, Cedric and Vij, Mona},
+  journal = {arXiv preprint arXiv:1801.05863},
+  year    = {2018}
+}
+
+@article{akama2024raweb,
+  title   = {{RA-WEBs}: Remote Attestation for {WEB} services},
+  author  = {Akama, Kosei and Nakatsuka, Yoshimichi and Luke, Korry and Sato, Masaaki and Uehara, Keisuke},
+  journal = {arXiv preprint arXiv:2411.01340},
+  year    = {2024}
+}
+
+@article{liu2020confidattest,
+  title   = {Confidential Attestation: Efficient in-Enclave Verification of Privacy Policy Compliance},
+  author  = {Liu, Weijie and Wang, Wenhao and Wang, Xiaofeng and Meng, Xiaozhu and Lu, Yaosong and Chen, Hongbo and Wang, Xinyu and Shen, Qingtao and Chen, Kai and Tang, Haixu and Chen, Yi and Xing, Luyi},
+  journal = {arXiv preprint arXiv:2007.10513},
+  year    = {2020}
+}
+
+@article{antonino2023flexattest,
+  title   = {Flexible remote attestation of pre-{SNP} {SEV} {VMs} using {SGX} enclaves},
+  author  = {Antonino, Pedro and Derek, Ante and Wo{\l}oszyn, Wojciech Aleksander},
+  journal = {arXiv preprint arXiv:2305.09351},
+  year    = {2023}
+}
+
+% ---------------------------------------------------------------------------
+% C. TEE attacks (threat-model motivation)
+% ---------------------------------------------------------------------------
+@inproceedings{li2021cipherleaks,
+  title     = {{CIPHERLEAKS}: Breaking Constant-time Cryptography on {AMD} {SEV} via the Ciphertext Side Channel},
+  author    = {Li, Mengyuan and Zhang, Yinqian and Wang, Huibo and Li, Kang and Cheng, Yueqiang},
+  booktitle = {30th USENIX Security Symposium},
+  year      = {2021}
+}
+
+@article{liu2025teecontainers,
+  title   = {Characterizing Trust Boundary Vulnerabilities in {TEE} Containers: An Empirical Study},
+  author  = {Liu, Weijie and Chen, Hongbo and Huai, Shuo and Xu, Zhen and Wang, Wenhao and Wang, XiaoFeng and Zhang, Danfeng and Li, Zhi and Tang, Haixu and Liu, Zheli},
+  journal = {arXiv preprint arXiv:2508.20962},
+  year    = {2025}
+}
+
+@article{zhang2023noprivacy,
+  title   = {No Privacy Left Outside: On the (In-)Security of {TEE}-Shielded {DNN} Partition for On-Device {ML}},
+  author  = {Zhang, Ziqi and Gong, Chen and Cai, Yifeng and Yuan, Yuanyuan and Liu, Bingyan and Li, Ding and Guo, Yao and Chen, Xiangqun},
+  journal = {arXiv preprint arXiv:2310.07152 (IEEE S\&P 2024)},
+  year    = {2023}
+}
+
+% ---------------------------------------------------------------------------
+% D. TEE systems: library OS, secure containers
+% ---------------------------------------------------------------------------
+@inproceedings{arnautov2016scone,
+  title     = {{SCONE}: Secure {Linux} Containers with {Intel} {SGX}},
+  author    = {Arnautov, Sergei and Trach, Bohdan and Gregor, Franz and Knauth, Thomas and Martin, Andre and Priebe, Christian and Lind, Joshua and Muthukumaran, Divya and O'Keeffe, Dan and Stillwell, Mark L. and Goltzsche, David and Eyers, Dave and Kapitza, R{\"u}diger and Pietzuch, Peter and Fetzer, Christof},
+  booktitle = {12th USENIX Symposium on Operating Systems Design and Implementation (OSDI)},
+  year      = {2016}
+}
+
+@inproceedings{tsai2017graphene,
+  title     = {{Graphene-SGX}: A Practical Library {OS} for Unmodified Applications on {SGX}},
+  author    = {Tsai, Chia-Che and Porter, Donald E. and Vij, Mona},
+  booktitle = {2017 USENIX Annual Technical Conference (ATC)},
+  year      = {2017},
+  doi       = {10.5555/3154690.3154752}
+}
+
+@inproceedings{shen2020occlum,
+  title     = {Occlum: Secure and Efficient Multitasking Inside a Single Enclave of {Intel} {SGX}},
+  author    = {Shen, Youren and Tian, Hongliang and Chen, Yu and Chen, Kang and Wang, Runji and Xu, Yi and Xia, Yubin and Yan, Shoumeng},
+  booktitle = {Proceedings of the 25th International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS)},
+  year      = {2020}
+}
+
+@article{sarkar2024hastee,
+  title   = {{HasTEE+}: Confidential Cloud Computing and Analytics with {Haskell}},
+  author  = {Sarkar, Abhiroop and Russo, Alejandro},
+  journal = {arXiv preprint arXiv:2401.08901},
+  year    = {2024}
+}
+
+@article{hartono2024crisp,
+  title   = {{CRISP}: Confidentiality, Rollback, and Integrity Storage Protection for Confidential Cloud-Native Computing},
+  author  = {Hartono, Ardhi Putra Pratama and Brito, Andrey and Fetzer, Christof},
+  journal = {arXiv preprint arXiv:2408.06822},
+  year    = {2024}
+}
+
+% ---------------------------------------------------------------------------
+% E. Confidential containers & confidential Kubernetes
+% ---------------------------------------------------------------------------
+@article{yang2026dstack,
+  title   = {Implement {Kubernetes} Pod-Level Remote Attestation for Confidential Workloads on dstack},
+  author  = {Yang, Yang and Wang, Kevin and Luo, Yuanhai and Yin, Hang and Cai, Jie and Zhou, Shunfan and Wang, Wenfeng},
+  journal = {arXiv preprint arXiv:2606.03323},
+  year    = {2026}
+}
+
+@misc{k8s2023confidential,
+  title        = {Confidential {Kubernetes}: Use Confidential Virtual Machines and Enclaves to improve your cluster security},
+  author       = {{Kubernetes Contributors}},
+  year         = {2023},
+  howpublished = {\url{https://kubernetes.io/blog/2023/07/06/confidential-kubernetes/}},
+  note         = {Kubernetes Blog}
+}
+
+@misc{coco2024,
+  title        = {Confidential Containers},
+  author       = {{Cloud Native Computing Foundation}},
+  year         = {2024},
+  howpublished = {\url{https://confidentialcontainers.org/}},
+  note         = {CNCF sandbox project; accessed 2026-07-04}
+}
+
+% ---------------------------------------------------------------------------
+% F. Confidential ML / AI inference on TEEs
+% ---------------------------------------------------------------------------
+@inproceedings{tramer2019slalom,
+  title     = {Slalom: Fast, Verifiable and Private Execution of Neural Networks in Trusted Hardware},
+  author    = {Tram{\`e}r, Florian and Boneh, Dan},
+  booktitle = {International Conference on Learning Representations (ICLR); arXiv:1806.03287},
+  year      = {2019}
+}
+
+@inproceedings{mo2020darknetz,
+  title     = {{DarkneTZ}: Towards Model Privacy at the Edge using Trusted Execution Environments},
+  author    = {Mo, Fan and Shamsabadi, Ali Shahin and Katevas, Kleomenis and Demetriou, Soteris and Leontiadis, Ilias and Cavallaro, Andrea and Haddadi, Hamed},
+  booktitle = {Proceedings of the 18th International Conference on Mobile Systems, Applications, and Services (MobiSys)},
+  year      = {2020},
+  doi       = {10.1145/3386901.3388946}
+}
+
+@article{sun2020shadownet,
+  title   = {{ShadowNet}: A Secure and Efficient On-device Model Inference System for Convolutional Neural Networks},
+  author  = {Sun, Zhichuang and Sun, Ruimin and Liu, Changming and Chowdhury, Amrita Roy and Lu, Long and Jha, Somesh},
+  journal = {arXiv preprint arXiv:2011.05905 (IEEE S\&P 2023)},
+  year    = {2020}
+}
+
+@article{li2024teeslice,
+  title   = {{TEESlice}: Protecting Sensitive Neural Network Models in Trusted Execution Environments When Attackers have Pre-Trained Models},
+  author  = {Li, Ding and Zhang, Ziqi and Yao, Mengyu and Cai, Yifeng and Guo, Yao and Chen, Xiangqun},
+  journal = {arXiv preprint arXiv:2411.09945},
+  year    = {2024}
+}
+
+@article{hua2020guardnn,
+  title   = {{GuardNN}: Secure Accelerator Architecture for Privacy-Preserving Deep Learning},
+  author  = {Hua, Weizhe and Umar, Muhammad and Zhang, Zhiru and Suh, G. Edward},
+  journal = {arXiv preprint arXiv:2008.11632 (DAC 2022)},
+  year    = {2020}
+}
+
+@article{hashemi2022darknight,
+  title   = {{DarKnight}: An Accelerated Framework for Privacy and Integrity Preserving Deep Learning Using Trusted Hardware},
+  author  = {Hashemi, Hanieh and Wang, Yongqin and Annavaram, Murali},
+  journal = {arXiv preprint arXiv:2207.00083 (MICRO 2021)},
+  year    = {2022}
+}
+
+@article{ma2020s3ml,
+  title   = {{S3ML}: A Secure Serving System for Machine Learning Inference},
+  author  = {Ma, Junming and Yu, Chaofan and Zhou, Aihui and Wu, Bingzhe and Wu, Xibin and Chen, Xingyu and Chen, Xiangqun and Wang, Lei and Cao, Donggang},
+  journal = {arXiv preprint arXiv:2010.06212},
+  year    = {2020}
+}
+
+@article{lee2020ppml,
+  title   = {Privacy-Preserving Machine Learning in Untrusted Clouds Made Simple},
+  author  = {Lee, Dayeol and Kuvaiskii, Dmitrii and Vahldiek-Oberwagner, Anjo and Vij, Mona},
+  journal = {arXiv preprint arXiv:2009.04390},
+  year    = {2020}
+}
+
+@article{hu2024sesemi,
+  title   = {{SeSeMI}: Secure Serverless Model Inference on Sensitive Data},
+  author  = {Hu, Guoyu and Wu, Yuncheng and Chen, Gang and Dinh, Tien Tuan Anh and Ooi, Beng Chin},
+  journal = {arXiv preprint arXiv:2412.11640},
+  year    = {2024}
+}
+
+@article{schambach2026enclavex,
+  title   = {{EnclaveX}: End-to-End Confidential {AI} with {CPU}/{GPU} {TEEs}},
+  author  = {Schambach, Robert and Le, Quoc Do and Arnautov, Sergei and Fetzer, Christof},
+  journal = {arXiv preprint arXiv:2606.31408},
+  year    = {2026}
+}
+
+@article{yu2025dualprivacy,
+  title   = {Towards Confidential and Efficient {LLM} Inference with Dual Privacy Protection},
+  author  = {Yu, Honglan and Wang, Yibin and Dai, Feifei and Liu, Dong and Fan, Haihui and Gu, Xiaoyan},
+  journal = {arXiv preprint arXiv:2509.09091},
+  year    = {2025}
+}
+
+@article{abdollahi2025ondevice,
+  title   = {An Early Experience with Confidential Computing Architecture for On-Device Model Protection},
+  author  = {Abdollahi, Sina and Maheri, Mohammad and Siby, Sandra and Kogias, Marios and Haddadi, Hamed},
+  journal = {arXiv preprint arXiv:2504.08508 (SysTEX 2025)},
+  year    = {2025}
+}
+
+@article{abdollahi2026agentee,
+  title   = {{AgenTEE}: Confidential {LLM} Agent Execution on Edge Devices},
+  author  = {Abdollahi, Sina and Maheri, Mohammad M and Forough, Javad and Al Sadi, Amir and Millar, Josh and Kotz, David and Kogias, Marios and Haddadi, Hamed},
+  journal = {arXiv preprint arXiv:2604.18231},
+  year    = {2026}
+}
+
+% ---------------------------------------------------------------------------
+% G. Systematization of knowledge — ML + confidential computing
+% ---------------------------------------------------------------------------
+@article{mo2022mlccsok,
+  title   = {Machine Learning with Confidential Computing: A Systematization of Knowledge},
+  author  = {Mo, Fan and Tarkhani, Zahra and Haddadi, Hamed},
+  journal = {arXiv preprint arXiv:2208.10134 (ACM Computing Surveys)},
+  year    = {2022}
+}
+
+@article{duy2021cmlsok,
+  title   = {Confidential Machine Learning Computation in Untrusted Environments: A Systems Security Perspective},
+  author  = {Duy, Kha Dinh and Noh, Taehyun and Huh, Siwon and Lee, Hojoon},
+  journal = {arXiv preprint arXiv:2111.03308 (IEEE Access)},
+  year    = {2021}
+}
+
+% ---------------------------------------------------------------------------
+% H. GPU trusted execution & confidential GPUs
+% ---------------------------------------------------------------------------
+@inproceedings{volos2018graviton,
+  title     = {Graviton: Trusted Execution Environments on {GPUs}},
+  author    = {Volos, Stavros and Vaswani, Kapil and Bruno, Rodrigo},
+  booktitle = {13th USENIX Symposium on Operating Systems Design and Implementation (OSDI)},
+  year      = {2018},
+  doi       = {10.5555/3291168.3291219}
+}
+
+@inproceedings{hunt2020telekine,
+  title     = {Telekine: Secure Computing with Cloud {GPUs}},
+  author    = {Hunt, Tyler and Jia, Zhipeng and Miller, Vance and Szekely, Ariel and Hu, Yige and Rossbach, Christopher J. and Witchel, Emmett},
+  booktitle = {17th USENIX Symposium on Networked Systems Design and Implementation (NSDI)},
+  year      = {2020}
+}
+
+@article{zhu2024h100bench,
+  title   = {Confidential Computing on {NVIDIA} {Hopper} {GPUs}: A Performance Benchmark Study},
+  author  = {Zhu, Jianwei and Yin, Hang and Deng, Peng and Almeida, Aline and Zhou, Shunfan},
+  journal = {arXiv preprint arXiv:2409.03992},
+  year    = {2024}
+}
+
+@article{gu2025gpucc,
+  title   = {Blueprint, Bootstrap, and Bridge: A Security Look at {NVIDIA} {GPU} Confidential Computing},
+  author  = {Gu, Zhongshu and Valdez, Enriquillo and Ahmed, Salman and Stephen, Julian James and Le, Michael and Jamjoom, Hani and Zhao, Shixuan and Lin, Zhiqiang},
+  journal = {arXiv preprint arXiv:2507.02770},
+  year    = {2025}
+}
+
+% ---------------------------------------------------------------------------
+% I. Orchestration security, supply chain, verifiable ML provenance
+% ---------------------------------------------------------------------------
+@article{duddu2024laminator,
+  title   = {Laminator: Verifiable {ML} Property Cards using Hardware-assisted Attestations},
+  author  = {Duddu, Vasisht and J{\"a}rvinen, Oskari and Gunn, Lachlan J and Asokan, N},
+  journal = {arXiv preprint arXiv:2406.17548 (ACM CODASPY 2025)},
+  year    = {2024}
+}
+
+@article{ali2024cmsweb,
+  title   = {Implementation of New Security Features in {CMSWEB} {Kubernetes} Cluster at {CERN}},
+  author  = {Ali, Aamir and Imran, Muhammad and Kuznetsov, Valentin and Trigazis, Spyridon and Pervaiz, Aroosha and Pfeiffer, Andreas and Mascheroni, Marco},
+  journal = {arXiv preprint arXiv:2405.15342},
+  year    = {2024}
+}
+
+@article{enyedi2026modrepos,
+  title   = {Human-Certified Module Repositories for the {AI} Age},
+  author  = {Enyedi, Szil{\'a}rd},
+  journal = {arXiv preprint arXiv:2603.02512},
+  year    = {2026}
+}

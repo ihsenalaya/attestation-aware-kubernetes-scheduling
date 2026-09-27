@@ -1,0 +1,39 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AttestationEvidence
+metadata:
+  creationTimestamp: "2026-07-05T06:33:44Z"
+  generation: 1
+  labels:
+    ai.sovereign.io/verified-by: central-verifier
+  name: evidence-ai-platform-control-plane
+  namespace: ai-platform
+  resourceVersion: "368128"
+  uid: 614f3d90-f7f0-42ee-9b85-29fd307cd441
+spec:
+  evidenceType: cpu
+  freshness:
+    maxAgeSeconds: 300
+    simulated: true
+  runtime: {}
+  simulated: true
+  subjectRef:
+    name: ai-platform-control-plane
+  tee: SEV-SNP
+status:
+  attestationType: simulated
+  conditions:
+  - lastTransitionTime: "2026-07-05T06:33:44Z"
+    message: attestation verified
+    observedGeneration: 1
+    reason: Reconciled
+    status: "True"
+    type: Ready
+  evidenceMode: simulated
+  lastVerifiedTime: "2026-07-05T07:07:12Z"
+  nonce: 245b9c74d5a759717287ca35e1f7aaa7
+  observedGeneration: 1
+  provider: simulator
+  verificationStatus: Verified
+  verified: true
+  verifiedBy: central-verifier
+  verifierPodUID: 33518966-e42c-49e3-b90d-b13ba041abc8

@@ -1,0 +1,305 @@
+apiVersion: v1
+items:
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:28:24Z"
+    generateName: raw-aks-conf-25767226-vmss000004-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000004
+    name: raw-aks-conf-25767226-vmss000004-bdck2
+    namespace: ai-platform
+    resourceVersion: "11674"
+    uid: 9e882bde-f050-42de-adad-a80acd679165
+  spec:
+    agentPodUID: 2c0cfa90-8dfe-48fd-ac89-34158e7b937e
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:28:24Z"
+    nodeName: aks-conf-25767226-vmss000004
+    nonce: 887ea8e9a2ffc8b96f38baa46bd74210
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000004
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:27:24Z"
+    generateName: raw-aks-conf-25767226-vmss000004-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000004
+    name: raw-aks-conf-25767226-vmss000004-ccjkm
+    namespace: ai-platform
+    resourceVersion: "11323"
+    uid: 308ee12b-1523-4ff1-9e7b-24da7f5e846e
+  spec:
+    agentPodUID: 2c0cfa90-8dfe-48fd-ac89-34158e7b937e
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:27:24Z"
+    nodeName: aks-conf-25767226-vmss000004
+    nonce: 719a62b08c0c674a4b23110513f74fc5
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000004
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:26:24Z"
+    generateName: raw-aks-conf-25767226-vmss000004-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000004
+    name: raw-aks-conf-25767226-vmss000004-gbjrr
+    namespace: ai-platform
+    resourceVersion: "10667"
+    uid: 0abafd1c-a959-465c-8d1b-b11c31ef110d
+  spec:
+    agentPodUID: 2c0cfa90-8dfe-48fd-ac89-34158e7b937e
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:26:24Z"
+    nodeName: aks-conf-25767226-vmss000004
+    nonce: 1ac2aabf774799ef7c89f86a53e5f3d4
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000004
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:26:48Z"
+    generateName: raw-aks-conf-25767226-vmss000005-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000005
+    name: raw-aks-conf-25767226-vmss000005-8ns7h
+    namespace: ai-platform
+    resourceVersion: "11152"
+    uid: 2535a00c-20d4-4ea7-aefe-30956aeb199d
+  spec:
+    agentPodUID: c7ca3670-d44c-4937-b7b5-a309de05b5dc
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:26:48Z"
+    nodeName: aks-conf-25767226-vmss000005
+    nonce: d340b8386b6b070ebca977453486f99d
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000005
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:28:48Z"
+    generateName: raw-aks-conf-25767226-vmss000005-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000005
+    name: raw-aks-conf-25767226-vmss000005-mrrb9
+    namespace: ai-platform
+    resourceVersion: "11824"
+    uid: f65944ab-3e5b-4b5b-b5b9-d4a75f83580d
+  spec:
+    agentPodUID: c7ca3670-d44c-4937-b7b5-a309de05b5dc
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:28:48Z"
+    nodeName: aks-conf-25767226-vmss000005
+    nonce: e04b81ce87b5e1c35c86651ce4ad3b12
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000005
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:27:48Z"
+    generateName: raw-aks-conf-25767226-vmss000005-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000005
+    name: raw-aks-conf-25767226-vmss000005-rz99t
+    namespace: ai-platform
+    resourceVersion: "11508"
+    uid: f8da18cb-23d8-4e9e-a335-54e69516441b
+  spec:
+    agentPodUID: c7ca3670-d44c-4937-b7b5-a309de05b5dc
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:27:48Z"
+    nodeName: aks-conf-25767226-vmss000005
+    nonce: 2fdd6bb2f2a912e453e296f26d07905c
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000005
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:26:43Z"
+    generateName: raw-aks-conf-25767226-vmss000006-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000006
+    name: raw-aks-conf-25767226-vmss000006-4pthk
+    namespace: ai-platform
+    resourceVersion: "11113"
+    uid: fc2e87b3-5eaa-4e2c-ad6d-dc56f09ec7cb
+  spec:
+    agentPodUID: 8c3498f0-44f4-4e09-8247-1f941e92856b
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:26:43Z"
+    nodeName: aks-conf-25767226-vmss000006
+    nonce: cac377f155295b937aa976a1cd2b11d6
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000006
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:27:43Z"
+    generateName: raw-aks-conf-25767226-vmss000006-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000006
+    name: raw-aks-conf-25767226-vmss000006-9khtf
+    namespace: ai-platform
+    resourceVersion: "11483"
+    uid: ae5d40dc-47d2-471f-ae3a-e9814c376d6b
+  spec:
+    agentPodUID: 8c3498f0-44f4-4e09-8247-1f941e92856b
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:27:43Z"
+    nodeName: aks-conf-25767226-vmss000006
+    nonce: d443cd36ab09ebc34822bc1313ea5f80
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000006
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:28:43Z"
+    generateName: raw-aks-conf-25767226-vmss000006-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000006
+    name: raw-aks-conf-25767226-vmss000006-qmjwq
+    namespace: ai-platform
+    resourceVersion: "11787"
+    uid: 99d60065-e406-42da-bc79-7c93e98a957a
+  spec:
+    agentPodUID: 8c3498f0-44f4-4e09-8247-1f941e92856b
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:28:43Z"
+    nodeName: aks-conf-25767226-vmss000006
+    nonce: 3d06d1f84b01e3a6a9fc18c0a5ad0ae2
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000006
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:28:30Z"
+    generateName: raw-aks-conf-25767226-vmss000007-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000007
+    name: raw-aks-conf-25767226-vmss000007-44b6t
+    namespace: ai-platform
+    resourceVersion: "11702"
+    uid: 7101b66d-567a-4a6a-bab1-d9634ba1638b
+  spec:
+    agentPodUID: 650e5a75-e16d-4723-a4e8-f6d6bfa5f6f3
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:28:30Z"
+    nodeName: aks-conf-25767226-vmss000007
+    nonce: 1ce24475740b9a24418f1510a263b4b2
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000007
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:26:30Z"
+    generateName: raw-aks-conf-25767226-vmss000007-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000007
+    name: raw-aks-conf-25767226-vmss000007-6722l
+    namespace: ai-platform
+    resourceVersion: "10914"
+    uid: 52d0ac33-d90d-41a0-8580-b88ccdb3dfba
+  spec:
+    agentPodUID: 650e5a75-e16d-4723-a4e8-f6d6bfa5f6f3
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:26:30Z"
+    nodeName: aks-conf-25767226-vmss000007
+    nonce: 335c840e6a4a535d83b3687d6dfc6cbe
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000007
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+- apiVersion: aiops.imperium.io/v1alpha1
+  kind: RawAttestationReport
+  metadata:
+    creationTimestamp: "2026-07-04T23:27:30Z"
+    generateName: raw-aks-conf-25767226-vmss000007-
+    generation: 1
+    labels:
+      ai.sovereign.io/collector: node-attestation-agent
+      ai.sovereign.io/node: aks-conf-25767226-vmss000007
+    name: raw-aks-conf-25767226-vmss000007-kkjns
+    namespace: ai-platform
+    resourceVersion: "11354"
+    uid: fd7b65b9-9a4c-4445-ab9d-33925e33239a
+  spec:
+    agentPodUID: 650e5a75-e16d-4723-a4e8-f6d6bfa5f6f3
+    agentServiceAccount: node-attestation-agent
+    collectedAt: "2026-07-04T23:27:30Z"
+    nodeName: aks-conf-25767226-vmss000007
+    nonce: b902d781f92a82c51fa83851a8934792
+    provider: maa
+  status:
+    evidenceRef: evidence-aks-conf-25767226-vmss000007
+    observedGeneration: 1
+    processed: true
+    verificationStatus: Failed
+kind: List
+metadata:
+  resourceVersion: ""

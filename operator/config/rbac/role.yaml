@@ -1,0 +1,171 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  - pods
+  - serviceaccounts
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - admissionregistration.k8s.io
+  resources:
+  - mutatingwebhookconfigurations
+  - validatingwebhookconfigurations
+  verbs:
+  - create
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - aigateway.envoyproxy.io
+  resources:
+  - aigatewayroutelists
+  - aigatewayroutes
+  verbs:
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - aibreakevenanalyses
+  - aibudgetpolicies
+  - aichangerequests
+  - aievidencerecords
+  - aifinopsreports
+  - aigateways
+  - aikeyreleasepolicies
+  - aimodels
+  - aiplacementdecisions
+  - aiproviders
+  - aiqualitygates
+  - airevocationpolicies
+  - airouteoverrides
+  - airoutingpolicies
+  - aisovereigntypolicies
+  - attestationevidences
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - aibreakevenanalyses/finalizers
+  - aibudgetpolicies/finalizers
+  - aichangerequests/finalizers
+  - aievidencerecords/finalizers
+  - aifinopsreports/finalizers
+  - aigateways/finalizers
+  - aikeyreleasepolicies/finalizers
+  - aimodels/finalizers
+  - aiplacementdecisions/finalizers
+  - aiproviders/finalizers
+  - aiqualitygates/finalizers
+  - airevocationpolicies/finalizers
+  - airouteoverrides/finalizers
+  - airoutingpolicies/finalizers
+  - aisovereigntypolicies/finalizers
+  - attestationevidences/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - aibreakevenanalyses/status
+  - aibudgetpolicies/status
+  - aichangerequests/status
+  - aievidencerecords/status
+  - aifinopsreports/status
+  - aigateways/status
+  - aikeyreleasepolicies/status
+  - aimodels/status
+  - aiplacementdecisions/status
+  - aiproviders/status
+  - aiqualitygates/status
+  - airevocationpolicies/status
+  - airouteoverrides/status
+  - airoutingpolicies/status
+  - aisovereigntypolicies/status
+  - aiworkloadbindings/status
+  - attestationevidences/status
+  - rawattestationreports/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - aiworkloadbindings
+  - confidentialinferencepolicies
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - rawattestationreports
+  verbs:
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - batch
+  resources:
+  - jobs
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - watch
+- apiGroups:
+  - node.k8s.io
+  resources:
+  - runtimeclasses
+  verbs:
+  - create
+  - get
+  - list
+  - patch
+  - update
+  - watch

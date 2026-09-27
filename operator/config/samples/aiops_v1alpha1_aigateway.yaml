@@ -1,0 +1,22 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIGateway
+metadata:
+  name: main-gateway
+  labels:
+    app.kubernetes.io/name: ai-sovereign-finops-operator
+    app.kubernetes.io/managed-by: kustomize
+spec:
+  type: litellm
+  endpoint: http://litellm.default.svc.cluster.local:4000
+  namespaceSelector:
+    matchLabels:
+      ai-finops/enabled: "true"
+  telemetry:
+    # Real measured usage: seed-usage makes live LLM calls and writes the measured
+    # token volumes to the ConfigMap below; the operator reads usage from it.
+    mode: configmap
+    sourceConfigMap: greenops-usage
+    metricsEndpoint: /metrics
+  auth:
+    secretRef:
+      name: litellm-admin-secret

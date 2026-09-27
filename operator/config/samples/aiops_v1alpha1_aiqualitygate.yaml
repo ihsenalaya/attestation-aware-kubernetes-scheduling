@@ -1,0 +1,377 @@
+# Example golden datasets and evidence for four demo applications.
+# Replace these prompts/results with application-owned datasets produced by the
+# real evaluation job before using the score for production decisions.
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: finance-golden-prompts
+  namespace: default
+data:
+  prompts.yaml: |
+    - id: risk-summary
+      prompt: "Summarize key counterparty risks for a new supplier."
+      expected:
+        reference: "Counterparty risk should mention liquidity, concentration and operational risk."
+        requiredKeywords: ["counterparty", "liquidity", "risk"]
+        maxTokens: 300
+    - id: var-explain
+      prompt: "Explain value-at-risk in two sentences."
+      expected:
+        reference: "Value-at-risk estimates a portfolio loss threshold at a confidence level over a time horizon."
+        requiredKeywords: ["loss", "confidence", "portfolio"]
+        maxTokens: 120
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: finance-quality-evidence
+  namespace: default
+data:
+  results.yaml: |
+    - id: risk-summary
+      model: gpt-us-mini
+      reference: "Counterparty risk should mention liquidity, concentration and operational risk."
+      actual: "Counterparty risk includes liquidity pressure, concentration exposure and operational delivery risk."
+      semanticScore: 96
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: var-explain
+      model: gpt-us-mini
+      reference: "Value-at-risk estimates a portfolio loss threshold at a confidence level over a time horizon."
+      actual: "Value-at-risk estimates the maximum portfolio loss expected for a confidence level and horizon."
+      semanticScore: 95
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: risk-summary
+      model: mistral-large-latest
+      reference: "Counterparty risk should mention liquidity, concentration and operational risk."
+      actual: "Supplier counterparty risk covers liquidity, concentration, operational resilience and contractual exposure."
+      semanticScore: 94
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: var-explain
+      model: mistral-large-latest
+      reference: "Value-at-risk estimates a portfolio loss threshold at a confidence level over a time horizon."
+      actual: "VaR describes a portfolio loss level not expected to be exceeded at a stated confidence over a horizon."
+      semanticScore: 93
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+---
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIQualityGate
+metadata:
+  name: finance-risk-assistant-quality-gate
+  namespace: default
+spec:
+  target:
+    namespace: finance
+    application: risk-assistant
+  sourceModel: gpt-us-mini
+  candidateModel: mistral-large-latest
+  goldenDatasetRef: { name: finance-golden-prompts, namespace: default }
+  evidenceRef: { name: finance-quality-evidence, namespace: default }
+  evaluation:
+    endpoint: http://greenops-aigw.envoy-gateway-system.svc.cluster.local:80/v1/chat/completions
+    maxTokens: 120
+    timeoutSeconds: 60
+  latencyThresholdMs: 2500
+  minSamples: 2
+  tolerancePoints: 3
+  weights:
+    judged: 0
+  requiredChecks:
+    noUnexpectedRefusal: true
+    noSensitiveDataLeak: true
+    requiredKeywords: [risk, liquidity]
+    maxErrorRatePercent: 2
+    maxLatencyIncreasePercent: 20
+  canary:
+    enabled: true
+    percent: 5
+    duration: 30m
+  rollback:
+    enabled: true
+    onErrorRatePercent: 3
+    onLatencyIncreasePercent: 30
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rh-golden-prompts
+  namespace: default
+data:
+  prompts.yaml: |
+    - id: leave-policy
+      prompt: "Explique la politique de congés en une phrase."
+      expected:
+        reference: "La réponse doit expliquer la demande de congé, la validation manager et le solde disponible."
+        requiredKeywords: ["congé", "manager", "solde"]
+        maxTokens: 160
+    - id: expense-note
+      prompt: "Comment soumettre une note de frais ?"
+      expected:
+        reference: "La réponse doit indiquer de déposer les justificatifs, choisir le centre de coût et soumettre pour approbation."
+        requiredKeywords: ["justificatifs", "approbation", "frais"]
+        maxTokens: 180
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rh-quality-evidence
+  namespace: default
+data:
+  results.yaml: |
+    - id: leave-policy
+      model: cohere-command-a-latest
+      reference: "La réponse doit expliquer la demande de congé, la validation manager et le solde disponible."
+      actual: "Pour un congé, vérifiez votre solde puis envoyez la demande à votre manager pour validation."
+      semanticScore: 94
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: expense-note
+      model: cohere-command-a-latest
+      reference: "La réponse doit indiquer de déposer les justificatifs, choisir le centre de coût et soumettre pour approbation."
+      actual: "Ajoutez les justificatifs de frais, choisissez le centre de coût et soumettez la note pour approbation."
+      semanticScore: 95
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: leave-policy
+      model: gpt-us-mini
+      reference: "La réponse doit expliquer la demande de congé, la validation manager et le solde disponible."
+      actual: "Consultez votre solde, créez la demande de congé et attendez la validation du manager."
+      semanticScore: 93
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: expense-note
+      model: gpt-us-mini
+      reference: "La réponse doit indiquer de déposer les justificatifs, choisir le centre de coût et soumettre pour approbation."
+      actual: "Soumettez la note de frais avec justificatifs, centre de coût et workflow d'approbation."
+      semanticScore: 94
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+---
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIQualityGate
+metadata:
+  name: rh-chatbot-quality-gate
+  namespace: default
+spec:
+  target:
+    namespace: rh
+    application: chatbot-rh
+  sourceModel: cohere-command-a-latest
+  candidateModel: gpt-us-mini
+  goldenDatasetRef: { name: rh-golden-prompts, namespace: default }
+  evidenceRef: { name: rh-quality-evidence, namespace: default }
+  evaluation:
+    endpoint: http://greenops-aigw.envoy-gateway-system.svc.cluster.local:80/v1/chat/completions
+    maxTokens: 100
+    timeoutSeconds: 60
+  latencyThresholdMs: 2200
+  minSamples: 2
+  tolerancePoints: 3
+  weights:
+    judged: 0
+  requiredChecks:
+    noUnexpectedRefusal: true
+    requiredKeywords: [congé, frais]
+    maxErrorRatePercent: 2
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: legal-golden-prompts
+  namespace: default
+data:
+  prompts.yaml: |
+    - id: liability
+      prompt: "Summarize the liability clauses of a SaaS contract."
+      expected:
+        reference: "The answer should mention liability cap, excluded damages and indemnification duties."
+        requiredKeywords: ["liability", "cap", "indemnification"]
+        maxTokens: 220
+    - id: renewal
+      prompt: "List risks in an auto-renewal clause."
+      expected:
+        reference: "The answer should identify notice period, lock-in risk and termination requirements."
+        requiredKeywords: ["notice", "termination", "renewal"]
+        maxTokens: 200
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: legal-quality-evidence
+  namespace: default
+data:
+  results.yaml: |
+    - id: liability
+      model: cohere-command-a-latest
+      reference: "The answer should mention liability cap, excluded damages and indemnification duties."
+      actual: "Key clauses include the liability cap, excluded indirect damages and indemnification obligations."
+      semanticScore: 95
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: renewal
+      model: cohere-command-a-latest
+      reference: "The answer should identify notice period, lock-in risk and termination requirements."
+      actual: "Auto-renewal risk comes from short notice windows, renewal lock-in and termination requirements."
+      semanticScore: 94
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: liability
+      model: mistral-large-latest
+      reference: "The answer should mention liability cap, excluded damages and indemnification duties."
+      actual: "Review the liability cap, exclusions for consequential damages and indemnification duties."
+      semanticScore: 94
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: renewal
+      model: mistral-large-latest
+      reference: "The answer should identify notice period, lock-in risk and termination requirements."
+      actual: "Risks include missed notice, unwanted renewal lock-in and strict termination procedures."
+      semanticScore: 93
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+---
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIQualityGate
+metadata:
+  name: legal-contract-quality-gate
+  namespace: default
+spec:
+  target:
+    namespace: legal
+    application: contract-review
+  sourceModel: cohere-command-a-latest
+  candidateModel: mistral-large-latest
+  goldenDatasetRef: { name: legal-golden-prompts, namespace: default }
+  evidenceRef: { name: legal-quality-evidence, namespace: default }
+  evaluation:
+    endpoint: http://greenops-aigw.envoy-gateway-system.svc.cluster.local:80/v1/chat/completions
+    maxTokens: 120
+    timeoutSeconds: 60
+  latencyThresholdMs: 2500
+  minSamples: 2
+  tolerancePoints: 3
+  weights:
+    judged: 0
+  requiredChecks:
+    noUnexpectedRefusal: true
+    noSensitiveDataLeak: true
+    requiredKeywords: [liability, termination]
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: marketing-golden-prompts
+  namespace: default
+data:
+  prompts.yaml: |
+    - id: campaign
+      prompt: "Write a short compliant campaign summary for an EU banking product."
+      expected:
+        reference: "The answer should be concise, mention compliance review and avoid guaranteed returns."
+        requiredKeywords: ["compliance", "review", "returns"]
+        maxTokens: 200
+    - id: rgpd
+      prompt: "List privacy checks before launching a lead-generation form."
+      expected:
+        reference: "The answer should mention consent, retention, minimization and privacy notice."
+        requiredKeywords: ["consent", "retention", "privacy"]
+        maxTokens: 220
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: marketing-quality-evidence
+  namespace: default
+data:
+  results.yaml: |
+    - id: campaign
+      model: mistral-large-latest
+      reference: "The answer should be concise, mention compliance review and avoid guaranteed returns."
+      actual: "Campaign copy should pass compliance review, stay concise and avoid any promise of guaranteed returns."
+      semanticScore: 95
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: rgpd
+      model: mistral-large-latest
+      reference: "The answer should mention consent, retention, minimization and privacy notice."
+      actual: "Check consent capture, retention period, data minimization and the privacy notice before launch."
+      semanticScore: 96
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: campaign
+      model: cohere-command-a-latest
+      reference: "The answer should be concise, mention compliance review and avoid guaranteed returns."
+      actual: "Use concise wording, include compliance review and avoid guaranteed returns in the offer."
+      semanticScore: 93
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+    - id: rgpd
+      model: cohere-command-a-latest
+      reference: "The answer should mention consent, retention, minimization and privacy notice."
+      actual: "Before launch, verify consent, privacy notice, retention rules and minimization."
+      semanticScore: 92
+      schemaValid: true
+      unexpectedRefusal: false
+      sensitiveDataLeak: false
+      requiredKeywordsPresent: true
+---
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIQualityGate
+metadata:
+  name: marketing-content-quality-gate
+  namespace: default
+spec:
+  target:
+    namespace: marketing
+    application: content-writer
+  sourceModel: mistral-large-latest
+  candidateModel: cohere-command-a-latest
+  goldenDatasetRef: { name: marketing-golden-prompts, namespace: default }
+  evidenceRef: { name: marketing-quality-evidence, namespace: default }
+  evaluation:
+    endpoint: http://greenops-aigw.envoy-gateway-system.svc.cluster.local:80/v1/chat/completions
+    maxTokens: 120
+    timeoutSeconds: 60
+  latencyThresholdMs: 2600
+  minSamples: 2
+  tolerancePoints: 3
+  weights:
+    judged: 0
+  requiredChecks:
+    noUnexpectedRefusal: true
+    noSensitiveDataLeak: true
+    requiredKeywords: [compliance, privacy]

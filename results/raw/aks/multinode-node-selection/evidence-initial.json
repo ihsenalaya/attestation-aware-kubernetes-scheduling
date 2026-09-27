@@ -1,0 +1,368 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "aiops.imperium.io/v1alpha1",
+            "kind": "AttestationEvidence",
+            "metadata": {
+                "creationTimestamp": "2026-07-06T06:06:12Z",
+                "generation": 1,
+                "labels": {
+                    "ai.sovereign.io/verified-by": "central-verifier"
+                },
+                "name": "evidence-aks-conf-12838440-vmss000000",
+                "namespace": "ai-platform",
+                "resourceVersion": "10999",
+                "uid": "450ae7ab-97b5-4eb7-abdf-4d0308cc7909"
+            },
+            "spec": {
+                "evidenceType": "cpu",
+                "freshness": {
+                    "maxAgeSeconds": 300
+                },
+                "runtime": {},
+                "subjectRef": {
+                    "name": "aks-conf-12838440-vmss000000"
+                },
+                "tee": "SEV-SNP"
+            },
+            "status": {
+                "attestationType": "guest-attestation",
+                "claimsDigest": "deed73222c1855f466372de7bfa4b8ae26256a11f4d9e150f58150bbd9be9ded",
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-07-06T06:27:16Z",
+                        "message": "attestation verified",
+                        "observedGeneration": 1,
+                        "reason": "Reconciled",
+                        "status": "True",
+                        "type": "Ready"
+                    }
+                ],
+                "evidenceMode": "real",
+                "expiresAt": "2026-07-06T14:27:08Z",
+                "freshnessSeconds": 300,
+                "issuedAt": "2026-07-06T06:27:08Z",
+                "lastVerifiedTime": "2026-07-06T06:27:16Z",
+                "maaTokenHash": "2134d87909c64605532f637a38c1177a4f8e9d65f1caa00bd13edb22be40174e",
+                "nonce": "1bf01aa8eb789a3d7506205c5fae300b",
+                "observedGeneration": 1,
+                "provider": "maa",
+                "verificationStatus": "Verified",
+                "verified": true,
+                "verifiedBy": "central-verifier",
+                "verifierPodUID": "0ef60dfe-f695-4e39-a620-ad66921b0eeb"
+            }
+        },
+        {
+            "apiVersion": "aiops.imperium.io/v1alpha1",
+            "kind": "AttestationEvidence",
+            "metadata": {
+                "creationTimestamp": "2026-07-06T06:06:12Z",
+                "generation": 1,
+                "labels": {
+                    "ai.sovereign.io/verified-by": "central-verifier"
+                },
+                "name": "evidence-aks-conf-12838440-vmss000001",
+                "namespace": "ai-platform",
+                "resourceVersion": "10976",
+                "uid": "fd8f7e08-6d7a-46af-9264-b1fabfca729c"
+            },
+            "spec": {
+                "evidenceType": "cpu",
+                "freshness": {
+                    "maxAgeSeconds": 300
+                },
+                "runtime": {},
+                "subjectRef": {
+                    "name": "aks-conf-12838440-vmss000001"
+                },
+                "tee": "SEV-SNP"
+            },
+            "status": {
+                "attestationType": "guest-attestation",
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-07-06T06:22:36Z",
+                        "message": "token age 21m9s exceeds max 5m0s",
+                        "observedGeneration": 1,
+                        "reason": "ValidationFailed",
+                        "status": "False",
+                        "type": "Ready"
+                    }
+                ],
+                "evidenceMode": "unverified",
+                "failureReason": "token age 21m9s exceeds max 5m0s",
+                "lastVerifiedTime": "2026-07-06T06:14:08Z",
+                "maaTokenHash": "7b0c5358284cb81e6ac97073035f7d3a2b6493b3b1bedd9eec16bf44538c090b",
+                "nonce": "3b9b88f53f759cff20c72e54681ebd6a",
+                "observedGeneration": 1,
+                "provider": "maa",
+                "verificationStatus": "Failed",
+                "verifiedBy": "central-verifier",
+                "verifierPodUID": "0ef60dfe-f695-4e39-a620-ad66921b0eeb"
+            }
+        },
+        {
+            "apiVersion": "aiops.imperium.io/v1alpha1",
+            "kind": "AttestationEvidence",
+            "metadata": {
+                "creationTimestamp": "2026-07-06T06:06:12Z",
+                "generation": 1,
+                "labels": {
+                    "ai.sovereign.io/verified-by": "central-verifier"
+                },
+                "name": "evidence-aks-conf-12838440-vmss000002",
+                "namespace": "ai-platform",
+                "resourceVersion": "10959",
+                "uid": "313b4e8f-a19c-41c6-9fee-ee3778db07d4"
+            },
+            "spec": {
+                "evidenceType": "cpu",
+                "freshness": {
+                    "maxAgeSeconds": 300
+                },
+                "runtime": {},
+                "subjectRef": {
+                    "name": "aks-conf-12838440-vmss000002"
+                },
+                "tee": "SEV-SNP"
+            },
+            "status": {
+                "attestationType": "guest-attestation",
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-07-06T06:22:36Z",
+                        "message": "token age 17m7s exceeds max 5m0s",
+                        "observedGeneration": 1,
+                        "reason": "ValidationFailed",
+                        "status": "False",
+                        "type": "Ready"
+                    }
+                ],
+                "evidenceMode": "unverified",
+                "failureReason": "token age 17m7s exceeds max 5m0s",
+                "lastVerifiedTime": "2026-07-06T06:14:08Z",
+                "maaTokenHash": "a0b2c9a8aea165a13bbd29499e7373277dfcdddd36dd4214f33a406054606909",
+                "nonce": "fb03b4aa2afd4531fd013c258585561d",
+                "observedGeneration": 1,
+                "provider": "maa",
+                "verificationStatus": "Failed",
+                "verifiedBy": "central-verifier",
+                "verifierPodUID": "0ef60dfe-f695-4e39-a620-ad66921b0eeb"
+            }
+        },
+        {
+            "apiVersion": "aiops.imperium.io/v1alpha1",
+            "kind": "AttestationEvidence",
+            "metadata": {
+                "creationTimestamp": "2026-07-06T06:06:12Z",
+                "generation": 1,
+                "labels": {
+                    "ai.sovereign.io/verified-by": "central-verifier"
+                },
+                "name": "evidence-aks-conf-12838440-vmss000003",
+                "namespace": "ai-platform",
+                "resourceVersion": "10977",
+                "uid": "f9d04231-8530-4543-9e5e-3968d523ab71"
+            },
+            "spec": {
+                "evidenceType": "cpu",
+                "freshness": {
+                    "maxAgeSeconds": 300
+                },
+                "runtime": {},
+                "subjectRef": {
+                    "name": "aks-conf-12838440-vmss000003"
+                },
+                "tee": "SEV-SNP"
+            },
+            "status": {
+                "attestationType": "guest-attestation",
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-07-06T06:22:36Z",
+                        "message": "token age 14m7s exceeds max 5m0s",
+                        "observedGeneration": 1,
+                        "reason": "ValidationFailed",
+                        "status": "False",
+                        "type": "Ready"
+                    }
+                ],
+                "evidenceMode": "unverified",
+                "failureReason": "token age 14m7s exceeds max 5m0s",
+                "lastVerifiedTime": "2026-07-06T06:14:09Z",
+                "maaTokenHash": "5a3ce6cddac84df4668216fc4179b11bd74c84c0e6c1ed87b0f6c431fb3740da",
+                "nonce": "8881d16fde8fde8004d18af9daebacd7",
+                "observedGeneration": 1,
+                "provider": "maa",
+                "verificationStatus": "Failed",
+                "verifiedBy": "central-verifier",
+                "verifierPodUID": "0ef60dfe-f695-4e39-a620-ad66921b0eeb"
+            }
+        },
+        {
+            "apiVersion": "aiops.imperium.io/v1alpha1",
+            "kind": "AttestationEvidence",
+            "metadata": {
+                "creationTimestamp": "2026-07-06T06:21:08Z",
+                "generation": 1,
+                "labels": {
+                    "ai.sovereign.io/verified-by": "central-verifier"
+                },
+                "name": "evidence-aks-conf-12838440-vmss000004",
+                "namespace": "ai-platform",
+                "resourceVersion": "10998",
+                "uid": "d70a0d2d-a0aa-40bf-87e4-0a1362f235a0"
+            },
+            "spec": {
+                "evidenceType": "cpu",
+                "freshness": {
+                    "maxAgeSeconds": 300
+                },
+                "runtime": {},
+                "subjectRef": {
+                    "name": "aks-conf-12838440-vmss000004"
+                },
+                "tee": "SEV-SNP"
+            },
+            "status": {
+                "attestationType": "guest-attestation",
+                "claimsDigest": "4129235dc9b42fabc1980f793bf6cf1fa5b3ee6e39d3b7ad9360efabd2e9f56f",
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-07-06T06:27:16Z",
+                        "message": "attestation verified",
+                        "observedGeneration": 1,
+                        "reason": "Reconciled",
+                        "status": "True",
+                        "type": "Ready"
+                    }
+                ],
+                "evidenceMode": "real",
+                "expiresAt": "2026-07-06T14:26:08Z",
+                "freshnessSeconds": 300,
+                "issuedAt": "2026-07-06T06:26:08Z",
+                "lastVerifiedTime": "2026-07-06T06:27:16Z",
+                "maaTokenHash": "9b1689ea768f4c644fdbf972032cd7bfbaf55daa92ce2b181719fbfe62d1453d",
+                "nonce": "a177f549a2a280081ddbcd25c5f66dac",
+                "observedGeneration": 1,
+                "provider": "maa",
+                "verificationStatus": "Verified",
+                "verified": true,
+                "verifiedBy": "central-verifier",
+                "verifierPodUID": "0ef60dfe-f695-4e39-a620-ad66921b0eeb"
+            }
+        },
+        {
+            "apiVersion": "aiops.imperium.io/v1alpha1",
+            "kind": "AttestationEvidence",
+            "metadata": {
+                "creationTimestamp": "2026-07-06T06:20:55Z",
+                "generation": 1,
+                "labels": {
+                    "ai.sovereign.io/verified-by": "central-verifier"
+                },
+                "name": "evidence-aks-conf-12838440-vmss000005",
+                "namespace": "ai-platform",
+                "resourceVersion": "11190",
+                "uid": "56ef4265-5b09-46fc-9a04-5b19fddcb5e9"
+            },
+            "spec": {
+                "evidenceType": "cpu",
+                "freshness": {
+                    "maxAgeSeconds": 300
+                },
+                "runtime": {},
+                "subjectRef": {
+                    "name": "aks-conf-12838440-vmss000005"
+                },
+                "tee": "SEV-SNP"
+            },
+            "status": {
+                "attestationType": "guest-attestation",
+                "claimsDigest": "c593c45802f1cfdf8ff3887c79f56b2554539a6ae956977c77c801d8da7f3e0d",
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-07-06T06:27:16Z",
+                        "message": "attestation verified",
+                        "observedGeneration": 1,
+                        "reason": "Reconciled",
+                        "status": "True",
+                        "type": "Ready"
+                    }
+                ],
+                "evidenceMode": "real",
+                "expiresAt": "2026-07-06T14:27:55Z",
+                "freshnessSeconds": 300,
+                "issuedAt": "2026-07-06T06:27:55Z",
+                "lastVerifiedTime": "2026-07-06T06:27:56Z",
+                "maaTokenHash": "389692f158a9a4d26b518d4723262c4eb36772c9a679ef7f09c17197a7c3cc0a",
+                "nonce": "4d317b0f541331e1434a658866852080",
+                "observedGeneration": 1,
+                "provider": "maa",
+                "verificationStatus": "Verified",
+                "verified": true,
+                "verifiedBy": "central-verifier",
+                "verifierPodUID": "0ef60dfe-f695-4e39-a620-ad66921b0eeb"
+            }
+        },
+        {
+            "apiVersion": "aiops.imperium.io/v1alpha1",
+            "kind": "AttestationEvidence",
+            "metadata": {
+                "creationTimestamp": "2026-07-06T06:20:57Z",
+                "generation": 1,
+                "labels": {
+                    "ai.sovereign.io/verified-by": "central-verifier"
+                },
+                "name": "evidence-aks-conf-12838440-vmss000006",
+                "namespace": "ai-platform",
+                "resourceVersion": "11201",
+                "uid": "4069b8ed-3158-4f4e-aeb9-e3ecf1d675cc"
+            },
+            "spec": {
+                "evidenceType": "cpu",
+                "freshness": {
+                    "maxAgeSeconds": 300
+                },
+                "runtime": {},
+                "subjectRef": {
+                    "name": "aks-conf-12838440-vmss000006"
+                },
+                "tee": "SEV-SNP"
+            },
+            "status": {
+                "attestationType": "guest-attestation",
+                "claimsDigest": "cbcde0d110598cb204f5fa60f859882bb684d9cee073e8043bdcecc0ebb34c27",
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-07-06T06:27:57Z",
+                        "message": "attestation verified",
+                        "observedGeneration": 1,
+                        "reason": "Reconciled",
+                        "status": "True",
+                        "type": "Ready"
+                    }
+                ],
+                "evidenceMode": "real",
+                "expiresAt": "2026-07-06T14:27:57Z",
+                "freshnessSeconds": 300,
+                "issuedAt": "2026-07-06T06:27:57Z",
+                "lastVerifiedTime": "2026-07-06T06:27:57Z",
+                "maaTokenHash": "a2837f03e7eda173b6aaae4322e61fff3c1911a22fe99be0ab972519ab8c6f00",
+                "nonce": "80db6f3ec7b6714c2682fede837a6f2f",
+                "observedGeneration": 1,
+                "provider": "maa",
+                "verificationStatus": "Verified",
+                "verified": true,
+                "verifiedBy": "central-verifier",
+                "verifierPodUID": "0ef60dfe-f695-4e39-a620-ad66921b0eeb"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

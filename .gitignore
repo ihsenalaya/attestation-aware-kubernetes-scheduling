@@ -1,0 +1,30 @@
+# Local credentials and infrastructure state
+.env
+.env.*
+!.env.example
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars
+!*.tfvars.example
+kubeconfig*
+*.pem
+*.key
+ai_key.txt
+# Local builds and analysis outputs
+.venv/
+__pycache__/
+*.pyc
+reproduced/
+dist/
+operator/bin/
+operator/testbin/
+operator/coverage.out
+# LaTeX intermediates (the manuscript PDF and .bbl remain tracked)
+*.aux
+*.blg
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+paper/*.log

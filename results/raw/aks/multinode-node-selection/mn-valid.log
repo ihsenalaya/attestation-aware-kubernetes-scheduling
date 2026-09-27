@@ -1,0 +1,237 @@
+pod/mn-valid created
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    ai.sovereign.io/applied-runtime-class: runc
+    ai.sovereign.io/attestation-evidence: evidence-aks-conf-12838440-vmss000000
+    ai.sovereign.io/expected-evidence-age-seconds: "300"
+    ai.sovereign.io/expected-runtime-class: runc
+    ai.sovereign.io/model-digest: sha256:multinode-node-selection
+    ai.sovereign.io/policy-hash: 9e48e2837f7a1da4a142bf47783e417851da511e75281d7283018006c95fe267
+    ai.sovereign.io/simulated-execution: "false"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{"ai.sovereign.io/attestation-evidence":"evidence-aks-conf-12838440-vmss000000","ai.sovereign.io/model-digest":"sha256:multinode-node-selection"},"labels":{"ai.sovereign.io/experiment":"multinode","app":"bench"},"name":"mn-valid","namespace":"article1-multinode"},"spec":{"containers":[{"command":["sh","-c","echo multinode-ok"],"image":"mcr.microsoft.com/oss/busybox/busybox:1.36","imagePullPolicy":"IfNotPresent","name":"app"}],"nodeSelector":{"kubernetes.io/hostname":"aks-conf-12838440-vmss000000"},"restartPolicy":"Never","runtimeClassName":"runc","schedulerName":"ai-attestation-scheduler","tolerations":[{"effect":"NoSchedule","key":"ai.sovereign.io/confidential","operator":"Equal","value":"true"}]}}
+  creationTimestamp: "2026-07-06T06:28:27Z"
+  generation: 1
+  labels:
+    ai.sovereign.io/experiment: multinode
+    app: bench
+  name: mn-valid
+  namespace: article1-multinode
+  resourceVersion: "11381"
+  uid: d12ab50f-bfc5-4ee7-abb4-9290a9d39926
+spec:
+  containers:
+  - command:
+    - sh
+    - -c
+    - echo multinode-ok
+    image: mcr.microsoft.com/oss/busybox/busybox:1.36
+    imagePullPolicy: IfNotPresent
+    name: app
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-dtvc4
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-conf-12838440-vmss000000
+  nodeSelector:
+    kubernetes.io/hostname: aks-conf-12838440-vmss000000
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Never
+  runtimeClassName: runc
+  schedulerName: ai-attestation-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoSchedule
+    key: ai.sovereign.io/confidential
+    operator: Equal
+    value: "true"
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-dtvc4
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:28:28Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:28:28Z"
+    observedGeneration: 1
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:28:28Z"
+    message: 'containers with unready status: [app]'
+    observedGeneration: 1
+    reason: ContainersNotReady
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:28:28Z"
+    message: 'containers with unready status: [app]'
+    observedGeneration: 1
+    reason: ContainersNotReady
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:28:28Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - image: mcr.microsoft.com/oss/busybox/busybox:1.36
+    imageID: ""
+    lastState: {}
+    name: app
+    ready: false
+    restartCount: 0
+    started: false
+    state:
+      waiting:
+        message: 'rpc error: code = NotFound desc = failed to pull and unpack image
+          "mcr.microsoft.com/oss/busybox/busybox:1.36": failed to resolve image: mcr.microsoft.com/oss/busybox/busybox:1.36:
+          not found'
+        reason: ErrImagePull
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-dtvc4
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.224.0.62
+  hostIPs:
+  - ip: 10.224.0.62
+  observedGeneration: 1
+  phase: Pending
+  podIP: 10.224.0.65
+  podIPs:
+  - ip: 10.224.0.65
+  qosClass: BestEffort
+  startTime: "2026-07-06T06:28:28Z"
+Name:                mn-valid
+Namespace:           article1-multinode
+Priority:            0
+Runtime Class Name:  runc
+Service Account:     default
+Node:                aks-conf-12838440-vmss000000/10.224.0.62
+Start Time:          Mon, 06 Jul 2026 07:28:28 +0100
+Labels:              ai.sovereign.io/experiment=multinode
+                     app=bench
+Annotations:         ai.sovereign.io/applied-runtime-class: runc
+                     ai.sovereign.io/attestation-evidence: evidence-aks-conf-12838440-vmss000000
+                     ai.sovereign.io/expected-evidence-age-seconds: 300
+                     ai.sovereign.io/expected-runtime-class: runc
+                     ai.sovereign.io/model-digest: sha256:multinode-node-selection
+                     ai.sovereign.io/policy-hash: 9e48e2837f7a1da4a142bf47783e417851da511e75281d7283018006c95fe267
+                     ai.sovereign.io/simulated-execution: false
+Status:              Pending
+IP:                  10.224.0.65
+IPs:
+  IP:  10.224.0.65
+Containers:
+  app:
+    Container ID:  
+    Image:         mcr.microsoft.com/oss/busybox/busybox:1.36
+    Image ID:      
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      echo multinode-ok
+    State:          Waiting
+      Reason:       ErrImagePull
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-dtvc4 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       False 
+  ContainersReady             False 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-dtvc4:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/hostname=aks-conf-12838440-vmss000000
+Tolerations:                 ai.sovereign.io/confidential=true:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason   Age   From     Message
+  ----     ------   ----  ----     -------
+  Normal   Pulling  4s    kubelet  Pulling image "mcr.microsoft.com/oss/busybox/busybox:1.36"
+  Warning  Failed   4s    kubelet  Failed to pull image "mcr.microsoft.com/oss/busybox/busybox:1.36": rpc error: code = NotFound desc = failed to pull and unpack image "mcr.microsoft.com/oss/busybox/busybox:1.36": failed to resolve image: mcr.microsoft.com/oss/busybox/busybox:1.36: not found
+  Warning  Failed   4s    kubelet  Error: ErrImagePull
+  Normal   BackOff  4s    kubelet  Back-off pulling image "mcr.microsoft.com/oss/busybox/busybox:1.36"
+  Warning  Failed   4s    kubelet  Error: ImagePullBackOff
+{"level":"info","ts":"2026-07-06T06:06:12Z","logger":"attestation-scheduler","msg":"starting attestation-scheduler","schedulerName":"ai-attestation-scheduler","note":"handles only pods with schedulerName=ai-attestation-scheduler"}
+{"level":"info","ts":"2026-07-06T06:06:12Z","logger":"attestation-scheduler","msg":"WARNING: using ephemeral signing key — tokens will not survive restarts; set SCHEDULER_SIGNING_KEY_HEX for persistence","mode":"simulated-kind"}
+{"level":"info","ts":"2026-07-06T06:06:12Z","logger":"attestation-scheduler","msg":"signing key ready","pubKey":"55de87707f181591d3992be91a37d5943f5742e73bfe813a7dcdf1bcc7bef754"}
+{"level":"info","ts":"2026-07-06T06:06:12Z","logger":"attestation-scheduler","msg":"attestation-scheduler running"}
+{"level":"info","ts":"2026-07-06T06:06:12Z","msg":"starting server","kind":"health probe","addr":"[::]:8087"}
+{"level":"info","ts":"2026-07-06T06:06:12Z","logger":"controller-runtime.metrics","msg":"Starting metrics server"}
+{"level":"info","ts":"2026-07-06T06:06:12Z","logger":"controller-runtime.metrics","msg":"Serving metrics server","bindAddress":":8088","secure":false}
+{"level":"info","ts":"2026-07-06T06:06:12Z","msg":"Starting EventSource","controller":"pod","controllerGroup":"","controllerKind":"Pod","source":"kind source: *v1.Pod"}
+{"level":"info","ts":"2026-07-06T06:06:12Z","msg":"Starting Controller","controller":"pod","controllerGroup":"","controllerKind":"Pod"}
+{"level":"info","ts":"2026-07-06T06:06:12Z","msg":"Starting workers","controller":"pod","controllerGroup":"","controllerKind":"Pod","worker count":1}
+{"level":"info","ts":"2026-07-06T06:12:37Z","msg":"attestation-scheduler: scheduling pod","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-openai-chat-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-openai-chat-minimal","reconcileID":"5449a464-444a-444e-8411-bccf8bda960c","pod":"ai-openai-chat-minimal","namespace":"article1-ai-workloads"}
+{"level":"info","ts":"2026-07-06T06:12:37Z","msg":"attestation-scheduler: node selected","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-openai-chat-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-openai-chat-minimal","reconcileID":"5449a464-444a-444e-8411-bccf8bda960c","pod":"ai-openai-chat-minimal","namespace":"article1-ai-workloads","node":"aks-conf-12838440-vmss000000","score":170}
+{"level":"info","ts":"2026-07-06T06:12:37Z","msg":"attestation-scheduler: pod bound","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-openai-chat-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-openai-chat-minimal","reconcileID":"5449a464-444a-444e-8411-bccf8bda960c","pod":"ai-openai-chat-minimal","namespace":"article1-ai-workloads","node":"aks-conf-12838440-vmss000000","placementDecision":"ai-openai-chat-minimal-article1-ai-workloads","tokenDigest":"{\"payload\":{\"pod"}
+{"level":"info","ts":"2026-07-06T06:12:37Z","msg":"attestation-scheduler: phase timings","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-openai-chat-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-openai-chat-minimal","reconcileID":"5449a464-444a-444e-8411-bccf8bda960c","pod":"ai-openai-chat-minimal","namespace":"article1-ai-workloads","prefilter_us":19221,"filter_us":55462,"permit_wait_us":0,"score_us":5,"reserve_us":150385,"prebind_us":25837,"reserve_prebind_us":176222,"reserve_total_us":176222,"bind_us":15469,"total_us":275603,"scheduler_total_us":275603}
+{"level":"info","ts":"2026-07-06T06:13:04Z","msg":"attestation-scheduler: scheduling pod","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-openai-embedding-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-openai-embedding-minimal","reconcileID":"b1df79b3-51f9-4e4e-89ab-ac3ee23d4203","pod":"ai-openai-embedding-minimal","namespace":"article1-ai-workloads"}
+{"level":"info","ts":"2026-07-06T06:13:04Z","msg":"attestation-scheduler: node selected","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-openai-embedding-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-openai-embedding-minimal","reconcileID":"b1df79b3-51f9-4e4e-89ab-ac3ee23d4203","pod":"ai-openai-embedding-minimal","namespace":"article1-ai-workloads","node":"aks-conf-12838440-vmss000000","score":165}
+{"level":"info","ts":"2026-07-06T06:13:04Z","msg":"attestation-scheduler: pod bound","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-openai-embedding-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-openai-embedding-minimal","reconcileID":"b1df79b3-51f9-4e4e-89ab-ac3ee23d4203","pod":"ai-openai-embedding-minimal","namespace":"article1-ai-workloads","node":"aks-conf-12838440-vmss000000","placementDecision":"ai-openai-embedding-minimal-article1-ai-workloads","tokenDigest":"{\"payload\":{\"pod"}
+{"level":"info","ts":"2026-07-06T06:13:04Z","msg":"attestation-scheduler: phase timings","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-openai-embedding-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-openai-embedding-minimal","reconcileID":"b1df79b3-51f9-4e4e-89ab-ac3ee23d4203","pod":"ai-openai-embedding-minimal","namespace":"article1-ai-workloads","prefilter_us":17398,"filter_us":52772,"permit_wait_us":0,"score_us":17,"reserve_us":39047,"prebind_us":21384,"reserve_prebind_us":60431,"reserve_total_us":60431,"bind_us":7531,"total_us":149334,"scheduler_total_us":149334}
+{"level":"info","ts":"2026-07-06T06:13:22Z","msg":"attestation-scheduler: scheduling pod","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-local-cpu-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-local-cpu-minimal","reconcileID":"ae69921a-ba6e-425a-97c8-7d27095e146b","pod":"ai-local-cpu-minimal","namespace":"article1-ai-workloads"}
+{"level":"info","ts":"2026-07-06T06:13:22Z","msg":"attestation-scheduler: node selected","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-local-cpu-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-local-cpu-minimal","reconcileID":"ae69921a-ba6e-425a-97c8-7d27095e146b","pod":"ai-local-cpu-minimal","namespace":"article1-ai-workloads","node":"aks-conf-12838440-vmss000000","score":172}
+{"level":"info","ts":"2026-07-06T06:13:22Z","msg":"attestation-scheduler: pod bound","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-local-cpu-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-local-cpu-minimal","reconcileID":"ae69921a-ba6e-425a-97c8-7d27095e146b","pod":"ai-local-cpu-minimal","namespace":"article1-ai-workloads","node":"aks-conf-12838440-vmss000000","placementDecision":"ai-local-cpu-minimal-article1-ai-workloads","tokenDigest":"{\"payload\":{\"pod"}
+{"level":"info","ts":"2026-07-06T06:13:22Z","msg":"attestation-scheduler: phase timings","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"ai-local-cpu-minimal","namespace":"article1-ai-workloads"},"namespace":"article1-ai-workloads","name":"ai-local-cpu-minimal","reconcileID":"ae69921a-ba6e-425a-97c8-7d27095e146b","pod":"ai-local-cpu-minimal","namespace":"article1-ai-workloads","prefilter_us":87526,"filter_us":54846,"permit_wait_us":0,"score_us":4,"reserve_us":46505,"prebind_us":25146,"reserve_prebind_us":71651,"reserve_total_us":71651,"bind_us":9904,"total_us":234805,"scheduler_total_us":234805}
+{"level":"info","ts":"2026-07-06T06:28:27Z","msg":"attestation-scheduler: scheduling pod","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"mn-valid","namespace":"article1-multinode"},"namespace":"article1-multinode","name":"mn-valid","reconcileID":"b1621550-49b7-4afa-816d-3f4800b34be7","pod":"mn-valid","namespace":"article1-multinode"}
+{"level":"info","ts":"2026-07-06T06:28:27Z","msg":"attestation-scheduler: node selected","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"mn-valid","namespace":"article1-multinode"},"namespace":"article1-multinode","name":"mn-valid","reconcileID":"b1621550-49b7-4afa-816d-3f4800b34be7","pod":"mn-valid","namespace":"article1-multinode","node":"aks-conf-12838440-vmss000000","score":171}
+{"level":"info","ts":"2026-07-06T06:28:28Z","msg":"attestation-scheduler: pod bound","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"mn-valid","namespace":"article1-multinode"},"namespace":"article1-multinode","name":"mn-valid","reconcileID":"b1621550-49b7-4afa-816d-3f4800b34be7","pod":"mn-valid","namespace":"article1-multinode","node":"aks-conf-12838440-vmss000000","placementDecision":"mn-valid-article1-multinode","tokenDigest":"{\"payload\":{\"pod"}
+{"level":"info","ts":"2026-07-06T06:28:28Z","msg":"attestation-scheduler: phase timings","controller":"pod","controllerGroup":"","controllerKind":"Pod","Pod":{"name":"mn-valid","namespace":"article1-multinode"},"namespace":"article1-multinode","name":"mn-valid","reconcileID":"b1621550-49b7-4afa-816d-3f4800b34be7","pod":"mn-valid","namespace":"article1-multinode","prefilter_us":15800,"filter_us":21323,"permit_wait_us":0,"score_us":1,"reserve_us":46378,"prebind_us":42493,"reserve_prebind_us":88871,"reserve_total_us":88871,"bind_us":11828,"total_us":148624,"scheduler_total_us":148624}
+PASS

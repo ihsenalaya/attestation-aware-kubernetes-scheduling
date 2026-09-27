@@ -1,0 +1,68 @@
+{{- if .Values.modules.platformUi.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: platform-ui
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: platform-ui
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  selector:
+    app: platform-ui
+  ports:
+  - name: http
+    port: {{ .Values.platformUi.service.port }}
+    targetPort: 8080
+  type: {{ .Values.platformUi.service.type }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: platform-ui
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: platform-ui
+    component: platform-ui
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.platformUi.replicaCount }}
+  selector:
+    matchLabels:
+      app: platform-ui
+  template:
+    metadata:
+      labels:
+        app: platform-ui
+        component: platform-ui
+    spec:
+      {{- include "platform.imagePullSecrets" . | nindent 6 }}
+      securityContext:
+        runAsNonRoot: false
+      containers:
+      - name: platform-ui
+        image: {{ include "platform.image" (list . .Values.images.platformUi) }}
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: [ALL]
+        resources:
+          {{- toYaml .Values.platformUi.resources | nindent 10 }}
+{{- end }}

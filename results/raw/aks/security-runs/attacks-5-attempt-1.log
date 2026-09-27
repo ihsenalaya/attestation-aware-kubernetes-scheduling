@@ -1,0 +1,9 @@
+== resetting attack namespace + clearing competing node evidence (isolation)
+  [A1] Forged attested=true label, no evidence              -> BLOCKED
+  [A4] Evidence TEE=SEV-SNP but policy requires TDX         -> BLOCKED
+  [A5] Forbidden runtimeClass simulated-kata-qemu-snp on sensitive pod -> BLOCKED
+  [A5b] Missing required model-digest annotation             -> BLOCKED
+  [A8] Tampered placement token signature                   -> BLOCKED
+
+== attacks summary: 5/5 blocked (aks-real-sevsnp)
+== all on-cluster attacks blocked env=aks-real-sevsnp

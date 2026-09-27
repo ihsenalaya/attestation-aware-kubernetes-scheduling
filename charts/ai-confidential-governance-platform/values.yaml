@@ -1,0 +1,209 @@
+# AI Confidential Governance Platform — default values
+# Override with -f values-kind.yaml or -f values-aks-private.yaml
+
+global:
+  registry: "ghcr.io/ihsenalaya/ai-sovereign-finops-operator"
+  imagePullSecrets: []
+  environment: kind  # kind | aks-private | production
+  mode: thesis        # dev | thesis | startup
+
+  simulatedEvidence:
+    # MUST be false in production and aks-private
+    enabled: true
+
+  runtimeClassSimulation:
+    # MUST be false in production and aks-private
+    # When true, creates simulated-kata-qemu-tdx / simulated-kata-qemu-snp (backed by runc)
+    enabled: true
+
+  audit:
+    anchoring:
+      # memory: kind/dev only (in-process, not durable)
+      # file: kind/dev (persists to a file in the pod)
+      # azure-blob: PLANNED — not yet implemented
+      # s3: PLANNED — not yet implemented
+      mode: file
+      filePath: /data/audit/checkpoints.jsonl
+
+  gpu:
+    enabled: false
+    # disabled | simulated | nvidia-cc
+    # NEVER set to nvidia-cc in kind — it is not real
+    mode: disabled
+
+modules:
+  governanceOperator:
+    enabled: true
+  confidentialExecutionOperator:
+    enabled: true
+  trustEvidenceOperator:
+    enabled: true
+  centralVerifier:
+    enabled: true
+  nodeAttestationAgent:
+    enabled: true
+  attestationScheduler:
+    enabled: true
+  keyReleaseGateway:
+    enabled: true
+  platformApi:
+    enabled: true
+  platformUi:
+    enabled: true
+  thesisBench:
+    enabled: true
+
+# Per-module image configuration
+images:
+  tag: "0.5.11"
+  pullPolicy: IfNotPresent
+
+  governanceOperator:
+    repository: controller
+    tag: ""  # defaults to images.tag
+
+  centralVerifier:
+    repository: central-verifier
+    tag: ""
+
+  nodeAttestationAgent:
+    repository: node-attestation-agent
+    tag: ""
+
+  attestationScheduler:
+    repository: attestation-scheduler
+    tag: ""
+
+  keyReleaseGateway:
+    repository: key-release-gateway
+    tag: ""
+
+  platformApi:
+    repository: platform-api
+    tag: ""
+
+  platformUi:
+    repository: platform-ui
+    tag: ""
+
+  thesisBench:
+    repository: thesis-bench
+    tag: ""
+
+# Attestation scheduler configuration
+attestationScheduler:
+  replicaCount: 1
+  # Set to the hex-encoded Ed25519 private key seed for persistent token signing.
+  # If empty, an ephemeral key is generated at startup (kind/dev only).
+  # In production, inject via a Kubernetes Secret.
+  signingKeyHex: ""
+  tokenTTLSeconds: 300
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+# Central verifier configuration. This is the only component allowed to create
+# or update AttestationEvidence from RawAttestationReport.
+centralVerifier:
+  replicaCount: 1
+  expectedTEE: sevsnpvm
+  maaIssuerPrefix: ""
+  maxTokenAgeSeconds: 300
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 256Mi
+
+# Node attestation agent configuration. The DaemonSet can create
+# RawAttestationReport only; it cannot write AttestationEvidence.
+nodeAttestationAgent:
+  provider: simulator
+  simulated: true
+  reportIntervalSeconds: 60
+  tokenEndpoint: ""
+  tokenFile: ""
+  helperPath: ""
+  helperTimeoutSeconds: 120
+  azureAttestationEndpoint: "https://sharedwus2.wus2.attest.azure.net"
+  tpmDevices:
+    enabled: false
+    privileged: false
+    supplementalGroup: 104
+  nodeSelector: {}
+  tolerations: []
+  resources:
+    requests:
+      cpu: 20m
+      memory: 32Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
+
+# Key release gateway configuration
+keyReleaseGateway:
+  replicaCount: 1
+  # Hex-encoded Ed25519 public key of the attestation scheduler
+  # (used to verify placement tokens).
+  tokenPublicKeyHex: ""
+  service:
+    type: ClusterIP
+    port: 8082
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+# Platform API configuration
+platformApi:
+  replicaCount: 1
+  # Set AIOPS_INSECURE_AUTH=true only in local dev
+  insecureAuth: false
+  service:
+    type: ClusterIP
+    port: 8083
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 200m
+      memory: 128Mi
+
+# Platform UI configuration
+platformUi:
+  replicaCount: 1
+  service:
+    # ClusterIP by default — access via port-forward in kind
+    # NEVER use LoadBalancer (would expose UI publicly)
+    type: ClusterIP
+    port: 80
+  resources:
+    requests:
+      cpu: 20m
+      memory: 32Mi
+    limits:
+      cpu: 100m
+      memory: 64Mi
+
+networkPolicies:
+  enabled: false  # Enable in production/aks-private
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65532
+
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop: [ALL]

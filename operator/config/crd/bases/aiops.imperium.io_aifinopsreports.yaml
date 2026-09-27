@@ -1,0 +1,385 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: aifinopsreports.aiops.imperium.io
+spec:
+  group: aiops.imperium.io
+  names:
+    kind: AIFinOpsReport
+    listKind: AIFinOpsReportList
+    plural: aifinopsreports
+    shortNames:
+    - aireport
+    singular: aifinopsreport
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.target.namespace
+      name: Namespace-Target
+      type: string
+    - jsonPath: .spec.target.period
+      name: Period
+      type: string
+    - jsonPath: .status.totalCostEUR
+      name: TotalCost(EUR)
+      type: string
+    - jsonPath: .status.generatedAt
+      name: Generated
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: |-
+          AIFinOpsReport is a generated FinOps & sovereignty report. Results live in
+          .status; export to Markdown/JSON is handled out-of-band by the reporting package.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: AIFinOpsReportSpec defines the desired state of AIFinOpsReport.
+            properties:
+              gatewayRef:
+                description: GatewayRef optionally pins the report to a specific AIGateway.
+                type: string
+              target:
+                description: Target scopes the report.
+                properties:
+                  namespace:
+                    type: string
+                  period:
+                    default: monthly
+                    description: Period the report covers.
+                    enum:
+                    - daily
+                    - weekly
+                    - monthly
+                    type: string
+                required:
+                - period
+                type: object
+            required:
+            - target
+            type: object
+          status:
+            description: AIFinOpsReportStatus holds the generated report results.
+            properties:
+              conditions:
+                description: Conditions represent the latest available observations
+                  of the report state.
+                items:
+                  description: Condition contains details for one aspect of the current
+                    state of this API Resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        lastTransitionTime is the last time the condition transitioned from one status to another.
+                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        message is a human readable message indicating details about the transition.
+                        This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        observedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: |-
+                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                        Producers of specific condition types may define expected values and meanings for this field,
+                        and whether the values are considered a guaranteed API.
+                        The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              generatedAt:
+                description: GeneratedAt is when this report was last produced.
+                format: date-time
+                type: string
+              latencyTelemetryAvailable:
+                description: |-
+                  LatencyTelemetryAvailable is true when at least one routing score used
+                  observed latency telemetry. If false, routing scores still exist but use a
+                  neutral latency component and never pretend latency was measured.
+                type: boolean
+              observedGeneration:
+                description: ObservedGeneration is the .metadata.generation last reconciled.
+                format: int64
+                type: integer
+              projectedMonthlyCostEUR:
+                anyOf:
+                - type: integer
+                - type: string
+                description: |-
+                  ProjectedMonthlyCostEUR forecasts a full month from the observed spend using
+                  a run-rate: observed x (30.4 / observation-window-days). For a monthly period
+                  it equals TotalCostEUR.
+                pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                x-kubernetes-int-or-string: true
+              recommendations:
+                description: Recommendations surfaced by the engines.
+                items:
+                  description: Recommendation is an optimization suggestion surfaced
+                    by the engines.
+                  properties:
+                    application:
+                      description: |-
+                        Application is the workload this recommendation targets (empty for
+                        catalog-wide recommendations).
+                      type: string
+                    estimatedSavingsEUR:
+                      anyOf:
+                      - type: integer
+                      - type: string
+                      description: |-
+                        EstimatedSavingsEUR is the projected saving of acting on this recommendation
+                        over the observation window (0 when not a cost saving).
+                      pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                      x-kubernetes-int-or-string: true
+                    message:
+                      type: string
+                    namespace:
+                      description: |-
+                        Namespace is the workload namespace this recommendation targets (empty for
+                        catalog-wide recommendations such as data-quality).
+                      type: string
+                    severity:
+                      description: Severity ranks urgency (info, warning, critical).
+                      type: string
+                    type:
+                      description: Type categorizes the recommendation (cost-saving,
+                        sovereignty, data-quality, ...).
+                      type: string
+                  required:
+                  - message
+                  - type
+                  type: object
+                type: array
+              routingScores:
+                description: RoutingScores explain the runtime score per observed
+                  namespace/app/model.
+                items:
+                  description: |-
+                    RoutingScore explains how observed workload/model traffic scores under the
+                    runtime governance scoring model. Score values are higher-is-better and in
+                    [0,1]. The score is always emitted when usage exists; if latency is not
+                    observed, LatencyTelemetryAvailable is false and the latency component is a
+                    documented neutral value rather than a fabricated measurement.
+                  properties:
+                    application:
+                      description: Application is the workload application.
+                      type: string
+                    costEUR:
+                      description: CostEUR is the computed spend for this workload/model
+                        over the window, as a decimal string.
+                      type: string
+                    costPerRequestEUR:
+                      description: CostPerRequestEUR is CostEUR divided by Requests
+                        when Requests > 0, as a decimal string.
+                      type: string
+                    costScore:
+                      description: CostScore is the normalized cost component in [0,1],
+                        as a decimal string.
+                      type: string
+                    latencyScore:
+                      description: |-
+                        LatencyScore is the normalized measured-latency component in [0,1], or a
+                        neutral value when LatencyTelemetryAvailable is false, as a decimal string.
+                      type: string
+                    latencySource:
+                      description: 'LatencySource describes the latency component
+                        source: observed or unavailable.'
+                      type: string
+                    latencyTelemetryAvailable:
+                      description: |-
+                        LatencyTelemetryAvailable states whether ObservedLatencyMillis came from
+                        real telemetry. False means the score used a neutral latency component.
+                      type: boolean
+                    model:
+                      description: Model is the provider-side model identifier.
+                      type: string
+                    namespace:
+                      description: Namespace is the workload namespace.
+                      type: string
+                    observedLatencyMillis:
+                      description: ObservedLatencyMillis is the measured mean latency
+                        when telemetry exists, as a decimal string.
+                      type: string
+                    provider:
+                      description: Provider is the resolved provider.
+                      type: string
+                    qualityScore:
+                      description: QualityScore is derived from the catalog quality
+                        tier in [0,1], as a decimal string.
+                      type: string
+                    reliabilityScore:
+                      description: ReliabilityScore is derived from observed request/error
+                        counts in [0,1], as a decimal string.
+                      type: string
+                    requests:
+                      description: Requests is the request count used for this score.
+                      format: int64
+                      type: integer
+                    score:
+                      description: |-
+                        Score is the final higher-is-better runtime routing score in [0,1],
+                        serialized as a decimal string for CRD portability.
+                      type: string
+                    sovereigntyCompliant:
+                      description: |-
+                        SovereigntyCompliant is false when the model's provider sits in a zone
+                        forbidden by the active AISovereigntyPolicy. A non-compliant model has a
+                        hard Score of 0 and must never be recommended by the routing engine.
+                      type: boolean
+                  required:
+                  - costEUR
+                  - costPerRequestEUR
+                  - costScore
+                  - latencyScore
+                  - latencySource
+                  - latencyTelemetryAvailable
+                  - observedLatencyMillis
+                  - qualityScore
+                  - reliabilityScore
+                  - score
+                  - sovereigntyCompliant
+                  type: object
+                type: array
+              sovereigntyFindings:
+                description: SovereigntyFindings surfaced during the period.
+                items:
+                  description: |-
+                    SovereigntyFinding is a sovereignty/compliance observation. When produced by
+                    flow-aware evaluation it is attributed to the namespace/application/model whose
+                    traffic triggered it, on which provider/zone, and how many requests were affected.
+                  properties:
+                    application:
+                      description: Application is the app whose flow triggered the
+                        finding.
+                      type: string
+                    message:
+                      type: string
+                    model:
+                      description: Model is the provider-side model used by the flow.
+                      type: string
+                    namespace:
+                      description: Namespace is the governed namespace whose flow
+                        triggered the finding.
+                      type: string
+                    provider:
+                      description: Provider is the provider the flow was routed to.
+                      type: string
+                    requests:
+                      description: Requests is the number of requests affected by
+                        this finding.
+                      format: int64
+                      type: integer
+                    severity:
+                      description: Severity ranks a finding.
+                      enum:
+                      - info
+                      - warning
+                      - critical
+                      type: string
+                    zone:
+                      description: Zone is the resolved provider residency zone.
+                      type: string
+                  required:
+                  - message
+                  - severity
+                  type: object
+                type: array
+              topModels:
+                description: TopModels ranks models by cost.
+                items:
+                  description: ModelCost is the cost attributed to a single model.
+                  properties:
+                    costEUR:
+                      anyOf:
+                      - type: integer
+                      - type: string
+                      description: CostEUR is the cost attributed to this model over
+                        the period.
+                      pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                      x-kubernetes-int-or-string: true
+                    name:
+                      type: string
+                  required:
+                  - costEUR
+                  - name
+                  type: object
+                type: array
+              totalCostEUR:
+                anyOf:
+                - type: integer
+                - type: string
+                description: TotalCostEUR is the total spend actually observed over
+                  the period.
+                pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                x-kubernetes-int-or-string: true
+              totalInputTokens:
+                description: TotalInputTokens over the period.
+                format: int64
+                type: integer
+              totalOutputTokens:
+                description: TotalOutputTokens over the period.
+                format: int64
+                type: integer
+            required:
+            - latencyTelemetryAvailable
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

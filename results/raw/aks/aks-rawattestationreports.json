@@ -1,0 +1,2979 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:28:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-54gx8",
+        "namespace": "ai-platform",
+        "resourceVersion": "11253",
+        "uid": "928eb330-3144-4f8e-a39a-76530f404926"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:28:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "6e0c6e06d6d6dd6877fa6113cff6423f",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "d336aaa71ad189a2e7de16ba14963604a49c35542c37dff14443b4b0396167cd"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:14:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-5dzgj",
+        "namespace": "ai-platform",
+        "resourceVersion": "9109",
+        "uid": "60ee077a-c357-4b89-9587-d74ac9831888"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:14:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "0c821b02ee6d6d9c8f5a51d83bf3f145",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "a9e7f33f48feec8baf27c9f4cfe6bd02c36cd1c5b354ef3c2e7dec9af1898850"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:21:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-5qnzc",
+        "namespace": "ai-platform",
+        "resourceVersion": "10925",
+        "uid": "4c16aff9-7a1d-40fe-9ff1-27db6e4a950a"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:21:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "0340007f8ceab09237121f58df2e6ca9",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "c66a2017b657337643eaf88e1e9735cb1bd480eb8f3202fa4ef0220c94171301"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:30:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-68jkd",
+        "namespace": "ai-platform",
+        "resourceVersion": "12598",
+        "uid": "e315d1b3-abf4-49c4-9e16-603a972d953c"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:30:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "4f086b2c67c3caa848ce04a9b9122cb7",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "3c3fe7552741283638686b6ffa4185b9235192f769d565cf1c8f6a5e4bc819c8"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:06:07Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-75j4h",
+        "namespace": "ai-platform",
+        "resourceVersion": "9148",
+        "uid": "3f3078c9-ea6e-4f19-8231-81844c0f0d89"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:06:07Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "77b9b06bdcc3b2dcbaf29146bf20553c",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "865614fe1f0fefca8f65105113d4e5f8d7edfcc781b8a4ce2b0c0f4b6f5896f3"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:25:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-7p2n5",
+        "namespace": "ai-platform",
+        "resourceVersion": "12509",
+        "uid": "24d5785a-8de4-444d-a365-8023921b6066"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:25:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "5689871dda26c81148f003780477bf14",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "bc1d163acc46aa597305a54c2ee39c992f39869e82b9ae54a94d19748ac3ab1d"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:20:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-7w9f9",
+        "namespace": "ai-platform",
+        "resourceVersion": "10956",
+        "uid": "4e07e867-339d-438c-888b-528cdeb6b7be"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:20:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "e78bc004b0c7266707c7afd9f994e03c",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "59635379f101aee4db7a336112b4d0fed0f87ca49fbe9de0b766ecd721b20962"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:15:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-989dt",
+        "namespace": "ai-platform",
+        "resourceVersion": "9132",
+        "uid": "d0786db8-8df4-4228-bb5c-eefd25c8bf4e"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:15:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "6823f3ee7b2918241b42eff1d55ec003",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "ec06d2598a5cc3fee996fe7c9d85f15c77420702cb9d058f370dde203b9ab0ce"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:11:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-9gkfc",
+        "namespace": "ai-platform",
+        "resourceVersion": "9111",
+        "uid": "fa28bd75-bd32-4c19-9d1c-0c520b5b6089"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:11:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "0ef1b35f0f55f7fb2202cebe65a24cb0",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "96d7d43a9bedabdf934ad488950fd74e9785721fbbd9e389cf27bee5cceb318a"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:08:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-9stw6",
+        "namespace": "ai-platform",
+        "resourceVersion": "9102",
+        "uid": "19b81e36-5e03-4f96-a94a-0fbd20e39ab7"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:08:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "3e324ad5bbfe9120597cb18472088c46",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "e9403827481aa6435b353b13d7207690ebcd1aefadfd385f4a213ceca126cfdc"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:09:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-9t9mj",
+        "namespace": "ai-platform",
+        "resourceVersion": "9088",
+        "uid": "96abc822-d3d0-47a9-8872-34ba0d8166a3"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:09:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "d451e170e053d561ac7e8f56be3c1093",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "ed5628d9b26c887e224d3c98a235994554db9cce9b28355e840edc0c2b54be19"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:24:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-g7hpt",
+        "namespace": "ai-platform",
+        "resourceVersion": "12582",
+        "uid": "d5681ab1-606c-4f69-907d-28cd0f398173"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:24:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "43fa8cfe5104ab9f2231a8581d6e62eb",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "1eaeb57537936d9bd711bb8991b5b79621f28aeac2291d983c75d50cef3290a6"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:12:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-jgp5t",
+        "namespace": "ai-platform",
+        "resourceVersion": "9178",
+        "uid": "fa7e4314-34ee-484f-8522-dfb1acea2585"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:12:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "86d5ff36a38bbe3cf8ad02390954bbdd",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "8f0ac5ac04bb08da16a3b393200d0ef7c032adec5cccb6ae19de1b5dae7a364a"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:22:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-jl82t",
+        "namespace": "ai-platform",
+        "resourceVersion": "10934",
+        "uid": "9c39a0aa-80f2-40ee-832f-94a7db7f1ae3"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:22:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "9de6dc41812decd638153fb268523e0a",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "948333ad91b62cfb3811f2285b05f6aae38ca02c2f1f5cbb0ab0619b32620053"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:32:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-lz5gn",
+        "namespace": "ai-platform",
+        "resourceVersion": "12647",
+        "uid": "25757311-f98a-41be-80df-1f50b985334a"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:32:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "ab7ebd8e71b9becf881857437c1109ae",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "8aab52bc5ddc65e7888000119cf0f8f9a5804e57f697b54670140250f22deada"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:19:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-m5v6j",
+        "namespace": "ai-platform",
+        "resourceVersion": "9863",
+        "uid": "ebefc186-d3f1-4a91-88ee-432bb3d4cdff"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:19:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "c92474fce5916cbc3f6c5872cd8490ce",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "7be5f12bef7eada416d77c8beed08cc8bba8c6154bff4d296ed09e089edd0317"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:16:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-mvmjw",
+        "namespace": "ai-platform",
+        "resourceVersion": "9155",
+        "uid": "49c185d0-c060-490d-b5d2-c0f85c479efc"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:16:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "f8fc46545d6b1c205b04338d44d2cf5e",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "2323b0471951a9891414443e9629454dcf8869556ce097432b2f4d9be26cdad4"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:13:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-pwfg6",
+        "namespace": "ai-platform",
+        "resourceVersion": "9092",
+        "uid": "94469d81-bf82-4dda-8059-9cf48af632c5"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:13:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "6c36f6dcd1366e85ca6b1406893fa22b",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "3b231ec2426f57854f38277be3030222ae0e6e3b162d47a6b85aa96cf5a59102"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:26:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-q5gnl",
+        "namespace": "ai-platform",
+        "resourceVersion": "12468",
+        "uid": "3b2194f5-1979-4143-ab1f-8c342726cac0"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:26:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "e76db756420cc7ebd779219c5dadbea7",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "bb5a37e4a6de0136f37500699c5e4ff8cc47a1bc7579cb651cbf9eeda0d4e256"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:23:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-qmzdw",
+        "namespace": "ai-platform",
+        "resourceVersion": "12584",
+        "uid": "f877dac2-9b27-4310-971a-7cebd5c07f70"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:23:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "eb65dc70255777cedccadbe71572026a",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "042545306069c9df1f21e2c835cd2f27400265ea9bd6a507e95500cff2b64cf1"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:27:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-r86kx",
+        "namespace": "ai-platform",
+        "resourceVersion": "12602",
+        "uid": "fbf223a9-2f06-419f-b6ef-980364c29a65"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:27:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "1bf01aa8eb789a3d7506205c5fae300b",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "2134d87909c64605532f637a38c1177a4f8e9d65f1caa00bd13edb22be40174e"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:29:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-sscvg",
+        "namespace": "ai-platform",
+        "resourceVersion": "12519",
+        "uid": "e1c0d6f9-195b-455e-9967-867a52a767d1"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:29:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "e70b7a9da5c922465e66e6602c55e4be",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "039888b1ebe926991dc3f98e196c1bad62df44684df6e6a5cafe342da8385bf3"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:18:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-thvtt",
+        "namespace": "ai-platform",
+        "resourceVersion": "9877",
+        "uid": "79860318-01b8-4d07-baf3-f93c72522681"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:18:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "454160a60ab00335719ea25c19e9ed51",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "605a3187937ae21b0e1c2a140f64005cb36d24ffef7584fa71804930ecb013dd"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:17:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-vdzvh",
+        "namespace": "ai-platform",
+        "resourceVersion": "9141",
+        "uid": "2f7ee9d7-5ee8-4d76-9f35-fa4426f811ba"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:17:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "1b9aec8f8fe8b59f962edbe2c36643de",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "ace6c7161f13485c224c397079e025dd447a9fb3f6965ccafbb6206f3db7855a"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:10:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-vprjz",
+        "namespace": "ai-platform",
+        "resourceVersion": "9104",
+        "uid": "8a1af166-7acb-4e00-a362-5b170595fddf"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:10:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "43033d6c2b7e03d1c5a5fa78e504546f",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "31a2afe99a4fd6f09b8a9b2b71a827996aedfc66df8410c0d1536f417b3140d8"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:31:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-wvvfn",
+        "namespace": "ai-platform",
+        "resourceVersion": "12471",
+        "uid": "9b523136-4ad8-4ae7-9e5e-a8bd6cd4be06"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:31:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "409ba4aa5c697204bbd4115d388db59a",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "9dae1eb47caad78076d08b052a3216da5c4da5546346dc8722ad1ba93e01a7f7"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:07:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000000-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000000"
+        },
+        "name": "raw-aks-conf-12838440-vmss000000-x5zmq",
+        "namespace": "ai-platform",
+        "resourceVersion": "9163",
+        "uid": "ad1c785f-c286-474e-9955-54546a6e602d"
+      },
+      "spec": {
+        "agentPodUID": "95bced4e-dc4d-4de2-83d6-315eb56403c1",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:07:08Z",
+        "nodeName": "aks-conf-12838440-vmss000000",
+        "nonce": "b6de5882244efbb5d6a32669c20e653e",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "3def5ffac80d942dae017f8a3c4f8179bb45d70870cfcf4bf860c2ec19254dd6"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000000",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:11:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000001-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000001"
+        },
+        "name": "raw-aks-conf-12838440-vmss000001-2kj6q",
+        "namespace": "ai-platform",
+        "resourceVersion": "9180",
+        "uid": "ebe2aed6-7753-4eda-ab1b-8ffa08fbdb26"
+      },
+      "spec": {
+        "agentPodUID": "17d5ffbf-16cb-4865-9fcb-53f8dcd0656c",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:11:07Z",
+        "nodeName": "aks-conf-12838440-vmss000001",
+        "nonce": "701331ee8c206960e2955c9c5c642ed4",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "d74f704cce2a14767a5abe68e08de1f28af9f3e9d78bdc2ac9e2f9fc2797f017"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000001",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:07:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000001-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000001"
+        },
+        "name": "raw-aks-conf-12838440-vmss000001-5rqm2",
+        "namespace": "ai-platform",
+        "resourceVersion": "9106",
+        "uid": "7ea2ca5b-76c6-4b1b-8306-634d0a179487"
+      },
+      "spec": {
+        "agentPodUID": "17d5ffbf-16cb-4865-9fcb-53f8dcd0656c",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:07:08Z",
+        "nodeName": "aks-conf-12838440-vmss000001",
+        "nonce": "b07f91272fe685112ebabc2449190ce5",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "4cec23625adce980bfe70f2bd5db5bbc726e4b0b69424b44922174a84678b078"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000001",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:12:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000001-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000001"
+        },
+        "name": "raw-aks-conf-12838440-vmss000001-5z6hs",
+        "namespace": "ai-platform",
+        "resourceVersion": "9146",
+        "uid": "e2974d6d-dc51-4c4e-97ed-b18df1cfa92b"
+      },
+      "spec": {
+        "agentPodUID": "17d5ffbf-16cb-4865-9fcb-53f8dcd0656c",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:12:08Z",
+        "nodeName": "aks-conf-12838440-vmss000001",
+        "nonce": "61eebbd1d4db11d1b05669e0f9f3a3f1",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "6881f1db41953bc14beab2c09cd2f17a539910ebe06f487aada91fb74ab2a011"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000001",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:13:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000001-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000001"
+        },
+        "name": "raw-aks-conf-12838440-vmss000001-689h7",
+        "namespace": "ai-platform",
+        "resourceVersion": "9094",
+        "uid": "7a91197f-14e6-429b-9cf0-abfb96a5db5a"
+      },
+      "spec": {
+        "agentPodUID": "17d5ffbf-16cb-4865-9fcb-53f8dcd0656c",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:13:08Z",
+        "nodeName": "aks-conf-12838440-vmss000001",
+        "nonce": "3e3ee947c42e6fc7b42025ee988d4cda",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "c8cab238b1c93395379a61c93b6cbd8227c4cf3f5c68cdde95deae01cba95e46"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000001",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:08:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000001-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000001"
+        },
+        "name": "raw-aks-conf-12838440-vmss000001-9vzgs",
+        "namespace": "ai-platform",
+        "resourceVersion": "9090",
+        "uid": "8ddc38f9-aa70-4e33-98d7-b4ab825b211c"
+      },
+      "spec": {
+        "agentPodUID": "17d5ffbf-16cb-4865-9fcb-53f8dcd0656c",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:08:08Z",
+        "nodeName": "aks-conf-12838440-vmss000001",
+        "nonce": "f7137abfa73cf4391563c7a02941d4da",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "5a346afc9d8f29ef4505749797d37d400b5dc2c0baf8b6b1da705d015be01f93"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000001",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:14:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000001-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000001"
+        },
+        "name": "raw-aks-conf-12838440-vmss000001-9xwft",
+        "namespace": "ai-platform",
+        "resourceVersion": "9119",
+        "uid": "2a66026b-f390-40f4-b99f-17ad9e0bead7"
+      },
+      "spec": {
+        "agentPodUID": "17d5ffbf-16cb-4865-9fcb-53f8dcd0656c",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:14:08Z",
+        "nodeName": "aks-conf-12838440-vmss000001",
+        "nonce": "eb285face80267163f39044ff352baae",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "184f0a21726b76953d6e1d00014c3df29d4a8ed61b046d51d37a51600542b358"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000001",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:10:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000001-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000001"
+        },
+        "name": "raw-aks-conf-12838440-vmss000001-dsxbf",
+        "namespace": "ai-platform",
+        "resourceVersion": "9150",
+        "uid": "3e73a2ab-00c3-470e-a089-055251ef63a4"
+      },
+      "spec": {
+        "agentPodUID": "17d5ffbf-16cb-4865-9fcb-53f8dcd0656c",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:10:08Z",
+        "nodeName": "aks-conf-12838440-vmss000001",
+        "nonce": "c44d5865579d6a85f3d2e563e30bd101",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "e4654ac43f074c414a1095bb8772cab9dde6f825d4dffba7db01c5318224f71b"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000001",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:06:07Z",
+        "generateName": "raw-aks-conf-12838440-vmss000001-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000001"
+        },
+        "name": "raw-aks-conf-12838440-vmss000001-q6wg7",
+        "namespace": "ai-platform",
+        "resourceVersion": "9167",
+        "uid": "817a1e4c-e2b3-4bfd-b9f1-330ee046b5a9"
+      },
+      "spec": {
+        "agentPodUID": "17d5ffbf-16cb-4865-9fcb-53f8dcd0656c",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:06:07Z",
+        "nodeName": "aks-conf-12838440-vmss000001",
+        "nonce": "3b9b88f53f759cff20c72e54681ebd6a",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "7b0c5358284cb81e6ac97073035f7d3a2b6493b3b1bedd9eec16bf44538c090b"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000001",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:09:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000001-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000001"
+        },
+        "name": "raw-aks-conf-12838440-vmss000001-zvnkt",
+        "namespace": "ai-platform",
+        "resourceVersion": "9170",
+        "uid": "5415f84e-b6c2-4a5e-9663-2021519b04ae"
+      },
+      "spec": {
+        "agentPodUID": "17d5ffbf-16cb-4865-9fcb-53f8dcd0656c",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:09:08Z",
+        "nodeName": "aks-conf-12838440-vmss000001",
+        "nonce": "ed9ba7a1a00840a142d78cb7d0e1d97a",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "7249d8601d22ed9199ae6cbf824c130c86048e402a140f556ed64b47fef722b8"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000001",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:06:07Z",
+        "generateName": "raw-aks-conf-12838440-vmss000002-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000002"
+        },
+        "name": "raw-aks-conf-12838440-vmss000002-4dknb",
+        "namespace": "ai-platform",
+        "resourceVersion": "9152",
+        "uid": "5fe1d68d-ef43-4f2b-a0aa-a4b13b300622"
+      },
+      "spec": {
+        "agentPodUID": "96e5def0-a639-4916-b46a-67dbf0989199",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:06:07Z",
+        "nodeName": "aks-conf-12838440-vmss000002",
+        "nonce": "51cf16ff22c3734905935e902adb38a8",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "fdd65d5d2eb2d12462dc4ddce548e499e544744ade9ccf36b34f2a9403c0d5cd"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000002",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:07:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000002-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000002"
+        },
+        "name": "raw-aks-conf-12838440-vmss000002-8ggv2",
+        "namespace": "ai-platform",
+        "resourceVersion": "9124",
+        "uid": "b82039b7-ca20-4595-bf20-d9d31771dd65"
+      },
+      "spec": {
+        "agentPodUID": "96e5def0-a639-4916-b46a-67dbf0989199",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:07:08Z",
+        "nodeName": "aks-conf-12838440-vmss000002",
+        "nonce": "de3bdaad71d281274cf06922c3c45173",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "77c6544b00f1105b050b0d6899e26b0c07d7409c9c6ffb30fed7b6c8fecb489e"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000002",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:14:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000002-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000002"
+        },
+        "name": "raw-aks-conf-12838440-vmss000002-jkr88",
+        "namespace": "ai-platform",
+        "resourceVersion": "9113",
+        "uid": "7c0d26bb-a376-4b08-9424-e4b32641aaab"
+      },
+      "spec": {
+        "agentPodUID": "96e5def0-a639-4916-b46a-67dbf0989199",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:14:08Z",
+        "nodeName": "aks-conf-12838440-vmss000002",
+        "nonce": "5a46e4663d8b97acfce09bf09b1b602b",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "fd17c074f5a995a4090ac41ece3a63a958f4069aa6d9601f1bd53bc79ec8d618"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000002",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:08:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000002-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000002"
+        },
+        "name": "raw-aks-conf-12838440-vmss000002-rx5g5",
+        "namespace": "ai-platform",
+        "resourceVersion": "9126",
+        "uid": "ee73271d-c81f-48c5-9e01-7d513de3f81c"
+      },
+      "spec": {
+        "agentPodUID": "96e5def0-a639-4916-b46a-67dbf0989199",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:08:08Z",
+        "nodeName": "aks-conf-12838440-vmss000002",
+        "nonce": "2d94dc62c52b21a763d67915cc8fbaae",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "2d5cd1109616dd75ed351a0ca2468a7ca6979c266a106d0b16848350a7934595"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000002",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:09:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000002-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000002"
+        },
+        "name": "raw-aks-conf-12838440-vmss000002-scbbg",
+        "namespace": "ai-platform",
+        "resourceVersion": "9115",
+        "uid": "525d2ead-5482-43c9-a7ac-431ef0cfbd67"
+      },
+      "spec": {
+        "agentPodUID": "96e5def0-a639-4916-b46a-67dbf0989199",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:09:08Z",
+        "nodeName": "aks-conf-12838440-vmss000002",
+        "nonce": "4c3f6b3041225eaf34525c2dff9e2fdd",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "5e439901ef453e6d0ab29c0665bd008ed8d1bef67ddefd86280c7957a09aa6d9"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000002",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:12:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000002-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000002"
+        },
+        "name": "raw-aks-conf-12838440-vmss000002-slccj",
+        "namespace": "ai-platform",
+        "resourceVersion": "9143",
+        "uid": "afeff43b-1fae-40ec-a324-a9631ff49eb9"
+      },
+      "spec": {
+        "agentPodUID": "96e5def0-a639-4916-b46a-67dbf0989199",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:12:08Z",
+        "nodeName": "aks-conf-12838440-vmss000002",
+        "nonce": "d4618f3f7383d68b7fa8fadd55132fa4",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "e2ddf5aa561c53d0a982f0071882c7ec45938f34a4905b91b0bf309a6f0c4ea4"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000002",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:13:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000002-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000002"
+        },
+        "name": "raw-aks-conf-12838440-vmss000002-tqkhl",
+        "namespace": "ai-platform",
+        "resourceVersion": "9157",
+        "uid": "772c899c-ba98-4238-b263-31ce8e618223"
+      },
+      "spec": {
+        "agentPodUID": "96e5def0-a639-4916-b46a-67dbf0989199",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:13:08Z",
+        "nodeName": "aks-conf-12838440-vmss000002",
+        "nonce": "8643ff7b6cbbb19c8a03a5eefb15a190",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "1f8d511b47fe6f0336b6a56984ad13f2ce48302fa1e6f4c9d963b4c478d2cc85"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000002",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:10:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000002-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000002"
+        },
+        "name": "raw-aks-conf-12838440-vmss000002-wvb6x",
+        "namespace": "ai-platform",
+        "resourceVersion": "9172",
+        "uid": "8bcfc72a-1727-4a51-8fc1-efcde5b0b665"
+      },
+      "spec": {
+        "agentPodUID": "96e5def0-a639-4916-b46a-67dbf0989199",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:10:08Z",
+        "nodeName": "aks-conf-12838440-vmss000002",
+        "nonce": "fb03b4aa2afd4531fd013c258585561d",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "a0b2c9a8aea165a13bbd29499e7373277dfcdddd36dd4214f33a406054606909"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000002",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:11:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000002-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000002"
+        },
+        "name": "raw-aks-conf-12838440-vmss000002-wxhxz",
+        "namespace": "ai-platform",
+        "resourceVersion": "9136",
+        "uid": "5ea2db8c-442c-4454-8d63-fc4bb6797b35"
+      },
+      "spec": {
+        "agentPodUID": "96e5def0-a639-4916-b46a-67dbf0989199",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:11:08Z",
+        "nodeName": "aks-conf-12838440-vmss000002",
+        "nonce": "2e2acee2263f5152680ec81f9b9a9d9a",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "b2acd275aa5a176985b9a5e5ef9492c90260f89cb71d4b0ceab0c083159e2b81"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000002",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:14:09Z",
+        "generateName": "raw-aks-conf-12838440-vmss000003-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000003"
+        },
+        "name": "raw-aks-conf-12838440-vmss000003-6x2d4",
+        "namespace": "ai-platform",
+        "resourceVersion": "9086",
+        "uid": "89aa3850-c28f-4aee-8153-c0b126000862"
+      },
+      "spec": {
+        "agentPodUID": "6da0c166-1b56-492c-a5a8-a09d01fc2389",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:14:09Z",
+        "nodeName": "aks-conf-12838440-vmss000003",
+        "nonce": "c4612a67b64570619a0c80c4f3298774",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "1c239908d6f27e0f94af63e3ccf1168879864689b2bd0366d41986744f76f707"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000003",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:07:09Z",
+        "generateName": "raw-aks-conf-12838440-vmss000003-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000003"
+        },
+        "name": "raw-aks-conf-12838440-vmss000003-7tf4n",
+        "namespace": "ai-platform",
+        "resourceVersion": "9096",
+        "uid": "1f185a4b-46fc-4b9a-8491-7f65f1824eda"
+      },
+      "spec": {
+        "agentPodUID": "6da0c166-1b56-492c-a5a8-a09d01fc2389",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:07:09Z",
+        "nodeName": "aks-conf-12838440-vmss000003",
+        "nonce": "f2ca855a251b1ceea9e3bcb2147b8108",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "6ac273d3c6ff2e65040b0fb17afb1b6538ec26546c405f7618a34717bf275d9e"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000003",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:09:09Z",
+        "generateName": "raw-aks-conf-12838440-vmss000003-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000003"
+        },
+        "name": "raw-aks-conf-12838440-vmss000003-f6nkg",
+        "namespace": "ai-platform",
+        "resourceVersion": "9159",
+        "uid": "54690d3b-ddfe-4aae-ab9f-3ebdb5301ddc"
+      },
+      "spec": {
+        "agentPodUID": "6da0c166-1b56-492c-a5a8-a09d01fc2389",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:09:09Z",
+        "nodeName": "aks-conf-12838440-vmss000003",
+        "nonce": "f48e0b56f68d6a24cf2e1439be7d73d7",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "b171574a7f879cf984e6bf6e45327bdaf55c64ae9ac457e2257d6c434f000dcf"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000003",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:11:09Z",
+        "generateName": "raw-aks-conf-12838440-vmss000003-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000003"
+        },
+        "name": "raw-aks-conf-12838440-vmss000003-fxsfr",
+        "namespace": "ai-platform",
+        "resourceVersion": "9165",
+        "uid": "70e40fa0-e5d9-4e76-b6c0-48d0a725e180"
+      },
+      "spec": {
+        "agentPodUID": "6da0c166-1b56-492c-a5a8-a09d01fc2389",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:11:09Z",
+        "nodeName": "aks-conf-12838440-vmss000003",
+        "nonce": "6785f277426eb10545e01b52125fd086",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "3352c89d6ef0549d55a64d0f7e9f3048097d0b4b632766963319b02025fa4c37"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000003",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:06:09Z",
+        "generateName": "raw-aks-conf-12838440-vmss000003-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000003"
+        },
+        "name": "raw-aks-conf-12838440-vmss000003-jfwx4",
+        "namespace": "ai-platform",
+        "resourceVersion": "9174",
+        "uid": "fb5c52f9-36f6-4e21-91e9-a175bccdd736"
+      },
+      "spec": {
+        "agentPodUID": "6da0c166-1b56-492c-a5a8-a09d01fc2389",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:06:09Z",
+        "nodeName": "aks-conf-12838440-vmss000003",
+        "nonce": "4803a40e0190d3e0951fe5a8b94de3c5",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "d40b945773459cc8422f343906c6cbbc4de8a87d42027dcebd8f9eb56a9fda1e"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000003",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:13:09Z",
+        "generateName": "raw-aks-conf-12838440-vmss000003-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000003"
+        },
+        "name": "raw-aks-conf-12838440-vmss000003-qltv7",
+        "namespace": "ai-platform",
+        "resourceVersion": "9121",
+        "uid": "4e2aebf1-8bc2-4729-a96e-1e035ca98651"
+      },
+      "spec": {
+        "agentPodUID": "6da0c166-1b56-492c-a5a8-a09d01fc2389",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:13:09Z",
+        "nodeName": "aks-conf-12838440-vmss000003",
+        "nonce": "8881d16fde8fde8004d18af9daebacd7",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "5a3ce6cddac84df4668216fc4179b11bd74c84c0e6c1ed87b0f6c431fb3740da"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000003",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:10:09Z",
+        "generateName": "raw-aks-conf-12838440-vmss000003-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000003"
+        },
+        "name": "raw-aks-conf-12838440-vmss000003-qwncb",
+        "namespace": "ai-platform",
+        "resourceVersion": "9176",
+        "uid": "a2f6bcc8-9b28-4d65-9ab0-cef2acc587da"
+      },
+      "spec": {
+        "agentPodUID": "6da0c166-1b56-492c-a5a8-a09d01fc2389",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:10:09Z",
+        "nodeName": "aks-conf-12838440-vmss000003",
+        "nonce": "e2b778d5eafd21c5049f4fdadf705bbc",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "52ec7ba63dea34a509142b687f6ee076ef694890c49619fbf5f649792111ce71"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000003",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:12:09Z",
+        "generateName": "raw-aks-conf-12838440-vmss000003-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000003"
+        },
+        "name": "raw-aks-conf-12838440-vmss000003-s5mvg",
+        "namespace": "ai-platform",
+        "resourceVersion": "9098",
+        "uid": "18d58993-47ed-41ba-b8e0-7cff94e4f6cb"
+      },
+      "spec": {
+        "agentPodUID": "6da0c166-1b56-492c-a5a8-a09d01fc2389",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:12:09Z",
+        "nodeName": "aks-conf-12838440-vmss000003",
+        "nonce": "a7f742faee69f24d76dcf11f114aa83e",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "0c7e13403f82f942b747bf69e1b391ca9a767f3d908b60fe82a5e86a81556265"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000003",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:08:09Z",
+        "generateName": "raw-aks-conf-12838440-vmss000003-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000003"
+        },
+        "name": "raw-aks-conf-12838440-vmss000003-zq4q9",
+        "namespace": "ai-platform",
+        "resourceVersion": "9129",
+        "uid": "afb6775f-9429-461d-8f03-9f173f3fb947"
+      },
+      "spec": {
+        "agentPodUID": "6da0c166-1b56-492c-a5a8-a09d01fc2389",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:08:09Z",
+        "nodeName": "aks-conf-12838440-vmss000003",
+        "nonce": "95269cd3309d5cd943ce75281da9fb65",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "9e45c5afca1edae0fa803802840f7eba34644a2efade11130786aa57e61f4ada"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000003",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:23:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-26j5z",
+        "namespace": "ai-platform",
+        "resourceVersion": "12515",
+        "uid": "eb687d80-51ec-403a-bbdd-655205345f31"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:23:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "c9d7b562b3a7ed75f37b563b20d3ba27",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "25ee4fad309ebf309cd70f39ea0c9aa6f6fcd8986af9f47a0f67ae34f411ee31"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:29:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-5d75z",
+        "namespace": "ai-platform",
+        "resourceVersion": "12523",
+        "uid": "1581f4d5-82b4-45c8-8bdc-f9631671690b"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:29:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "3f3685636b8e0b0ec4ba3c73dcb2eee1",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "0668599569e8cefb2fce81cf497aa051f24059b3b3413bf774b067964910c120"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:32:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-bljqd",
+        "namespace": "ai-platform",
+        "resourceVersion": "12654",
+        "uid": "7d7b26a8-03ba-43ff-b27c-5a670559cf1a"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:32:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "306120f33ed7ee0c5363383dd3eef089",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "9094753945c2a5cf0f21068cf8d67f5dfea474cc88c4ee9d33511d9c3aaa1483"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:21:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-d6w4p",
+        "namespace": "ai-platform",
+        "resourceVersion": "10961",
+        "uid": "ad36cb7a-528f-4197-aa11-48d919f53d9f"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:21:07Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "425fd2cc7f3388bdbf1b7381a9234fd5",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "4b8387049c5086fb08d341f829477fe85aff75b00f2588db4d8c40ab4b813c32"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:22:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-fjtk6",
+        "namespace": "ai-platform",
+        "resourceVersion": "10919",
+        "uid": "7cf83bdc-7ce4-4da0-8d08-50b7d14db37d"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:22:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "2fd8c91da9c0a527aa57b77acc269b45",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "3da51b5ddec4cbd40bbb2c6c15379061f1f88d1e3158344457199d58b690f022"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:30:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-gwfz4",
+        "namespace": "ai-platform",
+        "resourceVersion": "12540",
+        "uid": "e293eb3b-0a7a-42d0-8bd0-b1eb7daf3066"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:30:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "2bac237baab72dcae061f0d616e1357a",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "30383e22ffeef15eafcb13c77b1aacc2449caff5ec1e92d0b0955016dfb171cc"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:25:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-jkl94",
+        "namespace": "ai-platform",
+        "resourceVersion": "12493",
+        "uid": "4bc4ff5f-3883-40a4-a34a-d036bbcc4505"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:25:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "39639751b8f5b4f7af5354ce1b38bc7a",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "5fef5b93ec0d8988baa60b526ff9ad51a5f79602eb5a5eab59219becea7f0723"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:27:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-lsnr4",
+        "namespace": "ai-platform",
+        "resourceVersion": "10921",
+        "uid": "41cced97-985e-406e-a031-bbf08c031264"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:27:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "59c31a21406953048d60524b1d4d02de",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "7f5c1cb8c2f7f38186cabae7e3e085b48afb41af901a577972e74dbbbda54df3"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:26:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-tcmxk",
+        "namespace": "ai-platform",
+        "resourceVersion": "12481",
+        "uid": "af8e9ec1-c9da-4b2f-9bf7-ee01e8d4ff4c"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:26:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "a177f549a2a280081ddbcd25c5f66dac",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "9b1689ea768f4c644fdbf972032cd7bfbaf55daa92ce2b181719fbfe62d1453d"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:28:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-v8p2b",
+        "namespace": "ai-platform",
+        "resourceVersion": "11256",
+        "uid": "63c73689-4902-4130-8f38-223276951b01"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:28:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "7bf8f5a3cc939e6b1d0ab57c94ffb1e7",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "942ce4a389744ecb2c08f8860a9ac8a62add1f0300ba3190ce4a0725484744b2"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:31:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-vvbv6",
+        "namespace": "ai-platform",
+        "resourceVersion": "12568",
+        "uid": "1d12d01b-1aa9-4497-a4c9-8aec03a5dd57"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:31:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "cfa185a1e3a3fa44d019c27b6558f7fd",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "7c4547084fb5c95340fc624c20747954cc62e4409796f3add0ecddbea5aac0e0"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:24:08Z",
+        "generateName": "raw-aks-conf-12838440-vmss000004-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000004"
+        },
+        "name": "raw-aks-conf-12838440-vmss000004-vzs74",
+        "namespace": "ai-platform",
+        "resourceVersion": "12570",
+        "uid": "16ce7941-e8a7-45bd-a9a0-fc2c8554cf4d"
+      },
+      "spec": {
+        "agentPodUID": "07373202-dd43-467f-9759-f40b6790d5b5",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:24:08Z",
+        "nodeName": "aks-conf-12838440-vmss000004",
+        "nonce": "4dbfe05a90e7c7b1a564141db0f16de5",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "856e4e7bb26550e316ae472a5746ad42ae63ea3ca9c878953de3063fa56bbceb"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000004",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:20:55Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-4bb84",
+        "namespace": "ai-platform",
+        "resourceVersion": "10940",
+        "uid": "a7ce39c5-d6bb-49b5-a861-03b5d7054642"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:20:55Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "3df8eaec98c759d7ef3319269ea1be0a",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "2486ed2f5235b6262380928b585d2f258ff74f49ff3688a02f61ff7bb0cbad4e"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:23:56Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-6fc5z",
+        "namespace": "ai-platform",
+        "resourceVersion": "12548",
+        "uid": "d8698299-fe36-4863-84da-dd103abe5567"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:23:56Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "2ae5d00535e9da191a136e1801ba0227",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "07e85fb1c55570a57448af1a10a72e218273c452ec9f94087fad4f143db7ff86"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:26:56Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-9mgjp",
+        "namespace": "ai-platform",
+        "resourceVersion": "12484",
+        "uid": "f223a89a-ef46-4067-82bf-b2fc93929d77"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:26:56Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "bd11557ac1bdc43dfe240f136b01ec13",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "656a58fdcdddf41af98f1b021a7355794d70f4e48c48fad7ec1df91a417ee9d7"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:21:55Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-9qznk",
+        "namespace": "ai-platform",
+        "resourceVersion": "10888",
+        "uid": "0e02cb83-8492-41d3-a642-d78a921a6b12"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:21:55Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "cb712d38990af81d8762c4b8a7ce7443",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "b21d9b82d2a607067b1321ca2070012501f7d3ddaeb5f9bd34c902dece0e9c11"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:30:55Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-b2nzb",
+        "namespace": "ai-platform",
+        "resourceVersion": "12473",
+        "uid": "bd411e8e-42aa-43cd-9625-d2bc2b7e7cc8"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:30:55Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "e2d04251f1481e65893f022a4fb48d1b",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "6e88bd984172a5632c4cfd4aa5ac742dc6111166e4b4af13fe01f3911c6e360d"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:24:56Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-gp9n4",
+        "namespace": "ai-platform",
+        "resourceVersion": "12517",
+        "uid": "1203848c-ac2c-4ba0-bfe5-dded8c7d0c8c"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:24:56Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "c7e4fe13231e919f9a2049fbbf922d07",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "687cc89fc5226139362182e82a64275bf114b35f153e2c684380c910b60db9d2"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:27:55Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-h26j5",
+        "namespace": "ai-platform",
+        "resourceVersion": "11189",
+        "uid": "e304fceb-0375-4b4c-af60-38d5011b550d"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:27:55Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "4d317b0f541331e1434a658866852080",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "389692f158a9a4d26b518d4723262c4eb36772c9a679ef7f09c17197a7c3cc0a"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:31:55Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-kmkws",
+        "namespace": "ai-platform",
+        "resourceVersion": "12525",
+        "uid": "14ba9e12-7a39-417c-810c-458aeea1095f"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:31:55Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "5967e2f27a8ea3eb4daf0a73d1afbe61",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "823241881a58c6e2602a6cd034ca10be5389a6f137475d288574238f2a5f1edb"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:25:55Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-s885p",
+        "namespace": "ai-platform",
+        "resourceVersion": "12591",
+        "uid": "bcd4335d-87d7-40a7-bba4-eaa69fc6da86"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:25:55Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "338d6be2c8ea79f8fd883dc6204c1a3b",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "891049621517b8022c79b77ac68634bf2a1e7ce56a3fb4cecb377307ef8515f8"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:29:55Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-tr5sf",
+        "namespace": "ai-platform",
+        "resourceVersion": "12550",
+        "uid": "ed4ca9ed-deab-4445-b67e-a89bcc412392"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:29:55Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "2e75913e529bf4b90e462f8d865fa079",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "153225e27375516bc686e029f478fc5e47dd8b5ccf5df6533252c32dc6216c9d"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:28:56Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-vbkct",
+        "namespace": "ai-platform",
+        "resourceVersion": "12475",
+        "uid": "4135c555-7b9b-4a2e-882d-c9c2502ee227"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:28:56Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "00a0eb34e4e94ac4825223515061b2d4",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "84c77a3f8ec18decec4cc8c8b9713e8c951ba4d9144b9623ef419bc98e408b58"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:22:56Z",
+        "generateName": "raw-aks-conf-12838440-vmss000005-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000005"
+        },
+        "name": "raw-aks-conf-12838440-vmss000005-vcs8v",
+        "namespace": "ai-platform",
+        "resourceVersion": "12559",
+        "uid": "e9f11184-bdb4-4cd6-994a-88762bc230a4"
+      },
+      "spec": {
+        "agentPodUID": "a766e7d1-ae0a-4efa-bebe-71c730671eee",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:22:56Z",
+        "nodeName": "aks-conf-12838440-vmss000005",
+        "nonce": "e25cdd254240c19ebb13d3771c96c2b5",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "d349a59ae4b95578702a0a9a281d433cefd433fea78a83526080b0ee4307bdb4"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000005",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:25:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-4cl6m",
+        "namespace": "ai-platform",
+        "resourceVersion": "12507",
+        "uid": "8bf8c862-d258-439d-b4ab-0ac98edf7f70"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:25:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "9ef1801d752cc1b80c3f0628010c3ac5",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "3e4cfedc84013cb96daf60431f1c74784de24c373fab6c2ca89582fc39477bbe"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:22:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-7g9s5",
+        "namespace": "ai-platform",
+        "resourceVersion": "12609",
+        "uid": "c9a680d9-fa0c-4866-8dd7-b4cd72ac7e2a"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:22:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "fa6336e60ff38074382142c7e519e6f0",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "2842649fdde212c3fc4985b166ecdae42bc4517244fdb77a9429e9a63a3465e0"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:23:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-845n2",
+        "namespace": "ai-platform",
+        "resourceVersion": "12495",
+        "uid": "5aefa429-10ed-4593-86dc-094fc0300ec3"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:23:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "4dad8048354a42dada49eb8a63d9f8a8",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "d016589c634a8af68a38474d13a5c21c486e0eaebf368e0c5f7f3597591652d5"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:24:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-872zg",
+        "namespace": "ai-platform",
+        "resourceVersion": "12593",
+        "uid": "c5010801-cdf8-4e99-bb39-f0fa8dddcaaa"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:24:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "68c0d9dbc489ceff11f635271644e2e9",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "7c8485ccc52510500d298c2a3de439e9a8649cd197bb7e5dec215ec5adc893c8"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:20:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-8j6cf",
+        "namespace": "ai-platform",
+        "resourceVersion": "10914",
+        "uid": "304d4f25-567f-43a8-a7f4-9a9ffd8cf655"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:20:56Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "1a1e4bc553dabc14c09eb1c1522ef0e8",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "64cf9e7a2de08221bcc954be20994f58fa418b3c8ff7d4e2ad3f7b37d166e9b4"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:28:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-b8r82",
+        "namespace": "ai-platform",
+        "resourceVersion": "12543",
+        "uid": "ffb7c7ef-1efb-4ebe-86bd-59c12cf9cb66"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:28:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "2ae33b995ca8cfc0b991b440be60f904",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "6ae439b16aa5d75efc9479e6d3694117f1520f987ce9b734d8f488cb0370d9e6"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:31:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-kzx86",
+        "namespace": "ai-platform",
+        "resourceVersion": "12532",
+        "uid": "017fd433-82c1-4eee-8b7d-9b661f247e11"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:31:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "94c65a29efe6ef762bce0b791f2fe89f",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "7fd8b76363c34a62201dfa14b9d62ab999c611441004ce34474adf8fc1887d75"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:30:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-lmjf7",
+        "namespace": "ai-platform",
+        "resourceVersion": "12502",
+        "uid": "f8eec209-aadf-4d26-a93e-91e81f0e93cb"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:30:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "6f06de1713ec1dbdedeb6ad990a9de7c",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "44107ee2df3c8d519f9b689d9f20fc50f63dc4fdd49500aae7381aeb3ea92e36"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:27:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-nb9wk",
+        "namespace": "ai-platform",
+        "resourceVersion": "11202",
+        "uid": "604c5bd4-ffd5-4b73-abcf-e40de7372b7e"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:27:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "80db6f3ec7b6714c2682fede837a6f2f",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "a2837f03e7eda173b6aaae4322e61fff3c1911a22fe99be0ab972519ab8c6f00"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:26:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-nl5bc",
+        "namespace": "ai-platform",
+        "resourceVersion": "12497",
+        "uid": "bba2e440-c99d-41fd-89ab-643e6cb70830"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:26:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "25d1cef166cb19e7dfd986958649215e",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "c0000c37c42fc73efe66cb5fea1830910a5fe36b98df385532e5178785363e41"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:21:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-q4kd7",
+        "namespace": "ai-platform",
+        "resourceVersion": "10931",
+        "uid": "2a75e16c-642d-4222-ae5a-a4f4c51ad1e7"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:21:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "d5a10563175c6ca3bdea98f34de5407e",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "b30f24f862f27bafa10fc8c85d16cbc6a02e31aeaec2cd42d18056a098cc9c65"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Failed"
+      }
+    },
+    {
+      "apiVersion": "aiops.imperium.io/v1alpha1",
+      "kind": "RawAttestationReport",
+      "metadata": {
+        "creationTimestamp": "2026-07-06T06:29:57Z",
+        "generateName": "raw-aks-conf-12838440-vmss000006-",
+        "generation": 1,
+        "labels": {
+          "ai.sovereign.io/collector": "node-attestation-agent",
+          "ai.sovereign.io/node": "aks-conf-12838440-vmss000006"
+        },
+        "name": "raw-aks-conf-12838440-vmss000006-w5g9z",
+        "namespace": "ai-platform",
+        "resourceVersion": "12562",
+        "uid": "7dd7ebcb-f340-4682-ae1f-dc1ba4642b04"
+      },
+      "spec": {
+        "agentPodUID": "abe0186c-2699-4d47-acaf-a8781e63ceaf",
+        "agentServiceAccount": "node-attestation-agent",
+        "collectedAt": "2026-07-06T06:29:57Z",
+        "nodeName": "aks-conf-12838440-vmss000006",
+        "nonce": "87b6be2842c143be9cf344cb8653de21",
+        "provider": "maa",
+        "rawToken": "<redacted: see spec.rawTokenHash>",
+        "rawTokenHash": "6077bca625524175652083c39b7645781e971fafd36a923f17b39c95957bea85"
+      },
+      "status": {
+        "evidenceRef": "evidence-aks-conf-12838440-vmss000006",
+        "observedGeneration": 1,
+        "processed": true,
+        "verificationStatus": "Verified"
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

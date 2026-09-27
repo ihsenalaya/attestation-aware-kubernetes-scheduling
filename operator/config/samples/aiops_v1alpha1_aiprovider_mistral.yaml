@@ -1,0 +1,24 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIProvider
+metadata:
+  name: mistral-eu
+  labels:
+    app.kubernetes.io/name: ai-sovereign-finops-operator
+spec:
+  type: mistral
+  region: eu
+  # EU data zone (Azure AI Foundry Mistral-Large-3, DataZoneStandard).
+  dataResidency: eu
+  managed: true
+  # Real list price for Mistral Large (Mistral AI): published USD 2.00 in /
+  # 6.00 out per 1M tokens (June 2026), converted to EUR at 1 USD = 0.92 EUR.
+  # Source: https://mistral.ai/pricing/
+  pricing:
+    currency: EUR
+    inputTokenPricePerMillion: "1.84"
+    outputTokenPricePerMillion: "5.52"
+  compliance:
+    allowedForSensitiveData: true
+    allowedCountries:
+      - FR
+      - EU

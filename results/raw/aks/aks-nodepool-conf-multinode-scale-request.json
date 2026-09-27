@@ -1,0 +1,80 @@
+{
+  "availabilityZones": null,
+  "capacityReservationGroupId": null,
+  "count": 4,
+  "creationData": null,
+  "currentOrchestratorVersion": "1.35.5",
+  "eTag": null,
+  "enableAutoScaling": true,
+  "enableEncryptionAtHost": false,
+  "enableFips": false,
+  "enableNodePublicIp": false,
+  "enableUltraSsd": false,
+  "gatewayProfile": null,
+  "gpuInstanceProfile": null,
+  "gpuProfile": null,
+  "hostGroupId": null,
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/rg-article1-confidential/providers/Microsoft.ContainerService/managedClusters/aks-article1/agentPools/conf",
+  "kubeletConfig": null,
+  "kubeletDiskType": "OS",
+  "linuxOsConfig": null,
+  "maxCount": 4,
+  "maxPods": 30,
+  "messageOfTheDay": null,
+  "minCount": 4,
+  "mode": "User",
+  "name": "conf",
+  "networkProfile": null,
+  "nodeImageVersion": "AKSUbuntu-2404gen2CVMcontainerd-202606.19.0",
+  "nodeLabels": {
+    "ai.sovereign.io/attested": "pending",
+    "ai.sovereign.io/tee": "SEV-SNP"
+  },
+  "nodePublicIpPrefixId": null,
+  "nodeTaints": [
+    "ai.sovereign.io/confidential=true:NoSchedule"
+  ],
+  "orchestratorVersion": "1.35",
+  "osDiskSizeGb": 256,
+  "osDiskType": "Managed",
+  "osSku": "Ubuntu",
+  "osType": "Linux",
+  "podIpAllocationMode": null,
+  "podSubnetId": null,
+  "powerState": {
+    "code": "Running"
+  },
+  "provisioningState": "Succeeded",
+  "proximityPlacementGroupId": null,
+  "resourceGroup": "rg-article1-confidential",
+  "scaleDownMode": "Delete",
+  "scaleSetEvictionPolicy": null,
+  "scaleSetPriority": null,
+  "securityProfile": {
+    "enableSecureBoot": false,
+    "enableVtpm": false
+  },
+  "spotMaxPrice": null,
+  "status": null,
+  "tags": {
+    "env": "research",
+    "owner": "article1",
+    "project": "article1",
+    "ttl": "24h"
+  },
+  "type": "Microsoft.ContainerService/managedClusters/agentPools",
+  "typePropertiesType": "VirtualMachineScaleSets",
+  "upgradeSettings": {
+    "drainTimeoutInMinutes": null,
+    "maxSurge": "10%",
+    "maxUnavailable": "0",
+    "nodeSoakDurationInMinutes": null,
+    "undrainableNodeBehavior": null
+  },
+  "virtualMachineNodesStatus": null,
+  "virtualMachinesProfile": null,
+  "vmSize": "Standard_DC8as_v6",
+  "vnetSubnetId": null,
+  "windowsProfile": null,
+  "workloadRuntime": null
+}

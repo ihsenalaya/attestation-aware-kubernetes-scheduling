@@ -1,0 +1,3 @@
+kubectl auth can-i create attestationevidences.aiops.imperium.io --namespace ai-platform --as=system:serviceaccount:ai-platform:attestation-scheduler
+no
+rc=1

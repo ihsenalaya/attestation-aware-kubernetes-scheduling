@@ -1,0 +1,270 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: aiworkloadbindings.aiops.imperium.io
+spec:
+  group: aiops.imperium.io
+  names:
+    kind: AIWorkloadBinding
+    listKind: AIWorkloadBindingList
+    plural: aiworkloadbindings
+    shortNames:
+    - aiwb
+    singular: aiworkloadbinding
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.serviceAccountName
+      name: ServiceAccount
+      type: string
+    - jsonPath: .spec.tenantID
+      name: Tenant
+      type: string
+    - jsonPath: .spec.requireGateway
+      name: Gateway
+      type: boolean
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: |-
+          AIWorkloadBinding binds a namespaced ServiceAccount to operator-owned GOV-AR
+          identity and policy. Application authors must not receive create, update,
+          patch, or delete RBAC for this resource.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: |-
+              AIWorkloadBindingSpec is the operator-owned governance identity for Pods
+              authenticated as one ServiceAccount. Admission resolves this object by the
+              Pod's live namespace and spec.serviceAccountName; the Pod does not name it.
+            properties:
+              allowedZones:
+                description: |-
+                  AllowedZones is a non-empty, normalized lower-case set of permitted
+                  provider regions or residency zones.
+                items:
+                  minLength: 1
+                  pattern: ^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$
+                  type: string
+                minItems: 1
+                type: array
+                x-kubernetes-list-type: set
+              application:
+                description: Application is the operator-assigned application identity.
+                minLength: 1
+                pattern: ^[A-Za-z0-9][A-Za-z0-9._:/-]*$
+                type: string
+              budgetPolicyRef:
+                description: BudgetPolicyRef names an AIBudgetPolicy in the same namespace.
+                maxLength: 253
+                minLength: 1
+                pattern: ^[a-z0-9]([-a-z0-9.]*[a-z0-9])?$
+                type: string
+              requireGateway:
+                default: true
+                description: |-
+                  RequireGateway makes the authenticated GOV-AR gateway mandatory. It
+                  defaults to true; setting it false is an explicit operator decision.
+                type: boolean
+              routingPolicyRef:
+                description: RoutingPolicyRef names an AIRoutingPolicy in the same
+                  namespace.
+                maxLength: 253
+                minLength: 1
+                pattern: ^[a-z0-9]([-a-z0-9.]*[a-z0-9])?$
+                type: string
+              sensitivity:
+                allOf:
+                - enum:
+                  - low
+                  - medium
+                  - high
+                - enum:
+                  - low
+                  - medium
+                  - high
+                description: Sensitivity is the maximum data sensitivity assigned
+                  to this workload.
+                type: string
+              serviceAccountName:
+                description: |-
+                  ServiceAccountName is both the authenticated workload principal and the
+                  required metadata.name of this binding.
+                maxLength: 253
+                minLength: 1
+                pattern: ^[a-z0-9]([-a-z0-9.]*[a-z0-9])?$
+                type: string
+              team:
+                description: Team is the operator-assigned organizational identity.
+                minLength: 1
+                pattern: ^[A-Za-z0-9][A-Za-z0-9._:/-]*$
+                type: string
+              tenantID:
+                description: TenantID is the immutable financial-isolation identity
+                  assigned by the operator.
+                minLength: 1
+                pattern: ^[A-Za-z0-9][A-Za-z0-9._:/-]*$
+                type: string
+            required:
+            - allowedZones
+            - application
+            - budgetPolicyRef
+            - requireGateway
+            - routingPolicyRef
+            - sensitivity
+            - serviceAccountName
+            - team
+            - tenantID
+            type: object
+          status:
+            description: |-
+              AIWorkloadBindingStatus describes the generation and immutable dependency
+              identities consumed by enforcement.
+            properties:
+              conditions:
+                description: Conditions represent resolution and enforcement readiness.
+                items:
+                  description: Condition contains details for one aspect of the current
+                    state of this API Resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        lastTransitionTime is the last time the condition transitioned from one status to another.
+                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        message is a human readable message indicating details about the transition.
+                        This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        observedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: |-
+                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                        Producers of specific condition types may define expected values and meanings for this field,
+                        and whether the values are considered a guaranteed API.
+                        The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              observedGeneration:
+                description: ObservedGeneration is the .metadata.generation last reconciled.
+                format: int64
+                type: integer
+              resolvedBudgetPolicy:
+                description: ResolvedBudgetPolicy binds the configured policy name
+                  to its UID/generation.
+                properties:
+                  generation:
+                    description: Generation is the referenced object's observed metadata.generation.
+                    format: int64
+                    minimum: 1
+                    type: integer
+                  name:
+                    type: string
+                  uid:
+                    description: |-
+                      UID is a type that holds unique ID values, including UUIDs.  Because we
+                      don't ONLY use UUIDs, this is an alias to string.  Being a type captures
+                      intent and helps make sure that UIDs and names do not get conflated.
+                    type: string
+                required:
+                - generation
+                - name
+                - uid
+                type: object
+              resolvedRoutingPolicy:
+                description: ResolvedRoutingPolicy binds the configured policy name
+                  to its UID/generation.
+                properties:
+                  generation:
+                    description: Generation is the referenced object's observed metadata.generation.
+                    format: int64
+                    minimum: 1
+                    type: integer
+                  name:
+                    type: string
+                  uid:
+                    description: |-
+                      UID is a type that holds unique ID values, including UUIDs.  Because we
+                      don't ONLY use UUIDs, this is an alias to string.  Being a type captures
+                      intent and helps make sure that UIDs and names do not get conflated.
+                    type: string
+                required:
+                - generation
+                - name
+                - uid
+                type: object
+              resolvedServiceAccountUID:
+                description: |-
+                  ResolvedServiceAccountUID is the UID of the live namespaced ServiceAccount.
+                  Admission compares it with the authenticated Pod's ServiceAccount.
+                type: string
+            type: object
+        type: object
+        x-kubernetes-validations:
+        - message: metadata.name must equal spec.serviceAccountName
+          rule: self.metadata.name == self.spec.serviceAccountName
+        - message: spec is immutable; replace the binding to change governance identity
+            or policy
+          rule: self.spec == oldSelf.spec
+    served: true
+    storage: true
+    subresources:
+      status: {}

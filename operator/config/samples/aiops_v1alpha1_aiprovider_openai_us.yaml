@@ -1,0 +1,20 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIProvider
+metadata:
+  name: openai-us
+  labels:
+    app.kubernetes.io/name: ai-sovereign-finops-operator
+spec:
+  type: openai
+  region: eastus
+  dataResidency: us
+  managed: true
+  # Example price for the demo's gpt-us-mini Azure deployment.
+  pricing:
+    currency: EUR
+    inputTokenPricePerMillion: "0.37"
+    outputTokenPricePerMillion: "1.47"
+  compliance:
+    allowedForSensitiveData: false
+    allowedCountries:
+      - US

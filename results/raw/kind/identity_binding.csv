@@ -1,0 +1,7 @@
+timestamp,env,case,mutated_field,expected,actual,pass,raw_log_path
+2026-07-05T06:35:03Z,kind-live-simulated,correct-binding,none,PASS,PASS,PASS,article1/results/raw/kind/.idb.log
+2026-07-05T06:35:03Z,kind-live-simulated,mutate-poduid,podUID,FAIL,FAIL,PASS,article1/results/raw/kind/.idb.log
+2026-07-05T06:35:03Z,kind-live-simulated,mutate-podspechash,podSpecHash,FAIL,FAIL,PASS,article1/results/raw/kind/.idb.log
+2026-07-05T06:35:03Z,kind-live-simulated,mutate-node,nodeIdentity,FAIL,FAIL,PASS,article1/results/raw/kind/.idb.log
+2026-07-05T06:35:03Z,kind-live-simulated,mutate-evidencehash,evidenceHash,FAIL,FAIL,PASS,article1/results/raw/kind/.idb.log
+2026-07-05T06:35:03Z,kind-live-simulated,mutate-policyhash,policyHash,FAIL,FAIL,PASS,article1/results/raw/kind/.idb.log

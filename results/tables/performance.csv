@@ -1,0 +1,6 @@
+baseline,n,median_ms,p95_ms,p99_ms,ci95_low,ci95_high,overhead_vs_B1_ms,overhead_vs_B1_pct,overhead_vs_B4_ms,mannwhitney_p,measurement_basis,scheduler_internal_median_ms
+B1,30,1170.5,1588.8,1990.55,1092.5,1249.075,0.0,0.0,42.5,0.98820416,client_observed_scheduling_path,
+B2,30,1189.0,1590.15,2383.18,1117.5,1274.0,18.5,1.581,61.0,,client_observed_scheduling_path,
+B3,30,1168.5,1377.4,1449.16,1105.0,1222.0,-2.0,-0.171,40.5,,client_observed_scheduling_path,
+B4,30,1128.0,1345.95,1441.36,1104.0,1202.0,-42.5,-3.631,0.0,0.37107703,client_observed_scheduling_path,
+B5,30,1167.0,1425.1,1703.61,1115.5,1240.5,-3.5,-0.299,39.0,,client_observed_scheduling_path,216.232

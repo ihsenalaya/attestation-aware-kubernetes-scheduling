@@ -1,0 +1,30 @@
+\section{Threats to Validity}
+\label{sec:ttv}
+
+\paragraph{Construct validity.}
+Security is measured as whether the deployed system blocks each attack from an
+adversarial principal, not as a unit-test assertion; the adversarial campaign
+runs against the real cluster. The B1--B5 CDF uses high-resolution
+client-observed timing for all baselines; B5 additionally records
+scheduler-internal monotonic phase instrumentation, which is reported separately
+(\S\ref{sec:limitations}).
+
+\paragraph{Internal validity.}
+Each experiment records \texttt{env}, \texttt{run\_id}, \texttt{seed} and a
+\texttt{raw\_log\_path}; warm-ups are retained but excluded from statistics;
+figures are regenerated from raw CSVs by a single script. B4 is implemented as a
+genuine strong baseline (real evidence checks, gate removal, default-scheduler
+bind), not a strawman, so the B4-vs-B5 TOCTOU comparison is fair.
+
+\paragraph{External validity.}
+Results are from one cloud (Azure), one region (westus2), one confidential SKU
+family (DCasv6/SEV-SNP) and four active confidential nodes in the final AKS
+multi-node and performance campaign. We do not extrapolate to other TEEs,
+providers, or larger scales. Local test-cluster runs are CI/debug/regression
+only and are excluded from the main security and performance evidence.
+
+\paragraph{Honesty controls.}
+The verifier refuses to mark empty/invalid MAA tokens real (verified on real
+hardware and by unit tests); every paper claim maps to a raw file in
+\texttt{claim\_evidence\_mapping.csv}, and unsupported or out-of-scope claims are
+labelled as such rather than omitted.

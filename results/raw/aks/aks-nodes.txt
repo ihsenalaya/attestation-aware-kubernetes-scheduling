@@ -1,0 +1,6 @@
+NAME                             STATUS   ROLES    AGE    VERSION   INTERNAL-IP    EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION         CONTAINER-RUNTIME
+aks-conf-12838440-vmss000000     Ready    <none>   65s    v1.35.5   10.224.0.62    <none>        Ubuntu 24.04.4 LTS   6.8.0-1058-azure-fde   containerd://2.3.2-1
+aks-conf-12838440-vmss000001     Ready    <none>   63s    v1.35.5   10.224.0.120   <none>        Ubuntu 24.04.4 LTS   6.8.0-1058-azure-fde   containerd://2.3.2-1
+aks-conf-12838440-vmss000002     Ready    <none>   66s    v1.35.5   10.224.0.33    <none>        Ubuntu 24.04.4 LTS   6.8.0-1058-azure-fde   containerd://2.3.2-1
+aks-conf-12838440-vmss000003     Ready    <none>   50s    v1.35.5   10.224.0.91    <none>        Ubuntu 24.04.4 LTS   6.8.0-1058-azure-fde   containerd://2.3.2-1
+aks-system-37319869-vmss000000   Ready    <none>   4m9s   v1.35.5   10.224.0.4     <none>        Ubuntu 24.04.4 LTS   6.8.0-1059-azure       containerd://2.3.2-1

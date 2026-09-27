@@ -1,0 +1,9 @@
+env,run_id,batch_size,scheduled,makespan_ms,throughput_pods_per_s,raw_log_path
+kind-live-simulated,run-1,10,10,5428,1.842,article1/results/raw/kind/scalability
+kind-live-simulated,run-2,10,10,2304,4.34,article1/results/raw/kind/scalability
+kind-live-simulated,run-3,10,10,2271,4.403,article1/results/raw/kind/scalability
+kind-live-simulated,run-4,10,10,2424,4.125,article1/results/raw/kind/scalability
+kind-live-simulated,run-5,10,10,6041,1.655,article1/results/raw/kind/scalability
+kind-live-simulated,run-6,10,10,3424,2.921,article1/results/raw/kind/scalability
+kind-live-simulated,run-7,10,10,3321,3.011,article1/results/raw/kind/scalability
+kind-live-simulated,run-8,10,10,3701,2.702,article1/results/raw/kind/scalability

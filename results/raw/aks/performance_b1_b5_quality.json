@@ -1,0 +1,10 @@
+{
+  "raw_csv": "article1/results/raw/aks/performance_b1_b5_high_resolution.csv",
+  "table_csv": "article1/results/tables/performance.csv",
+  "measurement_basis": "client_observed_scheduling_path",
+  "b5_scheduler_internal_metric": "reported_separately_not_used_for_b1_b5_cdf",
+  "b5_scheduler_internal_median_ms": 216.232,
+  "measured_success_values": 150,
+  "multiples_of_1000_ratio": 0.0,
+  "anti_quantization_status": "PASS"
+}

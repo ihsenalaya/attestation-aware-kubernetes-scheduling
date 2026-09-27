@@ -1,0 +1,31 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Why scheduling-time enforcement.}
+Attestation is often used at secret-release time (CoCo/Trustee) or inside the
+workload (library OSes). We argue that \emph{placement} is a distinct, earlier
+control point: deciding \emph{where} a confidential workload runs, and proving it,
+is orthogonal to and composable with runtime key release. Making verified
+evidence a scheduling signal turns an implicit assumption (``the operator put me
+on a good node'') into an enforced, checkable property.
+
+\paragraph{What the real run demonstrated.}
+Beyond blocking attacks, the run validated two things that only real hardware can
+show. First, the end-to-end chain --- node agent $\to$ MAA JWT $\to$ RS256/JWKS
+verification $\to$ real evidence $\to$ tokenized placement --- works on
+a production SEV-SNP node. Second, and equally important for a security artifact,
+the pipeline's \emph{honesty} holds under real conditions: empty and invalid
+tokens are never promoted to real evidence.
+
+\paragraph{Composability and future work.}
+The design is complementary to pod-level confidential containers: node-level
+attested placement can front a CoCo runtime. The natural next steps are
+confidential GPUs (NVIDIA H100 CC) via the GPU-aware policy fields, a
+self-hosted verifier, millisecond-resolution scheduler instrumentation, and
+scheduler-only scalability studies. These extend, but do not alter, the
+node-level guarantees established here.
+
+\paragraph{Deferred to later work.}
+Full key-release orchestration, revocation propagation and audit-chain anchoring
+are deliberately out of scope for this paper and are the subject of follow-on
+work; here they appear only insofar as the scheduler consults revocation state.

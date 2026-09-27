@@ -1,0 +1,2 @@
+timestamp,env,attack_id,scenario,expected,actual,blocked,status,reason,raw_log_path
+2026-07-06T00:30:22Z,aks-real-sevsnp,A11,gpu-required-no-evidence,BLOCKED,DENIED,yes,EXECUTED,webhook_fail_closed_for_gpu_future_scope,article1/results/raw/aks/A11-gpu-required-no-evidence.log

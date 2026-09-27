@@ -1,0 +1,17 @@
+apiVersion: v2
+name: ai-confidential-governance-platform
+description: Umbrella Helm chart for the AI Sovereign Confidential Governance Platform
+type: application
+version: 0.5.11
+appVersion: "0.5.11"
+keywords:
+  - ai
+  - confidential-computing
+  - attestation
+  - kubernetes
+  - governance
+home: https://github.com/ihsenalaya/ai-sovereign-finops-operator
+maintainers:
+  - name: ihsenalaya
+annotations:
+  category: Security

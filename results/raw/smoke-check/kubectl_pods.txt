@@ -1,0 +1,17 @@
+NAMESPACE            NAME                                                READY   STATUS      RESTARTS        AGE     IP            NODE                        NOMINATED NODE   READINESS GATES
+ai-platform          attestation-scheduler-77cb5fd6f5-44d6r              1/1     Running     46 (21m ago)    7h23m   10.244.0.9    ai-platform-control-plane   <none>           <none>
+ai-platform          governance-operator-694998d56f-wv9vv                1/1     Running     45 (6m7s ago)   8h      10.244.0.8    ai-platform-control-plane   <none>           <none>
+ai-platform          governance-operator-6b4595bc56-ppczz                0/1     Running     0               7s      10.244.0.12   ai-platform-control-plane   <none>           <none>
+ai-platform          key-release-gateway-65b545c5fc-ppvlj                1/1     Running     5 (38m ago)     8h      10.244.0.2    ai-platform-control-plane   <none>           <none>
+ai-platform          platform-api-76766bbd4f-jrrgh                       1/1     Running     7 (38m ago)     8h      10.244.0.4    ai-platform-control-plane   <none>           <none>
+ai-platform          platform-ui-6784956d-5hfv4                          1/1     Running     3 (37m ago)     7h23m   10.244.0.10   ai-platform-control-plane   <none>           <none>
+ai-platform          thesis-bench-5v4jx                                  0/1     Completed   0               15m     10.244.0.11   ai-platform-control-plane   <none>           <none>
+kube-system          coredns-7d764666f9-2lfzl                            1/1     Running     1 (38m ago)     8h      10.244.0.3    ai-platform-control-plane   <none>           <none>
+kube-system          coredns-7d764666f9-rvcc5                            1/1     Running     1 (38m ago)     8h      10.244.0.5    ai-platform-control-plane   <none>           <none>
+kube-system          etcd-ai-platform-control-plane                      1/1     Running     0               36m     172.18.0.2    ai-platform-control-plane   <none>           <none>
+kube-system          kindnet-rtrm2                                       1/1     Running     1 (38m ago)     8h      172.18.0.2    ai-platform-control-plane   <none>           <none>
+kube-system          kube-apiserver-ai-platform-control-plane            1/1     Running     0               36m     172.18.0.2    ai-platform-control-plane   <none>           <none>
+kube-system          kube-controller-manager-ai-platform-control-plane   1/1     Running     14 (26m ago)    8h      172.18.0.2    ai-platform-control-plane   <none>           <none>
+kube-system          kube-proxy-2kzlh                                    1/1     Running     1 (38m ago)     8h      172.18.0.2    ai-platform-control-plane   <none>           <none>
+kube-system          kube-scheduler-ai-platform-control-plane            1/1     Running     13 (26m ago)    8h      172.18.0.2    ai-platform-control-plane   <none>           <none>
+local-path-storage   local-path-provisioner-67b8995b4b-zv2qd             1/1     Running     2 (37m ago)     8h      10.244.0.7    ai-platform-control-plane   <none>           <none>

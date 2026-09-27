@@ -1,0 +1,21 @@
+type,id,name,pass,expected,observed,simulated,duration_ms,detail
+baseline,B1,Kubernetes standard,true,ALLOWED,ALLOWED,true,0,placement allowed
+baseline,B2,Labels/nodeSelector,true,ALLOWED,ALLOWED,true,0,labels-only: placement allowed
+baseline,B3,RuntimeClass only,true,ALLOWED,ALLOWED,true,0,placement allowed
+baseline,B4,Confidential Containers (simulated),true,ALLOWED,ALLOWED,true,0,[SIMULATED] placement allowed
+baseline,B5,DRA without attestation (simulated),true,ALLOWED,ALLOWED,true,0,[SIMULATED] placement allowed
+baseline,B6,Full solution,true,ALLOWED,ALLOWED,true,2,[SIMULATED] all components passed
+attack,1,Fake label confidential=true,true,BLOCKED,ALLOWED,true,0,TEE not allowed
+attack,2,Sensitive pod without confidential RuntimeClass,true,BLOCKED,ALLOWED,true,0,runtime class mismatch
+attack,3,Expired attestation evidence,true,BLOCKED,ALLOWED,true,0,evidence expired
+attack,4,Replay of old attestation evidence,true,BLOCKED,ALLOWED,true,0,EVIDENCE_EXPIRED
+attack,5,Key release with wrong podUID,true,BLOCKED,ALLOWED,true,0,POD_UID_MISMATCH
+attack,6,Wrong modelDigest,true,BLOCKED,BLOCKED,true,0,MODEL_DIGEST_MISMATCH
+attack,7,Wrong imageDigest,true,BLOCKED,BLOCKED,true,0,IMAGE_DIGEST_MISMATCH
+attack,8,Policy modified after admission,true,BLOCKED,BLOCKED,true,0,POLICY_HASH_MISMATCH
+attack,9,Node revoked after placement,true,BLOCKED,BLOCKED,true,0,REVOCATION_ACTIVE
+attack,10,Pod rescheduled without new evidence,true,BLOCKED,BLOCKED,true,0,TEE not allowed
+attack,11,Tamper audit record,true,DETECTED,DETECTED,true,0,detected 1 anomaly(ies)
+attack,12,Key release after evidence expiry,true,BLOCKED,BLOCKED,true,0,EVIDENCE_EXPIRED
+attack,13,GPU not confidential in kind,true,BLOCKED,DETECTED,true,0,[SIMULATED] GPU confidential not real in kind — correctly marked simulated
+attack,14,Rewrite history before checkpoint,true,DETECTED,DETECTED,true,0,detected 2 anomaly(ies) — rewrite before checkpoint caught

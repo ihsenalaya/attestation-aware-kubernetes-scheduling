@@ -1,0 +1,1267 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "schemaVersion": 39,
+  "title": "AI FinOps & Sovereign Confidential Governance",
+  "tags": [
+    "ai-finops",
+    "sovereignty",
+    "cncf"
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "query": "prometheus",
+        "current": {}
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "refresh": "1m",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Total cost (EUR) \u2014 observed",
+      "description": "Real spend so far: measured gateway tokens x real per-model list prices.",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 0
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyEUR",
+          "decimals": 4
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(ai_finops_cost_eur)",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Tokens (total in + out)",
+      "description": "Real total tokens measured by the gateway across all apps.",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 6,
+        "y": 0
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "blue"
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(ai_finops_input_tokens) + sum(ai_finops_output_tokens)",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Requests (total)",
+      "description": "Total LLM requests routed through the gateway and accounted by the operator.",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "sum(ai_finops_requests)",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "bargauge",
+      "title": "Budget usage (%) by policy",
+      "description": "Forecast monthly spend vs the monthly budget cap, per AIBudgetPolicy (one bar per budget).",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 0
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 150,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": 0
+              },
+              {
+                "color": "yellow",
+                "value": 70
+              },
+              {
+                "color": "orange",
+                "value": 90
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "ai_finops_budget_usage_percent",
+          "legendFormat": "{{namespace}}/{{policy}}",
+          "instant": true,
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Cost (EUR) by namespace",
+      "description": "Real per-namespace spend over time.",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyEUR",
+          "decimals": 4,
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 10
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "ai_finops_cost_eur",
+          "legendFormat": "{{namespace}}",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Tokens by namespace (input / output)",
+      "description": "Real token volume measured by the gateway, per namespace.",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 6
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "line",
+            "fillOpacity": 10
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "ai_finops_input_tokens",
+          "legendFormat": "in {{namespace}}",
+          "refId": "A"
+        },
+        {
+          "expr": "ai_finops_output_tokens",
+          "legendFormat": "out {{namespace}}",
+          "refId": "B"
+        }
+      ]
+    },
+    {
+      "type": "bargauge",
+      "title": "Requests violating sovereignty (by app)",
+      "description": "Current number of requests each app routed to a non-compliant (forbidden-zone) provider. Critical zone violations shown (warning count is identical).",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 14
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "showUnfilled": true
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "red"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (namespace, application) (ai_finops_sovereignty_requests{severity=\"critical\"})",
+          "legendFormat": "{{namespace}}/{{application}}",
+          "instant": true,
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "type": "piechart",
+      "title": "Spend by sovereignty zone (EUR)",
+      "description": "How much real spend goes to each sovereignty zone (provider data residency). EU = compliant (allowed); US = forbidden by the policy. The share leaving the EU is the sovereign-spend exposure. Source: ai_finops_cost_by_zone_eur.",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 14
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "pieType": "donut",
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "expr": "ai_finops_cost_by_zone_eur",
+          "legendFormat": "{{zone}}",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyEUR",
+          "decimals": 4,
+          "color": {
+            "mode": "fixed"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "US"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "red"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "EU"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "green"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "table",
+      "title": "Enforcement actions (sovereignty)",
+      "description": "Ce que l'op\u00e9rateur D\u00c9CIDE et APPLIQUE pour chaque workload non conforme, selon le mode de la policy. action: report (reportOnly) / warn (alerte) / reroute (mod\u00e8le interdit -> backend conforme, R\u00c9\u00c9CRIT au niveau de l'Envoy AI Gateway) / block. actuated=true = appliqu\u00e9 de bout en bout : warn/report toujours, et reroute d\u00e9sormais ACTU\u00c9 dans le plan de donn\u00e9es (slice 2). Source: ai_finops_enforcement_actions.",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm"
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "expr": "ai_finops_enforcement_actions",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "instance": true,
+              "job": true,
+              "Value": true
+            },
+            "renameByName": {
+              "policy": "Policy",
+              "namespace": "Namespace",
+              "application": "Application",
+              "mode": "Mode",
+              "action": "Action",
+              "actuated": "Actuated"
+            },
+            "indexByName": {
+              "namespace": 0,
+              "application": 1,
+              "mode": 2,
+              "action": 3,
+              "actuated": 4,
+              "policy": 5
+            }
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Action"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "block": {
+                        "color": "red",
+                        "index": 0
+                      },
+                      "reroute": {
+                        "color": "orange",
+                        "index": 1
+                      },
+                      "warn": {
+                        "color": "yellow",
+                        "index": 2
+                      },
+                      "report": {
+                        "color": "blue",
+                        "index": 3
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "row",
+      "title": "Routing Score & Souverainet\u00e9",
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 46
+      }
+    },
+    {
+      "type": "table",
+      "title": "Score de routage par application / mod\u00e8le",
+      "description": "Score composite [0\u20131] : 40% co\u00fbt + 30% qualit\u00e9 + 20% latence + 10% fiabilit\u00e9. Score = 0 si le mod\u00e8le viole la politique de souverainet\u00e9 active.",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 10,
+        "w": 16,
+        "x": 0,
+        "y": 47
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm"
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "datasource": null,
+          "expr": "ai_finops_routing_score",
+          "format": "table",
+          "instant": true,
+          "refId": "A"
+        }
+      ],
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "instance": true,
+              "job": true
+            },
+            "renameByName": {
+              "namespace": "Namespace",
+              "application": "Application",
+              "model": "Mod\u00e8le",
+              "latency_telemetry": "Latence dispo",
+              "Value": "Score final [0-1]"
+            },
+            "indexByName": {
+              "namespace": 0,
+              "application": 1,
+              "model": 2,
+              "latency_telemetry": 3,
+              "Value": 4
+            }
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": "",
+            "sort": [
+              {
+                "field": "Score final [0-1]",
+                "desc": true
+              }
+            ]
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "left"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.5
+              },
+              {
+                "color": "green",
+                "value": 0.75
+              }
+            ]
+          },
+          "mappings": []
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Score final [0-1]"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "unit",
+                "value": "short"
+              },
+              {
+                "id": "decimals",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "\u00c9volution du score de routage dans le temps",
+      "description": "Suivi temporel du score composite par application/mod\u00e8le. Un score tombant \u00e0 0 indique une violation de souverainet\u00e9 d\u00e9tect\u00e9e.",
+      "datasource": "${datasource}",
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 16,
+        "y": 47
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "datasource": null,
+          "expr": "ai_finops_routing_score",
+          "legendFormat": "{{namespace}}/{{application}} \u2014 {{model}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 1,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.5
+              },
+              {
+                "color": "green",
+                "value": 0.75
+              }
+            ]
+          },
+          "custom": {
+            "lineWidth": 2,
+            "fillOpacity": 10
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 68
+      },
+      "title": "Radar \u2014 Comparaison multi-dimensionnelle des mod\u00e8les",
+      "type": "row"
+    },
+    {
+      "type": "volkovlabs-echarts-panel",
+      "id": 50,
+      "title": "Radar \u2014 Quality + co\u00fbt par fournisseur",
+      "description": "Axes 0..100: Correctness, Reliability, Latency, Semantic, Cost efficiency, Overall. Cost = ai_finops_cost_score * 100, donc plus haut veut dire moins cher.",
+      "gridPos": {
+        "h": 16,
+        "w": 14,
+        "x": 0,
+        "y": 69
+      },
+      "options": {
+        "renderer": "canvas",
+        "editorMode": "code",
+        "code": "const frames = context.panel.data.series || [];\nconst labels = ['Correctness', 'Reliability', 'Latency', 'Semantic', 'Cost', 'Overall'];\nconst order = ['correctness', 'reliability', 'latency', 'semantic', 'cost', 'overall'];\nconst providers = {};\n\nfunction lastValue(field) {\n  const values = field.values;\n  if (!values) return 0;\n  if (typeof values.get === 'function') return values.length ? values.get(values.length - 1) : 0;\n  return values.length ? values[values.length - 1] : 0;\n}\n\nframes.forEach((frame) => {\n  (frame.fields || []).forEach((field) => {\n    if (field.type !== 'number') return;\n    const l = field.labels || {};\n    const provider = l.provider || 'unknown';\n    const dimension = (l.dimension || '').toLowerCase();\n    if (!order.includes(dimension)) return;\n    if (!providers[provider]) {\n      providers[provider] = { correctness: 0, reliability: 0, latency: 0, semantic: 0, cost: 0, overall: 0 };\n    }\n    providers[provider][dimension] = Number(lastValue(field)) || 0;\n  });\n});\n\nconst names = Object.keys(providers).sort();\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: { trigger: 'item' },\n  legend: { bottom: 0, textStyle: { color: '#d0d0d0' } },\n  radar: {\n    radius: '68%',\n    indicator: labels.map((name) => ({ name, max: 100 })),\n    splitNumber: 4,\n    axisName: { color: '#d0d0d0' },\n    axisLine: { lineStyle: { color: 'rgba(208,208,208,0.35)' } },\n    splitLine: { lineStyle: { color: 'rgba(208,208,208,0.18)' } },\n    splitArea: { areaStyle: { color: ['rgba(255,255,255,0.02)', 'rgba(255,255,255,0.06)'] } }\n  },\n  series: [{\n    name: 'Quality + Cost Score',\n    type: 'radar',\n    data: names.map((provider) => ({\n      name: provider,\n      value: order.map((dimension) => providers[provider][dimension] || 0),\n      areaStyle: { opacity: 0.18 }\n    }))\n  }]\n};",
+        "getOption": "const frames = context.panel.data.series || [];\nconst labels = ['Correctness', 'Reliability', 'Latency', 'Semantic', 'Cost', 'Overall'];\nconst order = ['correctness', 'reliability', 'latency', 'semantic', 'cost', 'overall'];\nconst providers = {};\n\nfunction lastValue(field) {\n  const values = field.values;\n  if (!values) return 0;\n  if (typeof values.get === 'function') return values.length ? values.get(values.length - 1) : 0;\n  return values.length ? values[values.length - 1] : 0;\n}\n\nframes.forEach((frame) => {\n  (frame.fields || []).forEach((field) => {\n    if (field.type !== 'number') return;\n    const l = field.labels || {};\n    const provider = l.provider || 'unknown';\n    const dimension = (l.dimension || '').toLowerCase();\n    if (!order.includes(dimension)) return;\n    if (!providers[provider]) {\n      providers[provider] = { correctness: 0, reliability: 0, latency: 0, semantic: 0, cost: 0, overall: 0 };\n    }\n    providers[provider][dimension] = Number(lastValue(field)) || 0;\n  });\n});\n\nconst names = Object.keys(providers).sort();\nreturn {\n  backgroundColor: 'transparent',\n  tooltip: { trigger: 'item' },\n  legend: { bottom: 0, textStyle: { color: '#d0d0d0' } },\n  radar: {\n    radius: '68%',\n    indicator: labels.map((name) => ({ name, max: 100 })),\n    splitNumber: 4,\n    axisName: { color: '#d0d0d0' },\n    axisLine: { lineStyle: { color: 'rgba(208,208,208,0.35)' } },\n    splitLine: { lineStyle: { color: 'rgba(208,208,208,0.18)' } },\n    splitArea: { areaStyle: { color: ['rgba(255,255,255,0.02)', 'rgba(255,255,255,0.06)'] } }\n  },\n  series: [{\n    name: 'Quality + Cost Score',\n    type: 'radar',\n    data: names.map((provider) => ({\n      name: provider,\n      value: order.map((dimension) => providers[provider][dimension] || 0),\n      areaStyle: { opacity: 0.18 }\n    }))\n  }]\n};"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "expr": "avg by(provider, dimension) (ai_finops_quality_score{dimension=~\"correctness|reliability|latency|semantic|overall\"})",
+          "instant": true,
+          "legendFormat": "{{provider}} {{dimension}}",
+          "refId": "quality"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "expr": "label_replace(avg by(provider) ((ai_finops_cost_score * 100) * on(namespace, model) group_left(provider) (0 * max by(namespace, model, provider) (ai_finops_quality_score{dimension=\"overall\"}) + 1)), \"dimension\", \"cost\", \"provider\", \".*\")",
+          "instant": true,
+          "legendFormat": "{{provider}} cost",
+          "refId": "cost"
+        }
+      ],
+      "pluginVersion": "6.6.0"
+    },
+    {
+      "type": "bargauge",
+      "title": "Score global \u2014 fournisseurs",
+      "description": "Une ligne par fournisseur. Score global normalis\u00e9 sur 0..100 = moyenne de la qualit\u00e9 globale AIQualityGate et de l\u2019efficacit\u00e9 co\u00fbt; plus haut est meilleur.",
+      "gridPos": {
+        "h": 16,
+        "w": 10,
+        "x": 14,
+        "y": 69
+      },
+      "pluginVersion": "11.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "expr": "(avg by(provider) (ai_finops_quality_score{dimension=\"overall\"}) + avg by(provider) ((ai_finops_cost_score * 100) * on(namespace, model) group_left(provider) (0 * max by(namespace, model, provider) (ai_finops_quality_score{dimension=\"overall\"}) + 1))) / 2",
+          "instant": true,
+          "legendFormat": "{{provider}} global",
+          "refId": "global"
+        }
+      ],
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 48,
+        "minVizHeight": 24,
+        "minVizWidth": 8,
+        "namePlacement": "left",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 100,
+          "unit": "percent",
+          "decimals": 1,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 60
+              },
+              {
+                "color": "green",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "bargauge",
+      "title": "Shadow-AI \u2014 applications contournant le gateway",
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 20
+      },
+      "targets": [
+        {
+          "expr": "sum by (namespace, application) (ai_finops_shadow_ai_egress)",
+          "legendFormat": "{{namespace}}/{{application}}",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "text": {},
+        "valueMode": "color"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "short",
+          "displayName": ""
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "row",
+      "title": "Confidential Governance \u2014 Attestation & Key Release",
+      "gridPos": {
+        "x": 0,
+        "y": 85,
+        "w": 24,
+        "h": 1
+      },
+      "collapsed": false,
+      "id": 60
+    },
+    {
+      "type": "stat",
+      "title": "Attestation Evidence (active)",
+      "id": 61,
+      "gridPos": {
+        "x": 0,
+        "y": 86,
+        "w": 6,
+        "h": 6
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          },
+          "unit": "short"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(aiops_attestation_evidence_total)",
+          "legendFormat": "active evidences",
+          "refId": "A"
+        }
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Placement Decisions (allowed)",
+      "id": 62,
+      "gridPos": {
+        "x": 6,
+        "y": 86,
+        "w": 6,
+        "h": 6
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(aiops_placement_decisions_total{allowed=\"true\"})",
+          "legendFormat": "allowed",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(aiops_placement_decisions_total{allowed=\"false\"})",
+          "legendFormat": "denied",
+          "refId": "B"
+        }
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      }
+    },
+    {
+      "type": "gauge",
+      "title": "Key Release \u2014 Allow Rate (%)",
+      "id": 63,
+      "gridPos": {
+        "x": 12,
+        "y": 86,
+        "w": 6,
+        "h": 6
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 50
+              },
+              {
+                "color": "green",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent",
+          "min": 0,
+          "max": 100
+        }
+      },
+      "targets": [
+        {
+          "expr": "100 * sum(aiops_key_release_requests_total{result=\"allow\"}) / (sum(aiops_key_release_requests_total) > 0)",
+          "legendFormat": "allow rate",
+          "refId": "A"
+        }
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      }
+    },
+    {
+      "type": "piechart",
+      "title": "Evidence \u2014 Simulated vs Real TEE",
+      "id": 64,
+      "gridPos": {
+        "x": 18,
+        "y": 86,
+        "w": 6,
+        "h": 6
+      },
+      "options": {
+        "pieType": "donut",
+        "displayLabels": [
+          "name",
+          "percent"
+        ],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(aiops_attestation_evidence_total{simulated=\"true\"})",
+          "legendFormat": "simulated (kind)",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(aiops_attestation_evidence_total{simulated=\"false\"})",
+          "legendFormat": "real TEE",
+          "refId": "B"
+        }
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Placement Decisions over time",
+      "id": 65,
+      "gridPos": {
+        "x": 0,
+        "y": 92,
+        "w": 12,
+        "h": 8
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "short"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "denied"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "targets": [
+        {
+          "expr": "rate(aiops_placement_decisions_total{allowed=\"true\"}[5m])",
+          "legendFormat": "allowed",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(aiops_placement_decisions_total{allowed=\"false\"}[5m])",
+          "legendFormat": "denied",
+          "refId": "B"
+        }
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      }
+    },
+    {
+      "type": "bargauge",
+      "title": "Key Release \u2014 Deny Reasons",
+      "id": 66,
+      "gridPos": {
+        "x": 12,
+        "y": 92,
+        "w": 12,
+        "h": 8
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "gradient",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ]
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 10
+              }
+            ]
+          },
+          "unit": "short"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (reason) (aiops_key_release_deny_reason_total)",
+          "legendFormat": "{{reason}}",
+          "refId": "A"
+        }
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      }
+    },
+    {
+      "type": "table",
+      "title": "Revocation Events",
+      "id": 67,
+      "gridPos": {
+        "x": 0,
+        "y": 100,
+        "w": 12,
+        "h": 8
+      },
+      "options": {
+        "frameIndex": 0,
+        "showHeader": true
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "unit": "short"
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum by (namespace, node, action) (aiops_revocation_events_total)",
+          "legendFormat": "{{namespace}}/{{node}} \u2014 {{action}}",
+          "refId": "A",
+          "instant": true,
+          "format": "table"
+        }
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Audit Chain \u2014 Checkpoint Age",
+      "id": 68,
+      "gridPos": {
+        "x": 12,
+        "y": 100,
+        "w": 12,
+        "h": 8
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "text": {}
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 300
+              },
+              {
+                "color": "red",
+                "value": 900
+              }
+            ]
+          },
+          "unit": "s",
+          "displayName": "Checkpoint Age"
+        }
+      },
+      "targets": [
+        {
+          "expr": "max(aiops_audit_anchor_checkpoint_age_seconds)",
+          "legendFormat": "age (seconds)",
+          "refId": "A"
+        }
+      ],
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${datasource}"
+      }
+    }
+  ],
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "volkovlabs-echarts-panel",
+      "name": "Business Charts",
+      "version": "6.6.0"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    }
+  ],
+  "uid": "ai-finops-confidential-v054",
+  "version": 2
+}

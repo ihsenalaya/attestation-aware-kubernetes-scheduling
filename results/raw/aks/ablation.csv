@@ -1,0 +1,6 @@
+timestamp,env,config,layer,attack_id,expected,actual,blocked,note,raw_log_path
+2026-07-06T00:37:53Z,aks-real-sevsnp,policy-only,L0,A1,BLOCKED,ALLOWED,no,no-enforcement-baseline-bypass-expected,article1/results/raw/aks/ablation
+2026-07-06T00:38:00Z,aks-real-sevsnp,+admission,L1,A5,BLOCKED,BLOCKED,yes,webhook-denied,article1/results/raw/aks/ablation
+2026-07-06T00:38:35Z,aks-real-sevsnp,+scheduler,L2,A4,BLOCKED,BLOCKED,yes,scheduler-filter-no-TDX-evidence,article1/results/raw/aks/ablation
+2026-07-06T00:38:36Z,aks-real-sevsnp,+token,L3,A8,BLOCKED,BLOCKED,yes,verify-placement-rejects-tampered (see identity_binding.csv),article1/results/raw/aks/ablation
+2026-07-06T00:38:36Z,aks-real-sevsnp,filter-only,Lx,A7,BLOCKED,REQUIRES_BUILD_FLAG,no,PreBind-disable flag not built,article1/results/raw/aks/ablation

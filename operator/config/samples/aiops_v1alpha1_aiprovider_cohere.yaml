@@ -1,0 +1,17 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIProvider
+metadata:
+  name: cohere-global
+  labels:
+    app.kubernetes.io/name: ai-sovereign-finops-operator
+spec:
+  type: azure-openai
+  region: francecentral
+  dataResidency: global
+  managed: true
+  pricing:
+    currency: EUR
+    inputTokenPricePerMillion: "2.16"
+    outputTokenPricePerMillion: "8.65"
+  compliance:
+    allowedForSensitiveData: false

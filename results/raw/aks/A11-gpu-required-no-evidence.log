@@ -1,0 +1,8 @@
+NAME                             STATUS   ROLES    AGE     VERSION
+aks-conf-23144742-vmss000000     Ready    <none>   4h28m   v1.35.5
+aks-system-87518858-vmss000000   Ready    <none>   4h31m   v1.35.5
+namespace/article1-a11-gpu created
+namespace/article1-a11-gpu labeled
+confidentialinferencepolicy.aiops.imperium.io/gpu-required created
+Error from server (Forbidden): error when creating "STDIN": admission webhook "confidential-pod-validation.aiops.imperium.io" denied the request: confidential GPU attestation is not implemented in Article 1; GPU-required workloads fail closed
+rc=1

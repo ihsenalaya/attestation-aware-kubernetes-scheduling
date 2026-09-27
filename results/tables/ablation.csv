@@ -1,0 +1,6 @@
+env,layer,configuration,executed,blocked,total,status
+aks-real-sevsnp,L0,policy-only,1,0,1,EXECUTED
+aks-real-sevsnp,L1,+admission,1,1,1,EXECUTED
+aks-real-sevsnp,L2,+scheduler,1,1,1,EXECUTED
+aks-real-sevsnp,L3,+token,1,1,1,EXECUTED
+aks-real-sevsnp,Lx,filter-only,0,0,0,REQUIRES_BUILD_FLAG

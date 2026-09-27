@@ -1,0 +1,136 @@
+{{- if .Values.modules.platformApi.enabled }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: platform-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: platform-api
+    {{- include "platform.labels" . | nindent 4 }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Release.Name }}-platform-api
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses
+  - aibudgetpolicies
+  - aichangerequests
+  - aievidencerecords
+  - aifinopsreports
+  - aigateways
+  - aikeyreleasepolicies
+  - aimodels
+  - aiplacementdecisions
+  - aiproviders
+  - aiqualitygates
+  - airevocationpolicies
+  - airouteoverrides
+  - airoutingpolicies
+  - aisovereigntypolicies
+  - attestationevidences
+  - confidentialinferencepolicies
+  - rawattestationreports
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods", "nodes", "namespaces"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Release.Name }}-platform-api
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Release.Name }}-platform-api
+subjects:
+- kind: ServiceAccount
+  name: platform-api
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: platform-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: platform-api
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  selector:
+    app: platform-api
+  ports:
+  - name: http
+    port: {{ .Values.platformApi.service.port }}
+    targetPort: 8083
+  type: {{ .Values.platformApi.service.type }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: platform-api
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: platform-api
+    component: platform-api
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.platformApi.replicaCount }}
+  selector:
+    matchLabels:
+      app: platform-api
+  template:
+    metadata:
+      labels:
+        app: platform-api
+        component: platform-api
+    spec:
+      serviceAccountName: platform-api
+      {{- include "platform.imagePullSecrets" . | nindent 6 }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+      containers:
+      - name: platform-api
+        image: {{ include "platform.image" (list . .Values.images.platformApi) }}
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 8083
+        env:
+        - name: AIOPS_INSECURE_AUTH
+          value: {{ .Values.platformApi.insecureAuth | quote }}
+        - name: AIOPS_PLATFORM_MODE
+          value: {{ .Values.global.environment }}
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8083
+          initialDelaySeconds: 10
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8083
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: [ALL]
+        resources:
+          {{- toYaml .Values.platformApi.resources | nindent 10 }}
+{{- end }}

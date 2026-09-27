@@ -1,0 +1,9 @@
+feature,B4_schedulingGate,B5_attestation_scheduler,raw_evidence
+real evidence check,"yes, external controller","yes, scheduler Filter",results/raw/aks/b4_vs_b5.csv
+freshness check,"yes, before gate removal","yes, Filter plus PreBind",results/raw/aks/b4_vs_b5.csv
+revocation check,"yes, before gate removal","yes, Filter plus PreBind",results/raw/aks/b4_vs_b5.csv
+TEE check,yes,yes,results/raw/aks/b4_vs_b5.csv
+scheduler-native PreBind re-check,no,yes,results/raw/aks/b4_vs_b5.csv
+gate-removal-to-bind window,"present, measured",no externally schedulable gate-removal window,results/tables/b4_vs_b5_stats.csv
+offline-verifiable placement token,no,"yes, Ed25519 token",results/raw/aks/e2e-placement-token.json
+independent verify-placement,no,yes,results/raw/aks/e2e-verify-placement.txt

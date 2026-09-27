@@ -1,0 +1,1 @@
+kubectl auth can-i create pods --subresource=binding --as=system:serviceaccount:ai-platform:attestation-scheduler -n ai-platform => yes

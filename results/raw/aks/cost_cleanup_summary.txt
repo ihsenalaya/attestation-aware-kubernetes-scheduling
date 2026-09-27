@@ -1,0 +1,4 @@
+AKS cleanup summary — 2026-07-05T02:34:25Z
+resource_group=rg-article1-confidential
+az_group_exists_after_destroy=false
+terraform_state_entries_after=0

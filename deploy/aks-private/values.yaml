@@ -1,0 +1,86 @@
+# AKS Private deployment values
+# These values enforce:
+#   - No simulated evidence
+#   - No simulated runtime classes
+#   - No public LoadBalancer
+#   - Internal ingress only
+#   - NetworkPolicies enabled
+#   - OIDC-ready (configure clientID/tenantID via secrets)
+#   - GPU disabled until real AKS GPU tests
+
+global:
+  registry: "ghcr.io/ihsenalaya/ai-sovereign-finops-operator"
+  imagePullSecrets:
+    - name: ghcr-pull
+  environment: aks-private
+  mode: startup
+
+  simulatedEvidence:
+    enabled: false   # REQUIRED: no simulation in AKS private
+
+  runtimeClassSimulation:
+    enabled: false   # REQUIRED: no simulated RuntimeClass in production
+
+  audit:
+    anchoring:
+      # azure-blob is PLANNED — use file until implemented
+      mode: file
+      filePath: /data/audit/checkpoints.jsonl
+
+  gpu:
+    enabled: false
+    mode: disabled   # Future: nvidia-cc after real AKS GPU validation
+
+modules:
+  thesisBench:
+    enabled: false   # bench is not needed in production
+
+nodeAttestationAgent:
+  provider: maa
+  simulated: false
+  helperPath: /guest-attestation-helper
+  azureAttestationEndpoint: "https://sharedwus2.wus2.attest.azure.net"
+  tpmDevices:
+    enabled: true
+    privileged: true
+  nodeSelector:
+    ai.sovereign.io/tee: SEV-SNP
+  tolerations:
+  - key: ai.sovereign.io/confidential
+    operator: Equal
+    value: "true"
+    effect: NoSchedule
+
+platformApi:
+  insecureAuth: false  # REQUIRED: auth enabled in AKS
+  # OIDC configuration (inject via sealed secrets or Azure Key Vault CSI)
+  # oidc:
+  #   clientID: ""
+  #   tenantID: ""
+  service:
+    type: ClusterIP   # Internal only — no public LoadBalancer
+
+platformUi:
+  service:
+    type: ClusterIP   # Internal only
+  # ingress:
+  #   enabled: true
+  #   className: nginx
+  #   annotations:
+  #     kubernetes.io/ingress.class: nginx
+  #     service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  #   hosts:
+  #     - host: platform.internal.example.com
+  #       paths:
+  #         - path: /
+  #           pathType: Prefix
+
+networkPolicies:
+  enabled: true
+
+# Secrets MUST come from Azure Key Vault CSI or Sealed Secrets
+# NEVER put real secrets in this file or in Git
+# attestationScheduler:
+#   signingKeyHex: ""  # inject from AKV
+# keyReleaseGateway:
+#   tokenPublicKeyHex: ""  # inject from AKV

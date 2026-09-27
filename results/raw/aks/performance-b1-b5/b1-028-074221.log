@@ -1,0 +1,184 @@
+pod/b1-028-074221 created
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"baseline","baseline":"B1"},"name":"b1-028-074221","namespace":"article1-performance"},"spec":{"containers":[{"image":"registry.k8s.io/pause:3.9","name":"app"}],"restartPolicy":"Always","schedulerName":"default-scheduler"}}
+  creationTimestamp: "2026-07-06T06:42:25Z"
+  generation: 1
+  labels:
+    app: baseline
+    baseline: B1
+    topology.kubernetes.io/region: westus2
+    topology.kubernetes.io/zone: "0"
+  name: b1-028-074221
+  namespace: article1-performance
+  resourceVersion: "16203"
+  uid: 87e4d499-b437-4dd6-97d6-9599538b04ac
+spec:
+  containers:
+  - image: registry.k8s.io/pause:3.9
+    imagePullPolicy: IfNotPresent
+    name: app
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-88mxk
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: aks-system-37319869-vmss000000
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-88mxk
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:42:27Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:42:25Z"
+    observedGeneration: 1
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:42:27Z"
+    observedGeneration: 1
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:42:27Z"
+    observedGeneration: 1
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-07-06T06:42:25Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://683dc281c1212e517e0a9efccfbe54101e343686086eec4bad52b384eebbe6af
+    image: registry.k8s.io/pause:3.9
+    imageID: registry.k8s.io/pause@sha256:7031c1b283388d2c2e09b57badb803c05ebed362dc88d84b480cc47f72a21097
+    lastState: {}
+    name: app
+    ready: true
+    resources: {}
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-07-06T06:42:26Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        uid: 65535
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-88mxk
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 10.224.0.4
+  hostIPs:
+  - ip: 10.224.0.4
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.224.0.27
+  podIPs:
+  - ip: 10.224.0.27
+  qosClass: BestEffort
+  startTime: "2026-07-06T06:42:25Z"
+Name:             b1-028-074221
+Namespace:        article1-performance
+Priority:         0
+Service Account:  default
+Node:             aks-system-37319869-vmss000000/10.224.0.4
+Start Time:       Mon, 06 Jul 2026 07:42:25 +0100
+Labels:           app=baseline
+                  baseline=B1
+                  topology.kubernetes.io/region=westus2
+                  topology.kubernetes.io/zone=0
+Annotations:      <none>
+Status:           Running
+IP:               10.224.0.27
+IPs:
+  IP:  10.224.0.27
+Containers:
+  app:
+    Container ID:   containerd://683dc281c1212e517e0a9efccfbe54101e343686086eec4bad52b384eebbe6af
+    Image:          registry.k8s.io/pause:3.9
+    Image ID:       registry.k8s.io/pause@sha256:7031c1b283388d2c2e09b57badb803c05ebed362dc88d84b480cc47f72a21097
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Mon, 06 Jul 2026 07:42:26 +0100
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-88mxk (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-88mxk:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  5s    default-scheduler  Successfully assigned article1-performance/b1-028-074221 to aks-system-37319869-vmss000000
+  Normal  Pulled     4s    kubelet            Container image "registry.k8s.io/pause:3.9" already present on machine and can be accessed by the pod
+  Normal  Created    4s    kubelet            Container created
+  Normal  Started    4s    kubelet            Container started

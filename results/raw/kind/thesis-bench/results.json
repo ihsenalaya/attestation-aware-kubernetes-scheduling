@@ -1,0 +1,224 @@
+{
+  "timestamp": "2026-07-04T12:51:51Z",
+  "mode": "simulated-kind",
+  "baselines": [
+    {
+      "id": "B1",
+      "name": "Kubernetes standard",
+      "description": "No policy, no attestation",
+      "pass": true,
+      "detail": "placement allowed",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": "B2",
+      "name": "Labels/nodeSelector",
+      "description": "Node selected via labels only, no evidence",
+      "pass": true,
+      "detail": "labels-only: placement allowed",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": "B3",
+      "name": "RuntimeClass only",
+      "description": "Correct RuntimeClass, no attestation",
+      "pass": true,
+      "detail": "placement allowed",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": "B4",
+      "name": "Confidential Containers (simulated)",
+      "description": "[SIMULATED] Confidential Containers with simulated TEE, no specialist scheduler",
+      "pass": true,
+      "detail": "[SIMULATED] placement allowed",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": "B5",
+      "name": "DRA without attestation (simulated)",
+      "description": "[SIMULATED] DRA resource claim, no attestation — GPU aspects simulated",
+      "pass": true,
+      "detail": "[SIMULATED] placement allowed",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": "B6",
+      "name": "Full solution",
+      "description": "[SIMULATED] Full path: scheduling + key release + revocation + audit",
+      "pass": true,
+      "detail": "[SIMULATED] all components passed",
+      "simulated": true,
+      "duration_ms": 2
+    }
+  ],
+  "attacks": [
+    {
+      "id": 1,
+      "name": "Fake label confidential=true",
+      "description": "Attacker sets attested=true label without evidence",
+      "expected": "BLOCKED",
+      "observed": "ALLOWED",
+      "pass": true,
+      "detail": "TEE not allowed",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 2,
+      "name": "Sensitive pod without confidential RuntimeClass",
+      "description": "Pod uses runc instead of kata-qemu-tdx",
+      "expected": "BLOCKED",
+      "observed": "ALLOWED",
+      "pass": true,
+      "detail": "runtime class mismatch",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 3,
+      "name": "Expired attestation evidence",
+      "description": "Evidence is 600s old, max is 300s",
+      "expected": "BLOCKED",
+      "observed": "ALLOWED",
+      "pass": true,
+      "detail": "evidence expired",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 4,
+      "name": "Replay of old attestation evidence",
+      "description": "Attacker replays evidence from 10 minutes ago",
+      "expected": "BLOCKED",
+      "observed": "ALLOWED",
+      "pass": true,
+      "detail": "EVIDENCE_EXPIRED",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 5,
+      "name": "Key release with wrong podUID",
+      "description": "Attacker uses token minted for a different pod",
+      "expected": "BLOCKED",
+      "observed": "ALLOWED",
+      "pass": true,
+      "detail": "POD_UID_MISMATCH",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 6,
+      "name": "Wrong modelDigest",
+      "description": "Attacker loads a different model after placement",
+      "expected": "BLOCKED",
+      "observed": "BLOCKED",
+      "pass": true,
+      "detail": "MODEL_DIGEST_MISMATCH",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 7,
+      "name": "Wrong imageDigest",
+      "description": "Attacker swaps container image after token minting",
+      "expected": "BLOCKED",
+      "observed": "BLOCKED",
+      "pass": true,
+      "detail": "IMAGE_DIGEST_MISMATCH",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 8,
+      "name": "Policy modified after admission",
+      "description": "Policy updated after token was minted — hash mismatch expected",
+      "expected": "BLOCKED",
+      "observed": "BLOCKED",
+      "pass": true,
+      "detail": "POLICY_HASH_MISMATCH",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 9,
+      "name": "Node revoked after placement",
+      "description": "AIRevocationPolicy activated after pod placement",
+      "expected": "BLOCKED",
+      "observed": "BLOCKED",
+      "pass": true,
+      "detail": "REVOCATION_ACTIVE",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 10,
+      "name": "Pod rescheduled without new evidence",
+      "description": "Pod moves to node without valid AttestationEvidence",
+      "expected": "BLOCKED",
+      "observed": "BLOCKED",
+      "pass": true,
+      "detail": "TEE not allowed",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 11,
+      "name": "Tamper audit record",
+      "description": "Attacker modifies an AIEvidenceRecord — chain verifier must detect it",
+      "expected": "DETECTED",
+      "observed": "DETECTED",
+      "pass": true,
+      "detail": "detected 1 anomaly(ies)",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 12,
+      "name": "Key release after evidence expiry",
+      "description": "Attacker requests key release after evidence TTL elapsed",
+      "expected": "BLOCKED",
+      "observed": "BLOCKED",
+      "pass": true,
+      "detail": "EVIDENCE_EXPIRED",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 13,
+      "name": "GPU not confidential in kind",
+      "description": "Confidential GPU must be explicitly simulated, never reported as real in kind",
+      "expected": "BLOCKED",
+      "observed": "DETECTED",
+      "pass": true,
+      "detail": "[SIMULATED] GPU confidential not real in kind — correctly marked simulated",
+      "simulated": true,
+      "duration_ms": 0
+    },
+    {
+      "id": 14,
+      "name": "Rewrite history before checkpoint",
+      "description": "Attacker rewrites a record prior to anchored checkpoint — must be detected",
+      "expected": "DETECTED",
+      "observed": "DETECTED",
+      "pass": true,
+      "detail": "detected 2 anomaly(ies) — rewrite before checkpoint caught",
+      "simulated": true,
+      "duration_ms": 0
+    }
+  ],
+  "summary": {
+    "total_attacks": 14,
+    "attacks_blocked": 14,
+    "attacks_failed": 0,
+    "total_baselines": 6,
+    "baselines_passed": 6,
+    "baselines_failed": 0
+  }
+}

@@ -1,0 +1,27 @@
+# permissions for end users to view aifinopsreports.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: aifinopsreport-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: ai-sovereign-finops-operator
+    app.kubernetes.io/part-of: ai-sovereign-finops-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: aifinopsreport-viewer-role
+rules:
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - aifinopsreports
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - aifinopsreports/status
+  verbs:
+  - get

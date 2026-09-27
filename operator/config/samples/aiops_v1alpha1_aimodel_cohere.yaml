@@ -1,0 +1,17 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIModel
+metadata:
+  name: cohere-command-a
+  labels:
+    app.kubernetes.io/name: ai-sovereign-finops-operator
+spec:
+  providerRef: cohere-global
+  modelName: cohere-command-a-latest
+  type: llm
+  contextWindow: 128000
+  qualityTier: high
+  costTier: high
+  sensitiveDataAllowed: false
+  servesNamespace: finance
+  servesApplication: risk-assistant
+  servesTeam: finance

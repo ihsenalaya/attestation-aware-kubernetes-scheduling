@@ -1,0 +1,18 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: ai-platform
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: ClusterConfiguration
+    apiServer:
+      extraArgs:
+        enable-admission-plugins: "NodeRestriction"
+    scheduler:
+      extraArgs:
+        config: ""
+  - |
+    kind: KubeletConfiguration
+    evictionHard:
+      nodefs.available: "0%"

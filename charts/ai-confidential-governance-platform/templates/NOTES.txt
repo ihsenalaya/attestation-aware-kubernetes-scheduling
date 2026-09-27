@@ -1,0 +1,37 @@
+AI Confidential Governance Platform has been installed.
+
+Environment : {{ .Values.global.environment }}
+Mode        : {{ .Values.global.mode }}
+
+{{- if .Values.global.simulatedEvidence.enabled }}
+WARNING: simulatedEvidence.enabled=true — TEE and attestation are SIMULATED.
+         Do NOT use in production or AKS private.
+{{- end }}
+
+{{- if .Values.global.runtimeClassSimulation.enabled }}
+WARNING: runtimeClassSimulation.enabled=true — simulated-kata-qemu-tdx/snp backed by runc.
+         Do NOT use in production or AKS private.
+{{- end }}
+
+Access the UI in kind:
+  kubectl port-forward svc/platform-ui 3000:80 -n {{ .Release.Namespace }}
+  Then open http://localhost:3000
+
+Access the API in kind:
+  kubectl port-forward svc/platform-api 8083:8083 -n {{ .Release.Namespace }}
+
+Key release gateway:
+  kubectl port-forward svc/key-release-gateway 8082:8082 -n {{ .Release.Namespace }}
+
+Metrics (Prometheus):
+  kubectl port-forward svc/platform-api 8083:8083 -n {{ .Release.Namespace }}
+  curl http://localhost:8083/metrics
+
+Run thesis-bench:
+  kubectl run thesis-bench --image={{ include "platform.image" (list . .Values.images.thesisBench) }} \
+    --env AIOPS_PLATFORM_MODE={{ .Values.global.environment }} \
+    --rm -it -- /thesis-bench --mode {{ .Values.global.environment }}
+
+Article 1 evidence rule:
+  AKS real SEV-SNP results are the only main-paper empirical evidence.
+  kind/KWOK runs are CI, debug, and regression artifacts only.

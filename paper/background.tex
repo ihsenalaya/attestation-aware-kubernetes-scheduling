@@ -1,0 +1,34 @@
+\section{Background}
+\label{sec:background}
+
+\paragraph{Confidential VMs and SEV-SNP.}
+A Confidential VM encrypts and integrity-protects an entire guest so that the
+host, hypervisor and cloud operator are outside its trust boundary. AMD SEV-SNP
+adds strong memory integrity and a hardware-rooted attestation report; Azure
+exposes this via Guest Attestation and the Microsoft Azure Attestation (MAA)
+service, which returns a signed JWT asserting, among other claims,
+\texttt{x-ms-attestation-type=sevsnpvm}~\cite{misono2024cvms,paradzik2024sevsnp}.
+Remote attestation lets a relying party verify such evidence; the IETF RATS
+architecture standardises the Attester/Verifier/Relying-Party roles and insists
+that appraisal be independent of evidence
+production~\cite{birkholz2023rats,chen2019opera}.
+
+\paragraph{Kubernetes scheduling and admission.}
+The default scheduler binds pods to nodes using the scheduling framework
+(PreFilter/Filter/Score/Reserve/Permit/Bind); a cluster may also run additional
+schedulers for pods that request them by name. Placement inputs --- labels,
+\texttt{nodeSelector}, node affinity, \texttt{RuntimeClass} --- are ordinary,
+attacker-writable cluster objects with no cryptographic backing. Admission
+webhooks and \texttt{schedulingGates} can gate a pod until an external controller
+approves it, but the gate check and the eventual bind are separate events, so a
+check-then-ungate design has an inherent TOCTOU gap. \texttt{RuntimeClass}
+selects a runtime handler (e.g.\ a confidential-container runtime) but carries no
+freshness, revocation or node-identity semantics of its own.
+
+\paragraph{Confidential containers vs.\ confidential nodes.}
+Confidential Containers (CoCo) with Trustee run each pod inside its own TEE and
+gate secret release on pod-level attestation; recent work demonstrates pod-level
+remote attestation on Kubernetes~\cite{yang2026dstack,coco2024,k8s2023confidential}.
+On confidential-VM node pools, by contrast, the TEE is the \emph{node}: evidence
+attests the confidential worker VM, not each pod. Our work targets the latter and
+is explicit about it; it is complementary to pod-level systems.

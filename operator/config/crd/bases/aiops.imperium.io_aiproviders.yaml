@@ -1,0 +1,671 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: aiproviders.aiops.imperium.io
+spec:
+  group: aiops.imperium.io
+  names:
+    kind: AIProvider
+    listKind: AIProviderList
+    plural: aiproviders
+    shortNames:
+    - aiprov
+    singular: aiprovider
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.type
+      name: Type
+      type: string
+    - jsonPath: .spec.dataResidency
+      name: Residency
+      type: string
+    - jsonPath: .spec.managed
+      name: Managed
+      type: boolean
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: |-
+          AIProvider represents a model provider (managed API or self-hosted GPU) along
+          with its pricing and sovereignty attributes.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: AIProviderSpec defines the desired state of AIProvider.
+            properties:
+              compliance:
+                description: Compliance describes sovereignty attributes.
+                properties:
+                  allowedCountries:
+                    description: AllowedCountries lists ISO country/zone codes (e.g.
+                      FR, EU) this provider serves from.
+                    items:
+                      type: string
+                    type: array
+                  allowedForSensitiveData:
+                    description: AllowedForSensitiveData states whether sensitive
+                      data may be sent here.
+                    type: boolean
+                type: object
+              dataResidency:
+                description: DataResidency is the country/zone where data is processed
+                  (e.g. france, eu, us).
+                type: string
+              govar:
+                description: GOVAR contains provider-administrator-owned route bindings.
+                properties:
+                  gatewayRoutes:
+                    items:
+                      description: AIProviderGatewayRouteBinding is a complete provider-owned
+                        gateway target.
+                      properties:
+                        authority:
+                          minLength: 1
+                          pattern: ^[A-Za-z0-9][A-Za-z0-9._:-]*$
+                          type: string
+                        cluster:
+                          minLength: 1
+                          pattern: ^[A-Za-z0-9][A-Za-z0-9._:-]*$
+                          type: string
+                        name:
+                          minLength: 1
+                          pattern: ^[A-Za-z0-9][A-Za-z0-9._-]*$
+                          type: string
+                        pathMode:
+                          description: |-
+                            GOVARRoutePathMode identifies the provider adapter that must actuate a
+                            selected route. It is deliberately closed: an unknown adapter is not safe to
+                            infer from a URL or model name.
+                          enum:
+                          - openai-body
+                          - azure-deployment-path
+                          - anthropic-body
+                          - google-generate-path
+                          type: string
+                        providerDeployment:
+                          minLength: 1
+                          pattern: ^[A-Za-z0-9][A-Za-z0-9._:/-]*$
+                          type: string
+                      required:
+                      - authority
+                      - cluster
+                      - name
+                      - pathMode
+                      - providerDeployment
+                      type: object
+                    type: array
+                    x-kubernetes-list-map-keys:
+                    - name
+                    x-kubernetes-list-type: map
+                  pricing:
+                    description: |-
+                      Pricing is the only GOV-AR monetary authority. Legacy pricing fields remain
+                      readable for older controllers but cannot make a candidate feasible alone.
+                    properties:
+                      charges:
+                        items:
+                          description: |-
+                            ProviderBillableCharge is the typed GOV-AR pricing input. Historical
+                            BillableCategories remain decodable but are never monetary authority.
+                          properties:
+                            applicability:
+                              description: ProviderChargeApplicability describes when
+                                a charge can occur.
+                              enum:
+                              - always
+                              - request_declared
+                              - provider_response
+                              type: string
+                            basis:
+                              description: |-
+                                ProviderBillableBasis is the closed accounting dimension understood by the
+                                GOV-AR ledger and provider adapters.
+                              enum:
+                              - input_tokens
+                              - cached_input_tokens
+                              - output_tokens
+                              - reasoning_tokens
+                              - request
+                              - tool_call
+                              - media_unit
+                              - billable_second
+                              - cancellation
+                              - retry_attempt
+                              type: string
+                            disjointUsage:
+                              description: |-
+                                DisjointUsage asserts that a separately priced cached-input or reasoning
+                                quantity is normalized by the adapter so it does not overlap the base
+                                input/output quantity. It must be true for those bases unless IncludedIn
+                                is used. This prevents silently charging the same token twice.
+                              type: boolean
+                            includedIn:
+                              description: |-
+                                IncludedIn declares that this quantity is already included in another
+                                priced basis and therefore must not be charged separately.
+                              enum:
+                              - input_tokens
+                              - cached_input_tokens
+                              - output_tokens
+                              - reasoning_tokens
+                              - request
+                              - tool_call
+                              - media_unit
+                              - billable_second
+                              - cancellation
+                              - retry_attempt
+                              type: string
+                            maximumQuantity:
+                              description: MaximumQuantity is a provider-enforced
+                                upper quantity.
+                              format: int64
+                              minimum: 0
+                              type: integer
+                            price:
+                              anyOf:
+                              - type: integer
+                              - type: string
+                              description: Price is converted exactly to integer micro-currency
+                                units by the controller.
+                              pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                              x-kubernetes-int-or-string: true
+                            requestBoundField:
+                              description: RequestBoundField names a typed request
+                                field that supplies the upper bound.
+                              enum:
+                              - input_tokens
+                              - max_cached_input_tokens
+                              - max_output_tokens
+                              - max_reasoning_tokens
+                              - max_tool_calls
+                              - max_media_units
+                              - timeout_seconds
+                              - max_retry_attempts
+                              - cancellation_possible
+                              type: string
+                            settlementUsageField:
+                              description: |-
+                                ProviderBillableBasis is the closed accounting dimension understood by the
+                                GOV-AR ledger and provider adapters.
+                              enum:
+                              - input_tokens
+                              - cached_input_tokens
+                              - output_tokens
+                              - reasoning_tokens
+                              - request
+                              - tool_call
+                              - media_unit
+                              - billable_second
+                              - cancellation
+                              - retry_attempt
+                              type: string
+                            unitDenominator:
+                              description: UnitDenominator is the number of usage
+                                units represented by Price.
+                              format: int64
+                              minimum: 1
+                              type: integer
+                          required:
+                          - applicability
+                          - basis
+                          - price
+                          - settlementUsageField
+                          - unitDenominator
+                          type: object
+                        type: array
+                        x-kubernetes-list-map-keys:
+                        - basis
+                        x-kubernetes-list-type: map
+                      evidence:
+                        properties:
+                          adapterVersion:
+                            description: AdapterVersion must match the closed adapter
+                              selected for provider type.
+                            minLength: 1
+                            type: string
+                          evidenceSHA256:
+                            description: EvidenceSHA256 binds the immutable source
+                              document or provider response.
+                            pattern: ^[0-9a-f]{64}$
+                            type: string
+                          mode:
+                            description: |-
+                              ProviderPricingEvidenceMode records who supplied pricing/capability evidence.
+                              Only provider_catalog and provider_api may be described as provider verified.
+                            enum:
+                            - provider_catalog
+                            - provider_api
+                            - admin_attested
+                            type: string
+                          sourceVersion:
+                            minLength: 1
+                            type: string
+                          validUntil:
+                            format: date-time
+                            type: string
+                        required:
+                        - adapterVersion
+                        - evidenceSHA256
+                        - mode
+                        - sourceVersion
+                        - validUntil
+                        type: object
+                      inapplicableBases:
+                        description: |-
+                          InapplicableBases are an explicit adapter-validated declaration that the
+                          selected deployment/request mode cannot bill these bases.
+                        items:
+                          description: |-
+                            ProviderBillableBasis is the closed accounting dimension understood by the
+                            GOV-AR ledger and provider adapters.
+                          enum:
+                          - input_tokens
+                          - cached_input_tokens
+                          - output_tokens
+                          - reasoning_tokens
+                          - request
+                          - tool_call
+                          - media_unit
+                          - billable_second
+                          - cancellation
+                          - retry_attempt
+                          type: string
+                        type: array
+                        x-kubernetes-list-type: set
+                    required:
+                    - evidence
+                    type: object
+                type: object
+              managed:
+                description: Managed distinguishes a managed API provider (true) from
+                  self-hosted GPU (false).
+                type: boolean
+              pricing:
+                description: Pricing holds the unit economics for cost calculations.
+                properties:
+                  billableCategories:
+                    description: |-
+                      BillableCategories lists additional charges not represented by the base
+                      input/output token prices. Names are unique map keys.
+                    items:
+                      description: |-
+                        ProviderBillableCategory is a versioned non-base charge that must be included
+                        in liability calculation when applicable (for example cached input, reasoning,
+                        tool, media, request, time, cancellation, or retry charges).
+                      properties:
+                        name:
+                          description: Name is a stable lower-case category key.
+                          minLength: 1
+                          pattern: ^[a-z0-9]([a-z0-9._-]*[a-z0-9])?$
+                          type: string
+                        price:
+                          anyOf:
+                          - type: integer
+                          - type: string
+                          description: Price is the decimal price in Pricing.Currency
+                            for one Unit.
+                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                          x-kubernetes-int-or-string: true
+                        unit:
+                          description: Unit specifies the price denominator.
+                          enum:
+                          - per-million-tokens
+                          - per-request
+                          - per-second
+                          - per-unit
+                          type: string
+                      required:
+                      - name
+                      - price
+                      - unit
+                      type: object
+                    type: array
+                    x-kubernetes-list-map-keys:
+                    - name
+                    x-kubernetes-list-type: map
+                  completeness:
+                    default: unknown
+                    description: Completeness states whether all possible billable
+                      categories are represented.
+                    enum:
+                    - unknown
+                    - partial
+                    - complete
+                    type: string
+                  currency:
+                    default: EUR
+                    description: Currency is the ISO 4217 code for all prices below.
+                    type: string
+                  fixedMonthlyCost:
+                    anyOf:
+                    - type: integer
+                    - type: string
+                    description: |-
+                      FixedMonthlyCost is any flat monthly fee for the provider (commitments,
+                      reserved capacity, ...). Used by the break-even engine.
+                    pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                    x-kubernetes-int-or-string: true
+                  inputTokenPricePerMillion:
+                    anyOf:
+                    - type: integer
+                    - type: string
+                    description: InputTokenPricePerMillion is the price per 1,000,000
+                      input tokens.
+                    pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                    x-kubernetes-int-or-string: true
+                  observedAt:
+                    description: ObservedAt is when this price snapshot was verified
+                      against its source.
+                    format: date-time
+                    type: string
+                  outputTokenPricePerMillion:
+                    anyOf:
+                    - type: integer
+                    - type: string
+                    description: OutputTokenPricePerMillion is the price per 1,000,000
+                      output tokens.
+                    pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                    x-kubernetes-int-or-string: true
+                  version:
+                    description: |-
+                      Version is the immutable identifier of this provider price snapshot.
+                      Historical objects remain readable when it is absent, but GOV-AR must not
+                      treat an absent version as complete pricing evidence.
+                    type: string
+                required:
+                - currency
+                - inputTokenPricePerMillion
+                - outputTokenPricePerMillion
+                type: object
+              region:
+                description: Region is the cloud/provider region (e.g. francecentral).
+                type: string
+              type:
+                description: Type identifies the provider family.
+                enum:
+                - openai
+                - azure-openai
+                - mistral
+                - anthropic
+                - bedrock
+                - vertex
+                - self-hosted
+                - custom
+                type: string
+            required:
+            - pricing
+            - type
+            type: object
+          status:
+            description: AIProviderStatus defines the observed state of AIProvider.
+            properties:
+              conditions:
+                description: Conditions represent the latest available observations
+                  of the provider state.
+                items:
+                  description: Condition contains details for one aspect of the current
+                    state of this API Resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        lastTransitionTime is the last time the condition transitioned from one status to another.
+                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        message is a human readable message indicating details about the transition.
+                        This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        observedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: |-
+                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                        Producers of specific condition types may define expected values and meanings for this field,
+                        and whether the values are considered a guaranteed API.
+                        The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              govar:
+                description: GOVAR contains controller-normalized pricing evidence.
+                properties:
+                  pricingSnapshot:
+                    description: PricingSnapshot is absent until normalization and
+                      evidence validation pass.
+                    properties:
+                      adapterVersion:
+                        type: string
+                      charges:
+                        items:
+                          properties:
+                            applicability:
+                              description: ProviderChargeApplicability describes when
+                                a charge can occur.
+                              enum:
+                              - always
+                              - request_declared
+                              - provider_response
+                              type: string
+                            basis:
+                              description: |-
+                                ProviderBillableBasis is the closed accounting dimension understood by the
+                                GOV-AR ledger and provider adapters.
+                              enum:
+                              - input_tokens
+                              - cached_input_tokens
+                              - output_tokens
+                              - reasoning_tokens
+                              - request
+                              - tool_call
+                              - media_unit
+                              - billable_second
+                              - cancellation
+                              - retry_attempt
+                              type: string
+                            disjointUsage:
+                              type: boolean
+                            includedIn:
+                              description: |-
+                                ProviderBillableBasis is the closed accounting dimension understood by the
+                                GOV-AR ledger and provider adapters.
+                              enum:
+                              - input_tokens
+                              - cached_input_tokens
+                              - output_tokens
+                              - reasoning_tokens
+                              - request
+                              - tool_call
+                              - media_unit
+                              - billable_second
+                              - cancellation
+                              - retry_attempt
+                              type: string
+                            maximumQuantity:
+                              format: int64
+                              type: integer
+                            priceMicrosPerUnit:
+                              format: int64
+                              type: integer
+                            requestBoundField:
+                              description: |-
+                                ProviderRequestBoundField is a closed request field from which a pre-dispatch
+                                quantity bound is obtained.
+                              enum:
+                              - input_tokens
+                              - max_cached_input_tokens
+                              - max_output_tokens
+                              - max_reasoning_tokens
+                              - max_tool_calls
+                              - max_media_units
+                              - timeout_seconds
+                              - max_retry_attempts
+                              - cancellation_possible
+                              type: string
+                            settlementUsageField:
+                              description: |-
+                                ProviderBillableBasis is the closed accounting dimension understood by the
+                                GOV-AR ledger and provider adapters.
+                              enum:
+                              - input_tokens
+                              - cached_input_tokens
+                              - output_tokens
+                              - reasoning_tokens
+                              - request
+                              - tool_call
+                              - media_unit
+                              - billable_second
+                              - cancellation
+                              - retry_attempt
+                              type: string
+                            unitDenominator:
+                              format: int64
+                              type: integer
+                          required:
+                          - applicability
+                          - basis
+                          - priceMicrosPerUnit
+                          - settlementUsageField
+                          - unitDenominator
+                          type: object
+                        type: array
+                        x-kubernetes-list-map-keys:
+                        - basis
+                        x-kubernetes-list-type: map
+                      completeness:
+                        description: |-
+                          ProviderPricingCompleteness records whether the versioned price snapshot
+                          covers every category the provider may bill for.
+                        enum:
+                        - unknown
+                        - partial
+                        - complete
+                        type: string
+                      currency:
+                        type: string
+                      evidenceMode:
+                        description: |-
+                          ProviderPricingEvidenceMode records who supplied pricing/capability evidence.
+                          Only provider_catalog and provider_api may be described as provider verified.
+                        enum:
+                        - provider_catalog
+                        - provider_api
+                        - admin_attested
+                        type: string
+                      evidenceSHA256:
+                        type: string
+                      inapplicableBases:
+                        items:
+                          description: |-
+                            ProviderBillableBasis is the closed accounting dimension understood by the
+                            GOV-AR ledger and provider adapters.
+                          enum:
+                          - input_tokens
+                          - cached_input_tokens
+                          - output_tokens
+                          - reasoning_tokens
+                          - request
+                          - tool_call
+                          - media_unit
+                          - billable_second
+                          - cancellation
+                          - retry_attempt
+                          type: string
+                        type: array
+                        x-kubernetes-list-type: set
+                      observedAt:
+                        format: date-time
+                        type: string
+                      snapshotSHA256:
+                        type: string
+                      sourceVersion:
+                        type: string
+                      specGeneration:
+                        format: int64
+                        type: integer
+                      validUntil:
+                        format: date-time
+                        type: string
+                      version:
+                        type: string
+                    required:
+                    - adapterVersion
+                    - charges
+                    - completeness
+                    - currency
+                    - evidenceMode
+                    - evidenceSHA256
+                    - observedAt
+                    - snapshotSHA256
+                    - sourceVersion
+                    - specGeneration
+                    - validUntil
+                    - version
+                    type: object
+                type: object
+              observedGeneration:
+                description: ObservedGeneration is the .metadata.generation last reconciled.
+                format: int64
+                type: integer
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

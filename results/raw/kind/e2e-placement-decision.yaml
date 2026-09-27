@@ -1,0 +1,36 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIPlacementDecision
+metadata:
+  annotations:
+    ai.sovereign.io/placement-token: '{"payload":{"pod_uid":"43f0b3ff-ddc8-4ce1-b069-c56b7335b901","pod_spec_hash":"f3154cc3ca7f436173b76cdbe58d10e45b6111b4490ea7db3f7f792434c6ca0b","image_digest":"registry.k8s.io/pause:3.9","model_digest":"sha256:model-e2e","node_identity":"ai-platform-control-plane","runtime_class":"simulated-kata-qemu-snp","evidence_hash":"1fbb2c68d9312788ba8137e07cc519acaf8158fd96aab23e3f6a4517e1960185","policy_hash":"2d1aba3b79e0cab0b060b30b9ef4501936c70cb0385f7aca051b7e3952be6a22","issued_at":1783233207,"expires_at":1783233507},"signature":"db56fdae30e2fa65cf8e3755928ddfa5c6240e961b877b3e336fc5db2d5e2fb2a506d5b6af955f435c34122b7b797aa1267a1f59459ba5b9d2433b179faf3e07"}'
+  creationTimestamp: "2026-07-05T06:33:26Z"
+  generation: 1
+  labels:
+    ai.sovereign.io/pod-name: risk-assistant
+  name: risk-assistant-article1-e2e
+  namespace: article1-e2e
+  resourceVersion: "341243"
+  uid: 02d05685-426b-4da7-9619-3bccfd3160a4
+spec:
+  evidenceRef:
+    name: evidence-ai-platform-control-plane
+    namespace: ai-platform
+  placementToken: {}
+  policyRef:
+    name: e2e-policy
+    namespace: article1-e2e
+  schedulerName: ai-attestation-scheduler
+  targetRef:
+    name: risk-assistant
+    namespace: article1-e2e
+status:
+  conditions:
+  - lastTransitionTime: "2026-07-05T06:33:26Z"
+    message: placement allowed
+    observedGeneration: 1
+    reason: Reconciled
+    status: "True"
+    type: Ready
+  decision: allow
+  observedGeneration: 1
+  simulated: true

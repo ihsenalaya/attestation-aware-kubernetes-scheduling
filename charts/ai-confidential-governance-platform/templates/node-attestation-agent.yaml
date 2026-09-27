@@ -1,0 +1,163 @@
+{{- if .Values.modules.nodeAttestationAgent.enabled }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: node-attestation-agent
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: node-attestation-agent
+    {{- include "platform.labels" . | nindent 4 }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Release.Name }}-node-attestation-agent
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["rawattestationreports"]
+  verbs: ["create"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Release.Name }}-node-attestation-agent
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Release.Name }}-node-attestation-agent
+subjects:
+- kind: ServiceAccount
+  name: node-attestation-agent
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: node-attestation-agent
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: node-attestation-agent
+    component: node-attestation-agent
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: node-attestation-agent
+  template:
+    metadata:
+      labels:
+        app: node-attestation-agent
+        component: node-attestation-agent
+    spec:
+      serviceAccountName: node-attestation-agent
+      {{- include "platform.imagePullSecrets" . | nindent 6 }}
+      {{- with .Values.nodeAttestationAgent.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeAttestationAgent.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- if .Values.nodeAttestationAgent.tpmDevices.privileged }}
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
+        {{- else }}
+        runAsNonRoot: true
+        runAsUser: 65532
+        runAsGroup: 65532
+        {{- end }}
+        {{- if .Values.nodeAttestationAgent.tpmDevices.enabled }}
+        supplementalGroups:
+        - {{ .Values.nodeAttestationAgent.tpmDevices.supplementalGroup }}
+        {{- end }}
+      containers:
+      - name: node-attestation-agent
+        image: {{ include "platform.image" (list . .Values.images.nodeAttestationAgent) }}
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_UID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.uid
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: SERVICE_ACCOUNT_NAME
+          value: node-attestation-agent
+        - name: ATTESTATION_PROVIDER
+          value: {{ .Values.nodeAttestationAgent.provider | quote }}
+        - name: ATTESTATION_SIMULATED
+          value: {{ .Values.nodeAttestationAgent.simulated | quote }}
+        - name: REPORT_INTERVAL_SECONDS
+          value: {{ .Values.nodeAttestationAgent.reportIntervalSeconds | quote }}
+        {{- if .Values.nodeAttestationAgent.helperPath }}
+        - name: ATTESTATION_HELPER_PATH
+          value: {{ .Values.nodeAttestationAgent.helperPath | quote }}
+        - name: ATTESTATION_HELPER_TIMEOUT_SECONDS
+          value: {{ .Values.nodeAttestationAgent.helperTimeoutSeconds | quote }}
+        - name: AZURE_ATTESTATION_ENDPOINT
+          value: {{ .Values.nodeAttestationAgent.azureAttestationEndpoint | quote }}
+        {{- end }}
+        {{- if .Values.nodeAttestationAgent.tokenEndpoint }}
+        - name: ATTESTATION_TOKEN_ENDPOINT
+          value: {{ .Values.nodeAttestationAgent.tokenEndpoint | quote }}
+        {{- end }}
+        {{- if .Values.nodeAttestationAgent.tokenFile }}
+        - name: ATTESTATION_TOKEN_FILE
+          value: {{ .Values.nodeAttestationAgent.tokenFile | quote }}
+        {{- end }}
+        securityContext:
+          {{- if .Values.nodeAttestationAgent.tpmDevices.privileged }}
+          privileged: true
+          readOnlyRootFilesystem: true
+          {{- else }}
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: [ALL]
+          {{- end }}
+        {{- if .Values.nodeAttestationAgent.tpmDevices.enabled }}
+        volumeMounts:
+        - name: tpmrm0
+          mountPath: /dev/tpmrm0
+        - name: tpm0
+          mountPath: /dev/tpm0
+        - name: tmp
+          mountPath: /tmp
+        - name: kernel-security
+          mountPath: /sys/kernel/security
+          readOnly: true
+        {{- end }}
+        resources:
+          {{- toYaml .Values.nodeAttestationAgent.resources | nindent 10 }}
+      {{- if .Values.nodeAttestationAgent.tpmDevices.enabled }}
+      volumes:
+      - name: tpmrm0
+        hostPath:
+          path: /dev/tpmrm0
+          type: CharDevice
+      - name: tpm0
+        hostPath:
+          path: /dev/tpm0
+          type: CharDevice
+      - name: tmp
+        emptyDir: {}
+      - name: kernel-security
+        hostPath:
+          path: /sys/kernel/security
+          type: Directory
+      {{- end }}
+{{- end }}

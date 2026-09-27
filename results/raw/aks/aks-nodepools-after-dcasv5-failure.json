@@ -1,0 +1,9 @@
+[
+  {
+    "count": 1,
+    "name": "system",
+    "osSku": "Ubuntu",
+    "provisioningState": "Succeeded",
+    "vmSize": "Standard_D2s_v3"
+  }
+]

@@ -1,0 +1,422 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.18.0
+  name: aimodels.aiops.imperium.io
+spec:
+  group: aiops.imperium.io
+  names:
+    kind: AIModel
+    listKind: AIModelList
+    plural: aimodels
+    singular: aimodel
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.providerRef
+      name: Provider
+      type: string
+    - jsonPath: .spec.modelName
+      name: Model
+      type: string
+    - jsonPath: .spec.costTier
+      name: CostTier
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: AIModel catalogs an AI model available through a provider.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: AIModelSpec defines the desired state of AIModel.
+            properties:
+              contextWindow:
+                description: ContextWindow is the maximum context length in tokens.
+                format: int32
+                minimum: 0
+                type: integer
+              costTier:
+                description: CostTier ranks relative cost.
+                enum:
+                - low
+                - medium
+                - high
+                type: string
+              govar:
+                description: |-
+                  GOVAR contains typed hard-feasibility and route-actuation inputs. When
+                  absent, admission must not infer these values from annotations.
+                properties:
+                  outputCapEvidence:
+                    description: |-
+                      OutputCapEvidence is administrator-attested unless a provider-specific
+                      capability producer replaces it with provider catalog/API evidence.
+                      Existing objects decode without it but are not GOV-AR feasible.
+                    properties:
+                      capabilityAdapterVersion:
+                        minLength: 1
+                        type: string
+                      enforcedByPathAdapter:
+                        type: boolean
+                      evidenceSHA256:
+                        pattern: ^[0-9a-f]{64}$
+                        type: string
+                      maxOutputTokens:
+                        format: int64
+                        minimum: 1
+                        type: integer
+                      mode:
+                        description: |-
+                          ProviderPricingEvidenceMode records who supplied pricing/capability evidence.
+                          Only provider_catalog and provider_api may be described as provider verified.
+                        enum:
+                        - provider_catalog
+                        - provider_api
+                        - admin_attested
+                        type: string
+                      requestParameter:
+                        minLength: 1
+                        type: string
+                      sourceVersion:
+                        minLength: 1
+                        type: string
+                      validUntil:
+                        format: date-time
+                        type: string
+                    required:
+                    - capabilityAdapterVersion
+                    - enforcedByPathAdapter
+                    - evidenceSHA256
+                    - maxOutputTokens
+                    - mode
+                    - requestParameter
+                    - sourceVersion
+                    - validUntil
+                    type: object
+                  routable:
+                    description: Routable explicitly allows this model to enter the
+                      hard-feasibility set.
+                    type: boolean
+                  route:
+                    description: Route is deprecated decode compatibility only. GOV-AR
+                      ignores it.
+                    properties:
+                      authority:
+                        description: Authority is the upstream HTTP authority expected
+                          by the provider adapter.
+                        minLength: 1
+                        pattern: ^[A-Za-z0-9][A-Za-z0-9._:-]*$
+                        type: string
+                      cluster:
+                        description: Cluster is the exact Envoy cluster key configured
+                          for this route.
+                        minLength: 1
+                        pattern: ^[A-Za-z0-9][A-Za-z0-9._:-]*$
+                        type: string
+                      pathMode:
+                        description: PathMode selects the explicit provider request
+                          adapter.
+                        enum:
+                        - openai-body
+                        - azure-deployment-path
+                        - anthropic-body
+                        - google-generate-path
+                        type: string
+                      providerDeployment:
+                        description: ProviderDeployment is the provider-side deployment
+                          or model identifier.
+                        minLength: 1
+                        pattern: ^[A-Za-z0-9][A-Za-z0-9._:/-]*$
+                        type: string
+                    required:
+                    - authority
+                    - cluster
+                    - pathMode
+                    - providerDeployment
+                    type: object
+                  routeBindingRef:
+                    description: RouteBindingRef selects a binding owned by spec.providerRef.
+                    pattern: ^[A-Za-z0-9][A-Za-z0-9._-]*$
+                    type: string
+                required:
+                - routable
+                type: object
+                x-kubernetes-validations:
+                - message: routeBindingRef is required when routable is true
+                  rule: '!self.routable || (has(self.routeBindingRef) && self.routeBindingRef
+                    != "")'
+              modelName:
+                description: ModelName is the provider-side model identifier (e.g.
+                  gpt-4o, mistral-small).
+                minLength: 1
+                type: string
+              providerRef:
+                description: ProviderRef is the name of the AIProvider serving this
+                  model (same namespace).
+                minLength: 1
+                type: string
+              qualityTier:
+                description: QualityTier ranks output quality.
+                enum:
+                - low
+                - medium
+                - high
+                type: string
+              sensitiveDataAllowed:
+                description: SensitiveDataAllowed states whether this model may process
+                  sensitive data.
+                type: boolean
+              servesApplication:
+                type: string
+              servesNamespace:
+                description: |-
+                  ServesNamespace/ServesApplication/ServesTeam attribute gateway telemetry that
+                  only carries the model (e.g. Envoy AI Gateway gen_ai metrics) to the workload
+                  consuming this model, so cost is attributed per namespace/app/team.
+                type: string
+              servesTeam:
+                type: string
+              type:
+                default: llm
+                description: Type categorizes the model.
+                enum:
+                - llm
+                - embedding
+                - reranker
+                - vision
+                - audio
+                type: string
+            required:
+            - modelName
+            - providerRef
+            - type
+            type: object
+          status:
+            description: AIModelStatus defines the observed state of AIModel.
+            properties:
+              conditions:
+                description: Conditions represent the latest available observations
+                  of the model state.
+                items:
+                  description: Condition contains details for one aspect of the current
+                    state of this API Resource.
+                  properties:
+                    lastTransitionTime:
+                      description: |-
+                        lastTransitionTime is the last time the condition transitioned from one status to another.
+                        This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
+                      format: date-time
+                      type: string
+                    message:
+                      description: |-
+                        message is a human readable message indicating details about the transition.
+                        This may be an empty string.
+                      maxLength: 32768
+                      type: string
+                    observedGeneration:
+                      description: |-
+                        observedGeneration represents the .metadata.generation that the condition was set based upon.
+                        For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+                        with respect to the current state of the instance.
+                      format: int64
+                      minimum: 0
+                      type: integer
+                    reason:
+                      description: |-
+                        reason contains a programmatic identifier indicating the reason for the condition's last transition.
+                        Producers of specific condition types may define expected values and meanings for this field,
+                        and whether the values are considered a guaranteed API.
+                        The value should be a CamelCase string.
+                        This field may not be empty.
+                      maxLength: 1024
+                      minLength: 1
+                      pattern: ^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$
+                      type: string
+                    status:
+                      description: status of the condition, one of True, False, Unknown.
+                      enum:
+                      - "True"
+                      - "False"
+                      - Unknown
+                      type: string
+                    type:
+                      description: type of condition in CamelCase or in foo.example.com/CamelCase.
+                      maxLength: 316
+                      pattern: ^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - message
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+                x-kubernetes-list-map-keys:
+                - type
+                x-kubernetes-list-type: map
+              govar:
+                description: GOVAR contains observed, controller-owned cap and latency
+                  evidence.
+                properties:
+                  latency:
+                    description: Latency is absent until a typed observation is available.
+                    properties:
+                      meanMillis:
+                        description: MeanMillis is the observed arithmetic mean in
+                          milliseconds.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      observedAt:
+                        description: ObservedAt is the end of the observation window.
+                        format: date-time
+                        type: string
+                      p95Millis:
+                        description: P95Millis is the observed 95th percentile in
+                          milliseconds.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      p99Millis:
+                        description: P99Millis is the observed 99th percentile in
+                          milliseconds.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      sampleCount:
+                        description: SampleCount is the number of observations in
+                          the summary.
+                        format: int64
+                        minimum: 1
+                        type: integer
+                    required:
+                    - meanMillis
+                    - observedAt
+                    - p95Millis
+                    - p99Millis
+                    - sampleCount
+                    type: object
+                    x-kubernetes-validations:
+                    - message: latency quantiles must be ordered p95 <= p99
+                      rule: self.p99Millis >= self.p95Millis
+                  verifiedOutputCap:
+                    description: VerifiedOutputCap is absent until capability verification
+                      has run.
+                    properties:
+                      capabilityAdapterVersion:
+                        type: string
+                      enforcedByPathAdapter:
+                        type: boolean
+                      evidenceMode:
+                        description: |-
+                          ProviderPricingEvidenceMode records who supplied pricing/capability evidence.
+                          Only provider_catalog and provider_api may be described as provider verified.
+                        enum:
+                        - provider_catalog
+                        - provider_api
+                        - admin_attested
+                        type: string
+                      evidenceSHA256:
+                        type: string
+                      maxOutputTokens:
+                        description: MaxOutputTokens is the verified provider-enforced
+                          maximum.
+                        format: int64
+                        minimum: 0
+                        type: integer
+                      modelVersion:
+                        type: string
+                      observedAt:
+                        description: ObservedAt is when the capability was verified.
+                        format: date-time
+                        type: string
+                      pricingSnapshotSHA256:
+                        type: string
+                      providerDeployment:
+                        type: string
+                      providerGeneration:
+                        format: int64
+                        type: integer
+                      providerUID:
+                        type: string
+                      requestParameter:
+                        type: string
+                      sourceVersion:
+                        description: SourceVersion identifies the immutable provider/model
+                          capability source.
+                        minLength: 1
+                        type: string
+                      validUntil:
+                        format: date-time
+                        type: string
+                      verified:
+                        description: Verified states that the provider enforces this
+                          cap for the observed version.
+                        type: boolean
+                    required:
+                    - capabilityAdapterVersion
+                    - enforcedByPathAdapter
+                    - evidenceMode
+                    - evidenceSHA256
+                    - maxOutputTokens
+                    - modelVersion
+                    - observedAt
+                    - pricingSnapshotSHA256
+                    - providerDeployment
+                    - providerGeneration
+                    - providerUID
+                    - requestParameter
+                    - sourceVersion
+                    - validUntil
+                    - verified
+                    type: object
+                    x-kubernetes-validations:
+                    - message: maxOutputTokens must be positive when verified is true
+                      rule: '!self.verified || self.maxOutputTokens > 0'
+                type: object
+              lastEvaluatedAt:
+                description: LastEvaluatedAt is the time of the latest AIQualityGate
+                  score update for this model.
+                format: date-time
+                type: string
+              lastQualityScore:
+                description: LastQualityScore is the latest AIQualityGate candidate
+                  score observed for this model.
+                type: number
+              observedGeneration:
+                description: ObservedGeneration is the .metadata.generation last reconciled.
+                format: int64
+                type: integer
+              resolvedProvider:
+                description: ResolvedProvider echoes the provider type once ProviderRef
+                  is resolved.
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

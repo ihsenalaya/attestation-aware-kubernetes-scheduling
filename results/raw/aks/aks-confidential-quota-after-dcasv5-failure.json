@@ -1,0 +1,32 @@
+[
+  {
+    "current": "2",
+    "limit": "10",
+    "name": "Standard DSv3 Family vCPUs"
+  },
+  {
+    "current": "0",
+    "limit": "32",
+    "name": "Standard DCASv5 Family vCPUs"
+  },
+  {
+    "current": "0",
+    "limit": "0",
+    "name": "Standard DCasv6 Family vCPUs"
+  },
+  {
+    "current": "0",
+    "limit": "0",
+    "name": "Standard DDCSv3 Family vCPUs"
+  },
+  {
+    "current": "0",
+    "limit": "0",
+    "name": "Standard DCSv3 Family vCPUs"
+  },
+  {
+    "current": "0",
+    "limit": "0",
+    "name": "Standard NDSv3 Family vCPUs"
+  }
+]

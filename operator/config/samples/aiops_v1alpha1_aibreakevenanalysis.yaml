@@ -1,0 +1,20 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIBreakEvenAnalysis
+metadata:
+  name: chatbot-rh-analysis
+  labels:
+    app.kubernetes.io/name: ai-sovereign-finops-operator
+spec:
+  target:
+    namespace: rh
+    application: chatbot-rh
+  currentModelRef: gpt-4o
+  alternativeSelfHosted:
+    modelName: llama-3-70b
+    runtime: vllm
+    gpuType: l40s
+    gpuCount: 2
+    monthlyGpuCostEUR: "1800"
+    estimatedOpsCostEUR: "700"
+    migrationCostEUR: "5000"
+  analysisWindowDays: 30

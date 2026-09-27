@@ -1,0 +1,12 @@
+env,metric,n,median_ms,p95_ms,p99_ms,mean_ms
+aks-real-sevsnp,admission_latency_ms,0,,,,
+aks-real-sevsnp,prefilter_latency_ms,0,,,,
+aks-real-sevsnp,filter_latency_ms,0,,,,
+aks-real-sevsnp,score_latency_ms,0,,,,
+aks-real-sevsnp,permit_wait_ms,0,,,,
+aks-real-sevsnp,reserve_latency_ms,0,,,,
+aks-real-sevsnp,prebind_latency_ms,0,,,,
+aks-real-sevsnp,bind_latency_ms,0,,,,
+aks-real-sevsnp,scheduler_total_latency_ms,0,,,,
+aks-real-sevsnp,pod_pending_duration_ms,0,,,,
+aks-real-sevsnp,pod_admission_to_running_ms,0,,,,

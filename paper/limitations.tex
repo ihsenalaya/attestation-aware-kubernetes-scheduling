@@ -1,0 +1,43 @@
+\section{Limitations}
+\label{sec:limitations}
+
+We are explicit about what we do and do not establish.
+
+\paragraph{Node-level, not pod-level.}
+On confidential-VM node pools the attestation evidence refers to the confidential
+worker node/VM, not to a per-pod TEE. We therefore report \emph{attested-node
+placement}; we do not claim pod-level workload attestation, which would require a
+confidential-container runtime (CoCo/Kata-CC) enabled and measured.
+
+\paragraph{No confidential GPU, no TDX.}
+The confidential hardware used is CPU-only AMD SEV-SNP (\texttt{DC8as\_v6}). We do
+not evaluate confidential GPUs (e.g.\ NVIDIA H100 CC) or Intel TDX; GPU-aware
+placement is expressed in the policy schema but its validation is future work.
+
+\paragraph{AI workload scope.}
+The AKS evaluation includes real governed AI workloads (OpenAI chat, OpenAI
+embedding, and a local CPU model) to validate attested placement, model/image
+digest binding, and offline placement verification. These workloads do not
+establish model confidentiality, OpenAI service-side confidentiality,
+confidential GPU execution, or large-model throughput.
+
+\paragraph{Latency scope.}
+The AKS timing claim is based on a B1--B5 campaign with 30 measured runs per
+baseline. The B1--B5 figure uses one comparable client-observed timing
+instrument; under that instrument, B5's median is 1167.0\,ms. B5 also records
+an in-process scheduler-internal phase metric (median 216.232\,ms), but that
+metric is reported separately and must not be read as an end-to-end speedup over
+B1--B4. We report prototype overhead, not a universal Kubernetes latency bound.
+
+\paragraph{Scale.}
+The final AKS campaign scaled the \texttt{Standard\_DC8as\_v6} confidential pool
+to four active nodes under a 32-vCPU DCasv6 quota. This supports multi-node node
+qualification and B1--B5 overhead measurement, but it is not a cloud-scale
+throughput study. Local test-cluster and KWOK harnesses are retained only for
+CI/debug/regression or scheduler-only scalability context and are not presented
+as main cloud security or performance results.
+
+\paragraph{MAA as trust anchor.}
+Real evidence trusts the Microsoft Azure Attestation service and the SEV-SNP
+hardware within their stated threat model. A verifier that pins MAA signing keys
+and policy is used; a fully self-hosted verifier is out of scope.

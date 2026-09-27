@@ -1,0 +1,10 @@
+AKS platform health checks (system-only)
+date_utc=2026-07-04T16:30:20Z
+platform-api /healthz: ok
+platform-api /readyz: ok
+key-release-gateway /healthz: ok
+key-release-gateway /readyz: ok
+attestation-scheduler /healthz: ok
+attestation-scheduler /readyz: ok
+central-verifier /healthz: ok
+central-verifier /readyz: ok

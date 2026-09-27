@@ -1,0 +1,13 @@
+attack_id,adversary,attack,property,defense,evidence
+A1,ADV-1,Forges node labels such as attested=true without cryptographic evidence,Label Resistance,Scheduler requires verified AttestationEvidence and ignores labels,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv
+A2,ADV-1,Replays attestation evidence older than maxEvidenceAgeSeconds,Evidence Freshness,Scheduler Filter rejects stale evidence,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv
+A3,ADV-1,Uses evidence that has been revoked,Placement Safety,Scheduler Filter rejects revoked evidence,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv
+A4,ADV-1,Presents evidence for a TEE type that does not satisfy policy,Placement Safety,Scheduler Filter enforces TEE claim compatibility,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv
+A5,ADV-1,Requests a simulated RuntimeClass while the production policy forbids simulation,Runtime Consistency,Admission denies simulated runtime classes in production mode,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv
+A5b,ADV-1,Omit required workload identity/model digest,Identity Binding,Admission requires policy-bound model digest annotation,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv
+A6,ADV-4,Modifies the matched policy between Filter and PreBind,Runtime Consistency,PreBind fail-closed re-check detects policy-hash mismatch,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv
+A7,ADV-3,Revokes node evidence between Filter and PreBind,Evidence Freshness,PreBind fail-closed re-check detects revocation,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv
+A8,ADV-4,Tampers with placement-token fields after scheduling,Verifiable Placement,Ed25519 token binds pod UID spec hash node identity evidence hash and policy hash,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv plus identity_binding.csv
+A9,ADV-1,Uses a simulated RuntimeClass in production mode,Runtime Consistency,Validating webhook denies simulated runtimeClass values labelled simulated=true in production,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv
+A10,ADV-2,Compromised node attempts to write or forge appraised evidence,Trust-Chain Separation,RBAC and central verifier separation prevent node-agent from writing final AttestationEvidence,AKS N=30 in results/raw/aks/security_attacks_A1_A11.csv and results/raw/aks/a10/
+A11,ADV-1,Requests confidential GPU placement without GPU attestation evidence,Fail-Closed Scope Control,Admission fails closed for GPU-required policy until a real GPU evidence path exists,AKS 1/1 negative control in results/raw/aks/a11_gpu_required_no_evidence.csv

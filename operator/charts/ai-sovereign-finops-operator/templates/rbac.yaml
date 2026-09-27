@@ -1,0 +1,222 @@
+{{- if .Values.rbac.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "operator.fullname" . }}-manager-role
+  labels:
+    {{- include "operator.labels" . | nindent 4 }}
+rules:
+# NOTE: keep in sync with operateur/config/rbac/role.yaml (generated from
+# +kubebuilder:rbac markers by `make manifests`).
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+- apiGroups: [""]
+  resources: ["namespaces", "pods", "serviceaccounts"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["create", "patch"]
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["create", "delete", "get", "list", "watch"]
+- apiGroups: ["admissionregistration.k8s.io"]
+  resources: ["mutatingwebhookconfigurations", "validatingwebhookconfigurations"]
+  verbs: ["create", "get", "list", "patch", "update", "watch"]
+- apiGroups: ["node.k8s.io"]
+  resources: ["runtimeclasses"]
+  verbs: ["create", "get", "list", "patch", "update", "watch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses
+  - aibudgetpolicies
+  - aichangerequests
+  - aievidencerecords
+  - aifinopsreports
+  - aigateways
+  - aikeyreleasepolicies
+  - aimodels
+  - aiplacementdecisions
+  - aiproviders
+  - aiqualitygates
+  - airevocationpolicies
+  - airouteoverrides
+  - airoutingpolicies
+  - aisovereigntypolicies
+  - attestationevidences
+  verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["aiworkloadbindings"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses/finalizers
+  - aibudgetpolicies/finalizers
+  - aichangerequests/finalizers
+  - aievidencerecords/finalizers
+  - aifinopsreports/finalizers
+  - aigateways/finalizers
+  - aikeyreleasepolicies/finalizers
+  - aimodels/finalizers
+  - aiplacementdecisions/finalizers
+  - aiproviders/finalizers
+  - aiqualitygates/finalizers
+  - airevocationpolicies/finalizers
+  - airouteoverrides/finalizers
+  - airoutingpolicies/finalizers
+  - aisovereigntypolicies/finalizers
+  - attestationevidences/finalizers
+  verbs: ["update"]
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibreakevenanalyses/status
+  - aibudgetpolicies/status
+  - aichangerequests/status
+  - aievidencerecords/status
+  - aifinopsreports/status
+  - aigateways/status
+  - aikeyreleasepolicies/status
+  - aimodels/status
+  - aiplacementdecisions/status
+  - aiproviders/status
+  - aiqualitygates/status
+  - airevocationpolicies/status
+  - airouteoverrides/status
+  - airoutingpolicies/status
+  - aisovereigntypolicies/status
+  - attestationevidences/status
+  verbs: ["get", "patch", "update"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["aiworkloadbindings/status"]
+  verbs: ["get", "patch", "update"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["confidentialinferencepolicies"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["aigateway.envoyproxy.io"]
+  resources: ["aigatewayroutelists", "aigatewayroutes"]
+  verbs: ["get", "list", "watch", "update", "patch"]
+- apiGroups: ["authentication.k8s.io"]
+  resources: ["tokenreviews"]
+  verbs: ["create"]
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["get", "list", "watch"]
+{{- if .Values.leaderElection.enabled }}
+- apiGroups: ["coordination.k8s.io"]
+  resources: ["leases"]
+  verbs: ["create", "get", "list", "update", "watch"]
+{{- end }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "operator.fullname" . }}-manager-rolebinding
+  labels:
+    {{- include "operator.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "operator.fullname" . }}-manager-role
+subjects:
+- kind: ServiceAccount
+  name: {{ include "operator.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+{{- end }}
+{{- if and .Values.govArCalibrationProducer.enabled .Values.govArCalibrationProducer.rbac.create }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "operator.fullname" . }}-gov-ar-calibration-producer
+  labels:
+    {{- include "operator.labels" . | nindent 4 }}
+    app.kubernetes.io/component: gov-ar-calibration-producer
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["airoutingpolicies"]
+  verbs: ["get"]
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["airoutingpolicies/status"]
+  verbs: ["get", "update"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "operator.fullname" . }}-gov-ar-calibration-producer
+  labels:
+    {{- include "operator.labels" . | nindent 4 }}
+    app.kubernetes.io/component: gov-ar-calibration-producer
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "operator.fullname" . }}-gov-ar-calibration-producer
+subjects:
+- kind: ServiceAccount
+  name: {{ include "operator.govArCalibrationProducerServiceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+{{- end }}
+{{- if and .Values.govArAdmission.enabled .Values.govArAdmission.rbac.create }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "operator.fullname" . }}-gov-ar-admission
+  labels:
+    {{- include "operator.labels" . | nindent 4 }}
+    app.kubernetes.io/component: gov-ar-admission
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+- apiGroups: [""]
+  resources: ["serviceaccounts"]
+  verbs: ["get"]
+- apiGroups: ["authentication.k8s.io"]
+  resources: ["tokenreviews"]
+  verbs: ["create"]
+- apiGroups: ["aiops.imperium.io"]
+  resources:
+  - aibudgetpolicies
+  - aichangerequests
+  - aimodels
+  - aiproviders
+  - airoutingpolicies
+  - aiworkloadbindings
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "operator.fullname" . }}-gov-ar-admission
+  labels:
+    {{- include "operator.labels" . | nindent 4 }}
+    app.kubernetes.io/component: gov-ar-admission
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ include "operator.fullname" . }}-gov-ar-admission
+subjects:
+- kind: ServiceAccount
+  name: {{ include "operator.govArAdmissionServiceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+{{- end }}
+{{- if .Values.rbac.create }}
+---
+# This role is intentionally not bound by the chart. A cluster administrator
+# may bind it only to independently authenticated subjects that the identity
+# provider places in aiops.imperium.io:gov-ar-approval-reviewers. The
+# fail-closed AIChangeRequest webhooks require that authenticated group, stamp
+# the exact reviewer identity, and reject requester self-approval even when a
+# subject otherwise has update RBAC on AIChangeRequest objects.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "operator.fullname" . }}-gov-ar-approval-reviewer
+  labels:
+    {{- include "operator.labels" . | nindent 4 }}
+    app.kubernetes.io/component: gov-ar-approval-reviewer
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["aichangerequests"]
+  verbs: ["get", "list", "watch", "update", "patch"]
+{{- end }}

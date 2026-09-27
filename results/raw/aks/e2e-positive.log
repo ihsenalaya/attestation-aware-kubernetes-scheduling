@@ -1,0 +1,16 @@
+== [e2e] cleaning any prior namespace
+== [e2e] creating namespace article1-e2e
+namespace/article1-e2e created
+namespace/article1-e2e labeled
+== [e2e] applying ConfidentialInferencePolicy
+confidentialinferencepolicy.aiops.imperium.io/e2e-policy created
+== [e2e] waiting for central-verifier evidence (real)
+== [e2e] creating sensitive pod (evidence annotation set to bypass gate)
+pod/risk-assistant created
+== [e2e] waiting for pod to be scheduled (bound to a node)
+   pod bound to node: aks-conf-23144742-vmss000000
+== [e2e] waiting for AIPlacementDecision
+== [e2e] extracting placement token and scheduler public key
+== [e2e] independent verification with verify-placement
+PASS
+== [e2e] PASS — positive scenario complete env=aks-real-sevsnp evidenceMode=real

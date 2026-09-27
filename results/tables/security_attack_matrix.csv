@@ -1,0 +1,13 @@
+attack_id,adversary,target_property,defense_point,runs,blocked,block_rate,ci95_low,ci95_high,primary_raw_file
+A1,label forgery,Placement safety,scheduler Filter,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A2,stale evidence,Evidence freshness,scheduler Filter,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A3,revoked evidence,Evidence revocation,scheduler Filter,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A4,wrong TEE,TEE binding,scheduler Filter,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A5,forbidden runtime,Runtime consistency,admission webhook,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A5b,missing model digest,Workload identity,admission webhook,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A6,policy race,Policy consistency,PreBind re-check,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A7,revocation race,Evidence freshness,PreBind re-check,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A8,token tamper,Verifiable placement,offline verifier,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A9,simulated runtime in production,Runtime consistency,admission webhook,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A10,forged raw report,Verifier trust chain,central verifier/RBAC,30,30,1.0,0.8865,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv
+A11,GPU evidence unavailable,Fail-closed unsupported TEE,policy/scheduler denial,1,1,1.0,0.2065,1.0,article1/results/raw/aks/security_attacks_A1_A11.csv

@@ -1,0 +1,2 @@
+AI_WORKLOAD_RESULT {"error_type": "", "latency_ms_median": 705.118, "model_name": "text-embedding-3-small", "request_count": 3, "status": "PASS", "success_count": 3, "workload_id": "openai-embedding-minimal", "workload_type": "openai-embedding"}
+PASS

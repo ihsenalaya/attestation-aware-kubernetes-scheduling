@@ -1,0 +1,2 @@
+AI_WORKLOAD_RESULT {"error_type": "", "latency_ms_median": 2216.815, "model_name": "gpt-5.5", "request_count": 3, "status": "PASS", "success_count": 3, "workload_id": "openai-chat-minimal", "workload_type": "openai-chat"}
+PASS

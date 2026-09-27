@@ -1,0 +1,5 @@
+AKS cost estimate — 2026-07-04T13:25:30Z
+region=eastus2
+confidential Standard_DC8as_v5: PRICE UNAVAILABLE (retail API not reachable) — do NOT guess
+system       Standard_D2s_v5: PRICE UNAVAILABLE (retail API not reachable) — do NOT guess
+combined estimate: UNAVAILABLE (a price could not be fetched)

@@ -1,0 +1,17 @@
+apiVersion: aiops.imperium.io/v1alpha1
+kind: AIWorkloadBinding
+metadata:
+  name: payments-api
+  namespace: payments
+spec:
+  serviceAccountName: payments-api
+  tenantID: tenant-payments
+  team: payments
+  application: payments-api
+  budgetPolicyRef: payments-budget
+  routingPolicyRef: payments-routing
+  sensitivity: high
+  allowedZones:
+    - eu
+    - francecentral
+  requireGateway: true

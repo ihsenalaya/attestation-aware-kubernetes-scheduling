@@ -1,0 +1,30 @@
+NAME: ai-platform
+LAST DEPLOYED: Sat Jul  4 17:35:32 2026
+NAMESPACE: ai-platform
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+NOTES:
+AI Confidential Governance Platform has been installed.
+
+Environment : aks-private
+Mode        : startup
+
+Access the UI in kind:
+  kubectl port-forward svc/platform-ui 3000:80 -n ai-platform
+  Then open http://localhost:3000
+
+Access the API in kind:
+  kubectl port-forward svc/platform-api 8083:8083 -n ai-platform
+
+Key release gateway:
+  kubectl port-forward svc/key-release-gateway 8082:8082 -n ai-platform
+
+Metrics (Prometheus):
+  kubectl port-forward svc/platform-api 8083:8083 -n ai-platform
+  curl http://localhost:8083/metrics
+
+Run thesis-bench:
+  kubectl run thesis-bench --image=thesis-bench:0.5.4 \
+    --env AIOPS_PLATFORM_MODE=aks-private \
+    --rm -it -- /thesis-bench --mode aks-private

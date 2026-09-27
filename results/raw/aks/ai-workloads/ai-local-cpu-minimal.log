@@ -1,0 +1,2 @@
+AI_WORKLOAD_RESULT {"error_type": "", "latency_ms_median": 0.001, "model_name": "local-linear-risk-v1", "request_count": 5, "status": "PASS", "success_count": 5, "workload_id": "local-cpu-minimal", "workload_type": "local-cpu"}
+PASS

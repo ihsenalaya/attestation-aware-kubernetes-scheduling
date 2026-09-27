@@ -1,0 +1,127 @@
+{{- if .Values.modules.keyReleaseGateway.enabled }}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: key-release-gateway
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: key-release-gateway
+    {{- include "platform.labels" . | nindent 4 }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Release.Name }}-key-release-gateway
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+rules:
+- apiGroups: ["aiops.imperium.io"]
+  resources: ["attestationevidences", "airevocationpolicies", "aikeyreleasepolicies", "aiplacementdecisions"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Release.Name }}-key-release-gateway
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Release.Name }}-key-release-gateway
+subjects:
+- kind: ServiceAccount
+  name: key-release-gateway
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: key-release-gateway
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: key-release-gateway
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  selector:
+    app: key-release-gateway
+  ports:
+  - name: http
+    port: {{ .Values.keyReleaseGateway.service.port }}
+    targetPort: 8082
+  type: {{ .Values.keyReleaseGateway.service.type }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: key-release-gateway
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: key-release-gateway
+    component: key-release-gateway
+    {{- include "platform.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.keyReleaseGateway.replicaCount }}
+  selector:
+    matchLabels:
+      app: key-release-gateway
+  template:
+    metadata:
+      labels:
+        app: key-release-gateway
+        component: key-release-gateway
+    spec:
+      serviceAccountName: key-release-gateway
+      {{- include "platform.imagePullSecrets" . | nindent 6 }}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+      containers:
+      - name: key-release-gateway
+        image: {{ include "platform.image" (list . .Values.images.keyReleaseGateway) }}
+        imagePullPolicy: {{ .Values.images.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 8082
+        env:
+        {{- if .Values.keyReleaseGateway.tokenPublicKeyHex }}
+        - name: TOKEN_PUBLIC_KEY_HEX
+          valueFrom:
+            secretKeyRef:
+              name: key-release-gateway-pubkey
+              key: publicKeyHex
+        {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8082
+          initialDelaySeconds: 10
+          periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 8082
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        securityContext:
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop: [ALL]
+        resources:
+          {{- toYaml .Values.keyReleaseGateway.resources | nindent 10 }}
+{{- if .Values.keyReleaseGateway.tokenPublicKeyHex }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: key-release-gateway-pubkey
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "platform.labels" . | nindent 4 }}
+type: Opaque
+stringData:
+  publicKeyHex: {{ .Values.keyReleaseGateway.tokenPublicKeyHex | quote }}
+{{- end }}
+{{- end }}

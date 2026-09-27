@@ -1,0 +1,27 @@
+# permissions for end users to view aibudgetpolicies.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: aibudgetpolicy-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: ai-sovereign-finops-operator
+    app.kubernetes.io/part-of: ai-sovereign-finops-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: aibudgetpolicy-viewer-role
+rules:
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - aibudgetpolicies
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - aiops.imperium.io
+  resources:
+  - aibudgetpolicies/status
+  verbs:
+  - get
