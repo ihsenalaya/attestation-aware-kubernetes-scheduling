@@ -16,7 +16,7 @@ ENV_NAME="${ENV_NAME:-kind-live-simulated}"
 PLATFORM_NS="${PLATFORM_NS:-ai-platform}"
 SCHED_SA="${SCHED_SA:-system:serviceaccount:${PLATFORM_NS}:attestation-scheduler}"
 OUT_DIR="${OUT_DIR:-results/raw/${ENV_NAME%%-*}}"
-CSV="${CSV:-paper/tables/scheduler_security_tests.csv}"
+CSV="${CSV:-results/reference/tables/scheduler_security_tests.csv}"
 RAW="${OUT_DIR}/scheduler-security"
 mkdir -p "${OUT_DIR}" "${RAW}" "$(dirname "${CSV}")"
 

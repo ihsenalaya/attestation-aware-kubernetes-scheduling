@@ -160,7 +160,7 @@ ENV_NAME="${ENV_NAME}" PLATFORM_NS="${NS}" OUT_DIR="${OUT_DIR}" \
 
 step "13. stats + figures"
 python3 scripts/analyze_all.py --raw "${OUT_DIR}" \
-  --tables results/tables --figures paper/figures \
+  --tables results/tables --figures results/reference/figures \
   --env "${ENV_NAME}" || echo "  (analysis note)"
 python3 scripts/update_q1_final_artifacts.py || echo "  (Q1 final artifact update note)"
 
@@ -177,4 +177,4 @@ fi
 
 step "CAMPAIGN COMPLETE"
 echo "Raw results: ${OUT_DIR}"
-echo "Tables: results/tables ; Figures: paper/figures"
+echo "Tables: results/tables ; Figures: results/reference/figures"

@@ -1,7 +1,21 @@
 # Artifact validation — 2026-09-27
 
-This report describes preparation-time checks on version 1.0.0. It is not an
-independent replication of the hardware experiments or a peer review.
+This report preserves the preparation checks from version 1.0.0 and documents
+version 1.0.1, which removes the manuscript and relocates supporting results.
+It is not an independent hardware replication or a peer review. The Go code,
+Helm chart, dependencies and raw measurements are unchanged from the tested
+v1.0.0 snapshot. Their checks below are inherited, not reported as newly rerun.
+
+## Version 1.0.1 checks
+
+- The manuscript directory, manuscript PDF, LaTeX and bibliography files are
+  absent. Fifteen supporting result files remain under `results/reference/`.
+- Analysis-script syntax checks and the standalone offline analysis passed
+  (10 CSV outputs and 9 figure PDFs); the run created no manuscript directory.
+- All 807 raw-data files kept their pre-change SHA-256 hashes. The implementation,
+  chart and pinned analysis dependencies are unchanged from v1.0.0.
+- Metadata versions, reference-result hashes and CSV evidence paths were checked.
+- The new ZIP passed CRC and SHA-256 verification for every packaged file.
 
 ## Original archive findings and repairs
 
@@ -17,8 +31,8 @@ The standalone artifact repairs the paths, includes the required scripts and
 configuration, supplies pinned analysis dependencies, removes internal editorial
 status generation, and keeps derived analysis output separate from raw data.
 AKS values disable simulated evidence; local deployment includes the verifier
-and node agent. The current manuscript was imported and its PDF rebuilt. Two
-reviewer-directed sentences were rephrased without changing technical meaning.
+and node agent. Version 1.0.1 removes the manuscript PDF and LaTeX sources and
+retains the supporting CSV tables and figures under `results/reference/`.
 `PROVENANCE.json` records the source snapshot and file hashes. The original
 archive and source working tree are preserved.
 
@@ -32,7 +46,6 @@ archive and source working tree are preserved.
 | Shell/Python | Bash and Python syntax checks passed; ShellCheck at error severity passed |
 | Terraform | `terraform fmt -check` passed; no plan/apply executed |
 | Offline analysis | `scripts/reproduce-analysis.sh` ran successfully from outside the artifact directory and generated 10 CSV files, 9 PDF figures and a quality JSON in a temporary output directory |
-| Manuscript | pdfLaTeX, BibTeX and two subsequent pdfLaTeX passes succeeded; 12 pages; no undefined references/citations; minor font/box warnings remain |
 | Privacy review | Common credential/private-key patterns, text/PDF contents and account identifiers checked; no credential identified; identifiers redacted as documented |
 
 To run the controller integration tests in a fresh environment:
@@ -76,8 +89,7 @@ Public placement-token evidence and verification keys are retained. See
 
 No AKS/kind hardware campaign, Terraform apply, container-image rebuild or
 bibliography-authenticity audit was performed. Regenerated outputs are not
-claimed byte-identical to every historical table or figure. The working
-manuscript remains anonymous and is not asserted to be an accepted final paper.
+claimed byte-identical to every historical table or figure. The manuscript is not included in version 1.0.1.
 
 Zenodo publication is a separate step described in `PUBLISHING.md`; no DOI was
 issued by these checks.

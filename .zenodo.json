@@ -1,7 +1,7 @@
 {
   "title": "Attestation-Aware Scheduling for Verifiable AI Placement on SEV-SNP Confidential Kubernetes Nodes — Reproducibility Artifact",
   "upload_type": "software",
-  "description": "Research artifact accompanying the working manuscript \"Attestation-Aware Scheduling for Verifiable AI Placement on SEV-SNP Confidential Kubernetes Nodes\". Contains the reference implementation (scheduler, central verifier, node attestation agent and offline placement-token verifier), deployment chart, experimental harnesses, archived AKS data, analysis scripts, and manuscript source/PDF. AKS data concerns node-level AMD SEV-SNP placement; kind/KWOK data is regression evidence only. The manuscript remains an anonymous review draft. The shared Go module includes auxiliary platform components outside the paper scope. See README.md and ARTIFACT_VALIDATION.md for reproduction commands, provenance and validation limitations.",
+  "description": "Reproducibility artifact for \"Attestation-Aware Scheduling for Verifiable AI Placement on SEV-SNP Confidential Kubernetes Nodes\". Contains the reference implementation (scheduler, central verifier, node attestation agent and offline placement-token verifier), deployment chart, experimental harnesses, archived AKS data, reference figures and CSV tables, analysis scripts, and reproduction documentation. Version 1.0.1 contains software and experimental data; the article manuscript PDF and LaTeX sources are excluded. AKS data concerns node-level AMD SEV-SNP placement; kind/KWOK data is regression evidence only. The shared Go module includes auxiliary platform components outside the article scope. See README.md and ARTIFACT_VALIDATION.md for commands, provenance and validation limitations.",
   "keywords": [
     "confidential computing",
     "AMD SEV-SNP",
@@ -19,7 +19,7 @@
       "name": "Alaya, Ihsen"
     }
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "language": "eng",
   "related_identifiers": [
     {

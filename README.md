@@ -1,9 +1,9 @@
 # Attestation-Aware Scheduling for Verifiable AI Placement on SEV-SNP Confidential Kubernetes Nodes
 
-Version 1.0.0 research artifact: reference implementation, archived measurements,
-analysis scripts and working manuscript. The manuscript in `paper/` is the latest
-local review version available when this artifact was prepared; it is anonymous
-and is not represented as an accepted or author-approved final publication.
+Version 1.0.1 reproducibility artifact: reference implementation, archived
+measurements, analysis scripts and deployment documentation. This software/data
+release accompanies the article named above. The manuscript PDF and LaTeX sources
+are not distributed in this version.
 
 Repository: https://github.com/ihsenalaya/attestation-aware-kubernetes-scheduling
 
@@ -11,7 +11,7 @@ Repository: https://github.com/ihsenalaya/attestation-aware-kubernetes-schedulin
 
 | Path | Contents |
 | --- | --- |
-| `paper/` | LaTeX manuscript, compiled PDF, figures and supporting tables |
+| `results/reference/` | Reference figures and supporting CSV tables |
 | `operator/` | Go module: scheduler, central verifier, node agent, admission components and offline token verifier |
 | `charts/ai-confidential-governance-platform/` | Deployment chart |
 | `deploy/`, `experiments/`, `automation/` | Local/AKS setup and experimental harnesses |
@@ -53,7 +53,7 @@ bash scripts/reproduce-analysis.sh reproduced
 
 This runs the analysis scripts and regenerates supported outputs into a separate
 output directory. It does not assert byte-identical reproduction of every archived
-figure/table or recreate unavailable detailed logs. `paper/tables/` and
+figure/table or recreate unavailable detailed logs. `results/reference/tables/` and
 `results/tables/` preserve the archived evidence; output from this command is
 additional derived data. The input measurements are not changed.
 
@@ -93,12 +93,11 @@ this package. AKS deployment values are in `deploy/aks-private/values.yaml`
 - This package was checked locally. Archived AKS experiments were not rerun,
   and the checks do not independently establish the manuscript's scientific claims.
 
-## Paper, citation and publication
+## Citation and publication
 
-Build instructions are in `paper/README_OVERLEAF.md`. Cite the artifact using
-`CITATION.cff`. Zenodo metadata is in `.zenodo.json`; no DOI is invented.
-`PUBLISHING.md` describes enabling this dedicated repository in Zenodo and
-publishing the prepared GitHub release. Version 1.0.0 is a prepared artifact
-version, not evidence that a Zenodo record already exists.
+Cite the software/data artifact using `CITATION.cff`. Zenodo metadata is in
+`.zenodo.json`. `PUBLISHING.md` describes the GitHub release and Zenodo workflow.
+Version 1.0.1 excludes the article manuscript; earlier tagged snapshots have
+independent contents. No DOI is invented in the metadata.
 
 License: Apache-2.0, as supplied with the original artifact; see `LICENSE`.

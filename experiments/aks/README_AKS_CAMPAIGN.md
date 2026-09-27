@@ -42,7 +42,7 @@ This runs, in order (each writes raw files under `results/raw/aks/`):
    fields require the GHCR `0.5.11` scheduler image.
 7. ablation → `ablation.csv`.
 8. identity binding / verifiable placement → `identity_binding.csv`.
-9. stats + figures → `results/tables/*.csv`, `paper/figures/*.pdf`.
+9. stats + figures → `results/tables/*.csv`, `results/reference/figures/*.pdf`.
 10. `aks_stop.sh` then (if `DESTROY_AKS_AFTER_RUN=true`) `aks_destroy.sh`.
 
 ## Individual steps (for debugging / partial runs)

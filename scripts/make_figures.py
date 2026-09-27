@@ -36,7 +36,7 @@ def attack_sort_key(row):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--figures", default=str(ARTIFACT_ROOT / "paper/figures"))
+    ap.add_argument("--figures", default=str(ARTIFACT_ROOT / "results/reference/figures"))
     ap.add_argument("--performance", default=str(ARTIFACT_ROOT / "results/raw/aks/performance_high_resolution.csv"))
     ap.add_argument("--security", default=str(ARTIFACT_ROOT / "results/tables/security.csv"))
     ap.add_argument("--scalability", default=str(ARTIFACT_ROOT / "results/tables/scalability.csv"))

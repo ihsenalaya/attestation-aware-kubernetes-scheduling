@@ -20,6 +20,6 @@ PYTHON="${PYTHON:-python3}"
   --scalability "${OUTPUT_DIR}/tables/scalability.csv" \
   --ablation "${OUTPUT_DIR}/tables/ablation.csv"
 "${PYTHON}" scripts/update_q1_final_artifacts.py --raw results/raw/aks \
-  --tables "${OUTPUT_DIR}/tables" --paper-tables "${OUTPUT_DIR}/paper-tables" \
+  --tables "${OUTPUT_DIR}/tables" --reference-tables "${OUTPUT_DIR}/reference/tables" \
   --figures "${OUTPUT_DIR}/figures"
 echo "Regenerated analysis: ${OUTPUT_DIR}"

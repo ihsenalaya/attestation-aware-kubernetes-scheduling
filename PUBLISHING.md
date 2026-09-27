@@ -1,36 +1,35 @@
 # GitHub → Zenodo publication
 
-The dedicated repository is:
-https://github.com/ihsenalaya/attestation-aware-kubernetes-scheduling
+Repository: https://github.com/ihsenalaya/attestation-aware-kubernetes-scheduling
 
-The `v1.0.0` artifact is prepared as a draft release. Preparation does not issue
-a DOI. The manuscript in this artifact is a working anonymous review version;
-replace it and regenerate the package if a different final manuscript is intended.
+Version 1.0.1 is the software/data artifact. It includes the implementation,
+deployment configuration, experiment scripts, archived measurements and reference
+results. The article manuscript is distributed separately.
 
-1. Inspect the prepared files and validation report. If the manuscript changes,
-   rebuild its PDF, update `PROVENANCE.json`, regenerate `SHA256SUMS` and the ZIP
-   with `python3 tools/package_artifact.py`, commit, and update the draft release.
-2. Make the dedicated repository public when ready to publish.
-3. Open https://zenodo.org/account/settings/github/, select **Sync now**, and
-   enable **ihsenalaya/attestation-aware-kubernetes-scheduling** specifically.
-   Linking a GitHub account or enabling `article2` does not enable this repository.
-4. Publish the prepared GitHub release `v1.0.0` only after enabling this repository.
-   Zenodo ingests the tagged repository snapshot, so the tag must point to the
-   reviewed artifact tree. Do not rely solely on the attached ZIP.
-5. Wait for processing and inspect the resulting Zenodo record: title, author,
-   version, license, files and DOI. Add the assigned DOI to the citation metadata
-   in a subsequent commit. No placeholder DOI is included here.
+For subsequent updates:
 
-The `.zenodo.json` file takes precedence over `CITATION.cff` for Zenodo's GitHub
-integration. Both describe the software artifact, while the included manuscript
-keeps its own title and review status.
+1. Update the files and validation/provenance records, then increment the version
+   in `.zenodo.json`, `CITATION.cff`, the README and release notes.
+2. Run the relevant checks. Regenerate `SHA256SUMS` and the ZIP with
+   `python3 tools/package_artifact.py --output /path/outside/repository/artifact.zip`.
+3. Commit the reviewed artifact tree and create a new version tag. Keep earlier
+   published tags associated with their original contents.
+4. Ensure this repository is enabled in https://zenodo.org/account/settings/github/
+   before publishing the GitHub release. Zenodo ingests the tagged repository
+   snapshot; attaching a different ZIP alone does not change that snapshot.
+5. Inspect the resulting Zenodo record, version, files and DOI after processing.
+   Each new archived version has its own DOI, while the concept DOI groups the
+   versions. Changing a GitHub tag does not replace a previously archived record.
 
-For a manual Zenodo deposit, upload the ZIP created by `tools/package_artifact.py`
-and enter the metadata from `.zenodo.json`; uploading a ZIP alone does not import
-its internal metadata automatically. Choose one publication route to avoid
-creating duplicate records unintentionally.
+Zenodo uses `.zenodo.json` in preference to `CITATION.cff` when both are present.
+Both files describe the software/data artifact. No fabricated DOI is included.
 
-Official documentation (consulted 2026-09-27):
+For a manual deposit, upload the ZIP and enter the metadata from `.zenodo.json`;
+metadata inside a ZIP is not imported automatically. Use one publication route
+to avoid unintentionally creating duplicate records.
+
+Official documentation:
 - https://help.zenodo.org/docs/github/enable-repository/
 - https://help.zenodo.org/docs/github/archive-software/github-upload/
 - https://help.zenodo.org/docs/github/describe-software/zenodo-json/
+- https://support.zenodo.org/help/en-gb/1-upload-deposit/97-what-is-doi-versioning

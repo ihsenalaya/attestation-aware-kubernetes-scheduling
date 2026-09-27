@@ -44,7 +44,7 @@ else
   CLEAR_EVIDENCE_FOR_A1="${CLEAR_EVIDENCE_FOR_A1:-true}"
 fi
 # Live-run CSV goes to raw results; the curated A1..A9 matrix lives separately in
-# paper/tables/attack-results.csv and must not be overwritten here.
+# results/reference/tables/attack-results.csv and must not be overwritten here.
 CSV="${CSV:-results/raw/kind/attack-results-kind-live.csv}"
 mkdir -p "${OUT_DIR}"
 mkdir -p "$(dirname "${CSV}")"

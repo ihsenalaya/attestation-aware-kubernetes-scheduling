@@ -14,8 +14,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 RAW_AKS = ROOT / "results" / "raw" / "aks"
 RESULT_TABLES = ROOT / "results" / "tables"
-PAPER_TABLES = ROOT / "paper" / "tables"
-FIGURES = ROOT / "paper" / "figures"
+REFERENCE_TABLES = ROOT / "results" / "reference" / "tables"
+FIGURES = ROOT / "results" / "reference" / "figures"
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -109,7 +109,7 @@ def generate_security_matrix() -> None:
         "ci95_high",
         "primary_raw_file",
     ]
-    write_csv(PAPER_TABLES / "security_attack_matrix.csv", fields, out_rows)
+    write_csv(REFERENCE_TABLES / "security_attack_matrix.csv", fields, out_rows)
     write_csv(RESULT_TABLES / "security_attack_matrix.csv", fields, out_rows)
 
     try:
@@ -190,21 +190,21 @@ def generate_b4_b5_comparison() -> None:
         },
     ]
     fields = ["feature", "B4_schedulingGate", "B5_attestation_scheduler", "raw_evidence"]
-    write_csv(PAPER_TABLES / "b4_b5_comparison.csv", fields, rows)
+    write_csv(REFERENCE_TABLES / "b4_b5_comparison.csv", fields, rows)
 
 
 def main() -> int:
-    global RAW_AKS, RESULT_TABLES, PAPER_TABLES, FIGURES
+    global RAW_AKS, RESULT_TABLES, REFERENCE_TABLES, FIGURES
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--raw", type=Path, default=RAW_AKS)
     parser.add_argument("--tables", type=Path, default=RESULT_TABLES)
-    parser.add_argument("--paper-tables", type=Path, default=PAPER_TABLES)
+    parser.add_argument("--reference-tables", "--paper-tables", dest="reference_tables", type=Path, default=REFERENCE_TABLES)
     parser.add_argument("--figures", type=Path, default=FIGURES)
     args = parser.parse_args()
-    RAW_AKS, RESULT_TABLES, PAPER_TABLES, FIGURES = args.raw, args.tables, args.paper_tables, args.figures
+    RAW_AKS, RESULT_TABLES, REFERENCE_TABLES, FIGURES = args.raw, args.tables, args.reference_tables, args.figures
     if not (RAW_AKS / "security_attacks_A1_A11.csv").is_file():
         parser.error("Missing security_attacks_A1_A11.csv in --raw")
-    for path in (RESULT_TABLES, PAPER_TABLES, FIGURES):
+    for path in (RESULT_TABLES, REFERENCE_TABLES, FIGURES):
         path.mkdir(parents=True, exist_ok=True)
     generate_security_matrix()
     generate_b4_b5_comparison()
